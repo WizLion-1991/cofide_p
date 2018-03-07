@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cfdi_honorarios" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" scriptletClass="com.mx.siweb.erp.reportes.jasper.NumerosEnLetra" uuid="451a6bcc-ea0b-429f-ae3d-3e30cc7670f2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1072"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="FAC_ID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT *,(SELECT GROUP_CONCAT(REGF_DESCRIPCION SEPARATOR ',') FROM vta_empregfiscal,vta_regimenfiscal 
+where vta_empregfiscal.REGF_ID = vta_regimenfiscal.REGF_ID and vta_empregfiscal.EMP_ID=vta_empresas.EMP_ID 
+GROUP BY vta_empregfiscal.EMP_ID limit 0,1) as REGF_DESCRIPCION,concat( EMP_CALLE," NUM. " ,EMP_NUMERO," " ,EMP_NUMINT ) AS calle_Emp ,
+concat( FAC_CALLE," "," " ,FAC_NUMERO," " ,FAC_NUMINT) AS calle_Cte,concat( FAC_CALLE," "," " ,FAC_NUMERO," " ,FAC_NUMINT) AS calle_Cte2,
+concat( SC_CALLE,"  COL." ,SC_COLONIA) AS calle_Sc,
+IF(FACD_TASAIVA1 <> 0,FACD_PRECIO/(1+FACD_TASAIVA1/100),FACD_PRECIO) AS PU,
+IF( FACD_TASAIVA1 <>0, FACD_PRECIO / ( 1 + FACD_TASAIVA1 /100 ) * FACD_CANTIDAD, FACD_PRECIO * FACD_CANTIDAD ) AS IMPORTE,
+if(FACD_UNIDAD_MEDIDA = 0, 'No Aplica',FACD_UNIDAD_MEDIDA) AS UNIDAD
+FROM vta_facturas,vta_sucursal,vta_empresas, vta_facturasdeta b 
+where vta_facturas.SC_ID = vta_sucursal.SC_ID 
+and  vta_facturas.EMP_ID  = vta_empresas.EMP_ID 
+and vta_facturas.FAC_ID = b.FAC_ID
+and vta_facturas.FAC_ID = $P{FAC_ID}
+group by b.FACD_ID]]>
+	</queryString>
+	<field name="FAC_ID" class="java.lang.Long"/>
+	<field name="FAC_FOLIO" class="java.lang.String"/>
+	<field name="FAC_FECHA" class="java.lang.String"/>
+	<field name="FAC_HORA" class="java.lang.String"/>
+	<field name="CT_ID" class="java.lang.Long"/>
+	<field name="FAC_IMPORTE" class="java.math.BigDecimal"/>
+	<field name="FAC_IMPUESTO1" class="java.math.BigDecimal"/>
+	<field name="FAC_IMPUESTO2" class="java.math.BigDecimal"/>
+	<field name="FAC_IMPUESTO3" class="java.math.BigDecimal"/>
+	<field name="FAC_TOTAL" class="java.math.BigDecimal"/>
+	<field name="FAC_SALDO" class="java.math.BigDecimal"/>
+	<field name="SC_ID" class="java.lang.Long"/>
+	<field name="EMP_ID" class="java.lang.Long"/>
+	<field name="FAC_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="FAC_RFC" class="java.lang.String"/>
+	<field name="FAC_CALLE" class="java.lang.String"/>
+	<field name="FAC_COLONIA" class="java.lang.String"/>
+	<field name="FAC_LOCALIDAD" class="java.lang.String"/>
+	<field name="FAC_MUNICIPIO" class="java.lang.String"/>
+	<field name="FAC_ESTADO" class="java.lang.String"/>
+	<field name="FAC_CP" class="java.lang.String"/>
+	<field name="FAC_TASA1" class="java.math.BigDecimal"/>
+	<field name="FAC_TASA2" class="java.math.BigDecimal"/>
+	<field name="FAC_TASA3" class="java.math.BigDecimal"/>
+	<field name="FAC_O_REM" class="java.lang.Integer"/>
+	<field name="FAC_GANANCIA" class="java.math.BigDecimal"/>
+	<field name="ES_ID" class="java.lang.Long"/>
+	<field name="FAC_ANULADA" class="java.lang.Integer"/>
+	<field name="FAC_FECHAANUL" class="java.lang.String"/>
+	<field name="FAC_DIASCREDITO" class="java.lang.Integer"/>
+	<field name="FAC_NOTAS" class="java.lang.String"/>
+	<field name="FAC_LPRECIOS" class="java.lang.Integer"/>
+	<field name="FAC_IDNC" class="java.lang.Long"/>
+	<field name="FAC_ES_SURTIDO" class="java.lang.Integer"/>
+	<field name="FAC_US_ALTA" class="java.lang.Long"/>
+	<field name="FAC_US_ANUL" class="java.lang.Long"/>
+	<field name="FAC_MONEDA" class="java.lang.Long"/>
+	<field name="FAC_TASAPESO" class="java.math.BigDecimal"/>
+	<field name="VE_ID" class="java.lang.Long"/>
+	<field name="FAC_FECHACREATE" class="java.lang.String"/>
+	<field name="FAC_ESSERV" class="java.lang.Integer"/>
+	<field name="FAC_HORANUL" class="java.lang.String"/>
+	<field name="FAC_COSTO" class="java.math.BigDecimal"/>
+	<field name="FAC_DESCUENTO" class="java.math.BigDecimal"/>
+	<field name="FAC_CADENAORIGINAL" class="java.lang.String"/>
+	<field name="FAC_SELLO" class="java.lang.String"/>
+	<field name="CCJ_ID" class="java.lang.Long"/>
+	<field name="FAC_ESMASIVA" class="java.lang.Integer"/>
+	<field name="FAC_NUMERO" class="java.lang.String"/>
+	<field name="FAC_NUMINT" class="java.lang.String"/>
+	<field name="FAC_SERIE" class="java.lang.String"/>
+	<field name="FAC_NOAPROB" class="java.lang.String"/>
+	<field name="FAC_FECHAAPROB" class="java.lang.String"/>
+	<field name="PD_ID" class="java.lang.Long"/>
+	<field name="FAC_TIPOCOMP" class="java.lang.Integer"/>
+	<field name="FAC_RETISR" class="java.lang.Double"/>
+	<field name="FAC_RETIVA" class="java.lang.Double"/>
+	<field name="FAC_NETO" class="java.lang.Double"/>
+	<field name="FAC_NOTASPIE" class="java.lang.String"/>
+	<field name="FAC_REFERENCIA" class="java.lang.String"/>
+	<field name="FAC_CONDPAGO" class="java.lang.String"/>
+	<field name="FAC_ESARRENDA" class="java.lang.Integer"/>
+	<field name="FAC_NOMFORMATO" class="java.lang.String"/>
+	<field name="FAC_EXEC_INTER_CP" class="java.lang.Long"/>
+	<field name="FAC_ESRECU" class="java.lang.Integer"/>
+	<field name="FAC_PERIODICIDAD" class="java.lang.Integer"/>
+	<field name="FAC_DIAPER" class="java.lang.Integer"/>
+	<field name="FAC_NUMPEDI" class="java.lang.String"/>
+	<field name="FAC_FECHAPEDI" class="java.lang.String"/>
+	<field name="FAC_ADUANA" class="java.lang.String"/>
+	<field name="TI_ID" class="java.lang.Long"/>
+	<field name="TI_ID2" class="java.lang.Long"/>
+	<field name="TI_ID3" class="java.lang.Long"/>
+	<field name="FAC_EXEC_INTER_CP_ANUL" class="java.lang.Long"/>
+	<field name="FAC_CREDITO" class="java.lang.Integer"/>
+	<field name="FAC_USO_IEPS" class="java.lang.Integer"/>
+	<field name="FAC_TASA_IEPS" class="java.lang.Integer"/>
+	<field name="FAC_IMPORTE_IEPS" class="java.math.BigDecimal"/>
+	<field name="FAC_FORMADEPAGO" class="java.lang.String"/>
+	<field name="FAC_METODODEPAGO" class="java.lang.String"/>
+	<field name="FAC_UUID" class="java.lang.String"/>
+	<field name="FAC_SENDMAIL" class="java.lang.Integer"/>
+	<field name="FAC_METODOPAGO" class="java.lang.String"/>
+	<field name="FAC_SELLOTIMBRE" class="java.lang.String"/>
+	<field name="FAC_HORA_TIMBRE" class="java.lang.String"/>
+	<field name="FAC_FOLIO_ANUL" class="java.lang.String"/>
+	<field name="FAC_SELLOTIMBRE_ANUL" class="java.lang.String"/>
+	<field name="FAC_HORA_TIMBRE_ANUL" class="java.lang.String"/>
+	<field name="NC_FOLIO_ANUL" class="java.lang.String"/>
+	<field name="TKT_FOLIO_ANUL" class="java.lang.String"/>
+	<field name="PD_FOLIO_ANUL" class="java.lang.String"/>
+	<field name="COT_FOLIO_ANUL" class="java.lang.String"/>
+	<field name="FAC_CADENA_TIMBRE" class="java.lang.String"/>
+	<field name="FAC_PATH_CBB" class="java.lang.String"/>
+	<field name="FAC_NOSERIECERTTIM" class="java.lang.String"/>
+	<field name="FAC_REGIMENFISCAL" class="java.lang.String"/>
+	<field name="FAC_NUMCUENTA" class="java.lang.String"/>
+	<field name="FAC_FECHA_VENCI" class="java.lang.String"/>
+	<field name="FAC_NUM_GUIA" class="java.lang.String"/>
+	<field name="FAC_TIPO_FLETE" class="java.lang.Integer"/>
+	<field name="FAC_IMPORTE_FLETE" class="java.math.BigDecimal"/>
+	<field name="FAC_ES_POR_PEDIDOS" class="java.lang.Integer"/>
+	<field name="FAC_IMPORTE_PUNTOS" class="java.math.BigDecimal"/>
+	<field name="FAC_IMPORTE_NEGOCIO" class="java.math.BigDecimal"/>
+	<field name="FAC_NO_MLM" class="java.lang.Integer"/>
+	<field name="MPE_ID" class="java.lang.Integer"/>
+	<field name="FAC_POR_DESC" class="java.math.BigDecimal"/>
+	<field name="FAC_CONSIGNACION" class="java.lang.Integer"/>
+	<field name="CDE_ID" class="java.lang.Integer"/>
+	<field name="DFA_ID" class="java.lang.Integer"/>
+	<field name="FAC_RECU_FINAL" class="java.lang.String"/>
+	<field name="FAC_NO_EVENTOS" class="java.lang.Integer"/>
+	<field name="TR_ID" class="java.lang.Integer"/>
+	<field name="ME_ID" class="java.lang.Integer"/>
+	<field name="TF_ID" class="java.lang.Integer"/>
+	<field name="FAC_POR_DESCUENTO" class="java.math.BigDecimal"/>
+	<field name="FAC_ES_CFD" class="java.lang.Integer"/>
+	<field name="FAC_ES_CBB" class="java.lang.Integer"/>
+	<field name="FAC_FECHA_COBRO" class="java.lang.String"/>
+	<field name="PD_RECU_ID" class="java.lang.Integer"/>
+	<field name="FAC_TURNO" class="java.lang.Integer"/>
+	<field name="SC_NUM" class="java.lang.Long"/>
+	<field name="SC_CLAVE" class="java.lang.String"/>
+	<field name="SC_NOMBRE" class="java.lang.String"/>
+	<field name="SC_CALLE" class="java.lang.String"/>
+	<field name="SC_COLONIA" class="java.lang.String"/>
+	<field name="SC_LOCALIDAD" class="java.lang.String"/>
+	<field name="SC_MUNICIPIO" class="java.lang.String"/>
+	<field name="SC_ESTADO" class="java.lang.String"/>
+	<field name="SC_CP" class="java.lang.String"/>
+	<field name="SC_TASA1" class="java.math.BigDecimal"/>
+	<field name="SC_TASA2" class="java.math.BigDecimal"/>
+	<field name="SC_TASA3" class="java.math.BigDecimal"/>
+	<field name="SC_DESGLOSA1" class="java.lang.Integer"/>
+	<field name="SC_DESGLOSA2" class="java.lang.Integer"/>
+	<field name="SC_DESGLOSA3" class="java.lang.Integer"/>
+	<field name="SC_SOBRIMP1_2" class="java.lang.Integer"/>
+	<field name="SC_SOBRIMP1_3" class="java.lang.Integer"/>
+	<field name="SC_SOBRIMP2_3" class="java.lang.Integer"/>
+	<field name="SC_DIVISA" class="java.lang.Long"/>
+	<field name="SC_IDIOMA" class="java.lang.Long"/>
+	<field name="SC_CUENTAPREDIAL" class="java.lang.String"/>
+	<field name="CT_GASTOS" class="java.lang.String"/>
+	<field name="SC_GOOGLE" class="java.lang.String"/>
+	<field name="SC_DIAS_INGRESAR" class="java.lang.Integer"/>
+	<field name="MON_ID" class="java.lang.Integer"/>
+	<field name="SC_EAN13_BASE" class="java.lang.String"/>
+	<field name="SC_EAN13_SEMILLA" class="java.lang.Integer"/>
+	<field name="SC_ACTIVA_OFERTA" class="java.lang.Integer"/>
+	<field name="SC_PREFIJO_COD_BAR" class="java.lang.String"/>
+	<field name="SC_TURNO" class="java.lang.Integer"/>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="EMP_RFC" class="java.lang.String"/>
+	<field name="EMP_CALLE" class="java.lang.String"/>
+	<field name="EMP_COLONIA" class="java.lang.String"/>
+	<field name="EMP_LOCALIDAD" class="java.lang.String"/>
+	<field name="EMP_MUNICIPIO" class="java.lang.String"/>
+	<field name="EMP_ESTADO" class="java.lang.String"/>
+	<field name="EMP_CP" class="java.lang.String"/>
+	<field name="EMP_TELEFONO1" class="java.lang.String"/>
+	<field name="EMP_TELEFONO2" class="java.lang.String"/>
+	<field name="EMP_REPRESENTANTE" class="java.lang.String"/>
+	<field name="EMP_FOLIO" class="java.lang.Long"/>
+	<field name="EMP_NUMERO" class="java.lang.String"/>
+	<field name="EMP_NUMINT" class="java.lang.String"/>
+	<field name="EMP_NOAPROB" class="java.lang.String"/>
+	<field name="EMP_FECHAPROB" class="java.lang.String"/>
+	<field name="EMP_NOSERIECERT" class="java.lang.String"/>
+	<field name="EMP_NOMKEY" class="java.lang.String"/>
+	<field name="EMP_PASSKEY" class="java.lang.Object"/>
+	<field name="EMP_FIRMA" class="java.lang.Integer"/>
+	<field name="EMP_FOLIOFIN" class="java.lang.Long"/>
+	<field name="EMP_AVISOFOLIO" class="java.lang.Integer"/>
+	<field name="EMP_TIPOCOMP" class="java.lang.Integer"/>
+	<field name="EMP_PATHIMG" class="java.lang.String"/>
+	<field name="EMP_PATHIMGFORM" class="java.lang.String"/>
+	<field name="EMP_TIPOPERS" class="java.lang.Integer"/>
+	<field name="EMP_NO_ISR" class="java.lang.Integer"/>
+	<field name="EMP_NO_IVA" class="java.lang.Integer"/>
+	<field name="EMP_CTACTE" class="java.lang.String"/>
+	<field name="EMP_CTAVTA" class="java.lang.String"/>
+	<field name="EMP_CTAIVA" class="java.lang.String"/>
+	<field name="EMP_URLCP" class="java.lang.String"/>
+	<field name="EMP_USERCP" class="java.lang.String"/>
+	<field name="EMP_PASSCP" class="java.lang.String"/>
+	<field name="EMP_USECONTA" class="java.lang.Integer"/>
+	<field name="EMP_USACODBARR" class="java.lang.Integer"/>
+	<field name="EMP_PATHIMGCODBAR" class="java.lang.String"/>
+	<field name="EMP_TIPOCOMPNC" class="java.lang.Integer"/>
+	<field name="EMP_VTA_DETA" class="java.lang.Integer"/>
+	<field name="EMP_CUENTAVTACRED" class="java.lang.String"/>
+	<field name="EMP_AVISOCANCEL" class="java.lang.Integer"/>
+	<field name="EMP_NOMCERT" class="java.lang.String"/>
+	<field name="EMP_ACUSEFACTURA" class="java.lang.Integer"/>
+	<field name="EMP_CFD_CFDI" class="java.lang.Integer"/>
+	<field name="EMP_CTAPROV" class="java.lang.String"/>
+	<field name="EMP_DONA_NUM_AUTORIZA" class="java.lang.String"/>
+	<field name="EMP_DONA_FECHA_AUTORIZA" class="java.lang.String"/>
+	<field name="EMP_DONA_LEYENDA" class="java.lang.String"/>
+	<field name="EMP_ES_DONATARIA" class="java.lang.Integer"/>
+	<field name="EMP_DIA_PAGO_PROV" class="java.lang.Integer"/>
+	<field name="EMP_IMAG_CUERPO" class="java.lang.String"/>
+	<field name="EMP_CTACTE_COMPL" class="java.lang.String"/>
+	<field name="EMP_CTAPROV_COMPL" class="java.lang.String"/>
+	<field name="EMP_URL_RESTFUL_CP" class="java.lang.String"/>
+	<field name="FACD_ID" class="java.lang.Long"/>
+	<field name="FACD_CVE" class="java.lang.String"/>
+	<field name="FACD_DESCRIPCION" class="java.lang.String"/>
+	<field name="FACD_IMPORTE" class="java.math.BigDecimal"/>
+	<field name="FACD_CANTIDAD" class="java.math.BigDecimal"/>
+	<field name="FACD_TASAIVA1" class="java.math.BigDecimal"/>
+	<field name="FACD_TASAIVA2" class="java.math.BigDecimal"/>
+	<field name="FACD_TASAIVA3" class="java.math.BigDecimal"/>
+	<field name="FACD_DESGLOSA1" class="java.lang.Integer"/>
+	<field name="FACD_DESGLOSA2" class="java.lang.Integer"/>
+	<field name="FACD_DESGLOSA3" class="java.lang.Integer"/>
+	<field name="FACD_IMPUESTO1" class="java.math.BigDecimal"/>
+	<field name="FACD_IMPUESTO2" class="java.math.BigDecimal"/>
+	<field name="FACD_IMPUESTO3" class="java.math.BigDecimal"/>
+	<field name="FACD_NOSERIE" class="java.lang.String"/>
+	<field name="FACD_ESREGALO" class="java.lang.Integer"/>
+	<field name="FACD_IMPORTEREAL" class="java.math.BigDecimal"/>
+	<field name="FACD_PRECIO" class="java.math.BigDecimal"/>
+	<field name="FACD_EXENTO1" class="java.lang.Integer"/>
+	<field name="FACD_EXENTO2" class="java.lang.Integer"/>
+	<field name="FACD_EXENTO3" class="java.lang.Integer"/>
+	<field name="PR_ID" class="java.lang.Long"/>
+	<field name="FACD_COSTO" class="java.math.BigDecimal"/>
+	<field name="FACD_GANANCIA" class="java.math.BigDecimal"/>
+	<field name="FACD_DESCUENTO" class="java.math.BigDecimal"/>
+	<field name="FACD_PORDESC" class="java.math.BigDecimal"/>
+	<field name="FACD_PRECFIJO" class="java.lang.Integer"/>
+	<field name="FACD_PRECREAL" class="java.math.BigDecimal"/>
+	<field name="FACD_ESDEVO" class="java.lang.Integer"/>
+	<field name="FACD_COMENTARIO" class="java.lang.String"/>
+	<field name="FACD_PEDINUM" class="java.lang.String"/>
+	<field name="FACD_PEDIFECHA" class="java.lang.String"/>
+	<field name="FACD_PEDIADUANA" class="java.lang.String"/>
+	<field name="FACD_UNIDAD_MEDIDA" class="java.lang.String"/>
+	<field name="FACD_RET_ISR" class="java.lang.Integer"/>
+	<field name="FACD_RET_IVA" class="java.lang.Integer"/>
+	<field name="FACD_RET_FLETE" class="java.lang.Integer"/>
+	<field name="PDD_ID" class="java.lang.Integer"/>
+	<field name="TKTD_ID" class="java.lang.Integer"/>
+	<field name="COTD_ID" class="java.lang.Integer"/>
+	<field name="FACD_PUNTOS" class="java.math.BigDecimal"/>
+	<field name="FACD_VNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="FACD_IMP_PUNTOS" class="java.math.BigDecimal"/>
+	<field name="FACD_IMP_VNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="FACD_DESC_PREC" class="java.lang.Integer"/>
+	<field name="FACD_DESC_PUNTOS" class="java.lang.Integer"/>
+	<field name="FACD_DESC_VNEGOCIO" class="java.lang.Integer"/>
+	<field name="FACD_DESC_ORI" class="java.math.BigDecimal"/>
+	<field name="FACD_REGALO" class="java.lang.Integer"/>
+	<field name="FACD_ID_PROMO" class="java.lang.Integer"/>
+	<field name="FACD_EXEN_RET_ISR" class="java.lang.Integer"/>
+	<field name="FACD_EXEN_RET_IVA" class="java.lang.Integer"/>
+	<field name="FACD_CAN_DEV" class="java.lang.Integer"/>
+	<field name="FACD_SERIES_DEV" class="java.lang.String"/>
+	<field name="REGF_DESCRIPCION" class="java.lang.String"/>
+	<field name="calle_Emp" class="java.lang.String"/>
+	<field name="calle_Cte" class="java.lang.String"/>
+	<field name="calle_Cte2" class="java.lang.String"/>
+	<field name="calle_Sc" class="java.lang.String"/>
+	<field name="PU" class="java.math.BigDecimal"/>
+	<field name="IMPORTE" class="java.math.BigDecimal"/>
+	<field name="UNIDAD" class="java.lang.String"/>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement uuid="6b516eac-cf4a-4c7e-87a8-e404e3475528" x="0" y="0" width="555" height="802"/>
+				<imageExpression><![CDATA["/home/siweb/Documentos/CONFIGURACION DE NUEVAS EMPRESAS/FACTURACION 2013/rep_cfdi_comercial.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="270" splitType="Stretch">
+			<textField>
+				<reportElement uuid="967ab403-4b3b-461a-bc69-1d2b1b3c4ab0" x="302" y="141" width="59" height="14"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="78d5ef7b-309f-4c65-9c57-a2a2f08e5d6b" x="370" y="172" width="148" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_NOSERIECERT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="53d05a1e-0681-4485-a838-a830f0e0e5dd" x="510" y="186" width="45" height="12"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_HORA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="0d8c4063-89dc-48c4-b719-d544b08b32ef" x="457" y="186" width="53" height="12"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{FAC_FECHA})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b3dc4194-0841-49f9-80c9-7ef0ef9e2536" x="48" y="150" width="100" height="14"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_RFC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5fd1025b-273d-4a23-b866-140c0a37ab01" x="48" y="177" width="100" height="14"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{calle_Cte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="359424f5-3aeb-4a94-8707-db93a3ef54e7" x="58" y="191" width="100" height="15"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_COLONIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="326dadce-47dc-4970-bb76-0df5de098b6d" x="69" y="206" width="100" height="14"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_MUNICIPIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4d21d6ba-cff6-4583-ad4a-5e3dfc82abb9" x="39" y="219" width="100" height="12"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_ESTADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f4643079-f0e2-43ba-8d88-0ed8a424f8a4" x="157" y="218" width="56" height="14"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_CP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="95f25c7e-b2f0-4471-a085-18d7eee2fffb" x="306" y="156" width="249" height="13"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_FOLIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9a7eafcd-40be-4763-a53d-a490a7ba025d" x="438" y="216" width="117" height="11"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_NOSERIECERTTIM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="07b0808e-3bbc-414c-a938-bd15dd8d9679" x="398" y="186" width="59" height="12"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[MÉXICO D.F.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8f01b2da-df26-4620-a2fb-73bc753e8925" x="389" y="202" width="134" height="12"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_HORA_TIMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f99834e2-0306-408e-a13e-7e6489ab5c7f" x="16" y="163" width="210" height="14"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="efa96bc6-0ff5-49c0-8af5-f9d6f6f2c180" mode="Opaque" x="159" y="44" width="385" height="20" forecolor="#172983"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="183ccff0-2884-4090-acc4-2ad2257f2cd8" x="289" y="106" width="266" height="24" forecolor="#1FA22E"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_REGIMENFISCAL}]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement uuid="41f31c07-1637-4a4e-852a-ccdbe10139da" x="39" y="15" width="114" height="111"/>
+				<imageExpression><![CDATA[$F{EMP_PATHIMGFORM}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="1190c28e-dd0d-4e52-b4e4-b586fb83338f" x="159" y="64" width="385" height="14" forecolor="#1FA22E"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RFC:" + $F{EMP_RFC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bbe1317b-b9fb-4374-86cf-811da08294b7" x="159" y="78" width="385" height="13" forecolor="#1FA22E"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_CALLE} + " No. " + $F{EMP_NUMERO} + " " + $F{EMP_NUMINT} + " " + $F{EMP_COLONIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c9d39b78-50b5-4556-825e-fcea4965f61a" x="159" y="91" width="385" height="12" forecolor="#1FA22E"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_MUNICIPIO} + ", " + $F{EMP_ESTADO} + ", C.P. " + $F{EMP_CP}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="2251d689-a856-42e8-ba51-0731fa738463" x="487" y="1" width="68" height="15"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="c64ec2f7-f69f-4b40-ae8f-b7c6c2c08194" x="417" y="1" width="70" height="15"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PU}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="6a6ca92f-3ab9-4c09-9cdd-a5756c89397c" x="0" y="1" width="63" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACD_CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9d166edd-662e-4356-9eca-a55154df2752" x="63" y="1" width="90" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNIDAD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="e3f55e11-6571-4ca1-b29a-0e0a64c3af40" x="153" y="1" width="264" height="15"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACD_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="f390380b-6e09-4484-8f12-7f1d9d54113f" positionType="FixRelativeToBottom" x="63" y="0" width="1" height="16" forecolor="#172983"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="13c36dc6-db51-4919-82a0-f118eb45933f" positionType="FixRelativeToBottom" x="152" y="0" width="1" height="16" forecolor="#172983"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="8d49819a-d96a-43f9-bb66-ff922dd67ae3" positionType="FixRelativeToBottom" x="416" y="0" width="1" height="16" forecolor="#172983"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="1f364253-eb56-48e5-9337-58ba5ff747e9" positionType="FixRelativeToBottom" x="486" y="0" width="1" height="16" forecolor="#172983"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="34">
+			<textField evaluationTime="Report">
+				<reportElement uuid="d5dd9ad7-88cb-47ef-a204-c4a3837c8385" x="318" y="22" width="69" height="12" forecolor="#535355"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a102bf80-1f6b-442b-879f-3c38fc96ba60" x="298" y="22" width="20" height="12" forecolor="#535355"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3b8bf453-887a-4bbb-bc54-64aaae848c09" x="213" y="22" width="85" height="12" forecolor="#535355"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SiWebFactura Página]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="419">
+			<rectangle radius="10">
+				<reportElement uuid="3bfa8649-9e72-431e-9732-97ada7b13ff6" x="0" y="4" width="554" height="415" forecolor="#FFFFFF"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="bcdce84a-9fc5-4701-ab3a-0c3c29c36376" x="17" y="167" width="111" height="106" backcolor="#F0F1F1"/>
+				<graphicElement>
+					<pen lineColor="#F0F1F1"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="6f1663a7-8fd8-4fed-a26e-69772679a7b4" x="133" y="166" width="422" height="253" backcolor="#F0F1F1"/>
+				<graphicElement>
+					<pen lineColor="#F0F1F1"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="f8886a17-ee01-4367-bf2a-213ef91001e2" x="16" y="51" width="539" height="108" backcolor="#F0F1F1"/>
+				<graphicElement>
+					<pen lineColor="#F0F1F1"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="2c6bcf40-11be-4cc4-a3e2-05d0558bd006" x="405" y="55" width="149" height="100" backcolor="#F0F1F1"/>
+				<graphicElement>
+					<pen lineColor="#172983"/>
+				</graphicElement>
+			</rectangle>
+			<textField pattern=" #,##0.00">
+				<reportElement uuid="e313a3cc-9474-46bd-b767-4d19e3c13ffd" x="496" y="91" width="56" height="14"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00">
+				<reportElement uuid="1826a6b7-dd44-4364-8083-0877b2d06dbf" x="496" y="60" width="56" height="13"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00">
+				<reportElement uuid="06ac1d73-182b-4dbc-a247-998a2a82d377" x="496" y="76" width="56" height="12"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_IMPUESTO1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="d3b0eb2f-03a1-4387-9d71-89432bbe4ce3" x="37" y="77" width="322" height="26"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{FAC_NETO} == 0 ? $P{REPORT_SCRIPTLET}.convertirLetras($F{FAC_TOTAL}): $P{REPORT_SCRIPTLET}.convertirLetras($F{FAC_NETO}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ca7fccfd-ac89-4037-b27d-51b443adebb6" x="224" y="173" width="154" height="13"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_FORMADEPAGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="61b5d957-eef4-4c7a-8f20-edfef70e2c92" x="224" y="190" width="154" height="14"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_METODODEPAGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d0fd9cde-1870-4ed5-bf45-2f2fc7ba7d80" x="487" y="190" width="67" height="14"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_NUMCUENTA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a73e9c59-9f45-4c60-92d8-bfa95a5564ff" x="139" y="274" width="394" height="35"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_SELLOTIMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="99978659-b47a-4b06-8f43-f764c8507126" x="139" y="222" width="394" height="37"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_SELLO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5aa37a8f-8425-40b2-af71-1a7f645fcbf3" x="139" y="324" width="394" height="49"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_CADENA_TIMBRE}]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement uuid="4990ba87-7ccd-44e8-955e-173fecf7564a" x="22" y="173" width="103" height="95"/>
+				<imageExpression><![CDATA[$F{FAC_PATH_CBB}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="e0aaf5e4-7c2f-4278-8ab2-b14ccae6f79d" x="141" y="388" width="392" height="30"/>
+				<textElement>
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<text><![CDATA[LA REPRODUCCIÓN APOCRIFA DE ESTE COMPROBANTE CONSTITUYE UN DELITO EN LOS TERMINOS DE LAS DISPOCISIONES FISCALES.
+"ESTE DOCUMENTO ES UNA REPRESENTACION IMPRESA DE CFDI"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="92d65380-974e-466c-90ee-7cceabac0c7a" mode="Transparent" x="417" y="59" width="63" height="13" forecolor="#535355"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e9b66e52-24e0-4489-99b4-73dac45d7b03" x="417" y="75" width="63" height="12" forecolor="#535355"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[I.V.A al 16%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ced099eb-22e0-4f9d-9221-503f047d1250" x="417" y="91" width="63" height="13" forecolor="#535355"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4d2e79c6-1fb1-4175-8b8b-436676d3a830" x="141" y="173" width="83" height="13" forecolor="#535355"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forma de Pago:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d7a9f8df-3826-491e-8b31-d3b980a4dc86" x="39" y="60" width="100" height="13" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe con letra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eb4e68ef-f11d-4bee-9054-805391f7787b" x="141" y="190" width="83" height="14" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Metodo de Pago:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a486a88a-25e4-4ddc-8282-4e7ec3e4d01e" x="389" y="190" width="97" height="14" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de Cuenta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2c588b21-2db6-4c53-8357-c47b99d15db0" x="139" y="207" width="113" height="14" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sello Digital del CFDI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ff8ed6b6-c47e-4f86-a0f2-ad03827dfe54" x="140" y="260" width="112" height="14" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sello Digital del SAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da230887-f7d5-4429-b2ca-2f0f34ba4953" x="139" y="309" width="318" height="14" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cadena Original del complemento del certificado digital del SAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4466550d-8d4d-4e79-8de8-188a37899367" x="141" y="373" width="100" height="14" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Leyenda Fiscal:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5b153f23-17eb-418e-bbcf-56cc552a9df2" x="16" y="6" width="76" height="14" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Notas al Pie:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9e557874-8be8-4606-b375-8ea6008b2a40" x="97" y="6" width="421" height="36"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_NOTASPIE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e2c4000b-841c-4152-8821-9de8c17f5f3f" x="405" y="108" width="75" height="13" forecolor="#535355"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Retención ISR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a134e2a0-bf45-4638-ad9b-6b7bf901d672" x="405" y="124" width="75" height="12" forecolor="#535355"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Retención IVA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="17a8ea64-a0c0-4e6b-81fe-57495e0a8777" x="405" y="138" width="75" height="13" forecolor="#535355"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe Neto]]></text>
+			</staticText>
+			<textField pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="71e08ede-5991-4e17-b0dc-ccfbfd7274bd" x="496" y="108" width="56" height="13"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_RETISR}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="10d23966-287a-4334-83b2-9e927ba9c907" x="496" y="124" width="56" height="12"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_RETIVA}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="34c198c2-044b-4001-80c5-f3b717cfc749" x="496" y="138" width="56" height="13"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{FAC_NETO} == 0 ? $F{FAC_TOTAL}: $F{FAC_NETO})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="3532b67a-a04e-49d6-b106-3ca89bd1a0a5" x="483" y="55" width="1" height="100"/>
+				<graphicElement>
+					<pen lineColor="#172983"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="a6450e58-f1d5-4b88-9b7d-4c5cbc14ae33" x="405" y="137" width="150" height="1"/>
+				<graphicElement>
+					<pen lineColor="#172983"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="2d9e5712-5320-411c-b860-5d3614932ec5" x="405" y="122" width="149" height="1"/>
+				<graphicElement>
+					<pen lineColor="#172983"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="60ad17a3-f23f-4448-b687-78f0251b30ef" x="405" y="106" width="149" height="1"/>
+				<graphicElement>
+					<pen lineColor="#172983"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="e47989d8-e11f-4004-8dbe-5e16884aef45" x="405" y="91" width="149" height="1"/>
+				<graphicElement>
+					<pen lineColor="#172983"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="a3234250-0802-48a9-8703-86f7cbb046de" x="405" y="75" width="149" height="1"/>
+				<graphicElement>
+					<pen lineColor="#172983"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="e47e991b-061a-471b-afbc-24f0068deb2d" x="486" y="60" width="5" height="12" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2c14b35-3841-4a50-9d16-0841d5cd8504" x="486" y="76" width="5" height="12" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b6165542-0cf3-4478-872d-699f22aecda7" x="486" y="91" width="5" height="12" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="32843303-f639-4a4b-91f3-fa15a796b1ea" x="486" y="108" width="5" height="12" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="954e3e91-fac8-4c25-91c8-3a21db578607" x="486" y="122" width="5" height="12" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="93039c33-70a9-4d1a-bd10-78986f2da0ec" x="486" y="137" width="5" height="12" forecolor="#535355"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

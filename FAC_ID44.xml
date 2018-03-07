@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Formato>
+    <Header>
+        <hP valor="/opt/tomcat/webapps/cofide/images/imgo1.png" pX="10" pY="230" palign="0" pformato="text" pstyle="0" pwidth="180" pheight="100" pfont="Helvetica" psize="70" urlimg="/opt/tomcat/webapps/cofide/images/imgo1.png" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="CFD0302269C4" pX="80" pY="720" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="RFC:" pX="50" pY="720" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="http://192.168.2.137:9000/cofide/images/imgo1.png" pX="45" pY="730" palign="0" pformato="text" pstyle="0" pwidth="180" pheight="100" pfont="Helvetica" psize="70" urlimg="http://192.168.2.137:9000/cofide/images/imgo1.png" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="AV. COYOACÁN NUM. 1878 INT. 1203, 1204 " pX="50" pY="710" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="DEL VALLE" pX="68" pY="700" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="COL." pX="50" pY="700" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="BENITO JUÁREZ" pX="218" pY="700" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="CIUDAD DE MÉXICO" pX="90" pY="690" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="MÉXICO" pX="50" pY="690" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="03100" pX="180" pY="690" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="C.P." pX="165" pY="690" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="46304646" pX="100" pY="680" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="TELÉFONO" pX="50" pY="680" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="No de Serie del Certificado:" pX="300" pY="730" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="DELEGACIÓN." pX="165" pY="700" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="EN UNA SOLA EXHIBICION" pX="130" pY="670" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="09d4f68e-f345-4270-99f9-a178f746da8e" pX="408" pY="688" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="{255,0,0}" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="HORA:" pX="300" pY="740" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="27/07/2016" pX="410" pY="658" palign="0" pformato="date" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="13:26:21" pX="330" pY="740" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="" pX="450" pY="712" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Times" psize="8" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="-" pX="460" pY="712" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="8" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="0000043" pX="470" pY="712" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="44" pX="320" pY="750" palign="0" pformato="text" pstyle="2" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="ID:" pX="300" pY="750" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="TEST" pX="150" pY="602" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="XXX000000XX0" pX="75" pY="585" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="TEST , NUMERO  7676,   COLONIA Juárez,  Cuauhtémoc, Distrito Federal, CP.06600" pX="100" pY="573" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="00001000000402829114" pX="300" pY="720" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="Fecha y hora de certificación:" pX="300" pY="710" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="" pX="50" pY="680" palign="0" pformato="text" pstyle="0" pwidth="93" pheight="200" pfont="Helvetica" psize="60" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="2016-07-27T13:25:52-05:00" pX="300" pY="700" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="/home/SAT/COFIDE/qrCFDI_FAC_44.png" pX="10" pY="150" palign="0" pformato="text" pstyle="0" pwidth="95" pheight="95" pfont="Helvetica" psize="0" urlimg="/home/SAT/COFIDE/qrCFDI_FAC_44.png" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="" pX="400" pY="711" palign="0" pformato="text" pstyle="2" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="FORMA DE PAGO: " pX="50" pY="670" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="" pX="435" pY="650" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="20" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="METODO DE PAGO:" pX="50" pY="660" palign="0" pformato="text" pstyle="2" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="1181 / 27-07-2016 / BC-2 ESTRATEGIAS EN MARKETING DIGITAL EN BUSCADORES" pX="85" pY="640" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="99" pX="130" pY="660" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="NOTAS:" pX="50" pY="640" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="No. CTA:" pX="50" pY="650" palign="0" pformato="text" pstyle="2" pwidth="0" pheight="0" pfont="Times" psize="8" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="" pX="300" pY="680" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="" pX="90" pY="670" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Times" psize="8" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="REFERENCIA:" pX="300" pY="690" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="REGIMEN:" pX="50" pY="730" palign="0" pformato="text" pstyle="2" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="" pX="100" pY="730" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="MATRIZ:" pX="340" pY="639" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="2" urlimg="" pcolor="{255,255,255}" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="101" pX="390" pY="639" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="2" urlimg="" pcolor="{255,255,255}" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="MEXICO" pX="450" pY="658" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="CIUDAD DE MÉXICO" pX="482" pY="658" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+    </Header>
+    <Body>
+        <page>
+            <hP valor=" SERVICIO. 1181 / 27-07-2016 / BC-2 ESTRATEGIAS EN MARKETING" pX="140" pY="525" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="DIGITAL EN BUSCADORES" pX="140" pY="515" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="2" pX="50" pY="511" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="$3,700.00" pX="550" pY="511" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="$1,722.41" pX="490" pY="511" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="curso" pX="80" pY="511" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="497" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="497" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="497" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="497" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="497" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="483" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="483" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="483" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="483" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="483" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="469" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="469" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="469" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="469" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="469" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="455" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="455" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="455" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="455" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="455" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="441" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="441" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="441" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="441" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="441" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="427" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="427" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="427" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="427" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="427" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="413" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="413" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="413" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="413" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="413" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="399" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="399" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="399" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="399" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="399" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="385" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="385" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="385" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="385" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="385" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="371" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="371" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="371" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="371" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="371" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="357" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="357" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="357" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="357" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="357" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="343" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="343" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="343" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="343" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="343" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="140" pY="329" palign="0" pformato="textAuto" pstyle="0" pwidth="60" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="50" pY="329" palign="0" pformato="integer" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="550" pY="329" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="490" pY="329" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+            <hP valor="" pX="80" pY="329" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        </page>
+    </Body>
+    <Footer>
+        <hP valor="$1,998.00" pX="525" pY="286" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="$3,700.00" pX="525" pY="304" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="" pX="140" pY="279" palign="0" pformato="text" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="$296.00" pX="525" pY="272" palign="2" pformato="money" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="$1,998.00" pX="525" pY="259" palign="2" pformato="money" pstyle="2" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="Sello Digital del Emisor:" pX="306" pY="259" palign="1" pformato="AutoAjust" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="BdLsg3jBaRC4XGn3Hn04IqjVNsEnuwLQ0L7x+bPwpwLbHOUOSee3vfTboDh5HeHVTzIRTxPa7X+qGq39rba19NcYf6P5UC3q6tDg/HGo4RajPBObO/ydOxE714QghHyqElAKgXIi7bC6VVdvp6HPFUCH7Z6EqEjO4tO9oCzGp7npbFMpR6wExJ0BwNil/y2JGzq6zN4qAZoGwhr1VA0IHungS1OwG2CIFJnn0hHDxfiFMQ5hR++NFWUITPpHOeh02hky5zjmK82T/tz0sk4uG5OXtl/xaQ1C3aLWlW+tqcOFs02vNa4L3xt2etLZc82oQkPHiVnZK3UunXw+Sb0iwQ==" pX="306" pY="254" palign="1" pformato="AutoAjust" pstyle="0" pwidth="110" pheight="0" pfont="Helvetica" psize="6" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="Sello digital del SAT:" pX="306" pY="259" palign="1" pformato="AutoAjust" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="KCyXCUSdlKgwJ7fkzupMyJ1n99pprggA/dOxVXn9UrOjQ+RWkHqbXBYY0Gc39s7aXtwYUpN6feOycxgyFa6hVdwsQFnpC32n9DqUNJJE6p+odNOLNrBjWFwT7rU1fjRb19+o5AVvDM5tzdI0YDC1tp+y4zvABRhWFg55b7EJe5Q=" pX="306" pY="254" palign="1" pformato="AutoAjust" pstyle="0" pwidth="80" pheight="0" pfont="Helvetica" psize="6" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="Cadena Original del complemento de certificación digital del SAT:" pX="306" pY="269" palign="1" pformato="AutoAjust" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="||1.0|09d4f68e-f345-4270-99f9-a178f746da8e|2016-07-27T13:25:52-05:00|BdLsg3jBaRC4XGn3Hn04IqjVNsEnuwLQ0L7x+bPwpwLbHOUOSee3vfTboDh5HeHVTzIRTxPa7X+qGq39rba19NcYf6P5UC3q6tDg/HGo4RajPBObO/ydOxE714QghHyqElAKgXIi7bC6VVdvp6HPFUCH7Z6EqEjO4tO9oCzGp7npbFMpR6wExJ0BwNil/y2JGzq6zN4qAZoGwhr1VA0IHungS1OwG2CIFJnn0hHDxfiFMQ5hR++NFWUITPpHOeh02hky5zjmK82T/tz0sk4uG5OXtl/xaQ1C3aLWlW+tqcOFs02vNa4L3xt2etLZc82oQkPHiVnZK3UunXw+Sb0iwQ==|00001000000300171291||" pX="306" pY="264" palign="1" pformato="AutoAjust" pstyle="0" pwidth="120" pheight="0" pfont="Helvetica" psize="6" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="No de Serie del Certificado SAT:" pX="306" pY="239" palign="1" pformato="AutoAjust" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="6" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="00001000000300171291" pX="306" pY="234" palign="1" pformato="AutoAjust" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="6" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="&quot;Este documento es una representación impresa de un CFDI&quot;" pX="306" pY="284" palign="1" pformato="AutoAjust" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+        <hP valor="MIL NOVECIENTOS NOVENTA Y OCHO PESOS 00/100  M.N." pX="140" pY="259" palign="0" pformato="enletra" pstyle="0" pwidth="0" pheight="0" pfont="Helvetica" psize="7" urlimg="" pcolor="" pcolorbak="" pwidthCanvas="0.0"/>
+    </Footer>
+    <Config>
+        <Title>FACTURA_cfdi</Title>
+        <TypePage>letter</TypePage>
+        <Orientation>horizontal</Orientation>
+        <LeftMargin>0</LeftMargin>
+        <RightMargin>0</RightMargin>
+        <TopMargin>0</TopMargin>
+        <BottomMargin>0</BottomMargin>
+        <Width>0</Width>
+        <Height>0</Height>
+    </Config>
+</Formato>

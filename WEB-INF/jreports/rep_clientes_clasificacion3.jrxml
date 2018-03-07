@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="CLASIFICACION" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select *, EMP_RAZONSOCIAL from vta_cliente, vta_empresas,vta_cliecat3 a  where vta_cliente.EMP_ID=vta_empresas.EMP_ID and vta_cliente.CT_CATEGORIA3 = a.CC3_ID AND CT_CATEGORIA3 = $P{CLASIFICACION}]]>
+	</queryString>
+	<field name="CT_ID" class="java.lang.Long"/>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="CT_RFC" class="java.lang.String"/>
+	<field name="CT_CALLE" class="java.lang.String"/>
+	<field name="CT_COLONIA" class="java.lang.String"/>
+	<field name="CT_LOCALIDAD" class="java.lang.String"/>
+	<field name="CT_TXTIVA" class="java.lang.String"/>
+	<field name="CT_TXTIVAAGUA" class="java.lang.String"/>
+	<field name="CT_MUNICIPIO" class="java.lang.String"/>
+	<field name="CT_ESTADO" class="java.lang.String"/>
+	<field name="CT_CP" class="java.lang.String"/>
+	<field name="CT_TELEFONO1" class="java.lang.String"/>
+	<field name="CT_TELEFONO2" class="java.lang.String"/>
+	<field name="CT_CONTACTO1" class="java.lang.String"/>
+	<field name="CT_CONTACTO2" class="java.lang.String"/>
+	<field name="CT_FOLIO" class="java.lang.Long"/>
+	<field name="CT_NUMCEROS" class="java.lang.Integer"/>
+	<field name="CT_SALDO" class="java.math.BigDecimal"/>
+	<field name="CT_EMAIL1" class="java.lang.String"/>
+	<field name="CT_EMAIL2" class="java.lang.String"/>
+	<field name="CT_NUMERO" class="java.lang.String"/>
+	<field name="CT_NUMINT" class="java.lang.String"/>
+	<field name="CT_LPRECIOS" class="java.lang.Long"/>
+	<field name="CT_DIASCREDITO" class="java.lang.Long"/>
+	<field name="CT_MONTOCRED" class="java.math.BigDecimal"/>
+	<field name="CT_FECHAREG" class="java.lang.String"/>
+	<field name="CT_IDIOMA" class="java.lang.Long"/>
+	<field name="SC_ID" class="java.lang.Long"/>
+	<field name="CT_PASSWORD" class="java.lang.String"/>
+	<field name="CT_DESCUENTO" class="java.math.BigDecimal"/>
+	<field name="CT_VENDEDOR" class="java.lang.Long"/>
+	<field name="CT_CONTAVTA" class="java.lang.String"/>
+	<field name="CT_CONTAPAG" class="java.lang.String"/>
+	<field name="CT_CONTANC" class="java.lang.String"/>
+	<field name="CT_FECHAULTINT" class="java.lang.String"/>
+	<field name="CT_HORAULTINT" class="java.lang.String"/>
+	<field name="CT_FECHAEXIT" class="java.lang.String"/>
+	<field name="CT_HORAEXIT" class="java.lang.String"/>
+	<field name="CT_FALLIDOS" class="java.lang.Long"/>
+	<field name="CT_NOTAS" class="java.lang.String"/>
+	<field name="CT_EXITOSOS" class="java.lang.Long"/>
+	<field name="CT_CATEGORIA1" class="java.lang.Long"/>
+	<field name="CT_CATEGORIA2" class="java.lang.Long"/>
+	<field name="CT_CATEGORIA3" class="java.lang.Long"/>
+	<field name="CT_CATEGORIA4" class="java.lang.Long"/>
+	<field name="CT_CATEGORIA5" class="java.lang.Long"/>
+	<field name="CT_TIPOPERS" class="java.lang.Integer"/>
+	<field name="CT_USOIMBUEBLE" class="java.lang.String"/>
+	<field name="CT_TIPOFAC" class="java.lang.Integer"/>
+	<field name="CT_TIT_CONT1" class="java.lang.String"/>
+	<field name="CT_TIT_CONT2" class="java.lang.String"/>
+	<field name="CT_CONT_AP1" class="java.lang.String"/>
+	<field name="CT_CONT_AP2" class="java.lang.String"/>
+	<field name="CT_CONT_AM1" class="java.lang.String"/>
+	<field name="CT_CONT_AM2" class="java.lang.String"/>
+	<field name="EMP_ID" class="java.lang.Long"/>
+	<field name="CT_CONTACTE" class="java.lang.String"/>
+	<field name="CT_CUENTAVTACRED" class="java.lang.String"/>
+	<field name="CT_UPLINE" class="java.lang.Integer"/>
+	<field name="CT_CONTACTO" class="java.lang.String"/>
+	<field name="CT_FECHAULTIMOCONTACTO" class="java.lang.String"/>
+	<field name="CT_ARMADOINI" class="java.lang.Integer"/>
+	<field name="CT_ARMADOFIN" class="java.lang.Integer"/>
+	<field name="CT_ARMADONUM" class="java.lang.Integer"/>
+	<field name="CT_ARMADODEEP" class="java.lang.Integer"/>
+	<field name="CT_SPONZOR" class="java.lang.Integer"/>
+	<field name="CT_LADO" class="java.lang.String"/>
+	<field name="CT_IS_LOGGED" class="java.lang.Integer"/>
+	<field name="CT_LAST_ACT" class="java.sql.Timestamp"/>
+	<field name="CT_LASTSESSIONID" class="java.lang.String"/>
+	<field name="CT_LASTIPADDRESS" class="java.lang.String"/>
+	<field name="CT_LAST_TIME" class="java.lang.Long"/>
+	<field name="CT_LAST_TIME_FAIL" class="java.lang.Long"/>
+	<field name="CT_IS_DISABLED" class="java.lang.Integer"/>
+	<field name="CT_CTABANCO1" class="java.lang.String"/>
+	<field name="CT_CTABANCO2" class="java.lang.String"/>
+	<field name="CT_CTATARJETA" class="java.lang.String"/>
+	<field name="CT_NUMPREDIAL" class="java.lang.String"/>
+	<field name="PA_ID" class="java.lang.String"/>
+	<field name="CT_ACTIVO" class="java.lang.Integer"/>
+	<field name="CT_RAZONCOMERCIAL" class="java.lang.String"/>
+	<field name="CT_CATEGORIA6" class="java.lang.Integer"/>
+	<field name="CT_CATEGORIA7" class="java.lang.Integer"/>
+	<field name="CT_CATEGORIA8" class="java.lang.Integer"/>
+	<field name="CT_CATEGORIA9" class="java.lang.Integer"/>
+	<field name="CT_CATEGORIA10" class="java.lang.Integer"/>
+	<field name="MON_ID" class="java.lang.Integer"/>
+	<field name="TI_ID" class="java.lang.Integer"/>
+	<field name="TTC_ID" class="java.lang.Integer"/>
+	<field name="CT_RBANCARIA1" class="java.lang.String"/>
+	<field name="CT_RBANCARIA2" class="java.lang.String"/>
+	<field name="CT_RBANCARIA3" class="java.lang.String"/>
+	<field name="CT_BANCO1" class="java.lang.Integer"/>
+	<field name="CT_BANCO2" class="java.lang.Integer"/>
+	<field name="CT_BANCO3" class="java.lang.Integer"/>
+	<field name="CT_METODODEPAGO" class="java.lang.String"/>
+	<field name="CT_FORMADEPAGO" class="java.lang.String"/>
+	<field name="CT_FECHA_NAC" class="java.lang.String"/>
+	<field name="CT_NOMBRE" class="java.lang.String"/>
+	<field name="CT_APATERNO" class="java.lang.String"/>
+	<field name="CT_AMATERNO" class="java.lang.String"/>
+	<field name="CT_PPUNTOS" class="java.math.BigDecimal"/>
+	<field name="CT_PNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="CT_GPUNTOS" class="java.math.BigDecimal"/>
+	<field name="CT_GNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="CT_COMISION" class="java.math.BigDecimal"/>
+	<field name="CT_NIVELRED" class="java.lang.Integer"/>
+	<field name="MPE_ID" class="java.lang.Integer"/>
+	<field name="CT_CONTEO_HIJOS" class="java.lang.Integer"/>
+	<field name="CT_CONTEO_HIJOS_ACTIVOS" class="java.lang.Integer"/>
+	<field name="CT_CONTEO_INGRESOS" class="java.lang.Integer"/>
+	<field name="CT_RLEGAL" class="java.lang.String"/>
+	<field name="CT_FIADOR" class="java.lang.String"/>
+	<field name="CT_F1DIRECCION" class="java.lang.String"/>
+	<field name="CT_F1IFE" class="java.lang.String"/>
+	<field name="CT_FIADOR2" class="java.lang.String"/>
+	<field name="CT_F2DIRECCION" class="java.lang.String"/>
+	<field name="CT_F2IFE" class="java.lang.String"/>
+	<field name="CT_FIADOR3" class="java.lang.String"/>
+	<field name="CT_F3DIRECCION" class="java.lang.String"/>
+	<field name="CT_F3IFE" class="java.lang.String"/>
+	<field name="CT_CHANGE_PASSWRD" class="java.lang.Integer"/>
+	<field name="CT_CTA_BANCO1" class="java.lang.String"/>
+	<field name="CT_CTA_BANCO2" class="java.lang.String"/>
+	<field name="CT_CTA_SUCURSAL1" class="java.lang.String"/>
+	<field name="CT_CTA_SUCURSAL2" class="java.lang.String"/>
+	<field name="CT_CTA_CLABE1" class="java.lang.String"/>
+	<field name="CT_CTA_CLABE2" class="java.lang.String"/>
+	<field name="CT_CONTACTE_COMPL" class="java.lang.String"/>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="EMP_RFC" class="java.lang.String"/>
+	<field name="EMP_CALLE" class="java.lang.String"/>
+	<field name="EMP_COLONIA" class="java.lang.String"/>
+	<field name="EMP_LOCALIDAD" class="java.lang.String"/>
+	<field name="EMP_MUNICIPIO" class="java.lang.String"/>
+	<field name="EMP_ESTADO" class="java.lang.String"/>
+	<field name="EMP_CP" class="java.lang.String"/>
+	<field name="EMP_TELEFONO1" class="java.lang.String"/>
+	<field name="EMP_TELEFONO2" class="java.lang.String"/>
+	<field name="EMP_REPRESENTANTE" class="java.lang.String"/>
+	<field name="EMP_FOLIO" class="java.lang.Long"/>
+	<field name="EMP_NUMERO" class="java.lang.String"/>
+	<field name="EMP_NUMINT" class="java.lang.String"/>
+	<field name="EMP_NOAPROB" class="java.lang.String"/>
+	<field name="EMP_FECHAPROB" class="java.lang.String"/>
+	<field name="EMP_NOSERIECERT" class="java.lang.String"/>
+	<field name="EMP_NOMKEY" class="java.lang.String"/>
+	<field name="EMP_PASSKEY" class="java.lang.Object"/>
+	<field name="EMP_FIRMA" class="java.lang.Integer"/>
+	<field name="EMP_FOLIOFIN" class="java.lang.Long"/>
+	<field name="EMP_AVISOFOLIO" class="java.lang.Integer"/>
+	<field name="EMP_TIPOCOMP" class="java.lang.Integer"/>
+	<field name="EMP_PATHIMG" class="java.lang.String"/>
+	<field name="EMP_PATHIMGFORM" class="java.lang.String"/>
+	<field name="EMP_TIPOPERS" class="java.lang.Integer"/>
+	<field name="EMP_NO_ISR" class="java.lang.Integer"/>
+	<field name="EMP_NO_IVA" class="java.lang.Integer"/>
+	<field name="EMP_CTACTE" class="java.lang.String"/>
+	<field name="EMP_CTAVTA" class="java.lang.String"/>
+	<field name="EMP_CTAIVA" class="java.lang.String"/>
+	<field name="EMP_URLCP" class="java.lang.String"/>
+	<field name="EMP_USERCP" class="java.lang.String"/>
+	<field name="EMP_PASSCP" class="java.lang.String"/>
+	<field name="EMP_USECONTA" class="java.lang.Integer"/>
+	<field name="EMP_PATHIMGCODBAR" class="java.lang.String"/>
+	<field name="EMP_TIPOCOMPNC" class="java.lang.Integer"/>
+	<field name="EMP_USACODBARR" class="java.lang.Integer"/>
+	<field name="EMP_VTA_DETA" class="java.lang.Integer"/>
+	<field name="EMP_CUENTAVTACRED" class="java.lang.String"/>
+	<field name="EMP_AVISOCANCEL" class="java.lang.Integer"/>
+	<field name="EMP_NOMCERT" class="java.lang.String"/>
+	<field name="EMP_ACUSEFACTURA" class="java.lang.Integer"/>
+	<field name="EMP_CFD_CFDI" class="java.lang.Integer"/>
+	<field name="EMP_CTAPROV" class="java.lang.String"/>
+	<field name="EMP_DONA_NUM_AUTORIZA" class="java.lang.String"/>
+	<field name="EMP_DONA_FECHA_AUTORIZA" class="java.lang.String"/>
+	<field name="EMP_DONA_LEYENDA" class="java.lang.String"/>
+	<field name="EMP_ES_DONATARIA" class="java.lang.Integer"/>
+	<field name="EMP_DIA_PAGO_PROV" class="java.lang.Integer"/>
+	<field name="EMP_IMGCUERPO" class="java.lang.String"/>
+	<field name="EMP_IMAG_CUERPO" class="java.lang.String"/>
+	<field name="EMP_CTACTE_COMPL" class="java.lang.String"/>
+	<field name="EMP_CTAPROV_COMPL" class="java.lang.String"/>
+	<field name="EMP_URL_RESTFUL_CP" class="java.lang.String"/>
+	<field name="CC3_ID" class="java.lang.Long"/>
+	<field name="CC3_DESCRIPCION" class="java.lang.String"/>
+	<background>
+		<band height="575" splitType="Stretch">
+			<staticText>
+				<reportElement x="345" y="555" width="35" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="555" width="18" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="398" y="555" width="47" height="20" forecolor="#000000"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER} + " "]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="563" y="66" width="197" height="17" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="492" y="66" width="107" height="17"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emision:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="46" width="197" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[CLIENTES DE CLASIFICACIÓN 3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="66" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[CLASIFICACION:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="338" y="12" width="149" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="269" y="66" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CC3_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="21" y="12" width="112" height="71"/>
+				<imageExpression><![CDATA[$F{EMP_PATHIMGFORM}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="56" y="5" width="705" height="20" forecolor="#0066CC" backcolor="#006699"/>
+				<staticText>
+					<reportElement style="Column header" x="0" y="0" width="77" height="15"/>
+					<textElement/>
+					<text><![CDATA[ID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="77" y="0" width="275" height="15"/>
+					<textElement/>
+					<text><![CDATA[NOMBRE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="352" y="0" width="176" height="15"/>
+					<textElement/>
+					<text><![CDATA[TELEFONO 1]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="528" y="0" width="176" height="15" forecolor="#FFFFFF" backcolor="#FFFFFF"/>
+					<textElement/>
+					<text><![CDATA[TELEFONO 2]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement x="56" y="1" width="705" height="15"/>
+				<textField>
+					<reportElement style="Detail" x="0" y="0" width="77" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{CT_ID}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="77" y="0" width="275" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="351" y="0" width="176" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{CT_TELEFONO1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="528" y="0" width="176" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{CT_TELEFONO2}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="56" y="16" width="705" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

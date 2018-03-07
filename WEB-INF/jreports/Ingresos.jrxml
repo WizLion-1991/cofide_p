@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="IngresosMLM" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="3d4c76d2-6b30-4fb6-98c6-95e40622ca0a">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="144"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="data_Cte_Upline" uuid="641746b7-3e7c-4256-a3f1-06c47421dd02">
+		<parameter name="CT_ID" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select CT_RAZONSOCIAL AS NOM_UPLINE from vta_cliente WHERE CT_ID = $P{CT_ID}]]>
+		</queryString>
+		<field name="NOM_UPLINE" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="MPE_ID" class="java.lang.Integer"/>
+	<parameter name="CT_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT  c.EMP_RAZONSOCIAL, a.CT_RAZONSOCIAL, a.CT_UPLINE, 
+a.CT_FECHAREG, a.CT_ID, b.MPE_NOMBRE,a.CT_NOTAS  FROM vta_cliente a, mlm_periodos b, vta_empresas c WHERE 
+a.MPE_ID = b.MPE_ID and c.EMP_ID = a.EMP_ID AND a.MPE_ID = $P{MPE_ID}
+ AND a.CT_ARMADONUM>=(SELECT CT_ARMADOINI from vta_cliente where CT_ID=$P{CT_ID})
+ and 
+a.CT_ARMADONUM<=(SELECT CT_ARMADOFIN from vta_cliente where CT_ID=$P{CT_ID});]]>
+	</queryString>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="CT_UPLINE" class="java.lang.Integer"/>
+	<field name="CT_FECHAREG" class="java.lang.String"/>
+	<field name="CT_ID" class="java.lang.Long"/>
+	<field name="MPE_NOMBRE" class="java.lang.String"/>
+	<field name="CT_NOTAS" class="java.lang.String"/>
+	<variable name="ROOT_DIR" class="java.lang.String">
+		<initialValueExpression><![CDATA["/full/path/to/reports/"]]></initialValueExpression>
+	</variable>
+	<background>
+		<band height="575" splitType="Stretch">
+			<textField>
+				<reportElement uuid="1d0e65a7-0bbe-4ba1-b86b-ef442393c698" style="Column header" x="0" y="502" width="104" height="73" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="80ad77a8-ecbb-4d27-b194-11f92b3d5126" style="Title" x="170" y="43" width="213" height="27"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="16" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Reporte de Ingresos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ac23b171-2fff-40d9-8ed7-f926f6300883" style="Column header" x="383" y="43" width="89" height="27" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[PERIODO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ab519b08-dc30-459b-86a2-c3eb42f8c8e2" style="Detail" x="472" y="43" width="120" height="27"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{MPE_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="84b34cb8-9246-48f2-a707-10fbc7e1ebd3" x="214" y="23" width="363" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="94c55d8b-1c0e-4def-a2b9-9f34c47cbd6e" x="171" y="84" width="85" height="20"/>
+				<textElement/>
+				<text><![CDATA[DEL CLIENTE:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="9965a647-e236-4f2f-bf3d-6e55cf404571" key="table 1" x="265" y="84" width="336" height="25"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="data_Cte_Upline" uuid="321bae24-9fad-4c01-83a5-20241ec2d26f">
+						<datasetParameter name="CT_ID">
+							<datasetParameterExpression><![CDATA[$P{CT_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column uuid="77d9e672-5a51-431a-b261-fa21f60c76a3" width="90">
+						<jr:detailCell height="20">
+							<textField>
+								<reportElement uuid="86860417-ff09-41de-93d6-e5916d5117d0" x="0" y="0" width="90" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{NOM_UPLINE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="76403d2b-db50-406f-a4b0-9cafd48c56d1" mode="Opaque" x="97" y="5" width="587" height="15" backcolor="#666666"/>
+				<staticText>
+					<reportElement uuid="de15ccc9-6e6a-4929-bf19-bc38a59057d1" x="0" y="0" width="100" height="15" forecolor="#FFFFFF"/>
+					<textElement/>
+					<text><![CDATA[Clave]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c88cd20a-aed3-444a-abac-e3eef7c07e6d" x="102" y="0" width="176" height="15" forecolor="#FFFFFF"/>
+					<textElement/>
+					<text><![CDATA[Nombre]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="9ecadb52-fde1-4e01-a967-a562c618d9e5" x="296" y="1" width="89" height="14" forecolor="#FFFFFF"/>
+					<textElement/>
+					<text><![CDATA[Upline]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="b88f26e9-9f6d-481d-bc8b-9d3910383b50" x="392" y="1" width="90" height="14" forecolor="#FFFFFF"/>
+					<textElement/>
+					<text><![CDATA[Fecha de registro]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="4c2dfb6f-e557-45fb-8fba-0e119c980c24" x="489" y="1" width="98" height="14" forecolor="#FFFFFF"/>
+					<textElement/>
+					<text><![CDATA[Kit inicio]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement uuid="90c08f5b-ed58-4a02-b763-e6a9ecb0a7fd" x="97" y="1" width="276" height="15"/>
+			</frame>
+			<textField>
+				<reportElement uuid="d041c5a1-c510-4ff8-b51a-749d036a8589" x="197" y="0" width="176" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9bb9ae3e-d489-4531-9cb3-e482eaa8f6ec" x="95" y="0" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CT_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="59cdab3f-b533-4c19-b3a3-a217fbe8d57b" x="391" y="3" width="89" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CT_UPLINE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="46785d86-36af-47c5-a978-9daea3555697" x="487" y="1" width="90" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CT_FECHAREG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0055cad1-dc84-4bca-af24-69107d1407e0" x="584" y="0" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CT_NOTAS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="a69dc524-a742-4aea-9edf-d57fabaf3bf0" style="Column header" x="671" y="0" width="131" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="a3344792-77c8-44b9-8026-88a577e07657" positionType="FixRelativeToBottom" x="0" y="20" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="b7e9888e-146c-464d-861b-2c406a4bc959" x="345" y="0" width="105" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Ingresos-Cliente]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

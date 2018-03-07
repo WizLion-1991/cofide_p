@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" scriptletClass="com.mx.siweb.erp.reportes.jasper.NumerosEnLetra" uuid="b46bf507-bd47-47ce-a2ae-aaf70856e703">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="196"/>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<parameter name="emp_id" class="java.lang.Integer"/>
+	<parameter name="nom_folio1" class="java.lang.String"/>
+	<parameter name="nom_folio2" class="java.lang.String"/>
+	<parameter name="nom_id" class="java.lang.Integer"/>
+	<parameter name="sc_id" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[Select
+	vta_sucursal.SC_ESTADO,
+	vta_sucursal.SC_LOCALIDAD,
+	rhh_nominas.*,
+	rhh_empleados.*,
+	vta_empresas.EMP_RAZONSOCIAL AS RAZONSOCIAL,
+	vta_empresas.EMP_RFC AS RFC,
+	vta_empresas.EMP_CALLE AS CALLE,
+	vta_empresas.EMP_COLONIA AS COLONIA,
+	vta_empresas.EMP_LOCALIDAD AS LOCALIDAD,
+	vta_empresas.EMP_ESTADO AS ESTADO,
+	vta_empresas.EMP_MUNICIPIO AS MUNICIPIO,
+	vta_empresas.EMP_CP AS CP,
+	vta_empresas.EMP_NUMERO AS NUMERO,
+	vta_empresas.EMP_NUMINT AS NUMINT,
+	vta_empresas.EMP_REGISTRO_PATRONAL AS REGISTRO_PATRONAL,
+	 vta_sucursal.CT_REG_PAT AS REGISTRO_PAT,
+ vta_sucursal.CT_REG_PAT AS REGISTRO_PAT_SUCURSAL,
+	vta_empresas.EMP_PATHIMGFORM AS LOGO,
+	vta_empresas.EMP_NOSERIECERT as CERTIFICADO,
+	vta_empresas.EMP_IMAG_CUERPO AS IMAGEN_FONDO
+From
+	rhh_nominas
+	Join rhh_empleados ON rhh_empleados.EMP_NUM = rhh_nominas.EMP_NUM
+	Join vta_empresas ON vta_empresas.EMP_ID = rhh_nominas.EMP_ID
+	Join vta_sucursal On vta_sucursal.SC_ID = rhh_nominas.SC_ID
+Where if( $P{nom_id}<> 0 ,rhh_nominas.NOM_ID = $P{nom_id} , rhh_nominas.NOM_FOLIO >= $P{nom_folio1} and  rhh_nominas.NOM_FOLIO <= $P{nom_folio2} )  and vta_empresas.EMP_ID =$P{emp_id}  AND rhh_nominas.SC_ID =$P{sc_id}]]>
+	</queryString>
+	<field name="SC_ESTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_FOLIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_HORA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NUM" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_PERCEPCIONES" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_DEDUCCIONES" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_ISR_RETENIDO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_PERCEPCION_TOTAL" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_RFC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_CALLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_COLONIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_MUNICIPIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_ESTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_CP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_TASA_ISR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_ANULADA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_FECHAANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_NOTAS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_US_ALTA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_US_ANUL" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_MONEDA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_TASAPESO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_FECHACREATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_HORANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_DESCUENTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_CADENAORIGINAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_SELLO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_NUMERO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_NUMINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_RETISR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_NOTASPIE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_REFERENCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_CONDPAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_NOMFORMATO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_EXEC_INTER_CP" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_EXEC_INTER_CP_ANUL" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_FORMADEPAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_METODODEPAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_UUID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_SENDMAIL" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_SELLOTIMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_HORA_TIMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_FOLIO_ANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_SELLOTIMBRE_ANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_HORA_TIMBRE_ANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_CADENA_TIMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_PATH_CBB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_NOSERIECERTTIM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_REGIMENFISCAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_NUMCUENTA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_REGISTRO_PATRONAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RC_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[rhh_regimen_contratacion]]></fieldDescription>
+	</field>
+	<field name="NOM_FECHA_INICIAL_PAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_FECHA_FINAL_PAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_NUM_DIAS_PAGADOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DP_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[rhh_departamento]]></fieldDescription>
+	</field>
+	<field name="NOM_DIAS_INCAPACIDAD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TI_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[rhh_tipo_incapacidad]]></fieldDescription>
+	</field>
+	<field name="NOM_INCAPACIDAD_DESCUENTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_HORA_EXTRA_DIAS1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_HORA_EXTRA_HORAS1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_HORA_EXTRA_IMPORTE1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_HORA_EXTRA_DIAS2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_HORA_EXTRA_HORAS2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_HORA_EXTRA_IMPORTE2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_SE_TIMBRO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_US_MOD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_ANTIGUEDAD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_CONCEPTO" class="java.lang.String">
+		<fieldDescription><![CDATA[Concepto del CFDI....]]></fieldDescription>
+	</field>
+	<field name="NOM_NOMFORMATO_RECIBO" class="java.lang.String">
+		<fieldDescription><![CDATA[Nombre del formato especial para el recibo]]></fieldDescription>
+	</field>
+	<field name="NOM_CAMPO_ADICIONAL1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_CAMPO_ADICIONAL2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_INGRESO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_RFC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CURP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NO_SEG" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CALLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_COLONIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_MUNICIPIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ESTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RP_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[rhh_riesgo_puesto]]></fieldDescription>
+	</field>
+	<field name="RHP_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[rhh_perfil_puesto]]></fieldDescription>
+	</field>
+	<field name="EMP_SALARIO_DIARIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_SALARIO_INTEGRADO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CLABE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_BANCO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_FECHA_INICIO_REL_LABORAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_TIPO_CONTRATO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_TIPO_JORNADA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERIODICIDAD_PAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NUMERO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NUMINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_EMAIL1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_EMAIL2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_METODO_PAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NUM_CTA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CONDICIONES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_FORMA_DE_PAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DIAS_DESCANSO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DIA_DESCANSO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NOTA1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NOTA2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NOTA3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RAZONSOCIAL" class="java.lang.String"/>
+	<field name="RFC" class="java.lang.String"/>
+	<field name="CALLE" class="java.lang.String"/>
+	<field name="COLONIA" class="java.lang.String"/>
+	<field name="LOCALIDAD" class="java.lang.String"/>
+	<field name="ESTADO" class="java.lang.String"/>
+	<field name="MUNICIPIO" class="java.lang.String"/>
+	<field name="CP" class="java.lang.String"/>
+	<field name="NUMERO" class="java.lang.String"/>
+	<field name="NUMINT" class="java.lang.String"/>
+	<field name="REGISTRO_PATRONAL" class="java.lang.String"/>
+	<field name="REGISTRO_PAT_SUCURSAL" class="java.lang.String"/>
+	<field name="LOGO" class="java.lang.String"/>
+	<field name="CERTIFICADO" class="java.lang.String"/>
+	<field name="IMAGEN_FONDO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="149" splitType="Stretch">
+			<rectangle>
+				<reportElement x="403" y="84" width="152" height="20" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="99e3df7d-6af4-482f-84d4-e75a38c9e0aa"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="403" y="84" width="152" height="20" uuid="f28ad719-2a44-4618-88c3-c84d946087da"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha de Emision]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="403" y="0" width="152" height="65" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="0d521cea-bd85-4d74-8d50-684b03cc935a"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="403" y="0" width="152" height="123" uuid="c0826bb8-4728-4422-b862-1eace3719558"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="403" y="45" width="152" height="20" uuid="80e12bc7-942d-4794-a536-13a4c580d090"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha / Hora de Certificacion]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="8" y="7" width="381" height="20" uuid="405b65a8-7906-4dc0-9fde-4b85121e871f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd&apos;T&apos;HH:mm:ss">
+				<reportElement x="403" y="103" width="151" height="20" uuid="edd853a7-d6a6-4b5e-99db-ff1ebd9f19cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd HH:mm:ss").parse($F{NOM_FECHA} + " " + $F{NOM_HORA})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="27" width="361" height="20" uuid="9bf3d8db-27b3-491c-bcc1-95a308d02594"/>
+				<textFieldExpression><![CDATA[$F{CALLE}+", "+$F{NUMERO}+", "+$F{NUMINT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="47" width="173" height="20" uuid="2ca535e5-eba7-4a53-afb4-d54ffbc340be"/>
+				<textFieldExpression><![CDATA["Col. "+$F{COLONIA}+", "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="181" y="47" width="100" height="20" uuid="19311866-83c3-42dc-b668-421453998ca7"/>
+				<textFieldExpression><![CDATA["C.P. "+$F{CP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="67" width="103" height="20" uuid="d8a6ccc5-e4d9-4977-ba74-05b32233efe2"/>
+				<textFieldExpression><![CDATA[$F{MUNICIPIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="67" width="100" height="20" uuid="5c4f12a9-8f0a-4b51-819a-4e52c654e0a8"/>
+				<textFieldExpression><![CDATA[$F{ESTADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="67" width="100" height="20" uuid="f3ab2fa1-940f-46da-9c8c-1a0b5ec73279"/>
+				<textFieldExpression><![CDATA[$F{LOCALIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="87" width="211" height="20" uuid="62568638-f86a-444c-af72-8573d32e2752"/>
+				<textFieldExpression><![CDATA["RFC: "+$F{RFC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="127" width="395" height="20" uuid="e83d6326-c9c3-4cd8-b28d-434bd3106c0b"/>
+				<textFieldExpression><![CDATA["Regimen Fiscal: "+$F{NOM_REGIMENFISCAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd&apos;T&apos;HH:mm:ss">
+				<reportElement x="403" y="65" width="151" height="20" uuid="523b4d4a-4aec-4e3d-b8b8-b2c5ba925241"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse($F{NOM_HORA_TIMBRE})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9" y="107" width="395" height="20" uuid="e83d6326-c9c3-4cd8-b28d-434bd3106c0b"/>
+				<textFieldExpression><![CDATA[($F{RC_ID} == 1? "":( $F{REGISTRO_PAT_SUCURSAL}!=""? "REGISTRO PATRONAL:" +$F{REGISTRO_PAT_SUCURSAL}:"REGISTRO PATRONAL:" + $F{REGISTRO_PATRONAL} ))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="7" width="152" height="20" uuid="afad2c50-b6dc-46ad-b6a9-654e2390aaf9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["RECIBO DE " + ($F{RC_ID} ==1 ? "PAGO": "NÓMINA")]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="411" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="264" width="555" height="27" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="0d521cea-bd85-4d74-8d50-684b03cc935a"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="0" y="138" width="555" height="42" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="0d521cea-bd85-4d74-8d50-684b03cc935a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="338" y="81" width="217" height="20" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="99e3df7d-6af4-482f-84d4-e75a38c9e0aa"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="338" y="45" width="217" height="20" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="99e3df7d-6af4-482f-84d4-e75a38c9e0aa"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="27" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="0d521cea-bd85-4d74-8d50-684b03cc935a"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="0" y="138" width="555" height="101" uuid="2bf4d7cf-1517-4448-81e5-ebd891a5a583"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="0" y="0" width="555" height="118" uuid="2bf4d7cf-1517-4448-81e5-ebd891a5a583"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="0" y="264" width="555" height="142" uuid="2bf4d7cf-1517-4448-81e5-ebd891a5a583"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="8" y="0" width="330" height="27" uuid="6f7dd2cf-2170-4d32-af81-373d50b64abf"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Receptor del comprobante fiscal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="0" width="217" height="27" uuid="1c04de45-a304-45b1-988a-9b99ce328122"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Folio Fiscal]]></text>
+			</staticText>
+			<line>
+				<reportElement x="338" y="0" width="1" height="118" uuid="d8afc3a7-0b7a-4385-a39c-d429d2307296"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="339" y="264" width="216" height="27" uuid="e4d47f93-71ca-44eb-98df-f538ace0dce5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Importe]]></text>
+			</staticText>
+			<line>
+				<reportElement x="339" y="264" width="1" height="142" uuid="d8afc3a7-0b7a-4385-a39c-d429d2307296"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="345" y="291" width="111" height="20" uuid="a9138afa-407b-427d-95f8-735e03154338"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="311" width="111" height="20" uuid="a9138afa-407b-427d-95f8-735e03154338"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="331" width="111" height="20" uuid="a9138afa-407b-427d-95f8-735e03154338"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ISR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="291" width="100" height="20" uuid="a9138afa-407b-427d-95f8-735e03154338"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe con letra:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="311" width="100" height="20" uuid="a9138afa-407b-427d-95f8-735e03154338"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Forma de pago:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="331" width="88" height="20" uuid="a9138afa-407b-427d-95f8-735e03154338"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Metodo de pago:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="351" width="111" height="20" uuid="a9138afa-407b-427d-95f8-735e03154338"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condiciones de pago:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="373" width="119" height="20" uuid="a9138afa-407b-427d-95f8-735e03154338"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lugar de expedición:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="386" width="111" height="20" uuid="a9138afa-407b-427d-95f8-735e03154338"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="345" y="377" width="198" height="1" uuid="d573cad9-c3fc-4ef1-b22d-30ddddeb1460"/>
+			</line>
+			<staticText>
+				<reportElement x="340" y="45" width="215" height="20" uuid="eadf18dd-2a26-4383-822b-7e888d1cb3d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[No. Certificado Digital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="81" width="216" height="20" uuid="456d72fb-e1b9-4877-a3a7-112469ad65ae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[No. Certificado SAT]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="8" y="25" width="330" height="20" uuid="c16a81c0-2436-48dc-b02f-8915c1baaaac"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="45" width="330" height="20" uuid="dda5dea7-79f5-4500-8836-921fc5764625"/>
+				<textFieldExpression><![CDATA["RFC: "+$F{EMP_RFC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="331" width="242" height="20" uuid="9d422ffa-0311-49e0-9014-6ef01fc49273"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NOM_METODODEPAGO} + " " + $F{NOM_NUMCUENTA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="311" width="230" height="20" uuid="0b884176-2c65-496e-8296-c522eb56319d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NOM_FORMADEPAGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="351" width="221" height="20" uuid="71afdbd9-d4a0-4346-a230-491d55d9fd56"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NOM_CONDPAGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="128" y="373" width="210" height="20" uuid="ddec0ca3-8505-4586-87d2-765481df6f55"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{SC_LOCALIDAD} + "," + $F{SC_ESTADO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="456" y="291" width="95" height="20" uuid="d8c044ca-254e-4e40-8fe2-42bed4bb3946"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NOM_PERCEPCIONES}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
+				<reportElement x="456" y="331" width="95" height="20" uuid="8e8c5cfb-b5f3-47cc-8a8d-1c64011ca2a2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[0.0-$F{NOM_ISR_RETENIDO}.floatValue()]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="456" y="386" width="95" height="20" uuid="dbb7b717-1e15-4929-a974-194e759a2795"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOM_PERCEPCION_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="455" y="311" width="96" height="20" uuid="69a6a80a-4143-45a0-ae73-9b1842f397fb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{RC_ID} == 1 ? "" : 0.0-($F{NOM_DEDUCCIONES}.floatValue() - $F{NOM_ISR_RETENIDO}.floatValue()))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="27" width="216" height="20" uuid="5e7b6525-2911-4798-abc4-209a85e52c86"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOM_UUID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="339" y="65" width="215" height="16" uuid="9bd702ef-3a35-43c0-9a8b-43ee278c8283"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NOM_NOSERIECERTTIM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="101" width="215" height="17" uuid="66eb3402-d4ab-444c-a2f0-15a4204b092d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CERTIFICADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="291" width="230" height="20" uuid="7eb54ac7-78c9-455b-bbcd-d9a22ec5baf9"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_SCRIPTLET}.convertirLetras($F{NOM_PERCEPCION_TOTAL})+" "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="180" width="208" height="20" uuid="a3ae2cde-6533-4e63-bcd6-f1a3cacc4478"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOM_CONCEPTO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="148" width="66" height="20" uuid="98eddaf7-b263-46af-be3b-fcf89a485f88"/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="8" y="66" width="330" height="20" uuid="dda5dea7-79f5-4500-8836-921fc5764625"/>
+				<textFieldExpression><![CDATA["CURP: "+ $F{EMP_CURP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="87" width="330" height="20" uuid="dda5dea7-79f5-4500-8836-921fc5764625"/>
+				<textFieldExpression><![CDATA[($F{RC_ID} == 1? "":"Número de Seguridad Social: " +$F{EMP_NO_SEG})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="343" y="148" width="100" height="20" uuid="98eddaf7-b263-46af-be3b-fcf89a485f88"/>
+				<text><![CDATA[PRECIO UNITARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="148" width="208" height="20" uuid="98eddaf7-b263-46af-be3b-fcf89a485f88"/>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="148" width="61" height="20" uuid="98eddaf7-b263-46af-be3b-fcf89a485f88"/>
+				<text><![CDATA[UNIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="443" y="148" width="100" height="20" uuid="98eddaf7-b263-46af-be3b-fcf89a485f88"/>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="180" width="65" height="20" uuid="7b12a225-5ce5-49e3-9ecf-0e4c8aa85738"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="180" width="59" height="20" uuid="7b12a225-5ce5-49e3-9ecf-0e4c8aa85738"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[SERVICIO]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="343" y="180" width="100" height="20" uuid="d8c044ca-254e-4e40-8fe2-42bed4bb3946"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NOM_PERCEPCIONES}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="443" y="180" width="100" height="20" uuid="d8c044ca-254e-4e40-8fe2-42bed4bb3946"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NOM_PERCEPCIONES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="311" width="110" height="20" uuid="e6605a0f-e7ac-4bae-8af9-cbc859f0c582"/>
+				<textFieldExpression><![CDATA[($F{RC_ID} == 1 ? "" :"Deducciones Nomina")]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="242" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="127" y="160" width="428" height="27" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="0d521cea-bd85-4d74-8d50-684b03cc935a"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="128" y="98" width="427" height="27" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="0d521cea-bd85-4d74-8d50-684b03cc935a"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="27" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="0d521cea-bd85-4d74-8d50-684b03cc935a"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="0" y="0" width="555" height="92" uuid="84cddec6-6a97-4e1d-bf47-6e8744abeea9"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="128" y="98" width="427" height="53" uuid="84cddec6-6a97-4e1d-bf47-6e8744abeea9"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="128" y="160" width="427" height="60" uuid="84cddec6-6a97-4e1d-bf47-6e8744abeea9"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="295" y="220" width="219" height="22" uuid="d973ddbb-4655-4467-8656-a3cfe9e9417e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ESTO ES UNA REPRESENTACION IMPRESA DE UN CFDI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="0" width="330" height="27" uuid="0fdfc198-0d59-4d51-9426-809f62f5999a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Cadena original del complemento de certificación digital del SAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="98" width="107" height="27" uuid="fd6ec605-0bb4-458c-a00f-a8f7ffb4f6b4"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Sello digital del CFDI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="160" width="107" height="27" uuid="fd6ec605-0bb4-458c-a00f-a8f7ffb4f6b4"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Sello digital del SAT]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement x="8" y="141" width="119" height="101" uuid="923f7fb5-da01-4bfd-8c08-1df2f6b39d88"/>
+				<imageExpression><![CDATA[$F{NOM_PATH_CBB}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="8" y="27" width="546" height="65" uuid="e2cbe817-9ad6-4a10-bc17-d2e128c0fca3"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOM_CADENAORIGINAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="125" width="416" height="26" uuid="d00b723e-f4fc-4f6c-9ff7-04f9b1afb42b"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOM_SELLO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="187" width="416" height="33" uuid="ef5ac4dc-ee1d-43b7-a9af-a62137504975"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOM_SELLOTIMBRE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

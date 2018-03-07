@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="1120" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="d3b9893e-366f-4666-8d6d-a18718e86daa">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="FECHA_INICIAL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FECHA_FINAL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select DISTINCT fac_folio,fac_folio_c,vta_facturas.fac_id,DATE_FORMAT(STR_TO_DATE(vta_facturas.fac_fecha,'%Y%m%d'),'%d/%m/%Y') AS FECHA,vta_facturas.fac_ANULADA,vta_facturas.fac_razonsocial,vta_movprod.MP_ID,vta_movprod.MP_FOLIO,vta_movprod.MP_ANULADO,vta_pedidosdeta.PD_ID,vta_pedidos.PD_FOLIO,vta_pedidos.PD_ANULADA,vta_empresas.EMP_RAZONSOCIAL,vta_empresas.EMP_PATHIMGFORM
+from vta_facturas, vta_facturasdeta,vta_pedidosdeta,vta_movproddeta ,vta_pedidos,vta_movprod,vta_empresas
+where vta_facturas.FAC_ID = vta_facturasdeta.FAC_ID
+ and vta_pedidosdeta.PDD_ID = vta_facturasdeta.PDD_ID
+ and vta_movproddeta.MPD_IDORIGEN = vta_pedidosdeta.PDD_ID
+and vta_pedidos.PD_ID = vta_pedidosdeta.PD_ID
+and vta_movproddeta.MPD_ENTRADAS = 0
+AND vta_movprod.MP_ID = vta_movproddeta.MP_ID
+AND vta_movprod.PD_ID = vta_pedidos.PD_ID
+AND vta_facturas.EMP_ID=vta_empresas.EMP_ID
+ and vta_facturas.FAC_FECHA >= $P{FECHA_INICIAL} AND vta_facturas.FAC_FECHA <= $P{FECHA_FINAL};]]>
+	</queryString>
+	<field name="fac_folio" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fac_folio_c" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fac_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fac_ANULADA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fac_razonsocial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MP_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MP_FOLIO" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL FOLIO DEL MOVIMIENTO DE INVENTARIO]]></fieldDescription>
+	</field>
+	<field name="MP_ANULADO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[INDICA SI ESTA ANULADO]]></fieldDescription>
+	</field>
+	<field name="PD_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_FOLIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_ANULADA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PATHIMGFORM" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL URL DE LA IMG DEL FORMATO]]></fieldDescription>
+	</field>
+	<background>
+		<band height="575" splitType="Stretch">
+			<textField>
+				<reportElement uuid="f6dfe695-b7e5-4853-9243-fd42e712ffad" x="515" y="555" width="18" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e6bf5bfd-e1aa-4350-8bd3-ec49cfca86cb" x="480" y="555" width="35" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement uuid="d310bd11-9e2c-4b9c-9c3a-be4f25fee7f0" style="Column header" x="533" y="555" width="47" height="20" forecolor="#000000"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER} + " "]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="a451c075-a66b-4fd6-80d3-29ea624edf54" style="Column header" x="911" y="67" width="141" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c0e4753e-04ba-4ba6-84f7-93736306f812" style="Detail" x="433" y="14" width="203" height="22"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="669ba9c3-8345-49b1-a44b-9e703b408116" x="804" y="67" width="107" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emisión:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="65276743-4f52-4b81-b2a2-017254596a5d" x="450" y="67" width="172" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROCESO PEDIDO SURTIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ac712d4b-4a8a-46a2-9209-7d950de4b94e" x="503" y="44" width="60" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement uuid="342b9ad6-c297-4bba-968b-f4f144cea1d9" x="21" y="14" width="204" height="73"/>
+				<imageExpression><![CDATA[$F{EMP_PATHIMGFORM}]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="d4894aab-759a-48c9-84d1-5fc2b99a7cce" x="450" y="84" width="83" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{FECHA_INICIAL})]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="7c6a3e5a-f167-451b-b669-a808cb75371b" x="533" y="84" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{FECHA_FINAL})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8024e6a1-789d-49e8-8ad8-d16e624c8d01" x="399" y="84" width="51" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PERIODO:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="47" splitType="Stretch">
+			<frame>
+				<reportElement uuid="bc63d46f-4be7-48c2-8a54-d41c45efb70f" mode="Opaque" x="0" y="26" width="1080" height="20" backcolor="#666666"/>
+				<staticText>
+					<reportElement uuid="ede5a1e2-e83d-445f-8283-5e8b54ea50eb" style="Column header" x="0" y="1" width="72" height="15"/>
+					<textElement/>
+					<text><![CDATA[FACTURA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="5e474903-477c-45de-b000-d4f63a65b1c7" style="Column header" x="72" y="1" width="185" height="15"/>
+					<textElement/>
+					<text><![CDATA[FOLIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="ab8a7467-681a-4c8f-949b-40d6daf53557" style="Column header" x="357" y="1" width="60" height="15"/>
+					<textElement/>
+					<text><![CDATA[ANULADA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="00a71b88-875e-4799-b932-5d537a65e5c1" style="Column header" x="417" y="0" width="298" height="15"/>
+					<textElement/>
+					<text><![CDATA[RAZON SOCIAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="e10619fc-575e-49cd-8bd1-4f1f4866f3c6" style="Column header" x="715" y="0" width="45" height="15"/>
+					<textElement/>
+					<text><![CDATA[MOV.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="f4c0b5ab-8afc-4b62-9e49-7e206028c424" style="Column header" x="759" y="0" width="72" height="15"/>
+					<textElement/>
+					<text><![CDATA[FOLIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="3dbc1eac-d622-45e4-97b6-8634fcce7160" style="Column header" x="831" y="0" width="75" height="15"/>
+					<textElement/>
+					<text><![CDATA[ANULADO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="e350a1ab-6c35-470c-87e2-5be996cd98ca" style="Column header" x="906" y="0" width="57" height="15"/>
+					<textElement/>
+					<text><![CDATA[PEDIDO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="af01d89e-a572-414d-bacb-6a8bb1fe24f3" style="Column header" x="963" y="0" width="54" height="15"/>
+					<textElement/>
+					<text><![CDATA[FOLIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="0e696985-319c-44df-8c25-a951bcaa791a" style="Column header" x="1017" y="0" width="63" height="15"/>
+					<textElement/>
+					<text><![CDATA[ANULADO]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement uuid="9618ae07-995d-4804-9a4f-e4a00e71090c" mode="Opaque" x="0" y="6" width="715" height="20" forecolor="#FFFFFF" backcolor="#666666"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e42f952b-6c00-462c-a411-602d08f4f1be" mode="Opaque" x="715" y="6" width="190" height="20" forecolor="#FFFFFF" backcolor="#666666"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MOV. INVENTARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ef8fd00a-53ea-4f59-a33c-679d27fa274d" mode="Opaque" x="905" y="6" width="175" height="20" forecolor="#FFFFFF" backcolor="#666666"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PEDIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1aaba88f-fbd9-48bf-b324-c9c5cf96fe8c" x="257" y="26" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement uuid="16a9ae36-7509-4986-b5c8-2f89140dbd98" x="0" y="1" width="1080" height="15"/>
+				<textField>
+					<reportElement uuid="6032f565-6c7f-49a1-ba18-86f29b1bcc0c" style="Detail" x="1" y="0" width="71" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{fac_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="c8d0880f-197f-48a4-bfa0-b47a64ceaec9" style="Detail" x="72" y="0" width="185" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{fac_folio_c}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="77390862-0590-452c-b291-877070007374" x="257" y="0" width="100" height="14"/>
+					<textElement>
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="3c5cfdae-6f2b-4278-9c5a-98c75021dae1" style="Detail" x="357" y="0" width="60" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[($F{fac_ANULADA} == 0 ? "NO" : "SI")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="7ffa1483-7847-44bf-b6c7-7dd141284f06" style="Detail" x="417" y="0" width="298" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{fac_razonsocial}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="7b680ad9-c3cd-4f0d-bddc-8ba3cebdf51f" style="Detail" x="715" y="0" width="45" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{MP_ID}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="dfe7316f-c6f5-4a6d-952a-ad5629d47ead" style="Detail" x="759" y="0" width="72" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{MP_FOLIO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="ff22d0e2-4c5f-499a-99c6-0f3947be399c" style="Detail" x="963" y="0" width="54" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{PD_FOLIO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="b9ca3b94-2855-4c75-9652-73dce65004cf" style="Detail" x="1018" y="0" width="62" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[($F{PD_ANULADA} == 0 ? "NO" : "SI")]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement uuid="582d29db-fca9-419e-bfe7-90d401befcee" positionType="FixRelativeToBottom" x="1" y="16" width="1079" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="dbcb20d7-12e4-4412-931f-710e9093108a" style="Detail" x="905" y="0" width="58" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PD_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fdee44df-029a-432f-8329-630263c2e069" style="Detail" x="831" y="0" width="75" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[($F{MP_ANULADO} == 0 ? "NO" : "SI")]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

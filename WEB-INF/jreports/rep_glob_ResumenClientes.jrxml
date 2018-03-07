@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="69479acb-9b4e-4e1b-9cfe-bb159bd3408c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="strConvertido" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="strFechaFin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="strEmp" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="strFechaIni" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="strMoneda" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="strSc" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="NUM" class="java.lang.Integer"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="VENDEDOR" class="java.lang.String"/>
+	<field name="SC_NUM" class="java.lang.String"/>
+	<field name="SC_CLAVE" class="java.lang.String"/>
+	<field name="SC_NOMBRE" class="java.lang.String"/>
+	<field name="TSUBTOTAL" class="java.lang.Double"/>
+	<field name="TIMPUESTOS" class="java.lang.Double"/>
+	<field name="TTOTAL" class="java.lang.Double"/>
+	<field name="TCOBROS" class="java.lang.Double"/>
+	<field name="TNOTASCREDITO" class="java.lang.Double"/>
+	<field name="TRETENCIONES" class="java.lang.Double"/>
+	<field name="TSALDO" class="java.lang.Double"/>
+	<field name="TSUBTOTAL_PORC" class="java.lang.Double"/>
+	<field name="TIMPUESTOS_PORC" class="java.lang.Double"/>
+	<field name="TTOTAL_PORC" class="java.lang.Double"/>
+	<field name="TCOBROS_PORC" class="java.lang.Double"/>
+	<field name="TNOTASCREDITO_PORC" class="java.lang.Double"/>
+	<field name="TRETENCIONES_PORC" class="java.lang.Double"/>
+	<field name="TSALDO_PORC" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="84446b26-940a-4bea-a628-84915cf5c247" x="205" y="0" width="173" height="20"/>
+				<textElement/>
+				<text><![CDATA[RESUMEN DE CLIENTES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

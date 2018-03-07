@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Producto_EXISTENCIA" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="262afaf9-b7c7-4519-a5f5-d8ecf12529ce">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="531"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Prods2" uuid="9bb6e901-47aa-4e8f-968e-7afd25e686e9">
+		<parameter name="PR_CODIGO" class="java.lang.String">
+			<defaultValueExpression><![CDATA[1010050]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select PR_CODIGO,PR_DESCRIPCION,PR_EXISTENCIA,(SC_ID) as ID,(EMP_ID) as ID_EMP,(select SC_NOMBRE from vta_sucursal where SC_ID = ID) as SC_NOMBRE,
+(select EMP_RAZONSOCIAL from vta_empresas where EMP_ID = ID_EMP)as EMPRESA from vta_producto where PR_CODIGO = $P{PR_CODIGO}]]>
+		</queryString>
+		<field name="PR_CODIGO" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="PR_DESCRIPCION" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="PR_EXISTENCIA" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="ID" class="java.lang.Long"/>
+		<field name="ID_EMP" class="java.lang.Integer"/>
+		<field name="SC_NOMBRE" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="EMPRESA" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="id_empresa" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT PR_CODIGO, PR_DESCRIPCION, sum( PR_EXISTENCIA ) AS EXISTENCIA,(EMP_ID) as ID_EMP,(select EMP_RAZONSOCIAL from vta_empresas where EMP_ID = ID_EMP) as EMPRESA,
+(select EMP_PATHIMGFORM from vta_empresas where EMP_ID = ID_EMP)as IMG_EMPRESA
+FROM vta_producto  where EMP_ID = $P{id_empresa}
+GROUP BY PR_CODIGO
+ORDER BY PR_CODIGO]]>
+	</queryString>
+	<field name="PR_CODIGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_DESCRIPCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EXISTENCIA" class="java.math.BigDecimal"/>
+	<field name="ID_EMP" class="java.lang.Integer"/>
+	<field name="EMPRESA" class="java.lang.String"/>
+	<field name="IMG_EMPRESA" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="2" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="67" splitType="Stretch">
+			<textField>
+				<reportElement mode="Transparent" x="-1" y="47" width="473" height="20" uuid="8b94b822-94c3-4654-810a-da9ad686bddc"/>
+				<textElement verticalAlignment="Top" markup="none">
+					<font isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EMPRESA: " +$F{EMPRESA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="99" y="27" width="150" height="20" uuid="438a23ae-9b1d-47af-8d99-f6b97de5cfdb"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-1" y="27" width="100" height="20" uuid="1dbd679f-5184-442f-9d5f-1e64ccbfe821"/>
+				<text><![CDATA[Fecha emisión: ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="472" y="0" width="100" height="67" uuid="492303b8-6b16-4956-88d9-d213c5b2abea"/>
+				<imageExpression><![CDATA[$F{IMG_EMPRESA}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="0" width="472" height="27" uuid="600561c3-a272-4c54-ba9b-50aa86407b68"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[REPORTE EXISTENCIA DE PRODUCTOS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="10" splitType="Stretch">
+			<staticText>
+				<reportElement x="50" y="0" width="201" height="10" uuid="e97e8c68-39ee-4707-aad4-a9cc1a8e2d85"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="251" y="0" width="76" height="10" uuid="ede33d26-8a2c-49ee-b080-77637d318e04"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[EXISTENCIA TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="10" uuid="12fd3ddf-230f-40a7-adec-e3543fa88f2f"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="10" width="50" height="10" uuid="1c5e8b91-bb0e-4cd0-867a-8dd11e7620fc"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PR_CODIGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="10" width="201" height="10" uuid="d39e233b-612f-4447-bab4-2fbc5840a845"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PR_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="10" width="76" height="10" uuid="4e7221fe-a331-4d4a-ae50-b7787e929d06"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EXISTENCIA}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table" style="table" x="327" y="0" width="208" height="20" uuid="4a58cb7e-033a-47e9-86e1-58911f4fb099"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Prods2" uuid="a33e1d26-66c1-48b8-9b6d-e0f3163d66cb">
+						<datasetParameter name="PR_CODIGO">
+							<datasetParameterExpression><![CDATA[$F{PR_CODIGO}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="148" uuid="e17f322d-1147-4078-9a50-ca84e6c4b84c">
+						<jr:columnHeader style="table_CH" height="10" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="148" height="10" uuid="affa3fd5-e120-421a-a62e-ad98d875b226"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="7"/>
+								</textElement>
+								<text><![CDATA[SUCURAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="11" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="148" height="11" uuid="ddafa29b-d227-4989-aab2-55c7ff20bb5a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SC_NOMBRE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="73" uuid="56828d15-4ae8-4f68-8672-9f54f98cb847">
+						<jr:columnHeader style="table_CH" height="10" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="73" height="10" uuid="d5f0b15d-c8ca-493e-aadc-b3f2c338274d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="7"/>
+								</textElement>
+								<text><![CDATA[EXISTENCIA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="11" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="73" height="11" uuid="6dbf0699-d24f-4d76-9926-88bd65ac96c4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="7" isBold="false" isItalic="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PR_EXISTENCIA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="6" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="5" splitType="Stretch"/>
+	</summary>
+</jasperReport>

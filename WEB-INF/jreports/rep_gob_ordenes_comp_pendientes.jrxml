@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_gob_ordenes_comp_pendientes" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="65dd0a97-88d1-41da-9eea-f1acad781514">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.white.page.background" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.6" value="columnFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<parameter name="empresa" class="java.lang.String"/>
+	<parameter name="codigo" class="java.lang.String"/>
+	<parameter name="descripcion" class="java.lang.String"/>
+	<parameter name="PathLogoWeb" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="almacen" class="java.lang.String"/>
+	<field name="proveedor" class="java.lang.String"/>
+	<field name="folio" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="fentrega" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<variable name="cantidad" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{cantidad}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="179" y="0" width="256" height="22" uuid="16c8ffa0-c1d3-4016-a43e-4a7fc11030b3"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EMPRESA:"+$P{empresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="179" y="22" width="256" height="23" uuid="fb9ed93c-108b-4dda-b066-df7628c3b787"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ordenes de compra pendientes]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="71" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="435" y="41" width="132" height="15" uuid="0c3fbf82-c2ae-4cc6-a2bd-360ea2bf4749"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="56" width="179" height="15" uuid="bae898d2-4cac-4307-9238-618de3c49f06"/>
+				<textFieldExpression><![CDATA["Codigo: "+$P{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="56" width="388" height="15" uuid="33da67dc-6e65-4539-88e3-5bce75bfd465"/>
+				<textFieldExpression><![CDATA["Descripción: "+$P{descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="354" y="41" width="81" height="15" uuid="255cbe06-eec4-42fc-8c34-d7d0f1178287"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha emisión:]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="70" height="56" uuid="42de10e9-44aa-4bf5-9e31-a8e817513299"/>
+				<imageExpression><![CDATA[$P{PathLogoWeb}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="70" height="20" uuid="46f87de3-7797-45ee-9b8b-48687688c021"/>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="0" width="109" height="20" uuid="f15f9838-e17b-4631-99db-6c57204862db"/>
+				<text><![CDATA[Almacen]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="0" width="94" height="20" uuid="f44df485-5e70-460f-977f-83f6c7d29edf"/>
+				<text><![CDATA[Proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="0" width="81" height="20" uuid="7cbacfb2-3018-4a74-8603-201ea5b5481c"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="0" width="81" height="20" uuid="0d81fbd7-b258-4915-9f20-5905b314d009"/>
+				<text><![CDATA[Eentrega]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="516" y="0" width="51" height="20" uuid="706cb39b-b003-4d7c-b031-c49b9ab0ab75"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="273" y="0" width="81" height="20" uuid="83a49729-b697-4c62-8657-36f4dd30589a"/>
+				<text><![CDATA[Folio]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="70" height="20" uuid="138d95f0-9b60-446c-ba23-afb9442d8700"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="0" width="109" height="20" uuid="2049e494-5052-4709-a5a0-28f445c1a33a"/>
+				<textFieldExpression><![CDATA[$F{almacen}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="0" width="94" height="20" uuid="e422c49c-49f0-4a2c-8b32-67f1fc7e5e40"/>
+				<textFieldExpression><![CDATA[$F{proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="273" y="0" width="81" height="20" uuid="4e599356-404d-47af-a434-ebc4297ac5a6"/>
+				<textFieldExpression><![CDATA[$F{folio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="0" width="81" height="20" uuid="712fa60e-9453-4dad-9bd6-c0d3b51209ce"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="0" width="81" height="20" uuid="98bd36bc-be86-4da6-9d0f-0f9b51dcaf0c"/>
+				<textFieldExpression><![CDATA[$F{fentrega}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="516" y="0" width="51" height="20" uuid="1f83aef1-8fcd-4003-8301-d2f443df7ac7"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="516" y="0" width="51" height="20" uuid="e602e357-5a21-4505-81c4-4a6fe3f516bd"/>
+				<textFieldExpression><![CDATA[$V{cantidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="70" height="20" uuid="8e980d8d-7410-4e38-9e6b-bb0802555242"/>
+				<text><![CDATA[Totales:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,1762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2015-12-19T13:35:58 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cfdi_comercial" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" scriptletClass="com.mx.siweb.erp.reportes.jasper.NumerosEnLetra" uuid="49780025-8499-40ac-ad79-c6ad3738bbe9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="240"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="befra"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="PD_ID" class="java.lang.String"/>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT *,(SELECT GROUP_CONCAT(REGF_DESCRIPCION SEPARATOR ',') FROM vta_empregfiscal,vta_regimenfiscal 
+where vta_empregfiscal.REGF_ID = vta_regimenfiscal.REGF_ID and vta_empregfiscal.EMP_ID=vta_empresas.EMP_ID 
+GROUP BY vta_empregfiscal.EMP_ID limit 0,1) as REGF_DESCRIPCION,concat( EMP_CALLE," NUM. " ,EMP_NUMERO," " ,EMP_NUMINT ) AS calle_Emp ,
+if(CDE_ID <> 0,
+(select e.CDE_NOMBRE from vta_cliente_dir_entrega e where e.CDE_ID = vta_pedidos.CDE_ID),""
+) as calle_Dir_EnvioNombre,
+if(CDE_ID <> 0,
+(select concat( "Calle:",e.CDE_CALLE," ",",No. " ,e.CDE_NUMERO," " ,e.CDE_NUMINT) from vta_cliente_dir_entrega e where e.CDE_ID = vta_pedidos.CDE_ID),""
+) as calle_Dir_Envio1,
+if(CDE_ID <> 0,
+(select concat( "Col.:",e.CDE_COLONIA," ",",Municipio. " ,e.CDE_MUNICIPIO," ,Estado:" ,e.CDE_ESTADO,", Código postal:" ,e.CDE_CP) from vta_cliente_dir_entrega e where e.CDE_ID = vta_pedidos.CDE_ID),""
+) as calle_Dir_Envio2,
+concat( "Calle:",PD_CALLE," ",",No. " ,PD_NUMERO," " ,PD_NUMINT) AS calle_Cte,
+concat( "  Col." ,PD_COLONIA,", Municipio:" ,PD_MUNICIPIO,", Estado:", PD_ESTADO,", Código postal:" ,PD_CP) AS calle_Cte2,
+concat( SC_CALLE,"  COL." ,SC_COLONIA) AS calle_Sc,
+(select v.VE_NOMBRE from vta_vendedor as v where v.VE_ID = vta_pedidos.VE_ID) as nombre_vendedor,
+(select u.nombre_usuario from usuarios as u where u.id_usuarios = vta_pedidos.PD_US_ALTA) as nombre_usuario,
+IF(PDD_TASAIVA1 <> 0,PDD_PRECIO/(1+PDD_TASAIVA1/100),PDD_PRECIO) AS PU,
+IF( PDD_TASAIVA1 <>0, PDD_PRECIO / ( 1 + PDD_TASAIVA1 /100 )  *PDD_CANTIDAD, PDD_PRECIO  *PDD_CANTIDAD ) AS IMPORTE,
+if(PDD_UNIDAD_MEDIDA = 0, 'No Aplica',PDD_UNIDAD_MEDIDA) AS UNIDAD
+,(SELECT p2.PR_NOMIMG1 from vta_producto p2 where p2.PR_ID = b.PR_ID) AS NOM_IMG FROM vta_pedidos,vta_sucursal,vta_empresas, vta_pedidosdeta b 
+where vta_pedidos.SC_ID = vta_sucursal.SC_ID 
+and  vta_pedidos.EMP_ID  = vta_empresas.EMP_ID 
+and vta_pedidos.PD_ID = b.PD_ID
+and vta_pedidos.PD_ID = $P{PD_ID}
+group by b.PDD_ID]]>
+	</queryString>
+	<field name="PD_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_FOLIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_HORA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_IMPORTE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_IMPUESTO1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_IMPUESTO2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_IMPUESTO3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_TOTAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_SALDO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_RFC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_CALLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_COLONIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_MUNICIPIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_ESTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_CP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_TASA1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_TASA2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_TASA3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_O_REM" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_GANANCIA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ES_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_ANULADA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_FECHAANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_DIASCREDITO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_NOTAS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_LPRECIOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_IDNC" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_ES_SURTIDO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_US_ALTA" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_US_ANUL" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_MONEDA" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_TASAPESO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VE_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_FECHACREATE" class="java.lang.String">
+		<fieldDescription><![CDATA[ES LA FECHA DE CREACION DE LA VENTA]]></fieldDescription>
+	</field>
+	<field name="PD_ESSERV" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_HORANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[HORA EN QUE FUE ANULADA LA OPERACION]]></fieldDescription>
+	</field>
+	<field name="PD_COSTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[ES EL COSTO DE LA OPERACION]]></fieldDescription>
+	</field>
+	<field name="PD_DESCUENTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_NUMERO" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL NUMERO DEL DOMICILIO FISCAL]]></fieldDescription>
+	</field>
+	<field name="PD_NUMINT" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL NUMERO INTERIOR DEL DOMICILIO FISCAL]]></fieldDescription>
+	</field>
+	<field name="TKT_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES EL ID DEL TICKET]]></fieldDescription>
+	</field>
+	<field name="FAC_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES EL ID DE LA FACTURA]]></fieldDescription>
+	</field>
+	<field name="PD_ESBK" class="java.lang.Integer">
+		<fieldDescription><![CDATA[ES BAK ORDER]]></fieldDescription>
+	</field>
+	<field name="TKT_IDBK" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES EL ID DEL TICKET QUE GENERO EL BAKORDER]]></fieldDescription>
+	</field>
+	<field name="FAC_IDBK" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES EL ID DE LA FACTURA QUE GENERO EL BAKORDER]]></fieldDescription>
+	</field>
+	<field name="PD_IDBK" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES EL ID DEL PEDIDO QUE GENERO EL BAKORDER]]></fieldDescription>
+	</field>
+	<field name="PD_NOTASPIE" class="java.lang.String">
+		<fieldDescription><![CDATA[NOTAS AL PIE DE LA FACTURA]]></fieldDescription>
+	</field>
+	<field name="PD_REFERENCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[REFERENCIA DE LA FACTURA]]></fieldDescription>
+	</field>
+	<field name="PD_CONDPAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[CONDICIONES DE PAGO]]></fieldDescription>
+	</field>
+	<field name="PD_ESRECU" class="java.lang.Integer">
+		<fieldDescription><![CDATA[INDICA SI LA FACTURA ES PERIODICA]]></fieldDescription>
+	</field>
+	<field name="PD_PERIODICIDAD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[INDICA LA PERIODICIDAD DE LA FACTURA]]></fieldDescription>
+	</field>
+	<field name="PD_DIAPER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[INDICA EL DIA DE LA PERIODICIDAD]]></fieldDescription>
+	</field>
+	<field name="PD_VENCI" class="java.lang.String">
+		<fieldDescription><![CDATA[ES LA FECHA DEL SIGUIENTE VENCIMIENTO]]></fieldDescription>
+	</field>
+	<field name="PD_US_MOD" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES EL UDUARIO QUE MODIFICO EL PEDIDO]]></fieldDescription>
+	</field>
+	<field name="PD_RETISR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_RETIVA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_NETO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_ESARRENDA" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_NOMFORMATO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_NUMPEDI" class="java.lang.String">
+		<fieldDescription><![CDATA[INDICA EL NUMERO DE PEDIMENTO]]></fieldDescription>
+	</field>
+	<field name="PD_FECHAPEDI" class="java.lang.String">
+		<fieldDescription><![CDATA[INDICA LA FECHA DE PEDIMENTO]]></fieldDescription>
+	</field>
+	<field name="PD_ADUANA" class="java.lang.String">
+		<fieldDescription><![CDATA[INDICA LA ADUANA]]></fieldDescription>
+	</field>
+	<field name="TI_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[INDICA EL ID DE LA TASA DE IVA]]></fieldDescription>
+	</field>
+	<field name="TI_ID2" class="java.lang.Long">
+		<fieldDescription><![CDATA[INDICA EL ID DE LA TASA DE IMPUESTO 2]]></fieldDescription>
+	</field>
+	<field name="TI_ID3" class="java.lang.Long">
+		<fieldDescription><![CDATA[INDICA EL ID DE LA TASA DE IMPUESTO 3]]></fieldDescription>
+	</field>
+	<field name="PD_TIPOCOMP" class="java.lang.Integer">
+		<fieldDescription><![CDATA[INDIA EL TIPO DE COMPROBANTE]]></fieldDescription>
+	</field>
+	<field name="PD_USO_IEPS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_TASA_IEPS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_IMPORTE_IEPS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_SELLOTIMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_HORA_TIMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_SELLOTIMBRE_ANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_HORA_TIMBRE_ANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_FOLIO_ANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_CADENA_TIMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_NUMCUENTA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_FORMADEPAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_METODODEPAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_REGIMENFISCAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_APARTADO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_STATUS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_NUM_GUIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_TIPO_FLETE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_IMPORTE_FLETE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_IMPORTE_PUNTOS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_IMPORTE_NEGOCIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_NO_MLM" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MPE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_CONSIGNACION" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CDE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DFA_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_RECU_FINAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_NO_EVENTOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TR_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ME_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TF_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_POR_DESCUENTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_FECHA_COBRO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_TURNO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PD_FOLIO_C" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COT_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CC1_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COLUMN_109" class="java.lang.Long"/>
+	<field name="SC_NUM" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_CLAVE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COLUMN_113" class="java.lang.Long"/>
+	<field name="SC_CALLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_COLONIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_MUNICIPIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_ESTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_CP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_TASA1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_TASA2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_TASA3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_DESGLOSA1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_DESGLOSA2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_DESGLOSA3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_SOBRIMP1_2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_SOBRIMP1_3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_SOBRIMP2_3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_DIVISA" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_IDIOMA" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COLUMN_131" class="java.lang.Long"/>
+	<field name="SC_CUENTAPREDIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[ES LA CUENTA PREDIAL DE LA SUCURSAL]]></fieldDescription>
+	</field>
+	<field name="COLUMN_133" class="java.lang.Long"/>
+	<field name="COLUMN_134" class="java.lang.Long"/>
+	<field name="COLUMN_135" class="java.lang.Long"/>
+	<field name="CT_GASTOS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_REG_PAT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_GOOGLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_DIAS_INGRESAR" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MON_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_EAN13_BASE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_EAN13_SEMILLA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_ACTIVA_OFERTA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_PREFIJO_COD_BAR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_TURNO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REP_ID_FAC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REP_ID_REC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REP_ID_NC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REP_ID_PAG" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REP_ID_INV" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REP_ID_CHQ" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REP_ID_CXP" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REP_ID_TKT" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REP_ID_PED" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REP_ID_COT" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REP_ID_COMP" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CC_REGISTRO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CC_MES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CC_MASVEND" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[% MAS VENDIDOS]]></fieldDescription>
+	</field>
+	<field name="CC_ITEMSVEND" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CC_SINMOV" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[% SIN MOVIMIENTOS]]></fieldDescription>
+	</field>
+	<field name="CC_ITEMSINMOV" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CC_ALEATORIOS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[% ALEATORIOS]]></fieldDescription>
+	</field>
+	<field name="SC_NOM_IMP1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_NOM_IMP2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_NOM_IMP3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_COD_ESCAPE1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_COD_ESCAPE2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_COD_ESCAPE3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_NOM_FORMATO_TICKET" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_SUC_MASTER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COLUMN_172" class="java.lang.Long"/>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_RFC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CALLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_COLONIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_MUNICIPIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ESTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_TELEFONO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_TELEFONO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_REPRESENTANTE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_FOLIO" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NUMERO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NUMINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NOAPROB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_FECHAPROB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NOSERIECERT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NOMKEY" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PASSKEY" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_FIRMA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_FOLIOFIN" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_AVISOFOLIO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_TIPOCOMP" class="java.lang.Integer">
+		<fieldDescription><![CDATA[ES EL TIPO DE COMPROBANTE 0 FACTURAS COMERCIAL 1 FACTURA SERVICIO 2 HONORARIO ARREND 3 IMPORTACION]]></fieldDescription>
+	</field>
+	<field name="EMP_PATHIMG" class="java.lang.String">
+		<fieldDescription><![CDATA[ES LA RUTA DELA IMAGEN]]></fieldDescription>
+	</field>
+	<field name="EMP_PATHIMGFORM" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL URL DE LA IMG DEL FORMATO]]></fieldDescription>
+	</field>
+	<field name="EMP_TIPOPERS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[1 PERSONA MORAL 2 PERSONA FISICA]]></fieldDescription>
+	</field>
+	<field name="EMP_NO_ISR" class="java.lang.Integer">
+		<fieldDescription><![CDATA[NO APLICA ISR]]></fieldDescription>
+	</field>
+	<field name="EMP_NO_IVA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[NO APLICA IVA]]></fieldDescription>
+	</field>
+	<field name="EMP_CTACTE" class="java.lang.String">
+		<fieldDescription><![CDATA[CUENTA GENERICA PARA EL CLIENTE]]></fieldDescription>
+	</field>
+	<field name="EMP_CTAVTA" class="java.lang.String">
+		<fieldDescription><![CDATA[CUENTA GENERICA PARA LA VENTA]]></fieldDescription>
+	</field>
+	<field name="EMP_CTAIVA" class="java.lang.String">
+		<fieldDescription><![CDATA[CUENTA GENERICA PARA EL IVA]]></fieldDescription>
+	</field>
+	<field name="EMP_URLCP" class="java.lang.String">
+		<fieldDescription><![CDATA[URL DEL SISTEMA CONTABLE]]></fieldDescription>
+	</field>
+	<field name="EMP_USERCP" class="java.lang.String">
+		<fieldDescription><![CDATA[USUARIO CONTABLE]]></fieldDescription>
+	</field>
+	<field name="EMP_PASSCP" class="java.lang.String">
+		<fieldDescription><![CDATA[PASSWORD CONTABLE]]></fieldDescription>
+	</field>
+	<field name="EMP_USECONTA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[INDICA SI SE USARA LA CONTABILIDAD AUTOMATICA]]></fieldDescription>
+	</field>
+	<field name="EMP_PATHIMGCODBAR" class="java.lang.String">
+		<fieldDescription><![CDATA[PATH PARA EL CODIGO DE BARRAS BIDIMENSIONAL]]></fieldDescription>
+	</field>
+	<field name="EMP_TIPOCOMPNC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[COMPROBANTE PARA NC]]></fieldDescription>
+	</field>
+	<field name="EMP_USACODBARR" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_VTA_DETA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CUENTAVTACRED" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_AVISOCANCEL" class="java.lang.Integer">
+		<fieldDescription><![CDATA[ENVIAR AVISO DE CANCELAR MAIL]]></fieldDescription>
+	</field>
+	<field name="EMP_NOMCERT" class="java.lang.String">
+		<fieldDescription><![CDATA[Nombre del certificado de la llave privada]]></fieldDescription>
+	</field>
+	<field name="EMP_ACUSEFACTURA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CFD_CFDI" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CTAPROV" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DONA_NUM_AUTORIZA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DONA_FECHA_AUTORIZA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DONA_LEYENDA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ES_DONATARIA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DIA_PAGO_PROV" class="java.lang.Integer">
+		<fieldDescription><![CDATA[Es el día en que se realizan los pagos a proveedores]]></fieldDescription>
+	</field>
+	<field name="EMP_IMGCUERPO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_IMAG_CUERPO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CTACTE_COMPL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CTAPROV_COMPL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_URL_RESTFUL_CP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_FOLIOS_CONTRATADOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_FOLIOS_USADOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CTA_CTE_ANTICIPO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CTA_PROV_ANTICIPO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_REGISTRO_PATRONAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CTACTE_COMPL_ANTI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CTAPROV_COMPL_ANTI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_FRASE1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_AVISOCANCEL_NOM" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CONTAPROV_RET_ISR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CONTAPROV_RET_IVA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CONTACTE_RET_ISR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CONTACTE_RET_IVA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CONTA_ID_EMPRESA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[Id de la empresa en el sistema contable]]></fieldDescription>
+	</field>
+	<field name="EMP_FOLIO_SUCURSAL_NOMINA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_IMGCUERPO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CUENTA_DEP_IDENTIFICAR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CONTA_SUELDOS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NUM_TIMBRES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_RAZONCOMERCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PRE_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_IMGCUERPO3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_IMGCUERPO4" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PATHIMAGE2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PATHIMAGE3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PATHIMAGE4" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PATHIMAGE5" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PATHIMAGE6" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_MAIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PAGINAWEB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CURP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_FONDO_AHORRO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PORC_AHORRO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_BONO_GRATIFI" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PORC_PREMIO_PUNTUALIDAD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PORC_PREMIO_ASISTENCIA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_MAX_RETARDOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_SUE_SAL_RAY_JORN" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_SEGURIDAD_SOC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_GRAT_ANUAL" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_ISR" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_PTU" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_APORT_VEJEZ" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_REEM_MEDI" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_OTROS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_FONDO_AHORRO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_FONDO_VIVIENDA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_CAJA_AHORRO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_DESC_INCAPACIDAD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_VALES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_PENS_ALIMENTICIA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_AYUDAS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_RENTA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_CONTR_PATRON" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_PREST_VIVIENDA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_VACACIONES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_PAGO_CRED_VIVIENDA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_PRIMA_SEGURO_VIDA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_PAGO_INFONACOT" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_GASTOS_MED_MAYORES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_ANT_SALARIOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_COUT_SIND_PATRON" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_PAGO_EXCESO_TRABAJ" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_SUBSI_INCAPACIDAD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_ERRORES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_BECAS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_PÉRDIDAS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_OTROS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_AVERIAS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_SUB_EMPLEO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_ADQUISICION_ART_PROD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_FOM_PRIMER_EMPL" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_FOM_CAJA_A" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_HORAS_EXTRA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_CUOTAS_SINDICALES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_PRIMA_DOMINICAL" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_AUSENCIA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_CUOTAS_OBREROS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_PRIMA_VACACIONAL" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_PRIMA_ANTIGUEDAD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_PAGO_SEPARACION" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_SEGURO_RETIRO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_INDEMINIZACIONES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_REEMB_FUNERAL" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_CUOTA_SEGU_SOCI" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_COMISIONES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_ANT_UTILIDADES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_VACACIONES1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_PREMIO_PUNTUALIDAD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_PREMIO_ASISTENCIA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_BONO_GRATIFICACIONES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_DIA_FESTIVO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_BONO_CUMPLIMIENTO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_OTROS_DESCUENTOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_DEDU_OTROS_ANTICIPOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_SALARIO_MINIMO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PERC_RETROACTIVO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COLUMN_326" class="java.lang.Long"/>
+	<field name="PDD_CVE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_DESCRIPCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_IMPORTE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_CANTIDAD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_TASAIVA1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_TASAIVA2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_TASAIVA3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_DESGLOSA1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_DESGLOSA2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_DESGLOSA3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COLUMN_337" class="java.lang.Long"/>
+	<field name="PDD_IMPUESTO1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_IMPUESTO2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_IMPUESTO3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_NOSERIE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_ESREGALO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_IMPORTEREAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_PRECIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_EXENTO1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_EXENTO2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_EXENTO3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_COSTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_GANANCIA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_DESCUENTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_PORDESC" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_PRECFIJO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_PRECREAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_COMENTARIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_PEDINUM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_PEDIFECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_PEDIADUANA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_RET_ISR" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_RET_IVA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_RET_FLETE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_UNIDAD_MEDIDA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_CANTIDADSURTIDA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_APARTADO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_CANT_FACT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_PUNTOS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_VNEGOCIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_IMP_PUNTOS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_IMP_VNEGOCIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_DESC_PREC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_DESC_PUNTOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_DESC_VNEGOCIO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_DESC_ORI" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_REGALO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_ID_PROMO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_EXEN_RET_ISR" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PDD_EXEN_RET_IVA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CF_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REGF_DESCRIPCION" class="java.lang.String"/>
+	<field name="calle_Emp" class="java.lang.String"/>
+	<field name="calle_Dir_EnvioNombre" class="java.lang.String"/>
+	<field name="calle_Dir_Envio1" class="java.lang.String"/>
+	<field name="calle_Dir_Envio2" class="java.lang.String"/>
+	<field name="calle_Cte" class="java.lang.String"/>
+	<field name="calle_Cte2" class="java.lang.String"/>
+	<field name="calle_Sc" class="java.lang.String"/>
+	<field name="nombre_vendedor" class="java.lang.String"/>
+	<field name="nombre_usuario" class="java.lang.String"/>
+	<field name="PU" class="java.math.BigDecimal"/>
+	<field name="IMPORTE" class="java.math.BigDecimal"/>
+	<field name="UNIDAD" class="java.lang.String"/>
+	<field name="NOM_IMG" class="java.lang.String"/>
+	<pageHeader>
+		<band height="280" splitType="Stretch">
+			<textField>
+				<reportElement x="68" y="179" width="59" height="14" uuid="f72519a5-5b7b-4334-a306-41aca80ccaf8"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PD_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="68" y="193" width="148" height="11" uuid="2a879761-59d7-4258-85f5-bf3ed6573252"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_NOSERIECERT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="204" width="45" height="12" uuid="7a794502-8745-4311-b1be-eaedb55a7f2a"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PD_HORA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="127" y="204" width="53" height="12" uuid="bd3edd57-eaf3-468d-b4da-afbd08ee5697"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{PD_FECHA})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="124" width="100" height="15" uuid="c88b5f71-3fcf-4a78-bb7e-8206619435c9"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RFC:"+$F{PD_RFC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="139" width="100" height="14" uuid="1d33f408-9108-4fbc-a75a-fc6f5db39232"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{calle_Cte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="139" width="100" height="14" uuid="48bc0488-ec9a-46a7-b201-698cd63c70d1"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["COL."+$F{PD_COLONIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="153" width="100" height="14" uuid="22620605-6597-4607-b576-aaf550657413"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PD_MUNICIPIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="167" width="100" height="12" uuid="4b1e3589-beb2-4a01-826e-618683d95d20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PD_ESTADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="153" width="56" height="14" uuid="b2d0fd77-c092-470d-ac1e-a6f01d57382c"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CP:"+$F{PD_CP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="501" y="0" width="54" height="19" uuid="cc522865-3f0c-4ba8-acf6-25cc4709fa09"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PD_FOLIO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="68" y="204" width="59" height="12" uuid="e0f11cfb-232e-4ef2-8a7e-fd911c3773a4"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[MÉXICO D.F.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="69" y="110" width="210" height="14" uuid="a61b3516-f4ad-4b50-a059-5774e3858411"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PD_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="106" y="0" width="339" height="19" forecolor="#172983" uuid="da9a2620-b894-4628-8226-4aeb26b37d50"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="58" width="339" height="11" forecolor="#1FA22E" uuid="f795cd27-d33e-4455-90b3-e4e04f3a64bd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PD_REGIMENFISCAL}]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="-1" width="100" height="100" uuid="c7107591-2448-4a1f-a424-9350325cd469"/>
+				<imageExpression><![CDATA[$F{EMP_PATHIMGFORM}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="106" y="19" width="339" height="14" forecolor="#1FA22E" uuid="72c0267a-df0f-4fa9-8d15-1c6ffa826aff"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RFC:" + $F{EMP_RFC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="33" width="339" height="13" forecolor="#1FA22E" uuid="661f8c2f-d8ee-4acc-b8e8-b339dbeea36e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_CALLE} + " No. " + $F{EMP_NUMERO} + " " + $F{EMP_NUMINT} + " " + $F{EMP_COLONIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="46" width="339" height="12" forecolor="#1FA22E" uuid="af4ba1dc-ac46-49d1-885c-461fecdf0f11"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_MUNICIPIO} + ", " + $F{EMP_ESTADO} + ", C.P. " + $F{EMP_CP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="453" y="0" width="48" height="19" uuid="4d255875-7f70-4942-abb9-a251a1431efe"/>
+				<box leftPadding="0" rightPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[COTIZACION:  (QUOTE No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="19" width="48" height="19" uuid="d32ef0de-d4d3-4a85-adaf-bf1e5a68a322"/>
+				<box leftPadding="0" rightPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[FECHA: (DATE)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="38" width="48" height="19" uuid="df106303-39e4-42c8-aca2-7609df194e8d"/>
+				<box leftPadding="0" rightPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[PAGINA: (PAGE)]]></text>
+			</staticText>
+			<textField pattern="M/d/yy">
+				<reportElement x="501" y="19" width="54" height="19" uuid="03a2a346-3ce2-430a-b55e-d6c6ce4cbff4"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="501" y="38" width="18" height="19" uuid="8a8d0fce-e994-4e4e-99f6-e5363aa6d30e"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="519" y="38" width="36" height="19" uuid="9b478bff-1e26-454d-80e7-8bab9bd71ad9"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["/" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="110" width="68" height="14" uuid="bddbd4c2-8fcc-4853-94cb-d2843e36ba97"/>
+				<text><![CDATA[FACTURAR A:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="365" y="110" width="190" height="14" uuid="94f3894b-c703-4939-89dd-1774ae4bdf7b"/>
+				<textFieldExpression><![CDATA[($F{CDE_ID}==0 ? $F{PD_RAZONSOCIAL}: $F{calle_Dir_EnvioNombre})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="125" width="190" height="14" uuid="6593c8d2-736f-4423-9c0e-1cc03dc2e014"/>
+				<textFieldExpression><![CDATA[(($F{CDE_ID}==0 ?$F{calle_Cte}:$F{calle_Dir_Envio1})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="140" width="190" height="14" uuid="dff9c882-f6dd-4513-ba14-5d95d7bbbee0"/>
+				<textFieldExpression><![CDATA[$F{calle_Cte2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="219" width="90" height="29" uuid="b442e6b6-1f2c-47d1-99f1-8d53bd8a67e4"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[VENDEDOR
+SALES PERSON]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="219" width="126" height="29" uuid="34bde6bf-eb29-417d-a28c-119ef73e520b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ORDEN DE COMPRA No.
+P.O. No.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="219" width="113" height="29" uuid="cd555508-1e4e-4e73-8e29-5e32485f21ee"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[TIEMPO DE ENTREGA
+LEAD TIME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="219" width="100" height="29" uuid="22b095ef-3530-4c56-84b7-37226b08cc22"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ENVIAR POR
+SHIP VIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="219" width="126" height="29" uuid="9f0f94f3-32f9-4be8-a7f7-b9de46cfee8a"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[CONDICIONES
+TERMS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="30" uuid="359d9d13-02c4-4165-86df-e22ef3a47fbb"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[CANT. (QUANTITY)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="489" y="0" width="66" height="30" uuid="92a9ecb1-3085-431e-8c2f-3a0f523d464b"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[IMPORTE (AMOUNT)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="0" width="291" height="30" uuid="959fd471-eb75-4e9b-937e-d94075773de7"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[                                                             DESCRIPCION	                                                         (DESCRIPTION)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="72" height="30" uuid="92ae4135-fbc5-4436-ae4b-582f1bbea490"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[PU               (UNIT PRICE)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="0" width="66" height="30" uuid="f571d876-7f28-47f9-aaf2-97eaf14792d8"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[IMAGEN (IMAGE)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="489" y="14" width="66" height="16" uuid="dd41c62f-7b9e-4f67-96f3-c38729fc14ad"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="417" y="14" width="72" height="16" uuid="508e124d-3875-4e86-adf1-443785107f43"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PU}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="0" y="14" width="60" height="16" uuid="3abd2fc9-c556-45c7-abee-c10f1a72e8c7"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PDD_CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="14" width="291" height="16" uuid="00ed23c3-b2ee-4f91-8615-2b42d3bf4303"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PDD_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" onErrorType="Blank">
+				<reportElement x="351" y="2" width="66" height="40" uuid="dd0891aa-7450-4008-b9f0-40b4a6224b3e"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+$F{NOM_IMG}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="222">
+			<staticText>
+				<reportElement x="0" y="102" width="108" height="70" uuid="d2dbaf68-d7bc-4f57-884f-9ce0af6c1346"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CUENTA EN USD EN MEXICO : BANCO : SCOTIABANK No. CUENTA: 175-00006734 CLABE: 044691175000067343
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="102" width="90" height="70" uuid="b2878870-ec60-4925-9042-f0ea5fe9760d"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CUENTA EN USD EN USA : BANCO : TEXAS COMMUNITY BANK CUENTA: 1010091793 ROUTING: 114974810 PLAZA: Laredo, TX USA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="102" width="130" height="70" uuid="a95ef9c3-c783-4025-b8cd-b492116b8093"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CUENTA EN PESOS EN MEXICO: BANCO :SCOTIABANK No. CUENTA:175-01150022 CLABE : 044-691-17501150022-6 
+Referencia Bancaria : 5124
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="102" width="100" height="70" uuid="6afeec89-3599-4518-9cf4-badddac58974"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CUENTA EN PESOS EN MEXICO: BANCO : BANCOMER No. CUENTA: 0147104553 CLABE :  012691001471045537 Referencia Bancaria : 5124
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="102" width="126" height="70" uuid="8211ef88-4921-44bd-87ec-935a28d6dbc0"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CUENTA EN USD EN MEXICO: BANCO : BANCOMER No. CUENTA:  0149149538 CLABE :  012691001491495387]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="172" width="429" height="50" uuid="c306d964-185f-49eb-9ea1-4ec0055fd21d"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FAVOR DE HACER TODOS LOS CHEQUES A NOMBRE DE: DISTRIBUIDORA MAK , S. DE R. L. DE C.V. PARA SU COMODIDAD ACEPTAMOS VISA, MASTER CARD Y AMERICAN EXPRESS. COTIZACION VÁLIDA POR 30 DIAS.
+PLEASE MAKE ALL CHECKS TO: DISTRIBUIDORA MAK, S. DE R.L..DE C.V. FOR YOUR CONVENIENCE WE ALSO ACCEPT VISA, MASTER CARD AND AMERICAN EXPRESS. QUOTE VALID FOR 30 DAYS.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="172" width="126" height="50" uuid="a8973a93-b06d-4e45-a3a6-8978865f8ffd"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[AUTORIZACIÓN DEL CLIENTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="441" y="208" width="100" height="1" uuid="6405bc77-4b17-4473-b6b3-f7373ff6085e">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<rectangle radius="10">
+				<reportElement x="0" y="19" width="555" height="63" backcolor="#F0F1F1" uuid="0b89f318-4a67-4f44-9958-5806a27ba643"/>
+				<graphicElement>
+					<pen lineColor="#F0F1F1"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="399" y="24" width="155" height="56" backcolor="#F0F1F1" uuid="93f02ff3-b2ea-4046-9ed2-d354cdd6821e"/>
+				<graphicElement>
+					<pen lineColor="#172983"/>
+				</graphicElement>
+			</rectangle>
+			<textField pattern=" #,##0.00">
+				<reportElement x="481" y="63" width="63" height="13" uuid="0cb2b60a-a85f-4b37-a291-25b5e221583e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PD_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00">
+				<reportElement x="481" y="28" width="63" height="13" uuid="9ecff828-7263-426f-bf7c-0ff1267fffcb"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PD_IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00">
+				<reportElement x="481" y="45" width="63" height="13" uuid="5ec1f5cb-af7b-476f-97c0-ebf5d26e7737"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PD_IMPUESTO1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="7" y="37" width="358" height="24" uuid="d591a85f-6ed6-417a-975b-645d3a2221ba"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_SCRIPTLET}.convertirLetras($F{PD_TOTAL})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="400" y="28" width="65" height="13" forecolor="#535355" uuid="559fdea7-043b-4614-9d09-fda529451d5e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="45" width="65" height="13" forecolor="#535355" uuid="adf58c51-6f2b-4ca1-aeaf-d40be5d66f8c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[I.V.A al 16%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="63" width="65" height="13" forecolor="#535355" uuid="411e9df8-fc9a-4b65-a483-eb511ed1660c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="24" width="100" height="13" forecolor="#535355" uuid="5c24a369-4e94-4d2b-9406-13e2c27d311e"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe con letra]]></text>
+			</staticText>
+			<line>
+				<reportElement mode="Opaque" x="0" y="4" width="555" height="1" forecolor="#172983" uuid="f5687b5a-0ddf-4e93-882e-6e9936e193d4"/>
+				<graphicElement>
+					<pen lineColor="#172983"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="5" width="76" height="14" forecolor="#535355" uuid="0c3d3a5e-5903-49bc-ae0c-6ebe110575ad"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Memo Pedido:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="76" y="5" width="479" height="14" uuid="b193d0dd-9f4d-4b6e-b2bc-155015863bbc"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PD_NOTASPIE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="400" y="42" width="154" height="1" uuid="e1b3e6e8-0603-4621-924e-7d68c1bcb096"/>
+				<graphicElement>
+					<pen lineColor="#172983"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="467" y="24" width="1" height="56" uuid="fe6c647d-26a7-4a69-bbc0-dd51bca73304"/>
+				<graphicElement>
+					<pen lineColor="#172983"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="469" y="28" width="12" height="13" forecolor="#535355" uuid="7d3d5cfc-5e9a-46ab-8f54-fd9864cb6081"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="45" width="12" height="13" forecolor="#535355" uuid="8219d307-f816-484f-a9d2-cfdb1734f044"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="63" width="12" height="13" forecolor="#535355" uuid="e1be5731-e197-40f9-8a6c-2799d294aa2b"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<line>
+				<reportElement x="400" y="61" width="154" height="1" uuid="52a606a8-f749-484f-88c0-460ed4f920bb"/>
+				<graphicElement>
+					<pen lineColor="#172983"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+</jasperReport>

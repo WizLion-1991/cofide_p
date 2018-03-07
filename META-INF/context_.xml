@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/cofide">
+
+   <Resource name="jdbc/SIWEBDB" auth="Container" type="javax.sql.DataSource" 
+      maxActive="100" minIdle="10" maxWait="10000"
+      username="root" password="C0f1d3" 
+      driverClassName="com.mysql.jdbc.Driver"
+      testOnBorrow="true"
+      validationQuery="SELECT 1"
+      url="jdbc:mysql://localhost:3306/vta_cofide?noAccessToProcedureBodies=true&amp;autoReconnect=true" 
+      
+      testWhileIdle="true"    
+      testOnReturn="false"
+      validationInterval="30000"
+      timeBetweenEvictionRunsMillis="30000"    
+      initialSize="10"
+      removeAbandonedTimeout="60"
+      removeAbandoned="true"
+      logAbandoned="true"
+      minEvictableIdleTimeMillis="30000"
+      jmxEnabled="true"
+      jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;
+      org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer">
+      <property name="Pool.PingQuery" value="select 1"/>
+      <property name="Pool.PingEnabled" value="true"/>
+      <property name="Pool.PingConnectionsOlderThan" value="3600000"/> <!-- 1 hr -->
+      <property name="Pool.PingConnectionsNotUsedFor" value="10000"/> <!-- ping db 10 sec -->
+   </Resource>
+   
+   <!--conexion a la pagina web -->
+   <Resource name="jdbc/COFIDE" auth="Container" type="javax.sql.DataSource"
+             maxTotal="-1" maxIdle="30" maxWaitMillis="10000"
+             username="cofide_admin" password="Adm1n.C0f1d3" 
+             driverClassName="com.mysql.jdbc.Driver"
+             testOnBorrow="true" 
+             validationQuery="SELECT 1"   
+             url="jdbc:mysql://192.168.2.244:3306/cofide2016_mgv">
+      <property name="Pool.PingQuery" value="select 1"/>
+      <property name="Pool.PingEnabled" value="true"/>
+      <property name="Pool.PingConnectionsOlderThan" value="3600000"/>
+      <property name="Pool.PingConnectionsNotUsedFor" value="10000"/> 
+   </Resource>
+   
+   <!--conexion a la pagina web LISTA DE NO DESEADOS-->
+   <Resource name="jdbc/COFIDE" auth="Container" type="javax.sql.DataSource"
+             maxTotal="-1" maxIdle="30" maxWaitMillis="10000"
+             username="cofide_admin" password="Adm1n.C0f1d3" 
+             driverClassName="com.mysql.jdbc.Driver"
+             testOnBorrow="true" 
+             validationQuery="SELECT 1"   
+             url="jdbc:mysql://192.168.2.244:3306/cofide_nodeseados">
+      <property name="Pool.PingQuery" value="select 1"/>
+      <property name="Pool.PingEnabled" value="true"/>
+      <property name="Pool.PingConnectionsOlderThan" value="3600000"/>
+      <property name="Pool.PingConnectionsNotUsedFor" value="10000"/> 
+   </Resource>
+   
+   <!--conexion al PBX -->
+   <Resource name="jdbc/COFIDE_PBX" auth="Container" type="javax.sql.DataSource"
+             maxTotal="-1" maxIdle="30" maxWaitMillis="10000"
+             username="crm_user" password="bXFwhNVt45GMJUng" 
+             driverClassName="com.mysql.jdbc.Driver"
+             testOnBorrow="true" 
+             validationQuery="SELECT 1"   
+             url="jdbc:mysql://192.168.2.11:3306/asteriskcdrdb">
+      <property name="Pool.PingQuery" value="select 1"/>
+      <property name="Pool.PingEnabled" value="true"/>
+      <property name="Pool.PingConnectionsOlderThan" value="3600000"/>
+      <property name="Pool.PingConnectionsNotUsedFor" value="10000"/> 
+   </Resource>
+</Context>

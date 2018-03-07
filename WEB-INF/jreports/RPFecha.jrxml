@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="ecbf99cf-9a7b-471c-a03d-ba90471d8c14">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="FechaInicial" class="java.lang.String"/>
+	<parameter name="FechaFinal" class="java.lang.String"/>
+	<parameter name="EMP_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select EMP_RAZONSOCIAL, DATE_FORMAT(STR_TO_DATE(TKT_FECHA,'%Y%m%d'),'%d/%m/%Y') AS TFECHA,TKT_ID,TKT_FOLIO,TKT_TOTAL,if(TKT_ANULADA = 1,'CANCELADA','') as ESTATUS
+ from vta_empresas,vta_tickets where vta_empresas.EMP_ID = vta_tickets.EMP_ID and TKT_ANULADA = 1 
+AND TKT_FECHA>= $P{FechaInicial} AND TKT_FECHA<= $P{FechaFinal} AND vta_tickets.EMP_ID = $P{EMP_ID}]]>
+	</queryString>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="TFECHA" class="java.lang.String"/>
+	<field name="TKT_ID" class="java.lang.Long"/>
+	<field name="TKT_FOLIO" class="java.lang.String"/>
+	<field name="TKT_TOTAL" class="java.math.BigDecimal"/>
+	<field name="ESTATUS" class="java.lang.String"/>
+	<title>
+		<band height="104" splitType="Stretch">
+			<textField>
+				<reportElement uuid="a818e240-ace4-4628-8792-50fee70d1318" style="Detail" x="171" y="27" width="351" height="15"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7c5d7114-d8dd-4508-846c-fadc690bee05" style="SubTitle" x="171" y="42" width="351" height="17" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REMISIONES CANCELADAS POR FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5fa94b04-736d-4843-a7b5-c9298a56c5a3" x="523" y="83" width="116" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha Final:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5dd14e87-4162-48fd-bc9c-05fcf11ded0d" x="523" y="63" width="116" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha Inicial:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="128c59ba-84ee-444d-8f93-16160c377bde" x="639" y="63" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{FechaInicial})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="78fadd4d-57c1-4902-bd9c-fe7ee0059a02" x="639" y="83" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{FechaFinal})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement uuid="89292201-8894-41a8-b6ab-b3a4e0282ea8" mode="Opaque" x="15" y="0" width="766" height="15" backcolor="#666666"/>
+			</frame>
+			<staticText>
+				<reportElement uuid="c3dcd5d5-8f21-4ee8-a583-bf233bc21192" style="Column header" x="54" y="0" width="117" height="15"/>
+				<textElement/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="39ab7d59-08f6-49e1-8989-39ed73642d94" style="Column header" x="171" y="0" width="117" height="15"/>
+				<textElement/>
+				<text><![CDATA[Remisión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="acfa1ffd-4bf1-428b-b672-f363c8b80446" style="Column header" x="288" y="0" width="117" height="15"/>
+				<textElement/>
+				<text><![CDATA[Folio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9a08952d-0b4c-4338-8da2-140159c62bb8" style="Column header" x="405" y="0" width="117" height="15"/>
+				<textElement/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b4de8284-cc5d-4dba-ba1a-95545b837fcb" style="Column header" x="522" y="0" width="117" height="15"/>
+				<textElement/>
+				<text><![CDATA[Estatus]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<frame>
+				<reportElement uuid="db9429cf-104c-4cc7-82e9-dd8f378a392b" x="15" y="1" width="724" height="15"/>
+			</frame>
+			<textField>
+				<reportElement uuid="4a93d9f1-f8a0-4c50-9ca2-154d248739c5" style="Detail" x="54" y="0" width="117" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TFECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9ff46615-9a5c-49a7-a680-35327e5aa7c0" style="Detail" x="171" y="0" width="117" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TKT_ID}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="dda600c3-890f-4ab8-aca0-09f3b6c3118d" style="Detail" x="288" y="0" width="117" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TKT_FOLIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement uuid="76b6fc2b-2279-4f7c-9899-a5001c500e9b" style="Detail" x="405" y="0" width="117" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{TKT_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="34810569-312f-4133-a3c5-f6537d66f104" style="Detail" x="522" y="0" width="117" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ESTATUS}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="7811601b-24f3-4209-9f55-82973465ab81" positionType="FixRelativeToBottom" x="97" y="16" width="596" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement uuid="73b17ae3-e3ee-46e1-a7dd-5005610e9849" style="Column header" x="15" y="0" width="156" height="20" forecolor="#000000"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER} + " de"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="714cadf1-1257-4b5e-b273-f6230fef0061" x="171" y="1" width="117" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

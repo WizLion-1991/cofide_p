@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Formato.xml
+    Created on : 30 de mayo de 2010, 04:01 AM
+    Author     : zeus
+    Description:
+        Este documento nos permitira mover el formato
+-->
+
+<Formato>
+   <Config>
+      <Title>Formato 1</Title>
+      <TypePage>Letter</TypePage>
+      <Orientation>Horizontal</Orientation>
+      <LeftMargin>0</LeftMargin>
+      <RightMargin>0</RightMargin>
+      <TopMargin>0</TopMargin>
+      <BottomMargin>0</BottomMargin>
+      <Width>0</Width>
+      <Height>0</Height>
+      <TotalPages>2</TotalPages>
+   </Config>
+   <Header>
+      <hP valor="Num Solicitud" pX="10" pY="10" palign="" pstyle="" pformato="" pwidth="0" pheight="0" pfont="" psize="0" urlimg="" pcolor="" pcolorbak="" />
+      <hP valor="1234" pX="30" pY="10" palign="" pstyle="" pformato="" pwidth="0" pheight="0" pfont="" psize="0" urlimg="" pcolor="" pcolorbak="" />
+   </Header>
+   <Body>
+      <page>
+         <hP valor="Num Solicitud" pX="50" pY="10" palign="" pstyle="" pformato="" pwidth="0" pheight="0" pfont="" psize="" urlimg="" pcolor="" pcolorbak="" />
+         <hP valor="1234" pX="30" pY="50" palign="" pstyle="" pformato="" pwidth="0" pheight="0" pfont="" psize="0" urlimg="" pcolor="" pcolorbak="" />
+      </page>
+      <page>
+         <hP valor="Num Solicitud" pX="50" pY="10" palign="" pstyle="" pformato="" pwidth="0" pheight="0" pfont="" psize="0" urlimg="" pcolor="" pcolorbak="" />
+         <hP valor="1234" pX="30" pY="50" palign="" pstyle="" pformato="" pwidth="0" pheight="0" pfont="" psize="0" urlimg="" pcolor="" pcolorbak="" />
+      </page>
+   </Body>
+   <Footer>
+      <hP valor="Num Solicitud" pX="10" pY="100" palign="" psetyle="" pformato="" pwidth="0" pheight="0" pfont="" psize="0" urlimg="" pcolor="" pcolorbak="" />
+      <hP valor="1234" pX="30" pY="100" palign="" pstyle="" pformato="" pwidth="0" pheight="0" pfont="" psize="0" urlimg="" pcolor="" pcolorbak="" />
+   </Footer>
+</Formato>

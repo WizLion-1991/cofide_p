@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ticket" pageWidth="250" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="215" leftMargin="5" rightMargin="30" topMargin="20" bottomMargin="20" uuid="97d32f62-1040-4df4-a8f9-9a190c2bbc42">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tkt_id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select vta_empresas.EMP_RAZONSOCIAL,vta_tickets.TKT_ID,vta_tickets.TKT_HORA,
+DATE_FORMAT(STR_TO_DATE(vta_tickets.TKT_FECHA,'%Y%m%d'),'%d/%m/%Y') AS FECHA
+,vta_tickets.TKT_FOLIO,vta_tickets.TKT_TOTAL,TKTD_PRECIO,
+TKT_NOTAS,
+TKTD_DESCRIPCION,TKTD_CANTIDAD,TKTD_IMPORTE,
+vta_empresas.EMP_CALLE,EMP_COLONIA,EMP_MUNICIPIO,EMP_ESTADO,EMP_TELEFONO1 
+,(select u.nombre_usuario from usuarios u where  u.id_usuarios = vta_tickets.TKT_US_ALTA ) AS VENDEDOR
+from vta_empresas,vta_tickets,vta_ticketsdeta where 
+vta_empresas.EMP_ID = vta_tickets.EMP_ID
+ AND vta_tickets.TKT_ID = vta_ticketsdeta.TKT_ID AND vta_tickets.TKT_ID = $P{tkt_id}]]>
+	</queryString>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="TKT_ID" class="java.lang.Long"/>
+	<field name="TKT_HORA" class="java.lang.String"/>
+	<field name="FECHA" class="java.lang.String"/>
+	<field name="TKT_FOLIO" class="java.lang.String"/>
+	<field name="TKT_TOTAL" class="java.math.BigDecimal"/>
+	<field name="TKTD_PRECIO" class="java.math.BigDecimal"/>
+	<field name="TKT_NOTAS" class="java.lang.String"/>
+	<field name="TKTD_DESCRIPCION" class="java.lang.String"/>
+	<field name="TKTD_CANTIDAD" class="java.math.BigDecimal"/>
+	<field name="TKTD_IMPORTE" class="java.math.BigDecimal"/>
+	<field name="EMP_CALLE" class="java.lang.String"/>
+	<field name="EMP_COLONIA" class="java.lang.String"/>
+	<field name="EMP_MUNICIPIO" class="java.lang.String"/>
+	<field name="EMP_ESTADO" class="java.lang.String"/>
+	<field name="EMP_TELEFONO1" class="java.lang.String"/>
+	<field name="VENDEDOR" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="198" splitType="Stretch">
+			<textField>
+				<reportElement uuid="85945336-76b2-4932-9b29-3162873953ba" x="1" y="1" width="199" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cebb11c6-c88c-4886-8ebe-9eea1ec3303b" x="49" y="98" width="92" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_FOLIO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="569e165a-11d8-4745-9ede-b7af335cf96b" x="0" y="118" width="36" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[NOTA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="11064f30-94cf-4ce9-ace1-6729f7895780" x="0" y="98" width="49" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TICKET:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4c9e2405-f9bf-4b90-b80d-398deff6b270" x="0" y="139" width="36" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c8729abc-634a-417b-8d69-8c929c498cb2" x="87" y="139" width="22" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[HORA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e7e9e9df-65cc-4bbf-8057-52d3eaf7befb" x="36" y="139" width="51" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1f0460ff-847b-46ad-84b5-b7a58017b3d8" x="109" y="139" width="49" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_HORA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f271170d-c022-4c48-8b66-c33019fe7530" x="1" y="21" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_CALLE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="32945f76-1587-4395-8639-e14b100f6e91" x="0" y="41" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_COLONIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bd44ddc4-b509-4984-a49e-1b713710db83" x="1" y="61" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_MUNICIPIO} + ","]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f856473e-b86e-49bb-b0f9-c61567d886bf" x="115" y="61" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_ESTADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2603ebdd-2db5-4406-90fe-13325d1ab9a8" x="0" y="78" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_TELEFONO1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c6caf1db-43e7-49e0-a71d-545daaab5375" x="36" y="118" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_NOTAS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="569e165a-11d8-4745-9ede-b7af335cf96b" x="0" y="159" width="61" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[VENDEDOR:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f6b5b9f0-d027-4273-bd85-e12ef5fd7591" x="61" y="159" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VENDEDOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="569e165a-11d8-4745-9ede-b7af335cf96b" x="0" y="178" width="36" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[CANT.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="569e165a-11d8-4745-9ede-b7af335cf96b" x="36" y="178" width="73" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="569e165a-11d8-4745-9ede-b7af335cf96b" x="118" y="178" width="40" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[P.UNIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="569e165a-11d8-4745-9ede-b7af335cf96b" x="175" y="178" width="40" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="6" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="85ca2499-7003-4b12-affe-12a6799c4b81" x="36" y="0" width="73" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKTD_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.0">
+				<reportElement uuid="4cc86f30-4491-487d-bf68-56455060cdea" x="1" y="0" width="35" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKTD_CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="666da8aa-bac0-47aa-b06a-b8cfd3e2c379" x="158" y="0" width="57" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKTD_IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="88200c87-bc3d-4994-b851-71a786d8ceea" x="109" y="0" width="49" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TKTD_PRECIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="50">
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="c23a32e2-1ac0-4e33-aa66-43d46d8cfb18" x="96" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_TOTAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c7ece044-6282-455a-954f-374268ae4b5d" x="3" y="0" width="93" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="59433902-ef80-41bb-b99e-5c0f7c6874be" x="0" y="20" width="200" height="30"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Promocion para los pedidos de pasteles en los días ....]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

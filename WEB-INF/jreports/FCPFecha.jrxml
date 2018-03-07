@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="c5d45cc2-d9ac-4dd9-8fd0-3550386311e3">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="12"/>
+	<property name="ireport.y" value="32"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="FechaInicial" class="java.lang.String"/>
+	<parameter name="FechaFinal" class="java.lang.String"/>
+	<parameter name="EMP_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select EMP_RAZONSOCIAL, FAC_FOLIO_C,DATE_FORMAT(STR_TO_DATE(FAC_FECHA,'%Y%m%d'),'%d/%m/%Y') AS TFECHA,FAC_ID,FAC_FOLIO,FAC_TOTAL,if(FAC_ANULADA = 1,'CANCELADA','') as ESTATUS
+ from vta_empresas,vta_facturas where vta_empresas.EMP_ID = vta_facturas.EMP_ID and FAC_ANULADA = 1
+AND FAC_FECHA>= $P{FechaInicial} AND FAC_FECHA<= $P{FechaFinal} AND vta_facturas.EMP_ID = $P{EMP_ID}]]>
+	</queryString>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="FAC_FOLIO_C" class="java.lang.String"/>
+	<field name="TFECHA" class="java.lang.String"/>
+	<field name="FAC_ID" class="java.lang.Long"/>
+	<field name="FAC_FOLIO" class="java.lang.String"/>
+	<field name="FAC_TOTAL" class="java.math.BigDecimal"/>
+	<field name="ESTATUS" class="java.lang.String"/>
+	<background>
+		<band height="575" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement uuid="823d54e8-c1d5-4191-b041-1a21533e20d8" style="Column header" x="-326" y="-49" width="203" height="20" forecolor="#000000"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="a75078a9-47c3-4158-a94a-a9a71bbaed8c" style="Column header" x="-399" y="-49" width="73" height="20" forecolor="#000000"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="8aedb239-8885-45c9-a041-e8acc62c6a93" style="Column header" x="-330" y="-49" width="203" height="20" forecolor="#000000"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c0b9d94a-fb46-4a26-a548-37fb8d6b5014" x="-403" y="-49" width="73" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<textField>
+				<reportElement uuid="b39b6f9d-4940-43e9-a7dc-1965b4a5f168" style="Detail" x="215" y="27" width="350" height="15"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="992a7827-577e-47e2-9f0a-b472870e7dc6" style="SubTitle" x="215" y="42" width="350" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTURAS CANCELADAS POR FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e8f17ef7-86be-4f8f-a70e-7dafa8c2e6d6" x="565" y="83" width="116" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha Final:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7e838b9e-7150-4c78-b3da-d50b053b055e" x="565" y="63" width="116" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha Inicial:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1f9cb730-ad81-4ded-a197-497b69936c7f" x="681" y="63" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{FechaInicial})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="38251bd7-e0d9-442a-860f-99f18e0277bd" x="681" y="83" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{FechaFinal})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement uuid="a1b7174d-b0ab-4a1b-a73e-e9fac589ee12" mode="Opaque" x="30" y="0" width="772" height="15" backcolor="#666666"/>
+			</frame>
+			<staticText>
+				<reportElement uuid="33710eea-e31a-4092-b81b-c9ae46b7988d" style="Column header" x="58" y="0" width="117" height="15"/>
+				<textElement/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e19ff643-aaba-44b2-80a1-f67547e4f944" style="Column header" x="175" y="0" width="117" height="15"/>
+				<textElement/>
+				<text><![CDATA[Factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f256ab71-90cd-4ee5-a131-bf8076bb9780" style="Column header" x="292" y="0" width="85" height="15"/>
+				<textElement/>
+				<text><![CDATA[Folio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4ba3b8de-be59-4666-916a-d5ff02e044a9" style="Column header" x="377" y="0" width="84" height="15"/>
+				<textElement/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4f8a1d67-6f3b-44be-9a2c-8e758ec6c136" style="Column header" x="461" y="0" width="104" height="15"/>
+				<textElement/>
+				<text><![CDATA[Estatus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4f8a1d67-6f3b-44be-9a2c-8e758ec6c136" style="Column header" x="565" y="0" width="237" height="15"/>
+				<textElement/>
+				<text><![CDATA[Folio fiscal]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement uuid="1cf57798-099e-4dd9-aaf3-b1edcfdf1232" style="Detail" x="58" y="0" width="117" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TFECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="17ab680f-16c9-466f-9ae0-34938c684ad1" style="Detail" x="175" y="0" width="117" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FAC_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f9c234c6-5246-4158-a1e9-57cb56a8edb0" style="Detail" x="292" y="0" width="85" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FAC_FOLIO_C}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement uuid="bab1a3f3-d952-4a54-a0c6-bc651c8b56ed" style="Detail" x="377" y="0" width="84" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{FAC_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="73b284e9-1c97-4c6b-ac73-b385701f3556" style="Detail" x="461" y="0" width="104" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ESTATUS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f4565157-0a53-469c-b712-55f3d5e0a89f" stretchType="RelativeToTallestObject" x="565" y="0" width="237" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_FOLIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement uuid="5986a89a-81f5-4f58-87ff-34b7ed158d08" style="Column header" x="377" y="0" width="82" height="20" forecolor="#000000"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="45dae3da-ddfe-468d-8526-2c4152badb42" x="461" y="0" width="104" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

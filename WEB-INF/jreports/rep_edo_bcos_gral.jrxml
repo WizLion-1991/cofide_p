@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="98ba4448-6298-4216-a4d9-e71aadbc2741">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="18"/>
+	<parameter name="Periodo" class="java.lang.String"/>
+	<parameter name="Moneda" class="java.lang.Integer"/>
+	<parameter name="Empresa" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT vta_bcos.BC_ID,
+	vta_bcos.BC_DESCRIPCION,
+(SELECT vta_monedas.MON_DESCRIPCION From vta_monedas where MON_ID= $P{Moneda}) AS nomMoneda,
+(SELECT vta_empresas.EMP_RAZONSOCIAL From vta_empresas where EMP_ID= $P{Empresa}) AS nomEmpresa,
+sum(if( LEFT(vta_mov_cta_bcos.MCB_FECHA,6)<$P{Periodo},((vta_mov_cta_bcos.MCB_DEPOSITO *
+/*obtenemos la paridad*/
+if(if($P{Moneda} <> 0,$P{Moneda},vta_bcos.BC_MONEDA) = vta_mov_cta_bcos.MCB_MONEDA , 1,
+if(MCB_PARIDAD <> 1 AND MCB_PARIDAD <> 0 ,MCB_PARIDAD,GetParidadAuto(vta_mov_cta_bcos.MCB_MONEDA,if($P{Moneda} <> 0,$P{Moneda},vta_bcos.BC_MONEDA),4,MCB_FECHA) )
+)) - (vta_mov_cta_bcos.MCB_RETIRO
+ *
+/*obtenemos la paridad*/
+if(if($P{Moneda} <> 0,$P{Moneda},vta_bcos.BC_MONEDA) = vta_mov_cta_bcos.MCB_MONEDA , 1,
+if(MCB_PARIDAD <> 1 AND MCB_PARIDAD <> 0 ,MCB_PARIDAD,GetParidadAuto(vta_mov_cta_bcos.MCB_MONEDA,if($P{Moneda} <> 0,$P{Moneda},vta_bcos.BC_MONEDA),4,MCB_FECHA) )
+))),0)) as saldo_inicial,
+	sum(if( LEFT(vta_mov_cta_bcos.MCB_FECHA,6)=$P{Periodo},(vta_mov_cta_bcos.MCB_DEPOSITO *
+/*obtenemos la paridad*/
+if(if($P{Moneda} <> 0,$P{Moneda},vta_bcos.BC_MONEDA) = vta_mov_cta_bcos.MCB_MONEDA , 1,
+if(MCB_PARIDAD <> 1 AND MCB_PARIDAD <> 0 ,MCB_PARIDAD,GetParidadAuto(vta_mov_cta_bcos.MCB_MONEDA,if($P{Moneda} <> 0,$P{Moneda},vta_bcos.BC_MONEDA),4,MCB_FECHA) )
+)),0)) as tot_deposito,
+	sum(if( LEFT(vta_mov_cta_bcos.MCB_FECHA,6)=$P{Periodo},(vta_mov_cta_bcos.MCB_RETIRO
+ *
+/*obtenemos la paridad*/
+if(if($P{Moneda} <> 0,$P{Moneda},vta_bcos.BC_MONEDA) = vta_mov_cta_bcos.MCB_MONEDA , 1,
+if(MCB_PARIDAD <> 1 AND MCB_PARIDAD <> 0 ,MCB_PARIDAD,GetParidadAuto(vta_mov_cta_bcos.MCB_MONEDA,if($P{Moneda} <> 0,$P{Moneda},vta_bcos.BC_MONEDA),4,MCB_FECHA) )
+)),0)) as tot_retiro,
+	 sum(
+(vta_mov_cta_bcos.MCB_DEPOSITO  *
+/*obtenemos la paridad*/
+if(if($P{Moneda} <> 0,$P{Moneda},vta_bcos.BC_MONEDA) = vta_mov_cta_bcos.MCB_MONEDA , 1,
+if(MCB_PARIDAD <> 1 AND MCB_PARIDAD <> 0 ,MCB_PARIDAD,GetParidadAuto(vta_mov_cta_bcos.MCB_MONEDA,if($P{Moneda} <> 0,$P{Moneda},vta_bcos.BC_MONEDA),4,MCB_FECHA) )
+)) -
+(vta_mov_cta_bcos.MCB_RETIRO  *
+/*obtenemos la paridad*/
+if(if($P{Moneda} <> 0,$P{Moneda},vta_bcos.BC_MONEDA) = vta_mov_cta_bcos.MCB_MONEDA , 1,
+if(MCB_PARIDAD <> 1 AND MCB_PARIDAD <> 0 ,MCB_PARIDAD,GetParidadAuto(vta_mov_cta_bcos.MCB_MONEDA,if($P{Moneda} <> 0,$P{Moneda},vta_bcos.BC_MONEDA),4,MCB_FECHA) )
+))
+) as saldo_final
+FROM vta_mov_cta_bcos INNER JOIN vta_bcos ON vta_mov_cta_bcos.BC_ID = vta_bcos.BC_ID
+ where vta_bcos.EMP_ID = $P{Empresa} AND vta_mov_cta_bcos.MCB_CONCILIADO = 1 AND vta_mov_cta_bcos.MCB_ANULADO = 0
+AND LEFT(vta_mov_cta_bcos.MCB_FECHA,6)<=$P{Periodo}
+
+group by vta_bcos.BC_ID,
+	vta_bcos.BC_DESCRIPCION;]]>
+	</queryString>
+	<field name="BC_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BC_DESCRIPCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomMoneda" class="java.lang.String"/>
+	<field name="nomEmpresa" class="java.lang.String"/>
+	<field name="saldo_inicial" class="java.math.BigDecimal"/>
+	<field name="tot_deposito" class="java.math.BigDecimal"/>
+	<field name="tot_retiro" class="java.math.BigDecimal"/>
+	<field name="saldo_final" class="java.math.BigDecimal"/>
+	<variable name="totalSI" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldo_inicial}]]></variableExpression>
+	</variable>
+	<variable name="totalSF" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldo_final}]]></variableExpression>
+	</variable>
+	<variable name="totalD" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{tot_deposito}]]></variableExpression>
+	</variable>
+	<variable name="totalR" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{tot_retiro}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="124" y="0" width="312" height="20" uuid="8d7f4d06-f8ce-46a7-ad5b-35f2d5842e3f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE DE EMPRESA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="20" width="312" height="20" uuid="8d7f4d06-f8ce-46a7-ad5b-35f2d5842e3f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SALDOS DE CUENTAS BANCARIAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="92" height="20" uuid="84124a8a-5ec2-4683-ac81-7377ccaf44fa"/>
+				<text><![CDATA[Empresa :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="92" height="20" uuid="5ac82308-6920-4c66-b9ba-259b282fe5be"/>
+				<text><![CDATA[Moneda : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="20" width="92" height="20" uuid="9c544e17-cfe2-4ef4-ac01-0527081869bc"/>
+				<text><![CDATA[Perido : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="92" y="20" width="92" height="20" uuid="73eecfa0-bde1-46ca-b91b-3f7688f484d3"/>
+				<textFieldExpression><![CDATA[$F{nomMoneda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="0" width="184" height="20" uuid="f1ff5840-03a4-45f3-9b49-0d5e3dd3e49e"/>
+				<textFieldExpression><![CDATA[$F{nomEmpresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="20" width="92" height="20" uuid="a911b0d8-e997-4f10-9d40-7c1a1f66a33c"/>
+				<textFieldExpression><![CDATA[$P{Periodo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="92" height="20" uuid="29b6bd87-7dc8-486e-b301-dce6470ddaf6"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="92" y="0" width="92" height="20" uuid="b7133b2c-116f-4ccb-ab0c-fa2875eb864d"/>
+				<text><![CDATA[Banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="0" width="92" height="20" uuid="646a7af2-a5c5-4cb6-b46f-696298e59023"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Saldo inicial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="92" height="20" uuid="83689394-bf5b-4f16-ba8f-04fbc9b3eb4c"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Total depósito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="0" width="92" height="20" uuid="4cb4880b-5d6e-4cad-ba30-0ce439ad4995"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Total retiro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="92" height="20" uuid="9eae7435-5baa-4ede-a86c-d9346040704b"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Saldo final]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="92" height="20" uuid="1941009f-af52-409c-9df5-e40605b4b6b9"/>
+				<textFieldExpression><![CDATA[$F{BC_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="0" width="92" height="20" uuid="781e2834-5e5f-4c0f-bc08-5655e3435e0a"/>
+				<textFieldExpression><![CDATA[$F{BC_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="184" y="0" width="92" height="20" uuid="dc168843-5ebe-490d-9b32-6924e243092b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{saldo_inicial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="276" y="0" width="92" height="20" uuid="ab5d3970-87e3-458a-9df2-79ec48988042"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{tot_deposito}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="368" y="0" width="92" height="20" uuid="191bd0d4-f2db-4f9f-a427-5795b626fecf"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{tot_retiro}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="460" y="0" width="92" height="20" uuid="a31cb8b7-f7e1-488d-b094-9eb89d409b8e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{saldo_final}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="184" y="0" width="92" height="20" uuid="c3824a85-0eb1-46fb-8038-bdef491c0258"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{totalSI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="276" y="0" width="92" height="20" uuid="900fd588-96e9-4a51-9f66-93275b199e89"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{totalD}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="368" y="0" width="92" height="20" uuid="7ade00dd-da3d-4988-8b18-e627817f575d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{totalR}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="460" y="0" width="92" height="20" uuid="9c8cd93a-9804-4427-80b4-594c8fb7febd"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{totalSF}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="92" height="20" uuid="6e3c2c18-e3ec-4a2a-91f5-9dc5ae60b5f0"/>
+				<text><![CDATA[TOTALES]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

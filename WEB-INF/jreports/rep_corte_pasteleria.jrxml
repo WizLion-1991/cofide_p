@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Corte de turno" columnCount="2" pageWidth="595" pageHeight="842" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3230d8c9-5377-424e-bb0a-5fec08747d62">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="turno" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select @num := @num + 1 Numering,PR_CODBARRAS,PR_DESCRIPCION,PR_CATEGORIA1
+,(select if(sum(vta_movproddeta.MPD_ENTRADAS - vta_movproddeta.MPD_SALIDAS) is null,0,sum(vta_movproddeta.MPD_ENTRADAS - vta_movproddeta.MPD_SALIDAS)) from vta_movprod,vta_movproddeta 
+where vta_movprod.MP_ID = vta_movproddeta.MP_ID AND MP_ANULADO = 0 AND vta_movproddeta.PR_ID = vta_producto.PR_ID  and 
+if( $P{turno}=1, 1 = 1 AND MP_FECHA<$P{fecha}, (vta_movprod.MP_TURNO <= $P{turno} AND MP_FECHA<$P{fecha}) OR (vta_movprod.MP_TURNO = 1 AND MP_FECHA=$P{fecha})  ))  as exis
+,(select if(sum(vta_movproddeta.MPD_ENTRADAS) is null,0,sum(vta_movproddeta.MPD_ENTRADAS)) from vta_movprod,vta_movproddeta 
+where vta_movprod.MP_ID = vta_movproddeta.MP_ID AND MP_ANULADO = 0
+AND MP_FECHA=$P{fecha} AND vta_movproddeta.PR_ID = vta_producto.PR_ID
+AND vta_movprod.TKT_ID = 0 AND vta_movproddeta.MPD_ENTRADAS> 0 and vta_movprod.MP_TURNO = $P{turno})  as prod
+,(select if(sum(vta_movproddeta.MPD_SALIDAS) is null,0,sum(vta_movproddeta.MPD_SALIDAS)) from vta_movprod,vta_movproddeta 
+where vta_movprod.MP_ID = vta_movproddeta.MP_ID AND MP_ANULADO = 0
+AND MP_FECHA=$P{fecha} AND vta_movproddeta.PR_ID = vta_producto.PR_ID
+AND vta_movprod.TKT_ID = 0 AND vta_movproddeta.MPD_SALIDAS> 0 and vta_movprod.MP_TURNO = $P{turno}) as salida
+,(select if(sum(TKTD_CANTIDAD ) is null,0,sum(TKTD_CANTIDAD)) from 
+vta_tickets,vta_ticketsdeta where 
+vta_tickets.TKT_ID = vta_ticketsdeta.TKT_ID and vta_ticketsdeta.PR_ID = vta_producto.PR_ID
+ and TKT_ANULADA = 0 and TKT_FECHA = $P{fecha} AND TKT_TURNO = $P{turno} ) as venta
+,(select if(sum(TKTD_IMPORTE ) is null,0,sum(TKTD_IMPORTE)) from 
+vta_tickets,vta_ticketsdeta where 
+vta_tickets.TKT_ID = vta_ticketsdeta.TKT_ID and vta_ticketsdeta.PR_ID = vta_producto.PR_ID
+ and TKT_ANULADA = 0 and TKT_FECHA = $P{fecha} AND TKT_TURNO = $P{turno} ) as venta_importe
+,(select sum(vta_prodprecios.PP_PRECIO) from vta_prodprecios where vta_prodprecios.PR_ID = vta_producto.PR_ID and 
+vta_prodprecios.LP_ID = 1 limit 0,1) as precio
+ from vta_producto, (SELECT @num := 0) d 
+/*HAVING venta +exis + prod +salida <> 0*/
+ORDER BY convert(PR_CODBARRAS, UNSIGNED INTEGER)]]>
+	</queryString>
+	<field name="Numering" class="java.lang.Long"/>
+	<field name="PR_CODBARRAS" class="java.lang.String"/>
+	<field name="PR_DESCRIPCION" class="java.lang.String"/>
+	<field name="PR_CATEGORIA1" class="java.lang.Long"/>
+	<field name="exis" class="java.lang.Double"/>
+	<field name="prod" class="java.lang.Double"/>
+	<field name="salida" class="java.lang.Double"/>
+	<field name="venta" class="java.lang.Double"/>
+	<field name="venta_importe" class="java.math.BigDecimal"/>
+	<field name="precio" class="java.math.BigDecimal"/>
+	<variable name="sumTotal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{venta_importe}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="1a25877d-b883-4a1e-bdef-e569a04c9209" x="224" y="20" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CORTE DE TURNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3a337081-6a2a-4b96-9a74-37a4f4c62e29" x="189" y="0" width="196" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PASTELERIA DEL ANGEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="00ab0124-eb46-486e-b1ba-cd79740cef2e" x="0" y="27" width="39" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="15cb55ab-6927-43a1-b3fd-77836e57fa37" x="455" y="27" width="43" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TURNO:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="4a9b6185-8d1d-4805-b1b7-947027a05c86" x="39" y="27" width="69" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.text.SimpleDateFormat("yyyyMMdd").parse($P{fecha}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="508b1a71-b250-4f45-addc-5a57e6c2817a" x="498" y="27" width="57" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{turno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="b97da7db-07ae-4b2a-a40e-221c09b66306" x="0" y="1" width="275" height="20" backcolor="#3366FF"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="102efe86-09f2-453e-b907-db2f3b985ef9" x="0" y="0" width="23" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ca2817db-5bd2-4692-a03d-afad98637de4" x="23" y="0" width="66" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="145ff1af-702b-468b-bf7b-6a85a2a1ab3f" x="90" y="0" width="26" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EX]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eb0c3b9a-407f-4b6b-ba4c-80a7f1ed6b40" x="116" y="0" width="27" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7645a927-c817-4476-8650-c40c5b3a4291" x="144" y="0" width="28" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SALIDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="664546e4-5847-44ec-a97a-771d400880ff" x="172" y="0" width="31" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="951c6ef2-c451-4d05-b93c-18e71697add0" x="233" y="0" width="42" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Justified">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="664546e4-5847-44ec-a97a-771d400880ff" x="203" y="0" width="21" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXFINAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement uuid="41ad0a05-a7cc-4415-86cc-4257e792cdcc" x="0" y="0" width="23" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PR_CODBARRAS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="30159942-c7f7-4303-920a-e89ef80f1cd8" x="23" y="0" width="66" height="16"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PR_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement uuid="3b761db1-0e72-4ca8-9867-7feeb0ba3984" x="89" y="0" width="27" height="16"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{exis}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement uuid="e525489a-7c82-4d62-ba82-e58ea66356ed" x="116" y="0" width="27" height="16"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prod}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement uuid="4b907690-6f67-42b9-937d-1ce20d3b2dcd" x="144" y="0" width="28" height="16"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{salida}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement uuid="a666e49b-4dbf-4ac6-a86e-146f0fa376bd" x="172" y="0" width="31" height="16"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{venta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="1c8fb22d-e9e2-446d-9067-0523a7f0ad9a" x="226" y="0" width="49" height="16"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{venta_importe}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="31fe3dd7-845b-4fd3-ae5a-f6049a820ae8" x="141" y="0" width="1" height="17"/>
+			</line>
+			<line>
+				<reportElement uuid="fd43b918-3465-43ea-a0dc-b3e66f025b46" x="0" y="16" width="275" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="31fe3dd7-845b-4fd3-ae5a-f6049a820ae8" x="87" y="0" width="1" height="17"/>
+			</line>
+			<line>
+				<reportElement uuid="31fe3dd7-845b-4fd3-ae5a-f6049a820ae8" x="114" y="0" width="1" height="17"/>
+			</line>
+			<line>
+				<reportElement uuid="31fe3dd7-845b-4fd3-ae5a-f6049a820ae8" x="169" y="0" width="1" height="17"/>
+			</line>
+			<line>
+				<reportElement uuid="31fe3dd7-845b-4fd3-ae5a-f6049a820ae8" x="202" y="0" width="1" height="17"/>
+			</line>
+			<textField pattern="###0.00">
+				<reportElement uuid="a666e49b-4dbf-4ac6-a86e-146f0fa376bd" x="204" y="0" width="20" height="16"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{exis} + $F{prod} - $F{salida} - $F{venta}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="31fe3dd7-845b-4fd3-ae5a-f6049a820ae8" x="225" y="0" width="1" height="17"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="51" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="5" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="b94fb3d1-ba8b-4be0-a04d-b34d65883af6" x="69" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[TOTALES]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="443fd3c6-3b82-47cd-bf7b-806c3c18c2c6" x="226" y="0" width="51" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sumTotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

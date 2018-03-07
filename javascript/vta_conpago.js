@@ -1,0 +1,1 @@
+function vta_conpago(){}function dblClickConPago(id){var strNomMain=objMap.getNomMain();var grid=jQuery("#CON_PAGO");var lstVal=grid.getRowData(id);if(strNomMain=="CON_PAGO"){OpnEdit(document.getElementById("Ed"+strNomMain));}else{if(strNomMain=="CXPAGAR"){document.getElementById("CXP_CONDPAGO").value=lstVal.CONP_DESCRIPCION;}}$("#dialogCon").dialog("close");}

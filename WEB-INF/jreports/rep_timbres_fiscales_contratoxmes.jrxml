@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_gob_bancos" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8065effe-1f53-4086-85f7-637b00b83452">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.white.page.background" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.6" value="columnFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<parameter name="empresa" class="java.lang.String"/>
+	<parameter name="PathLogoWeb" class="java.lang.String"/>
+	<parameter name="periodo" class="java.lang.String"/>
+	<field name="idContrato" class="java.lang.String"/>
+	<field name="contratoArrendamiento" class="java.lang.String"/>
+	<field name="idCliente" class="java.lang.String"/>
+	<field name="nombreCte" class="java.lang.String"/>
+	<field name="anio" class="java.lang.String"/>
+	<field name="cuantosAnio" class="java.lang.Double"/>
+	<field name="mes" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="74" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="100" height="50" uuid="d9fe3ef6-7863-42dc-94f7-7aa00907a88b"/>
+				<imageExpression><![CDATA[$P{PathLogoWeb}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="100" y="22" width="371" height="28" uuid="5f8cc251-c3ef-4cfa-ad74-e8140a8ce240"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL POR CONTRATO POR MES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="371" height="22" uuid="61b3ce3d-8c99-4559-bc62-e335453811eb"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EMPRESA:"+$P{empresa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="16" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="471" y="0" width="101" height="16" uuid="a72ea14d-8da1-410a-b61f-470ad8ecff2a"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="0" width="71" height="16" uuid="d99011b1-a570-4ff1-b5ef-f682d8fcc741"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha emisión:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="56" height="16" uuid="e69fa42b-9d60-4881-9681-67758f63f82c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ID CONTRATO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="0" width="151" height="16" uuid="70739258-6b78-4cc1-a603-480fc08e4a77"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CONTRATO ARRENDAMIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="0" width="52" height="16" uuid="734b8fd4-ab0d-4ef1-a0bb-faef51a0ce2d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ID CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="259" y="0" width="141" height="16" uuid="cb7d7af8-c29b-4cf4-b8eb-1c208d4b0ead"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NOMBRE CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="59" height="16" uuid="6a4d6361-9514-414b-ba73-a79e3927a6ca"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[AÑO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="508" y="0" width="64" height="16" uuid="04464ef1-9a4f-4fe2-89f4-56b9724b9a34"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="459" y="0" width="49" height="16" uuid="c91f3d37-7117-47c1-a552-3bc30973ed05"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[MES]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="56" height="16" uuid="ae946a50-bdb1-4baa-9543-a5311c631079"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idContrato}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="0" width="151" height="16" uuid="2c75e089-6dcd-4fb4-9349-5e3036bca000"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contratoArrendamiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="0" width="52" height="16" uuid="3aed204a-b732-4179-9e76-d8415c608be5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="259" y="0" width="141" height="16" uuid="ffdb6efb-7640-47c0-a483-922b5956f30b"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreCte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="59" height="16" uuid="e9c1a516-0fb4-4fce-87ed-117cbf476f5f"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="508" y="0" width="64" height="16" uuid="4cbde95d-8b9f-4cfb-b55b-86746b9ba7f1"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuantosAnio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="0" width="49" height="16" uuid="0494e519-68a0-4019-b8b5-c4e3e8bfefbe"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="22" splitType="Stretch"/>
+	</summary>
+</jasperReport>

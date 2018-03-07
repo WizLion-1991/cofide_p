@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
+<!-- 2016-10-26T11:48:37 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repo_Evaluacion_Ejecutivo" pageWidth="1850" pageHeight="842" columnWidth="1810" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3aad6527-42f2-4f4f-8bce-ff84ff07099a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="COFIDE"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="Crosstab_CH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CG" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CT" mode="Opaque" backcolor="#005FB3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<parameter name="strAnio" class="java.lang.String"/>
+	<parameter name="strMes" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select *,
+(select EMP_RAZONSOCIAL from vta_empresas where EMP_ID = 1)as RazonSocial,
+(select EMP_PATHIMG from vta_empresas where vta_empresas.EMP_ID = 1 ) as LOGO,
+(select PATHIMAGE5 from vta_empresas where vta_empresas.EMP_ID = 1 ) as CabeceroCofide,
+(select PATHIMAGE6 from vta_empresas where vta_empresas.EMP_ID = 1 ) as PiePagCofide,
+(SELECT CG_DESCRIPCION from cofide_grupo_trabajo where CG_ID = (select US_GRUPO from usuarios where id_usuarios = cofide_evaluacion.CE_ID_USER)) as WK_EQUIPO,
+(select ME_DESCRIPCION from vta_meses where ME_ID = $P{strMes}) as MesRepo 
+from cofide_evaluacion where SUBSTR(CE_FECHAREV,1,4)  = $P{strAnio} and SUBSTR(CE_FECHAREV,5,2) = $P{strMes}]]>
+	</queryString>
+	<field name="CE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_ID_USER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_FECHAREV" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_HORAREV" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_NO_LLAMADAS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA4" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA5" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA6" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA7" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA8" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA9" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA10" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_MSGCOMPLETO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_CALIFICACION" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_CAMP_TELEMARKETING" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_REGPENDIENTE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_OBSERVACIONES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_ID_GTRABAJO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_GTRABAJO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_REF" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_INCOMPANY" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RazonSocial" class="java.lang.String"/>
+	<field name="LOGO" class="java.lang.String"/>
+	<field name="WK_EQUIPO" class="java.lang.String"/>
+	<field name="MesRepo" class="java.lang.String"/>
+	<field name="CabeceroCofide" class="java.lang.String"/>
+	<field name="PiePagCofide" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="80" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="780" height="80" uuid="de34d541-444e-4891-9f37-b24c20e396da"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+$F{CabeceroCofide}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="780" y="30" width="1030" height="30" uuid="ab66f0a2-e6cc-4db8-8c73-a31dbf2768d9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Monitoreo de llamadas y Bases de Datos Equipo]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="1380" y="60" width="430" height="20" uuid="39bcfbd4-4602-440b-924e-65c9196d059d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Candara" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["FECHA DE EMISION: " + new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="780" y="60" width="600" height="20" uuid="3e5b1a9d-abc2-4cad-857f-e00b152cf203"/>
+				<textFieldExpression><![CDATA[$F{MesRepo} + " / " + $P{strAnio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="100">
+			<image onErrorType="Blank">
+				<reportElement x="-1" y="0" width="781" height="100" uuid="06d27b2c-f175-453d-9778-b79336969312"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+$F{PiePagCofide}]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="80" splitType="Stretch">
+			<crosstab>
+				<reportElement x="0" y="0" width="1810" height="80" uuid="1bbc863d-a337-4d59-831a-6f6e9628fb4b"/>
+				<crosstabHeaderCell>
+					<cellContents mode="Opaque" style="Crosstab_CD">
+						<staticText>
+							<reportElement x="100" y="0" width="60" height="20" uuid="c44f14b1-ce2d-4cfc-80f0-45429cc9f585"/>
+							<box>
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<text><![CDATA[EQUIPO]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="0" y="0" width="100" height="20" uuid="dca0f0f5-cd68-4e9b-9859-82386bf16086"/>
+							<box>
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<text><![CDATA[EJECUTIVO]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="CE_NOMBRE1" width="100" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{CE_NOMBRE}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents mode="Opaque" style="Crosstab_CH">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="20" uuid="dbf3bca8-b6e8-4e55-be8b-640021371797"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{CE_NOMBRE1}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents mode="Opaque" style="Crosstab_CT">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="d8df9641-5eed-48e2-a4d8-6f3d5e20310e"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<text><![CDATA[Total:]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="WK_EQUIPO1" width="60" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{WK_EQUIPO}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents mode="Opaque" style="Crosstab_CH">
+							<textField pattern="">
+								<reportElement x="0" y="0" width="60" height="20" uuid="09e644fe-5124-44df-8098-c787128b0ba9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{WK_EQUIPO1}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents mode="Opaque" style="Crosstab_CG"/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="CE_FECHAREV1" height="20" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{CE_FECHAREV}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents mode="Opaque" style="Crosstab_CH">
+							<textField>
+								<reportElement x="0" y="0" width="50" height="20" uuid="c50ca0a3-432c-457c-8bf0-aa9d172a18ff"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{CE_FECHAREV1}.substring( 6, 8 )]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents mode="Opaque" style="Crosstab_CT">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#FFFFFF" uuid="9dfacd50-846c-4e5d-a264-79ad3b922172"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[PROMEDIO]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="CE_CALIFICACION_MEASURE1" class="java.lang.Double" calculation="Average">
+					<measureExpression><![CDATA[$F{CE_CALIFICACION}]]></measureExpression>
+				</measure>
+				<crosstabCell width="50" height="20">
+					<cellContents mode="Opaque" style="Crosstab_CD">
+						<textField pattern="#,##0.###;(#,##0.###-)">
+							<reportElement x="0" y="0" width="50" height="20" uuid="34e56de6-c2dd-427e-8b2b-a9ffa364f83d"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{CE_CALIFICACION_MEASURE1}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="60" height="20" columnTotalGroup="CE_FECHAREV1">
+					<cellContents mode="Opaque" style="Crosstab_CT">
+						<textField pattern="#,##0.###;(#,##0.###-)">
+							<reportElement x="0" y="0" width="60" height="20" forecolor="#FFFFFF" uuid="558cf99a-40be-4221-b850-08e61ac212af"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{CE_CALIFICACION_MEASURE1}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" height="20" rowTotalGroup="CE_NOMBRE1">
+					<cellContents mode="Opaque" style="Crosstab_CT">
+						<textField pattern="#,##0.###;(#,##0.###-)">
+							<reportElement x="0" y="0" width="50" height="20" forecolor="#FFFFFF" uuid="b9bf2d47-aeeb-4c5e-83e6-75c513c60d71"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{CE_CALIFICACION_MEASURE1}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" height="0" rowTotalGroup="WK_EQUIPO1">
+					<cellContents mode="Opaque" style="Crosstab_CG"/>
+				</crosstabCell>
+				<crosstabCell width="60" height="0" rowTotalGroup="WK_EQUIPO1" columnTotalGroup="CE_FECHAREV1">
+					<cellContents mode="Opaque" style="Crosstab_CT"/>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

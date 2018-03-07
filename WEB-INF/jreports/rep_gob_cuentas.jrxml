@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_gob_bancos" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8065effe-1f53-4086-85f7-637b00b83452">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.white.page.background" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.6" value="columnFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<parameter name="empresa" class="java.lang.String"/>
+	<parameter name="PathLogoWeb" class="java.lang.String"/>
+	<parameter name="periodo" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="folio" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="importe" class="java.lang.Double"/>
+	<field name="moneda" class="java.lang.String"/>
+	<field name="polizaGenerada" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="72" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="81" height="72" uuid="d9fe3ef6-7863-42dc-94f7-7aa00907a88b"/>
+				<imageExpression><![CDATA[$P{PathLogoWeb}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="162" y="22" width="243" height="28" uuid="5f8cc251-c3ef-4cfa-ad74-e8140a8ce240"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[		Cuentas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="162" y="0" width="243" height="22" uuid="61b3ce3d-8c99-4559-bc62-e335453811eb"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EMPRESA:"+$P{empresa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="162" height="16" uuid="c7fab341-a9ca-4d90-8643-839dee32adc3"/>
+				<textFieldExpression><![CDATA["Periodo: "+$P{periodo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="405" y="0" width="167" height="16" uuid="a72ea14d-8da1-410a-b61f-470ad8ecff2a"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="324" y="0" width="81" height="16" uuid="d99011b1-a570-4ff1-b5ef-f682d8fcc741"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha emisión:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="81" height="16" uuid="c9a6c4f9-cc2c-4f2b-a2c6-d118fc4cab42"/>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="0" width="81" height="16" uuid="5a52c45e-18c2-4709-aacb-a7545a8a9f81"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="0" width="81" height="16" uuid="f4822e96-40c2-4278-b5c9-e83d3ffde627"/>
+				<text><![CDATA[Folio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="0" width="81" height="16" uuid="d18e11b5-0c66-4c36-b6d3-ca3d81cd5cd0"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="324" y="0" width="81" height="16" uuid="88470c47-ac32-4a28-956b-e9552d572752"/>
+				<text><![CDATA[Importe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="0" width="66" height="16" uuid="f546b6b4-0b3d-40cf-9663-0785f0df02fa"/>
+				<text><![CDATA[Moneda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="471" y="0" width="101" height="16" uuid="51d5e2bd-4f5c-43ce-b2c2-7e939df584f4"/>
+				<text><![CDATA[PolizaGenerada]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="81" height="16" uuid="ddf1f282-b36f-406e-8bed-900a198ddf4f"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="0" width="81" height="16" uuid="2f186c04-1912-4118-b216-11aa4eac5f0a"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="162" y="0" width="81" height="16" uuid="235de414-dbe4-46b7-bbbe-f8793ade3196"/>
+				<textFieldExpression><![CDATA[$F{folio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="243" y="0" width="81" height="16" uuid="0df6ae78-ea94-44f4-8301-6cf4d2f40c02"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="324" y="0" width="81" height="16" uuid="3bad1ce9-56f8-4c38-862a-b97eabf83d3f"/>
+				<textFieldExpression><![CDATA[$F{importe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="0" width="66" height="16" uuid="04509346-cd0a-45a5-ab8c-409021b91a0e"/>
+				<textFieldExpression><![CDATA[$F{moneda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="471" y="0" width="101" height="16" uuid="0201f25e-4b76-40d5-9ec6-645dafe9b300"/>
+				<textFieldExpression><![CDATA[$F{polizaGenerada}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="22" splitType="Stretch"/>
+	</summary>
+</jasperReport>

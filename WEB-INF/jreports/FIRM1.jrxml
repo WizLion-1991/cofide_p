@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="557198cb-279e-468b-a73e-2ee7a60f12be">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="98"/>
+	<property name="ireport.y" value="16"/>
+	<parameter name="CT_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[11645]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PathBaseWeb" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SoloActivos" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Periodo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT CT_ID,CT_UPLINE,CT_RAZONSOCIAL,CT_TELEFONO1,
+                 CT_TELEFONO2,CT_EMAIL1,CT_ARMADODEEP,CT_ARMADOINI,CT_ARMADOFIN
+                 ,getMLMDataComision(vta_cliente.CT_ID,$P{Periodo},'CO_PUNTOS_P') as PPUNTOS,
+getMLMDataComision(vta_cliente.CT_ID,$P{Periodo},'CO_NEGOCIO_P') as PNEGOCIO,
+getMLMDataComision(vta_cliente.CT_ID,$P{Periodo},'CO_PUNTOS_G') as GPUNTOS,
+getMLMDataComision(vta_cliente.CT_ID,$P{Periodo},'CO_NEGOCIO_G') as GNEGOCIO,
+getMLMDataComision(vta_cliente.CT_ID,$P{Periodo},'CO_IMPORTE') as COMISION,
+getMLMDataNivelRed(vta_cliente.CT_ID,$P{Periodo}) AS NIVELRED,	vta_empresas.EMP_PATHIMGFORM as Logo,
+									vta_empresas.EMP_IMGCUERPO as ImagenFondo
+                  FROM vta_cliente 
+									Join vta_empresas On vta_empresas.EMP_ID = vta_cliente.EMP_ID WHERE 
+                  CT_ARMADONUM>=(SELECT CT_ARMADOINI FROM vta_cliente where CT_ID =  $P{CT_ID} ) AND 
+                  CT_ARMADONUM<=(SELECT CT_ARMADOFIN FROM vta_cliente where CT_ID = $P{CT_ID})
+  AND if($P{SoloActivos} = 0,1 = 1 , getMLMDataComision(vta_cliente.CT_ID,$P{Periodo},'CO_PUNTOS_P') > 0 OR getMLMDataComision(vta_cliente.CT_ID,$P{Periodo},'CO_NEGOCIO_P') > 0)
+                  ORDER BY CT_ARMADONUM]]>
+	</queryString>
+	<field name="CT_ID" class="java.lang.Long"/>
+	<field name="CT_UPLINE" class="java.lang.Integer"/>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="CT_TELEFONO1" class="java.lang.String"/>
+	<field name="CT_TELEFONO2" class="java.lang.String"/>
+	<field name="CT_EMAIL1" class="java.lang.String"/>
+	<field name="CT_ARMADODEEP" class="java.lang.Integer"/>
+	<field name="CT_ARMADOINI" class="java.lang.Integer"/>
+	<field name="CT_ARMADOFIN" class="java.lang.Integer"/>
+	<field name="PPUNTOS" class="java.math.BigDecimal"/>
+	<field name="PNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="GPUNTOS" class="java.math.BigDecimal"/>
+	<field name="GNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="COMISION" class="java.math.BigDecimal"/>
+	<field name="NIVELRED" class="java.lang.String"/>
+	<field name="Logo" class="java.lang.String"/>
+	<field name="ImagenFondo" class="java.lang.String"/>
+	<background>
+		<band height="555" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement uuid="a1b5ee0f-b1ae-4c42-ad23-e1b5f66b0e8d" x="2" y="0" width="800" height="555"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+$F{ImagenFondo}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement uuid="a1b5ee0f-b1ae-4c42-ad23-e1b5f66b0e8d" x="504" y="0" width="65" height="60"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+$F{Logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="2aae3433-b52d-4d2e-ba42-c76a688740f0" x="1" y="0" width="159" height="20"/>
+				<textElement>
+					<font size="13" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Descendencia de la Red]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="22d340ea-6271-4693-8503-5d22414bfecd" x="1" y="20" width="100" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha De Emision:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="60e68ccc-6126-44cf-9367-5be36299f270" x="0" y="40" width="39" height="20"/>
+				<textElement/>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d3f80b34-bc84-4618-9976-3dcc9afa34c0" x="39" y="40" width="463" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CT_ID} + ":" + $F{CT_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement uuid="64b04450-fb9a-4aa1-9922-9c69a6b050e6" x="101" y="20" width="120" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="78fd4a83-ad06-44ed-a7b3-896928fc997e" mode="Opaque" x="0" y="0" width="802" height="20" backcolor="#9999FF"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="4966fd97-dfa5-4332-9042-f8c4c6fe7884" mode="Opaque" x="2" y="0" width="50" height="20" backcolor="#9999FF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="93465cf7-d723-4528-9dc6-4a15ec90c85d" mode="Opaque" x="52" y="0" width="49" height="20" backcolor="#9999FF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[UPLINE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5867da85-df69-4d6b-bed6-b9885ceeb55a" mode="Opaque" x="101" y="0" width="249" height="20" backcolor="#9999FF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="85c8c483-5883-4078-a4a1-3a9925e53ce8" mode="Opaque" x="569" y="0" width="70" height="20" backcolor="#9999FF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[G.PUNTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d1c91af3-d49b-450d-841f-3c240dd38357" mode="Opaque" x="504" y="0" width="65" height="20" backcolor="#9999FF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[P.PUNTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bee37af6-9144-4de1-88d2-c21ce28e7f8d" mode="Opaque" x="446" y="0" width="57" height="20" backcolor="#9999FF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[RANGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1c070372-855b-4aac-b711-dec09d502409" x="639" y="0" width="81" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[COMISIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eaf09148-ed4b-4dd5-b3ee-526b5e95c691" x="350" y="0" width="96" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ebf38e5e-97e8-4bbd-96f6-3d273d948930" x="2" y="0" width="50" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3b9fefc9-4c55-4e29-8442-76e728071bd3" x="52" y="0" width="49" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_UPLINE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a1f15f47-50be-468b-9318-d08ce6735f98" x="101" y="0" width="249" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="83f76ed2-e73b-4e39-8551-6cadb4ac92a2" x="569" y="0" width="70" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GPUNTOS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="716bc63c-bd31-4624-98c2-34b31aa8830a" x="504" y="0" width="65" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PPUNTOS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8a0238f2-448e-4130-9929-d65e65edc80a" x="446" y="0" width="57" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NIVELRED}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="f926646f-590b-48ab-9189-552607a28153" x="639" y="0" width="81" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COMISION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4c19f4b2-ac9c-4140-b224-7b7b5aab33bc" x="350" y="0" width="96" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_TELEFONO1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="95b3e4d8-dc3f-4bc4-a6cf-160e47b8bb2a" x="350" y="0" width="152" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="4219fd98-a584-4943-8de7-293621005ea4" x="502" y="0" width="67" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

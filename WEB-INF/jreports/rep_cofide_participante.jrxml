@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2016-10-18T17:06:09 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_cofide_participante" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="203a859f-d464-4c60-809a-6b52ff6630e2">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="vta_cofide"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="283"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="706"/>
+	<parameter name="ID_CURSO" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select *,
+(select EMP_PATHIMG from vta_empresas where vta_empresas.EMP_ID = 1 ) as LOGO, 
+(select EMP_RAZONSOCIAL from vta_empresas where vta_empresas.EMP_ID =1) as empresa,
+(select FAC_ID from view_ventasglobales where CT_ID = cofide_participantes.CT_ID and CC_CURSO_ID = cofide_participantes.CP_ID_CURSO limit 1) as FAC_ID,
+(select FAC_PAGADO from view_ventasglobales where CT_ID = cofide_participantes.CT_ID and CC_CURSO_ID = cofide_participantes.CP_ID_CURSO limit 1) as FAC_ESTATUS,
+(select FAC_NOTAS from view_ventasglobales where CT_ID = cofide_participantes.CT_ID and CC_CURSO_ID = cofide_participantes.CP_ID_CURSO limit 1) as FAC_NOTAS,
+(select (select nombre_usuario from usuarios where id_usuarios = fac_us_alta) from view_ventasglobales where CT_ID = cofide_participantes.CT_ID and CC_CURSO_ID = cofide_participantes.CP_ID_CURSO limit 1) as FAC_EJECUTIVO,
+(select CT_RAZONSOCIAL from vta_cliente where CT_ID = cofide_participantes.CT_ID) as CT_RAZONSOCIAL, 
+(select CC_IS_PRESENCIAL from cofide_cursos where CC_CURSO_ID = cofide_participantes.CP_ID_CURSO) as TipoCurso
+ from cofide_participantes 
+where CP_ID_CURSO =  $P{ID_CURSO} ]]>
+	</queryString>
+	<field name="CP_ID" class="java.lang.Integer"/>
+	<field name="CP_ID_CURSO" class="java.lang.Integer"/>
+	<field name="CP_NOMBRE" class="java.lang.String"/>
+	<field name="CP_APPAT" class="java.lang.String"/>
+	<field name="CP_APMAT" class="java.lang.String"/>
+	<field name="CP_FAC_ID" class="java.lang.Integer"/>
+	<field name="CP_TKT_ID" class="java.lang.Integer"/>
+	<field name="CP_TITULO" class="java.lang.String"/>
+	<field name="CCO_NOSOCIO" class="java.lang.String"/>
+	<field name="CP_ASCOC" class="java.lang.String"/>
+	<field name="CP_CORREO" class="java.lang.String"/>
+	<field name="CP_COMENT" class="java.lang.String"/>
+	<field name="CP_ASISTENCIA" class="java.lang.Integer"/>
+	<field name="CP_REQFAC" class="java.lang.Integer"/>
+	<field name="CP_PAGO" class="java.lang.Integer"/>
+	<field name="CP_OBSERVACIONES" class="java.lang.String"/>
+	<field name="CP_USUARIO_ALTA" class="java.lang.Integer"/>
+	<field name="CT_ID" class="java.lang.Integer"/>
+	<field name="CP_MATERIAL_IMPRESO" class="java.lang.Integer"/>
+	<field name="CP_TIPO_CURSO" class="java.lang.Integer"/>
+	<field name="CP_FECHA_PAGO" class="java.lang.String"/>
+	<field name="CP_DIGITO" class="java.lang.String"/>
+	<field name="CP_NOM_COMPROBANTE" class="java.lang.String"/>
+	<field name="CP_FOLIO" class="java.lang.String"/>
+	<field name="LOGO" class="java.lang.String"/>
+	<field name="empresa" class="java.lang.String"/>
+	<field name="FAC_ID" class="java.lang.Long"/>
+	<field name="FAC_ESTATUS" class="java.lang.Integer"/>
+	<field name="FAC_NOTAS" class="java.lang.String"/>
+	<field name="FAC_EJECUTIVO" class="java.lang.String"/>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="TipoCurso" class="java.lang.Integer"/>
+	<pageHeader>
+		<band height="87" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="100" height="87" uuid="43dea476-d8e5-47b6-ac9d-34ee8eeac15f"/>
+				<imageExpression><![CDATA[""]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="210" y="40" width="340" height="30" uuid="2e1521c3-d925-4fdd-94c5-6b86418dd39a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{empresa}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="680" y="57" width="120" height="30" uuid="1ae56f47-b5de-461b-8daa-86db0e9e9865"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="210" y="0" width="340" height="30" uuid="0d41612c-1dcd-4c2e-8258-d3a951ece147"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="20"/>
+				</textElement>
+				<text><![CDATA[Participantes del curso]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="30" uuid="d4d8ac5c-9b32-4de0-a3fa-f6c3a4667085">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[ID CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="50" height="30" uuid="21aa4692-8929-4168-ba3e-941c45bcf77b"/>
+				<text><![CDATA[TIPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="50" height="30" uuid="bcd5ac7a-f9f8-4763-aa11-718299a6925a"/>
+				<text><![CDATA[TITULO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="0" width="60" height="30" uuid="99a381e1-f5f1-4baf-8b40-8b2684ff67f6"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="0" width="80" height="30" uuid="6259eda9-4492-4cb3-9f74-f2ecb6f5f02c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[APELLIDO PATERNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="0" width="80" height="30" uuid="b97e21b7-4296-4b0b-ab5e-5cd8f1dca900"/>
+				<text><![CDATA[APELLIDO MATERNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="50" height="30" uuid="d5c3dbf4-3480-4f76-9069-1379346e319e"/>
+				<text><![CDATA[ESTATUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="60" height="30" uuid="ebf799d8-4273-4a69-a127-e74436327439">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[EJECUTIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="70" height="30" uuid="ccf71bb7-5a4e-4f65-8833-2b87219f9647"/>
+				<text><![CDATA[ASOCIACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="550" y="0" width="50" height="30" uuid="bcf3e328-8d6c-4f68-acc4-4e931dd400bd"/>
+				<text><![CDATA[N° SOCIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="0" width="80" height="30" uuid="09e0c656-4ff3-468d-8adf-2283bcd9116e"/>
+				<text><![CDATA[RAZON SOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="680" y="0" width="50" height="30" uuid="cfe316a4-bd0a-4334-9351-0df3ba4fe4d7"/>
+				<text><![CDATA[N° Factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="730" y="0" width="80" height="30" uuid="0adc8813-693b-492a-9845-98b0b9b41c2e"/>
+				<text><![CDATA[COMENTARIOS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="30" uuid="0492c3a1-5c50-4673-8916-acc0b464e708"/>
+				<textFieldExpression><![CDATA[$F{CT_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="-1" width="50" height="30" uuid="94c90bfc-f5ef-4653-b4cd-f782587b93cd"/>
+				<textFieldExpression><![CDATA[$F{CP_TIPO_CURSO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="50" height="30" uuid="07fbaf5d-6d62-487f-a18d-295375ad4f1e"/>
+				<textFieldExpression><![CDATA[$F{CP_TITULO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="60" height="30" uuid="8ffe06e9-7b80-4d06-be58-c1188034d92e"/>
+				<textFieldExpression><![CDATA[$F{CP_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="0" width="80" height="30" uuid="fc1db0cf-a815-458e-9ef5-9b7e23b4b2d4"/>
+				<textFieldExpression><![CDATA[$F{CP_APPAT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="80" height="30" uuid="b217e946-c661-4bda-9231-9fd616e7237e"/>
+				<textFieldExpression><![CDATA[$F{CP_APMAT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="50" height="30" uuid="092267b5-0751-4b30-b887-ce20c23762c9"/>
+				<textFieldExpression><![CDATA[$F{FAC_ESTATUS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="-1" width="60" height="30" uuid="081fe5b4-8f20-4f8f-a863-01f51a3dd880"/>
+				<textFieldExpression><![CDATA[$F{FAC_EJECUTIVO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="70" height="30" uuid="b988852d-7f6e-46bf-8c88-705f78b41e79"/>
+				<textFieldExpression><![CDATA[$F{CP_ASCOC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="550" y="-1" width="50" height="30" uuid="53d9eb3d-bf71-4908-b18b-300f0a24ff43"/>
+				<textFieldExpression><![CDATA[$F{CCO_NOSOCIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="0" width="80" height="30" uuid="e4ad9402-5b00-4e4d-b0ac-819bc606e74d"/>
+				<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="680" y="0" width="50" height="30" uuid="efbfc669-4390-4c02-8151-ebd3eda3b787">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{FAC_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="730" y="0" width="80" height="30" uuid="de1134de-891b-41b3-95c6-12af0c55ba00">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{FAC_NOTAS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="280" y="0" width="100" height="30" uuid="a9088e78-34a8-4fb6-a571-fb6cb2f5e1e8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="380" y="0" width="100" height="30" uuid="bae29d1c-61a6-40fe-a775-6518bd379452"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

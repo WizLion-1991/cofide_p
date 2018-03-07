@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_fac_canceladas_cfdi" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49c7e00d-1895-4bbd-872f-d15ff4adfc67">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_inicial" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_final" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EmpId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT FAC_ID,CT_ID,FAC_RAZONSOCIAL,FAC_FOLIO, FAC_FOLIO_C, FAC_SELLOTIMBRE_ANUL,FAC_HORA_TIMBRE_ANUL,vta_empresas.EMP_PATHIMG as LOGO from vta_facturas,vta_empresas where 
+vta_facturas.EMP_ID = vta_empresas.EMP_ID AND 
+FAC_ANULADA = 1 AND FAC_FECHAANUL>= $P{fecha_inicial} AND FAC_FECHAANUL<= $P{fecha_final} AND 
+vta_empresas.EMP_ID = $P{EmpId} AND FAC_SELLOTIMBRE_ANUL IS NOT NULL]]>
+	</queryString>
+	<field name="FAC_ID" class="java.lang.Long"/>
+	<field name="CT_ID" class="java.lang.Long"/>
+	<field name="FAC_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="FAC_FOLIO" class="java.lang.String"/>
+	<field name="FAC_FOLIO_C" class="java.lang.String"/>
+	<field name="FAC_SELLOTIMBRE_ANUL" class="java.lang.String"/>
+	<field name="FAC_HORA_TIMBRE_ANUL" class="java.lang.String"/>
+	<field name="LOGO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a87bc1d5-bcb4-41bf-bf94-582bfeeb62ff" x="220" y="0" width="336" height="36"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE FACTURAS(CFDI) CANCELADAS]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="6610087a-1d0f-4b53-bbf9-7c04387176f9" x="274" y="59" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement uuid="5132b59f-475b-4801-bf88-ded9784673e6" x="0" y="0" width="190" height="79"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb} + "/" + $F{LOGO}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="0b402522-00cd-46b9-846b-af57af01c161" x="0" y="0" width="62" height="20"/>
+				<textElement/>
+				<text><![CDATA[Num.Control]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="702b34a1-6757-4a21-a649-4901756ce40a" x="62" y="0" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Num.Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3a6ccf27-a321-45dc-8f97-10040ebd5f87" x="141" y="0" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9fc99a16-2c34-4258-9652-a39f96eec78e" x="220" y="0" width="141" height="20"/>
+				<textElement/>
+				<text><![CDATA[Folio fiscal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="35215205-3442-48ab-b23f-69ca7dc1c4d9" x="361" y="1" width="354" height="20"/>
+				<textElement/>
+				<text><![CDATA[Sello cancelacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5afb16bd-8d66-4bea-835a-5acbcb8fe4c3" x="715" y="1" width="86" height="20"/>
+				<textElement/>
+				<text><![CDATA[Hora Cancelacion]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="56e961ca-c677-4f6a-891f-4b9dbca1a720" x="0" y="0" width="62" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FAC_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b2dde4f4-9f45-420f-8077-1687956768bb" x="62" y="0" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CT_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3108418c-0451-4ae4-b781-deaaca1863b7" x="141" y="0" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FAC_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="635b107e-c708-4140-9420-6cbbdbc20944" x="220" y="0" width="141" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_FOLIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="75733e0f-13f5-4422-9c46-604bf2aaad17" x="361" y="1" width="354" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_SELLOTIMBRE_ANUL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ec1c91cf-0562-4ab1-8c72-e682e9b9682e" x="715" y="1" width="86" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_HORA_TIMBRE_ANUL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

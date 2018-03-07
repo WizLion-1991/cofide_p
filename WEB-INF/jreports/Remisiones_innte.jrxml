@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
+<!-- 2015-10-26T12:11:14 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Listado de remisiones" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="e7ebc949-bf10-4d92-b4c7-be2cdd8d955c">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="1039"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.6" value="summary"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<subDataset name="Totales" uuid="bd6ae5e8-c0fd-4d43-b19d-6f322853028a">
+		<parameter name="FechaInicial" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="FechaFinal" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="EMP_ID" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select
+
+	DATE_FORMAT(STR_TO_DATE(TKT_FECHA_COBRO,'%Y%m%d'),'%d/%m/%Y') AS FECHA_PROGRAMO_COBRO,SUM(TKT_TOTAL) AS TOTAL
+from vta_empresas,
+	vta_tickets,
+	vta_cliente
+where vta_empresas.EMP_ID = vta_tickets.EMP_ID
+	and TKT_ANULADA = 0
+	and vta_tickets.CT_ID = vta_cliente.CT_ID
+	AND TKT_FECHA>= $P{FechaInicial}
+	AND TKT_FECHA<= $P{FechaFinal}
+	AND vta_tickets.EMP_ID = $P{EMP_ID}
+GROUP BY TKT_FECHA_COBRO
+ORDER BY
+	vta_tickets.TKT_FECHA_COBRO]]>
+		</queryString>
+		<field name="FECHA_PROGRAMO_COBRO" class="java.lang.String"/>
+		<field name="TOTAL" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="FechaInicial" class="java.lang.String"/>
+	<parameter name="FechaFinal" class="java.lang.String"/>
+	<parameter name="EMP_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechaTest" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2014")]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select EMP_RAZONSOCIAL,
+	TKT_RAZONSOCIAL,
+	DATE_FORMAT(STR_TO_DATE(TKT_FECHA,'%Y%m%d'),'%d/%m/%Y') AS FECHA,
+(	SELECT MAX(DATE_FORMAT(STR_TO_DATE(MC_FECHA,'%Y%m%d'),'%d/%m/%Y'))
+	FROM vta_mov_cte WHERE vta_mov_cte.TKT_ID = vta_tickets.TKT_ID
+	and vta_mov_cte.MC_ESPAGO = 1
+	AND vta_mov_cte.MC_ANULADO = 0
+)
+	 AS FECHA_REAL_COBRO,
+	vta_tickets.TKT_ID,
+	TKT_FOLIO,
+	TKT_TOTAL,
+	TKT_NOTASPIE,
+	DATE_FORMAT(STR_TO_DATE(TKT_FECHA_COBRO,'%Y%m%d'),'%d/%m/%Y') AS FECHA_PROGRAMO_COBRO,
+	if(vta_tickets.FAC_ID = 0,if(TKT_SALDO <= 1 ,'COBRADO','PENDIENTE'),'FACTURAD0') as ESTATUS,
+	CT_DIASCREDITO,
+	(select CTOA_DIAS_CREDITO from vta_contrato_arrend where trim(CTOA_FOLIO) = trim(vta_tickets.TKT_REFERENCIA) limit 0,1 ) AS DIAS_CREDITO,
+	DATE_FORMAT(DATE_ADD(STR_TO_DATE(TKT_FECHA,'%Y%m%d'), INTERVAL if((select CTOA_DIAS_CREDITO from vta_contrato_arrend where CTOA_FOLIO = vta_tickets.TKT_REFERENCIA  limit 0,1) is  null,TKT_DIASCREDITO,(select CTOA_DIAS_CREDITO from vta_contrato_arrend where CTOA_FOLIO = vta_tickets.TKT_REFERENCIA  limit 0,1 )) DAY),'%d/%m/%Y')  AS FECHA_ESTIMADA
+from vta_empresas,
+	vta_tickets,
+	vta_cliente
+where vta_empresas.EMP_ID = vta_tickets.EMP_ID
+	and TKT_ANULADA = 0
+	and vta_tickets.CT_ID = vta_cliente.CT_ID
+	AND TKT_FECHA>= $P{FechaInicial}
+	AND TKT_FECHA<= $P{FechaFinal}
+	AND vta_tickets.EMP_ID = $P{EMP_ID}
+ORDER BY
+	vta_tickets.TKT_FOLIO]]>
+	</queryString>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="TKT_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="FECHA" class="java.lang.String"/>
+	<field name="FECHA_REAL_COBRO" class="java.lang.String"/>
+	<field name="TKT_ID" class="java.lang.Long"/>
+	<field name="TKT_FOLIO" class="java.lang.String"/>
+	<field name="TKT_TOTAL" class="java.math.BigDecimal"/>
+	<field name="TKT_NOTASPIE" class="java.lang.String"/>
+	<field name="FECHA_PROGRAMO_COBRO" class="java.lang.String"/>
+	<field name="ESTATUS" class="java.lang.String"/>
+	<field name="CT_DIASCREDITO" class="java.lang.Long"/>
+	<field name="DIAS_CREDITO" class="java.lang.Integer"/>
+	<field name="FECHA_ESTIMADA" class="java.lang.String"/>
+	<variable name="Total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{TKT_TOTAL}]]></variableExpression>
+	</variable>
+	<background>
+		<band height="575" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<textField>
+				<reportElement x="701" y="18" width="101" height="15" uuid="69bd57ca-1a2d-45b9-9fbd-a0d23a3c57af"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FechaInicial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="701" y="34" width="101" height="15" uuid="3f32e848-a559-42c4-89c1-71cd5bf982f0"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FechaFinal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="643" y="34" width="58" height="15" uuid="ed5e1690-224c-4f71-8325-1569b1b80d18"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[Fecha Final:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="0" y="18" width="643" height="15" uuid="43b3cf4c-dabc-4960-b0aa-96fa77b736f4"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="643" y="18" width="58" height="15" uuid="32d21ab9-cf83-4e5e-b6d3-839a2abf8c6e"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[Fecha Inicial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="0" width="643" height="19" forecolor="#000000" uuid="d863c4fc-c593-45f1-878a-62c781fc3175"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REMISIONES POR FECHA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="57" height="15" forecolor="#000000" uuid="6b48995a-eb09-43e0-8931-728642ceeab7"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="408" y="0" width="44" height="15" forecolor="#000000" uuid="528c7f1e-aef4-4a3c-ba1b-1143633e535b"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Folio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="643" y="0" width="58" height="15" forecolor="#000000" uuid="2bf7ae64-26a8-411b-9970-3d18c74092c4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA PROGRAMO COBRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="291" y="0" width="117" height="15" forecolor="#000000" uuid="528c7f1e-aef4-4a3c-ba1b-1143633e535b"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="759" y="0" width="43" height="15" forecolor="#000000" uuid="2bf7ae64-26a8-411b-9970-3d18c74092c4"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Días Credito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="57" y="0" width="234" height="15" forecolor="#000000" uuid="da0f39ce-f817-4aee-b4d9-3401d8bfe665"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Notas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="452" y="0" width="77" height="15" forecolor="#000000" uuid="03afe209-a84b-4953-8446-640ea5ac58a7"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="529" y="0" width="56" height="15" forecolor="#000000" uuid="ed1c891c-ba52-4008-bb40-60e06b66c0c1"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Estatus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="701" y="0" width="58" height="15" uuid="b4600443-10ea-41c3-b45a-641c7122cf5a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA REAL COBRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="585" y="0" width="58" height="15" uuid="c6656057-6356-4153-ae14-89748c3850b7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA ESTIMADA DE PAGO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="57" height="15" uuid="9027e955-4604-407f-a4e7-f21651792068"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="408" y="0" width="44" height="15" uuid="a8a75f9e-b83a-456f-860a-687a708349b7"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_FOLIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Detail" x="452" y="0" width="77" height="15" uuid="488fb80d-f99c-40ed-bcd8-94b1646a7e1c"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="643" y="0" width="58" height="15" uuid="cfdcdd07-d95b-47e2-a638-55da3c7cf96f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA_PROGRAMO_COBRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="291" y="0" width="117" height="15" uuid="5a51e0c4-00c4-4197-8197-ae5986160e73"/>
+				<textElement>
+					<font fontName="Arial" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="759" y="0" width="43" height="15" uuid="e49b981b-6e94-49f3-8df3-8c2b273ef2c4"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DIAS_CREDITO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="57" y="0" width="234" height="15" uuid="d3b7ff72-87f9-4977-bd64-bff76e44e7d5"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_NOTASPIE}.replace("SERVICIOS:","").replace("SERV:","")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="529" y="0" width="56" height="15" uuid="875b99dc-2af3-4219-b1a1-96bc5cbc0325"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ESTATUS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="701" y="0" width="58" height="15" uuid="65203b1d-b26e-4e44-87c0-ac008cbae9ee"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{FECHA_REAL_COBRO} == null ? "": $F{FECHA_REAL_COBRO})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="585" y="0" width="58" height="15" uuid="31a615cd-678b-43a2-bc80-684b763d6cf9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA_ESTIMADA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="529" y="0" width="114" height="20" uuid="0883ec61-3d18-46c5-8d5a-66c0bf2dc0e1"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Remisiones]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="57" y="0" width="34" height="20" forecolor="#000000" uuid="2340a5e9-ccf2-4962-9d75-03a6f556d6c3"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="57" height="20" uuid="df4c0fbb-d204-4bc1-bf9f-08746106c1a6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="81" splitType="Stretch">
+			<textField pattern="#,##0.00">
+				<reportElement x="529" y="0" width="114" height="20" uuid="020808a4-8b1d-47b9-bacd-8536eaa6ae55"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="291" y="0" width="239" height="20" forecolor="#000000" uuid="b62a4873-7392-400a-b838-0f701045afed"/>
+				<textElement textAlignment="Right">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table" x="0" y="0" width="291" height="80" uuid="09297099-8b67-4e17-9916-aca69b25c732"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Totales" uuid="6598e0fb-c141-4bcf-960a-aa34b2426492">
+						<datasetParameter name="FechaInicial">
+							<datasetParameterExpression><![CDATA[$P{FechaInicial}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="FechaFinal">
+							<datasetParameterExpression><![CDATA[$P{FechaFinal}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="EMP_ID">
+							<datasetParameterExpression><![CDATA[$P{EMP_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="91" uuid="e4341704-e737-4410-ad31-eadb38c42a27">
+						<jr:columnHeader height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="91" height="20" uuid="b778803f-80c7-491b-a66c-647005ec67fc"/>
+								<text><![CDATA[F.PROGRAMADA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="91" height="20" uuid="1cf38b77-5400-46a9-9ca5-b424590b6054"/>
+								<textFieldExpression><![CDATA[$F{FECHA_PROGRAMO_COBRO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="200" uuid="0fad1076-3f3a-47dd-8956-e90238619ea2">
+						<jr:columnHeader height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="200" height="20" uuid="6e759885-43f9-46c0-9843-d7326e94a216"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="200" height="20" uuid="e89ba874-e086-4a31-854e-625239841189"/>
+								<textElement textAlignment="Right">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TOTAL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,1 @@
+function vta_vend(){}function dblClickVend(id){var strNomMain=objMap.getNomMain();if(strNomMain=="VENDEDOR"){OpnEdit(document.getElementById("Ed"+strNomMain));}else{var grid=jQuery("#VENDEDOR");var lstVal=grid.getRowData(id);document.getElementById("VE_ID").value=lstVal.VE_ID;document.getElementById("VE_NOM").value=lstVal.VE_NOMBRE;$("#dialogVend").dialog("close");}}

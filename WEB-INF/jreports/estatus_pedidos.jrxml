@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Listado de pedidos con estatus" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="78fd7793-d42b-4ff2-b56c-8997e90f429e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="PathBase" class="java.lang.String"/>
+	<parameter name="Fecha_Inicial" class="java.lang.String"/>
+	<parameter name="Fecha_Final" class="java.lang.String"/>
+	<parameter name="status" class="java.lang.Integer">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select EMP_RAZONSOCIAL, DATE_FORMAT(STR_TO_DATE(PD_FECHA,'%Y%m%d'),'%d/%m/%Y') AS TFECHA,PD_ID,
+PD_FOLIO,PD_TOTAL,(SELECT PES_DESCRIPCION FROM vta_pedidos_estatus WHERE PES_ID = PD_STATUS) as ESTATUS
+ from vta_empresas,vta_pedidos where vta_empresas.EMP_ID = vta_pedidos.EMP_ID and PD_ANULADA = 0 
+AND PD_FECHA>= $P{Fecha_Inicial} AND PD_FECHA<= $P{Fecha_Final}  
+AND  if( $P{status} =  0 , 1=1, PD_STATUS = $P{status}   )
+order by PD_FOLIO]]>
+	</queryString>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="TFECHA" class="java.lang.String"/>
+	<field name="PD_ID" class="java.lang.Long"/>
+	<field name="PD_FOLIO" class="java.lang.String"/>
+	<field name="PD_TOTAL" class="java.math.BigDecimal"/>
+	<field name="ESTATUS" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement x="275" y="0" width="300" height="64" uuid="d90219f8-0b40-42d4-ad58-19f19e94332f"/>
+				<imageExpression><![CDATA[$P{PathBase} + "leaf_banner_gray.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="SubTitle" x="40" y="46" width="234" height="22" uuid="b6d98b16-a567-4040-a316-0f2e8db0119e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE PEDIDOS VIGENTES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="0" width="274" height="46" uuid="4fe44c09-0734-45e1-b850-2fb6fceb1968"/>
+				<textElement>
+					<font fontName="Arial" size="23" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="f68aa7de-6f1c-4c1f-812f-432f747c39c0"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="111" height="15" uuid="6bde1ef7-c051-4303-81ee-e5bd84335a59"/>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="111" y="19" width="111" height="15" uuid="8872c49b-acd4-4185-b498-c7987db5a536"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="222" y="19" width="111" height="15" uuid="5cd6097b-b8c4-45dd-b0c2-edd423d48e6e"/>
+				<text><![CDATA[FOLIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="333" y="19" width="111" height="15" uuid="a2e57f48-afd6-4d60-b9dc-ae94c35c1e29"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="444" y="19" width="111" height="15" uuid="2eb33cb6-b171-484d-ba94-f6e475bc277a"/>
+				<text><![CDATA[ESTATUS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="3f4ba994-9f51-4e5c-8d63-41769ca21ed7"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="111" height="15" uuid="b440cb8d-02d6-4bd6-a5e2-10c273682aae"/>
+				<textFieldExpression><![CDATA[$F{TFECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="111" y="0" width="111" height="15" uuid="acce67e3-f26d-4ee7-89ac-f0caed45d87b"/>
+				<textFieldExpression><![CDATA[$F{PD_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="222" y="0" width="111" height="15" uuid="eeb97d95-322e-47cc-8acd-3f942bb555c1"/>
+				<textFieldExpression><![CDATA[$F{PD_FOLIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Detail" x="333" y="0" width="89" height="15" uuid="b3484271-d2ab-403a-9bfb-c547cbfdf161"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{PD_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="444" y="0" width="111" height="15" uuid="b2d52f7d-1abd-4c46-8d91-5dd83940ce5b"/>
+				<textFieldExpression><![CDATA[$F{ESTATUS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="dac82b61-7f9d-4ce6-834f-38c116231355"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="01d0d5c4-01e5-4eec-867d-24ce7e236019"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="e89f1da7-cb03-4afd-a41c-4cdc35496a16"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="bfca16ec-098f-416b-ae87-6d17b56f3ba7"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

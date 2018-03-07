@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Zeus/Netbeans/ERPWEB_Ventas/src/java/comSIWeb/Operaciones/Formatos/FormatoDTD.dtd" uri="src/conf/xml-resources/jaxb/FormatoBinding/FormatoDTD.dtd"/>
+    <system systemId="file:/C:/Zeus/Netbeans/ERPWEB_Ventas/src/java/comSIWeb/Operaciones/Formatos/Formato.dtd" uri="src/conf/xml-resources/jaxb/Formato/Formato.dtd"/>
+    <system systemId="http://ventas.solucionesinformaticasweb.com.mx:8080/ContabilidadPlus/MySIWEBConta?wsdl" uri="wsdl/ventas.solucionesinformaticasweb.com.mx_8080/ContabilidadPlus/MySIWEBConta.wsdl"/>
+    <system systemId="http://ventas.solucionesinformaticasweb.com.mx:8080/ContabilidadPlus/MySIWEBConta?xsd=1" uri="wsdl/ventas.solucionesinformaticasweb.com.mx_8080/ContabilidadPlus/MySIWEBConta.xsd_1.xsd"/>
+    <system systemId="http://localhost:8084/ContabilidadPlus/MySIWEBConta?wsdl" uri="wsdl/localhost_8084/ContabilidadPlus/MySIWEBConta.wsdl"/>
+    <system systemId="http://localhost:8084/ContabilidadPlus/MySIWEBConta?xsd=1" uri="wsdl/localhost_8084/ContabilidadPlus/MySIWEBConta.xsd_1.xsd"/>
+    <system systemId="http://187.174.141.130:8080/WsTspCfdSAT_PruebasConsultoriaPAC/InterconectaWs?wsdl" uri="wsdl/187.174.141.130_8080/WsTspCfdSAT_PruebasConsultoriaPAC/InterconectaWs.wsdl"/>
+    <system systemId="http://187.174.141.130:8080/WsTspCfdSAT_PruebasConsultoriaPAC/InterconectaWs?xsd=1" uri="wsdl/187.174.141.130_8080/WsTspCfdSAT_PruebasConsultoriaPAC/InterconectaWs.xsd_1.xsd"/>
+    <system systemId="https://cancelacion.facturaelectronica.sat.gob.mx/Cancelacion/CancelaCFDService.svc?wsdl" uri="wsdl/cancelacion.facturaelectronica.sat.gob.mx/Cancelacion/CancelaCFDService.svc.wsdl"/>
+    <system systemId="https://cancelacion.facturaelectronica.sat.gob.mx/Cancelacion/CancelaCFDService.svc?xsd=xsd0" uri="wsdl/cancelacion.facturaelectronica.sat.gob.mx/Cancelacion/CancelaCFDService.svc.xsd_xsd0.xsd"/>
+    <system systemId="https://cancelacion.facturaelectronica.sat.gob.mx/Cancelacion/CancelaCFDService.svc?xsd=xsd1" uri="wsdl/cancelacion.facturaelectronica.sat.gob.mx/Cancelacion/CancelaCFDService.svc.xsd_xsd1.xsd"/>
+    <system systemId="http://sctmixcoac.from-la.net:8084/CMM_Pruebas/InterconectaWs?wsdl" uri="wsdl/sctmixcoac.from-la.net_8084/CMM_Pruebas/InterconectaWs.wsdl"/>
+    <system systemId="http://sctmixcoac.from-la.net:8084/CMM_Pruebas/InterconectaWs?xsd=1" uri="wsdl/sctmixcoac.from-la.net_8084/CMM_Pruebas/InterconectaWs.xsd_1.xsd"/>
+    <system systemId="http://ventas.siwebmx.com:8080/ContabilidadPlusTasarel/MySIWEBConta?wsdl" uri="wsdl/ventas.siwebmx.com_8080/ContabilidadPlusTasarel/MySIWEBConta.wsdl"/>
+    <system systemId="http://ventas.siwebmx.com:8080/ContabilidadPlusTasarel/MySIWEBConta?xsd=1" uri="wsdl/ventas.siwebmx.com_8080/ContabilidadPlusTasarel/MySIWEBConta.xsd_1.xsd"/>
+    <system systemId="http://cmm.from-la.net:8080/CMM/InterconectaWs?wsdl" uri="wsdl/cmm.from-la.net_8080/CMM/InterconectaWs.wsdl"/>
+    <system systemId="http://cmm.from-la.net:8080/CMM/InterconectaWs?xsd=1" uri="wsdl/cmm.from-la.net_8080/CMM/InterconectaWs.xsd_1.xsd"/>
+</catalog>
+

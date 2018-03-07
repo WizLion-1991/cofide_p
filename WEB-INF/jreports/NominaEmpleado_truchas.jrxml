@@ -1,0 +1,1059 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="642" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="20" scriptletClass="com.mx.siweb.erp.reportes.jasper.NumerosEnLetra" uuid="a6391867-76be-45d2-9fd2-64cbc53f3a6b">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<subDataset name="Nomina_Percepcion" uuid="132bfd98-082d-4ab3-8cd1-87a13e898568">
+		<parameter name="NOM_ID" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[Select
+		(Select TP_CVE From rhh_tipo_percepcion Where rhh_tipo_percepcion.TP_ID = rhh_nominas_deta.TP_ID) as CLAVE,
+		(Select PERC_DESCRIPCION From rhh_percepciones Where rhh_percepciones.PERC_ID = rhh_nominas_deta.PERC_ID) as PERCEPCION,
+rhh_nominas_deta.NOMD_NOTAS AS NOTAS,
+		rhh_nominas_deta.NOMD_UNITARIO AS IMPORTE
+From rhh_nominas_deta
+		Join rhh_tipo_percepcion On rhh_tipo_percepcion.TP_ID = rhh_nominas_deta.TP_ID
+
+Where
+	rhh_nominas_deta.NOM_ID = $P{NOM_ID} And rhh_nominas_deta.TP_ID <> 0]]>
+		</queryString>
+		<field name="CLAVE" class="java.lang.String"/>
+		<field name="PERCEPCION" class="java.lang.String"/>
+		<field name="NOTAS" class="java.lang.String"/>
+		<field name="IMPORTE" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="Nomina_Deduccion" uuid="236633d6-45db-45a3-b007-b35eeb8a1a78">
+		<parameter name="NOM_ID" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[Select
+		(Select TD_CVE From rhh_tipo_deduccion Where rhh_tipo_deduccion.TD_ID = rhh_nominas_deta.TD_ID) as CLAVE,
+		(Select DEDU_DESCRIPCION From rhh_deducciones Where rhh_deducciones.DEDU_ID = rhh_nominas_deta.DEDU_ID) as DEDUCCION,
+		rhh_nominas_deta.NOMD_UNITARIO AS IMPORTE
+From rhh_nominas_deta
+		Join rhh_tipo_deduccion On rhh_tipo_deduccion.TD_ID = rhh_nominas_deta.TD_ID
+
+Where
+	rhh_nominas_deta.NOM_ID = $P{NOM_ID} And rhh_nominas_deta.TD_ID <> 0]]>
+		</queryString>
+		<field name="CLAVE" class="java.lang.String"/>
+		<field name="DEDUCCION" class="java.lang.String"/>
+		<field name="IMPORTE" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="PathBaseWeb" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nom_folio1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nom_folio2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emp_id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nom_id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sc_id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select
+	rhh_empleados.*,
+	(Select RHP_NOMBRE From rhh_perfil_puesto Where RHP_ID = rhh_empleados.EMP_NUM) as PUESTO,
+	vta_empresas.EMP_RAZONSOCIAL AS RAZONSOCIAL,
+	vta_empresas.EMP_RFC AS RFC,
+	vta_empresas.EMP_CALLE AS CALLE,
+	vta_empresas.EMP_COLONIA AS COLONIA,
+	vta_empresas.EMP_LOCALIDAD AS LOCALIDAD,
+	vta_empresas.EMP_ESTADO AS ESTADO,
+	vta_empresas.EMP_MUNICIPIO AS MUNICIPIO,
+	vta_empresas.EMP_CP AS CP,
+	vta_empresas.EMP_NUMERO AS NUMERO,
+	vta_empresas.EMP_NUMINT AS NUMINT,
+
+	vta_empresas.EMP_PATHIMGFORM AS LOGO,
+	vta_empresas.EMP_IMAG_CUERPO AS IMAGEN_FONDO,
+          vta_sucursal.CT_REG_PAT AS REGISTRO_PAT,
+          vta_sucursal.SC_LOCALIDAD as sucursal,
+          vta_sucursal.SC_ESTADO as estadosu,
+	rhh_nominas.*
+,(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID = rhh_nominas.NOM_ID And r.PERC_ID = 1) as sueldos,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.PERC_ID = 20) as primadominical,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.PERC_ID = 8) as descansoobligatorio,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.PERC_ID = 22) as asistencia,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.PERC_ID = 10) as puntualidad,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.PERC_ID = 17) as subsidioemp,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.PERC_ID = 28) as prestamo,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.PERC_ID = 16) as otrosP,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.PERC_ID = 21) as Prima_vac,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.DEDU_ID = 2) as isr,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.DEDU_ID =1 ) as imss,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.DEDU_ID =4 ) as otros,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.DEDU_ID =20 ) as faltas,
+(Select  r.NOMD_UNITARIO AS IMPORTE From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.DEDU_ID =21 ) as abono,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID = rhh_nominas.NOM_ID And r.PERC_ID = 1) AS NOTAS1,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID = rhh_nominas.NOM_ID And r.PERC_ID = 20) AS NOTAS2,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID = rhh_nominas.NOM_ID And r.PERC_ID = 8) AS NOTAS3,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID = rhh_nominas.NOM_ID And r.PERC_ID = 22) AS NOTAS4,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID = rhh_nominas.NOM_ID And r.PERC_ID = 10) AS NOTAS5,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID = rhh_nominas.NOM_ID And r.PERC_ID = 17) AS NOTAS6,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID = rhh_nominas.NOM_ID And r.PERC_ID = 28) AS NOTAS7,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID = rhh_nominas.NOM_ID And r.PERC_ID = 16) AS NOTASotrosP,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID = rhh_nominas.NOM_ID And r.PERC_ID = 21) AS NOTASPrima_vac,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.DEDU_ID = 2) as notas8,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.DEDU_ID = 1) as notas9,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.DEDU_ID = 16) as notas10,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.DEDU_ID = 20) as notas11,
+(Select  r.NOMD_NOTAS  From rhh_nominas_deta r Where r.NOM_ID =rhh_nominas.NOM_ID And r.DEDU_ID = 21) as notas12,
+(select rhh_nominas.NOM_CAMPO_ADICIONAL2) as campoadicional2,
+(select rhh_empleados.EMP_NOTA1) as NOTAHORARIO,
+(select rhh_empleados.EMP_NOTA2) as NOTAHORARIO2,
+(select rhh_nominas.NOM_CAMPO_ADICIONAL1) as campoadicional
+
+
+From
+	rhh_empleados
+	Join vta_empresas On rhh_empleados.EMP_ID = vta_empresas.EMP_ID
+	Join rhh_nominas On rhh_nominas.EMP_NUM = rhh_empleados.EMP_NUM
+        Join vta_sucursal On rhh_nominas.SC_ID = vta_sucursal.SC_ID
+Where  if($P{nom_id} <> 0 ,rhh_nominas.NOM_ID = $P{nom_id} , rhh_nominas.NOM_FOLIO >=$P{nom_folio1} and  rhh_nominas.NOM_FOLIO <= $P{nom_folio2} )   and vta_empresas.EMP_ID = $P{emp_id} AND rhh_nominas.SC_ID =$P{sc_id}]]>
+	</queryString>
+	<field name="EMP_NUM" class="java.lang.Integer"/>
+	<field name="EMP_INGRESO" class="java.lang.String"/>
+	<field name="EMP_NOMBRE" class="java.lang.String"/>
+	<field name="EMP_RFC" class="java.lang.String"/>
+	<field name="EMP_CURP" class="java.lang.String"/>
+	<field name="EMP_NO_SEG" class="java.lang.String"/>
+	<field name="EMP_CALLE" class="java.lang.String"/>
+	<field name="EMP_LOCALIDAD" class="java.lang.String"/>
+	<field name="EMP_COLONIA" class="java.lang.String"/>
+	<field name="EMP_MUNICIPIO" class="java.lang.String"/>
+	<field name="EMP_ESTADO" class="java.lang.String"/>
+	<field name="EMP_CP" class="java.lang.String"/>
+	<field name="RC_ID" class="java.lang.Integer"/>
+	<field name="RP_ID" class="java.lang.Integer"/>
+	<field name="RHP_ID" class="java.lang.Integer"/>
+	<field name="DP_ID" class="java.lang.Integer"/>
+	<field name="EMP_SALARIO_DIARIO" class="java.math.BigDecimal"/>
+	<field name="EMP_SALARIO_INTEGRADO" class="java.math.BigDecimal"/>
+	<field name="EMP_ID" class="java.lang.Integer"/>
+	<field name="EMP_CLABE" class="java.lang.String"/>
+	<field name="EMP_BANCO" class="java.lang.String"/>
+	<field name="EMP_FECHA_INICIO_REL_LABORAL" class="java.lang.String"/>
+	<field name="EMP_TIPO_CONTRATO" class="java.lang.String"/>
+	<field name="EMP_TIPO_JORNADA" class="java.lang.String"/>
+	<field name="EMP_PERIODICIDAD_PAGO" class="java.lang.String"/>
+	<field name="EMP_NUMERO" class="java.lang.String"/>
+	<field name="EMP_NUMINT" class="java.lang.String"/>
+	<field name="SC_ID" class="java.lang.Integer"/>
+	<field name="EMP_EMAIL1" class="java.lang.String"/>
+	<field name="EMP_EMAIL2" class="java.lang.String"/>
+	<field name="EMP_METODO_PAGO" class="java.lang.String"/>
+	<field name="EMP_NUM_CTA" class="java.lang.String"/>
+	<field name="EMP_CONDICIONES" class="java.lang.String"/>
+	<field name="EMP_FORMA_DE_PAGO" class="java.lang.String"/>
+	<field name="EMP_DIAS_DESCANSO" class="java.lang.Integer"/>
+	<field name="EMP_DIA_DESCANSO" class="java.lang.String"/>
+	<field name="EMP_NOTA1" class="java.lang.String"/>
+	<field name="EMP_NOTA2" class="java.lang.String"/>
+	<field name="EMP_NOTA3" class="java.lang.String"/>
+	<field name="EMP_FOLIO" class="java.lang.String"/>
+	<field name="PUESTO" class="java.lang.String"/>
+	<field name="RAZONSOCIAL" class="java.lang.String"/>
+	<field name="RFC" class="java.lang.String"/>
+	<field name="CALLE" class="java.lang.String"/>
+	<field name="COLONIA" class="java.lang.String"/>
+	<field name="LOCALIDAD" class="java.lang.String"/>
+	<field name="ESTADO" class="java.lang.String"/>
+	<field name="MUNICIPIO" class="java.lang.String"/>
+	<field name="CP" class="java.lang.String"/>
+	<field name="NUMERO" class="java.lang.String"/>
+	<field name="NUMINT" class="java.lang.String"/>
+	<field name="LOGO" class="java.lang.String"/>
+	<field name="IMAGEN_FONDO" class="java.lang.String"/>
+	<field name="REGISTRO_PAT" class="java.lang.String"/>
+	<field name="sucursal" class="java.lang.String"/>
+	<field name="estadosu" class="java.lang.String"/>
+	<field name="NOM_ID" class="java.lang.Integer"/>
+	<field name="NOM_FOLIO" class="java.lang.String"/>
+	<field name="NOM_FECHA" class="java.lang.String"/>
+	<field name="NOM_HORA" class="java.lang.String"/>
+	<field name="NOM_PERCEPCIONES" class="java.math.BigDecimal"/>
+	<field name="NOM_DEDUCCIONES" class="java.math.BigDecimal"/>
+	<field name="NOM_ISR_RETENIDO" class="java.math.BigDecimal"/>
+	<field name="NOM_PERCEPCION_TOTAL" class="java.lang.Double"/>
+	<field name="NOM_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="NOM_RFC" class="java.lang.String"/>
+	<field name="NOM_CALLE" class="java.lang.String"/>
+	<field name="NOM_COLONIA" class="java.lang.String"/>
+	<field name="NOM_LOCALIDAD" class="java.lang.String"/>
+	<field name="NOM_MUNICIPIO" class="java.lang.String"/>
+	<field name="NOM_ESTADO" class="java.lang.String"/>
+	<field name="NOM_CP" class="java.lang.String"/>
+	<field name="NOM_TASA_ISR" class="java.math.BigDecimal"/>
+	<field name="NOM_ANULADA" class="java.lang.Integer"/>
+	<field name="NOM_FECHAANUL" class="java.lang.String"/>
+	<field name="NOM_NOTAS" class="java.lang.String"/>
+	<field name="NOM_US_ALTA" class="java.lang.Integer"/>
+	<field name="NOM_US_ANUL" class="java.lang.Integer"/>
+	<field name="NOM_MONEDA" class="java.lang.Integer"/>
+	<field name="NOM_TASAPESO" class="java.math.BigDecimal"/>
+	<field name="NOM_FECHACREATE" class="java.lang.String"/>
+	<field name="NOM_HORANUL" class="java.lang.String"/>
+	<field name="NOM_DESCUENTO" class="java.math.BigDecimal"/>
+	<field name="NOM_CADENAORIGINAL" class="java.lang.String"/>
+	<field name="NOM_SELLO" class="java.lang.String"/>
+	<field name="NOM_NUMERO" class="java.lang.String"/>
+	<field name="NOM_NUMINT" class="java.lang.String"/>
+	<field name="NOM_RETISR" class="java.math.BigDecimal"/>
+	<field name="NOM_NOTASPIE" class="java.lang.String"/>
+	<field name="NOM_REFERENCIA" class="java.lang.String"/>
+	<field name="NOM_CONDPAGO" class="java.lang.String"/>
+	<field name="NOM_NOMFORMATO" class="java.lang.String"/>
+	<field name="NOM_EXEC_INTER_CP" class="java.lang.Integer"/>
+	<field name="NOM_EXEC_INTER_CP_ANUL" class="java.lang.Integer"/>
+	<field name="NOM_FORMADEPAGO" class="java.lang.String"/>
+	<field name="NOM_METODODEPAGO" class="java.lang.String"/>
+	<field name="NOM_UUID" class="java.lang.String"/>
+	<field name="NOM_SENDMAIL" class="java.lang.Integer"/>
+	<field name="NOM_SELLOTIMBRE" class="java.lang.String"/>
+	<field name="NOM_HORA_TIMBRE" class="java.lang.String"/>
+	<field name="NOM_FOLIO_ANUL" class="java.lang.String"/>
+	<field name="NOM_SELLOTIMBRE_ANUL" class="java.lang.String"/>
+	<field name="NOM_HORA_TIMBRE_ANUL" class="java.lang.String"/>
+	<field name="NOM_CADENA_TIMBRE" class="java.lang.String"/>
+	<field name="NOM_PATH_CBB" class="java.lang.String"/>
+	<field name="NOM_NOSERIECERTTIM" class="java.lang.String"/>
+	<field name="NOM_REGIMENFISCAL" class="java.lang.String"/>
+	<field name="NOM_NUMCUENTA" class="java.lang.String"/>
+	<field name="NOM_REGISTRO_PATRONAL" class="java.lang.String"/>
+	<field name="NOM_FECHA_INICIAL_PAGO" class="java.lang.String"/>
+	<field name="NOM_FECHA_FINAL_PAGO" class="java.lang.String"/>
+	<field name="NOM_NUM_DIAS_PAGADOS" class="java.lang.Integer"/>
+	<field name="NOM_DIAS_INCAPACIDAD" class="java.lang.Integer"/>
+	<field name="TI_ID" class="java.lang.Integer"/>
+	<field name="NOM_INCAPACIDAD_DESCUENTO" class="java.math.BigDecimal"/>
+	<field name="NOM_HORA_EXTRA_DIAS1" class="java.lang.Integer"/>
+	<field name="NOM_HORA_EXTRA_HORAS1" class="java.math.BigDecimal"/>
+	<field name="NOM_HORA_EXTRA_IMPORTE1" class="java.math.BigDecimal"/>
+	<field name="NOM_HORA_EXTRA_DIAS2" class="java.lang.Integer"/>
+	<field name="NOM_HORA_EXTRA_HORAS2" class="java.math.BigDecimal"/>
+	<field name="NOM_HORA_EXTRA_IMPORTE2" class="java.math.BigDecimal"/>
+	<field name="NOM_SE_TIMBRO" class="java.lang.Integer"/>
+	<field name="NOM_US_MOD" class="java.lang.Integer"/>
+	<field name="NOM_ANTIGUEDAD" class="java.lang.Integer"/>
+	<field name="NOM_CONCEPTO" class="java.lang.String"/>
+	<field name="NOM_NOMFORMATO_RECIBO" class="java.lang.String"/>
+	<field name="NOM_CAMPO_ADICIONAL1" class="java.lang.String"/>
+	<field name="NOM_CAMPO_ADICIONAL2" class="java.lang.String"/>
+	<field name="sueldos" class="java.math.BigDecimal"/>
+	<field name="primadominical" class="java.math.BigDecimal"/>
+	<field name="descansoobligatorio" class="java.math.BigDecimal"/>
+	<field name="asistencia" class="java.math.BigDecimal"/>
+	<field name="puntualidad" class="java.math.BigDecimal"/>
+	<field name="subsidioemp" class="java.math.BigDecimal"/>
+	<field name="prestamo" class="java.math.BigDecimal"/>
+	<field name="otrosP" class="java.math.BigDecimal"/>
+	<field name="Prima_vac" class="java.math.BigDecimal"/>
+	<field name="isr" class="java.math.BigDecimal"/>
+	<field name="imss" class="java.math.BigDecimal"/>
+	<field name="otros" class="java.math.BigDecimal"/>
+	<field name="faltas" class="java.math.BigDecimal"/>
+	<field name="abono" class="java.math.BigDecimal"/>
+	<field name="NOTAS1" class="java.lang.String"/>
+	<field name="NOTAS2" class="java.lang.String"/>
+	<field name="NOTAS3" class="java.lang.String"/>
+	<field name="NOTAS4" class="java.lang.String"/>
+	<field name="NOTAS5" class="java.lang.String"/>
+	<field name="NOTAS6" class="java.lang.String"/>
+	<field name="NOTAS7" class="java.lang.String"/>
+	<field name="NOTASotrosP" class="java.lang.String"/>
+	<field name="NOTASPrima_vac" class="java.lang.String"/>
+	<field name="notas8" class="java.lang.String"/>
+	<field name="notas9" class="java.lang.String"/>
+	<field name="notas10" class="java.lang.String"/>
+	<field name="notas11" class="java.lang.String"/>
+	<field name="notas12" class="java.lang.String"/>
+	<field name="campoadicional2" class="java.lang.String"/>
+	<field name="NOTAHORARIO" class="java.lang.String"/>
+	<field name="NOTAHORARIO2" class="java.lang.String"/>
+	<field name="campoadicional" class="java.lang.String"/>
+	<background>
+		<band height="612" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement uuid="32293038-148a-4e43-8fd4-5850a729f35f" x="0" y="0" width="555" height="612"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+$F{IMAGEN_FONDO}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="141" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="bbe94d94-80d9-42ab-8ec8-0b88c4006206" x="317" y="30" width="90" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nomina]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9285ad97-5d78-4eba-97bf-ccee3036f107" x="40" y="30" width="321" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[("REGISTRO PATRONAL:" +$F{REGISTRO_PAT})]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="04b182cc-e7b3-4d06-8399-962e4f933a6c" x="54" y="45" width="92" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{NOM_FECHA_INICIAL_PAGO})]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="352df5dc-4280-44db-acae-f9bcdbe081af" x="159" y="45" width="135" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{NOM_FECHA_FINAL_PAGO})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b069d1dc-98e4-474b-8032-bc501d640a6d" x="109" y="60" width="247" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2c942030-62d9-41e4-ba9b-e981d216f80c" x="1" y="75" width="26" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[R.F.C.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1d31234c-1ac6-4fc0-8119-bfe665fe7e47" x="40" y="75" width="100" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RFC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f1cd179f-769f-4421-98d4-11494d056b30" x="0" y="105" width="50" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibí de :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="917b1e4b-abc3-47b9-ab0e-6c412fc4974d" x="49" y="105" width="357" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="aede35f7-b29f-4adf-a34d-f101e510cee5" x="2" y="125" width="75" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[La Cantidad de]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="67c09a6c-75b7-4755-9170-3b0a76c83dba" x="77" y="125" width="74" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOM_PERCEPCION_TOTAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c8a38a67-787c-484c-87ac-c5b58f766b97" x="317" y="45" width="90" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trabajador ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="50d1f122-b486-4530-ad92-63bc539a0d97" x="377" y="45" width="125" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["N°" + $F{EMP_FOLIO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a92451b1-3127-4317-972c-014fc3f91d1f" x="1" y="90" width="26" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NSS]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="2c834d68-b8f6-412d-a113-6458b8e036f9" x="40" y="90" width="100" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_NO_SEG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1fa1565a-14f6-46f0-bbda-a05962be5b17" x="159" y="125" width="397" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_SCRIPTLET}.convertirLetras($F{NOM_PERCEPCION_TOTAL})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9362eeba-cf0d-4acf-95a4-a22e5ea1e3bf" x="108" y="0" width="248" height="15"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a5c752b0-bb4b-4d3f-bebc-60394cc73485" x="108" y="15" width="248" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RFC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f7a4e0ea-2018-43bf-b4eb-c19d794174ae" x="356" y="30" width="208" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{campoadicional2}==null? "" :$F{campoadicional2})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f279c758-f3c9-42be-a028-e422388b2941" x="2" y="45" width="55" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Semana del ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9b79e727-71f8-4f1f-9daa-335d7bae5317" x="154" y="45" width="15" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[al]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d4156155-71ec-4698-bb8c-8356aa1d6ff2" x="2" y="60" width="111" height="15"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre del Trabajador: ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="471" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="129e0b11-b38e-4423-8504-0d0399e56248" mode="Opaque" x="3" y="132" width="553" height="17" backcolor="#CCCCCC"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="014845d9-1089-4186-b215-5f02b292ed6b" mode="Opaque" x="3" y="268" width="549" height="20" backcolor="#CCCCCC"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="e57582ba-9ac5-410a-ab33-76debd79e31a" mode="Transparent" x="3" y="179" width="550" height="109"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="a6c23577-dd48-4356-8406-2c51feea4f9e" mode="Transparent" x="3" y="20" width="551" height="129"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="0935d098-ac12-42a9-a6bb-0019dce8193e" mode="Transparent" x="3" y="132" width="553" height="17"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="05127d77-e691-4bff-befa-e5796e8b9911" mode="Transparent" x="3" y="268" width="550" height="20"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="1d5d8778-bf69-40ef-94ac-5fa6315d1aa7" mode="Opaque" x="3" y="20" width="551" height="15" backcolor="#CCCCCC"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="014845d9-1089-4186-b215-5f02b292ed6b" mode="Opaque" x="3" y="182" width="547" height="15" backcolor="#CCCCCC"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement uuid="71639fb2-a221-4fbb-b004-1ec22ccc7617" x="0" y="385" width="377" height="57"/>
+				<textElement textAlignment="Justified">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Recibi de " + $F{RAZONSOCIAL} + " la cantidad especificada como Total a Pagar por "+
+"concepto de mi sueldo / salario y demás prestaciones correspondientes "+
+"al periodo indicado. Estoy conforme tanto con las deducciones "+
+"legales y las retenciones derivadas de mi contrato individual "+
+"de trabajo permitidas por la Ley. Hago constar mi conformidad "+
+"con la anterior liquidación, declarando que a la fecha no se me "+
+"adeuda cantidad alguna a que tuviera derecho en términos de la Ley Federal del Trabajo"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="b3e9b1f8-5baa-4997-bbfd-9be430aea88c" x="382" y="401" width="172" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="0e5a3ced-36ab-4710-9c21-93499756e4e5" x="361" y="350" width="100" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NETO A RECIBIR]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="e113d1eb-ad93-4c1d-980d-c711fd62ed8d" x="474" y="268" width="62" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{NOM_DEDUCCIONES}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="023887b9-9fbe-4501-89f3-19bb3746de35" x="456" y="350" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOM_PERCEPCION_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="807840d8-720f-482b-87d3-55c0572c56f9" x="3" y="268" width="161" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{RC_ID} == 1 ?"Retenciones" :"Total de Deducciones")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="22629e39-cc01-4e2d-a61f-efa72703c2e3" x="389" y="412" width="157" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[($F{RC_ID} == 1 ?"FIRMA DEL RECEPTOR" :"FIRMA DE RECIBIDO")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2e09e23f-8beb-46fe-9d4e-8e6485167877" x="132" y="162" width="293" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{RC_ID} == 1? "":"Deducciones")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="391bdee0-f81a-4253-a478-7f3041773722" x="2" y="294" width="86" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Fecha de Ingreso]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yy">
+				<reportElement uuid="aa61dee0-1639-4d13-9730-1dba2db31f21" x="64" y="296" width="95" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{EMP_FECHA_INICIO_REL_LABORAL})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="b6548d9d-6505-45a3-a0f6-b5f613ba4b9e" x="8" y="311" width="132" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{RC_ID} == 1? "":$F{EMP_SALARIO_DIARIO} )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b5b43a61-a34b-45eb-afbb-08581a391d75" x="3" y="309" width="87" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Salario Diario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8b715539-873f-48bf-84a8-ae996576c717" x="2" y="324" width="87" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Dia de Descanso]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0b49c819-2a88-4248-91b3-2ee00fee1b3c" x="8" y="129" width="161" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{RC_ID} == 1? "Subtotal":"Total de Percepciones")]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="92dc0844-6dae-4d48-8dd6-d25eb7cbf8d4" x="446" y="132" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{NOM_PERCEPCIONES}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="506b0783-62a6-4dfe-8415-7e305a11b667" x="169" y="370" width="125" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{NOM_FECHA})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b2d20736-53a0-4ef3-a48f-c347d27937eb" x="132" y="0" width="290" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{RC_ID} == 1? "":"Percepciones")]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="5742c1bb-7aa1-4f03-aee7-bf4f9bb701ac" x="90" y="326" width="335" height="15"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{campoadicional}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fdf726a5-b6c0-4ba1-895e-2bb69c49ad59" x="350" y="20" width="75" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[CONCEPTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="73be4648-5815-459c-b2bd-32701b910ba1" x="475" y="20" width="75" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="81bf847e-73fa-4036-b4fb-3f42caf2f343" x="275" y="20" width="42" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[CLAVE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3c07af19-3bdf-4363-b426-5af14f765d80" x="274" y="45" width="200" height="11"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[020                        25% DE PRIMA DOMINICAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="022a425c-0cf7-4330-9070-2f46551046b0" x="274" y="55" width="200" height="11"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[008                        DESCANSO OBLIGATORIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4fff5fda-3d8d-493b-8a5d-a724ccf94fe9" x="274" y="65" width="200" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[022                        PREMIO DE ASISTENCIA ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f55ab8c-628a-4982-9c61-2c6eb4480da1" x="274" y="75" width="200" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[010                        PREMIO DE PUNTUALIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="48ded0b9-581c-4f4f-ab20-04cb99260371" x="274" y="95" width="200" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[028                        PRÉSTAMO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="22d14a24-764f-42f7-b72a-168ff1f8dbb9" x="274" y="85" width="200" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[017                        SUBSIDIO PARA EL EMPLEO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="81ff11dd-765d-4ea4-9c05-adb200cd661a" x="272" y="182" width="42" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[CLAVE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="73e5a96b-7842-4867-9975-c81f5d02f1c4" x="350" y="182" width="75" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[CONCEPTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f79bead6-d350-4048-9894-95e4d02fdf8a" x="475" y="182" width="75" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bd2794f7-8ffc-4bf8-9cc0-943b32090b7a" x="266" y="197" width="200" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[     001                         I.S.R.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45938e7e-56d0-4a87-aef8-302a503d4906" x="266" y="212" width="200" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[     002                         I.M.S.S]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="698dfe2c-e222-4148-aa12-94793426252b" x="266" y="227" width="200" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[     004                         ALIMENTACIÓN Y HOSPEDAJE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c12af25f-f86f-41a4-9ca5-e31dd1f8bd36" x="266" y="242" width="200" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[     020                         FALTAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="836ddd73-32c8-45f9-9197-fc936b41c387" x="266" y="257" width="200" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[     021                         ABONO A PRESTAMO]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="d7fea244-4b55-47b7-8f55-39109438b24f" x="474" y="35" width="72" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{sueldos}==null? 0.0 :$F{sueldos})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="fe0e494e-1955-4001-a603-21b3c5e95875" x="474" y="45" width="71" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{primadominical}==null? 0.0 :$F{primadominical})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="6b87af3d-a2ec-496a-ad1b-1d89ad20b77e" x="474" y="55" width="71" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{descansoobligatorio}==null? 0.0 :$F{descansoobligatorio})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="5c334559-efbb-4748-9614-b796bfd2782e" x="474" y="65" width="71" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{asistencia}==null? 0.0 :$F{asistencia})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="3cc719ff-dd80-4a1c-8161-bfaf8e959b76" x="474" y="75" width="71" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{puntualidad}==null? 0.0 :$F{puntualidad})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="587ffbf2-b20a-4413-b51f-1a1b1e20321d" x="474" y="85" width="71" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{subsidioemp}==null? 0.0 :$F{subsidioemp})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="9e6256d5-178f-4e47-8178-aeacb951f7d3" x="474" y="95" width="71" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{prestamo}==null? 0.0 :$F{prestamo})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="d2c746a9-df63-46d9-9744-166ea0cdfe8b" x="466" y="195" width="70" height="17"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{isr}==null? 0.0 :$F{isr})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="bb94b64e-0dc1-41db-a01b-383974a7bbf9" x="466" y="212" width="70" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{imss}==null? 0.0 :$F{imss})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="d10331d8-93de-47af-9d44-3d47656012a0" x="466" y="227" width="70" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{otros}==null? 0.0 :$F{otros})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="e6d325dd-65a1-491d-b871-ddf37403ca4e" x="466" y="242" width="70" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{faltas}==null? 0.0 :$F{faltas})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="28d58df5-f77e-4a2a-8162-5fc15d591767" x="466" y="255" width="70" height="13"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{abono}==null? 0.0 :$F{abono})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9d51219f-da94-46eb-a266-ea63032a2dc3" x="1" y="370" width="168" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sucursal}+", "+$F{estadosu}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4e98ca2f-13f7-4c03-bcf4-edf58e83708a" x="109" y="20" width="42" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[NOTAS]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="4084783a-038e-484e-adb1-6d978a81d7d4" x="3" y="35" width="265" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{NOTAS1}==null? "" :$F{NOTAS1})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="7aa4533f-289c-41db-b81f-17991822f526" x="3" y="45" width="265" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{NOTAS2}==null? "" :$F{NOTAS2})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="779d328d-5ee1-40af-b38b-ce3c4542a5be" x="4" y="65" width="265" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{NOTAS4}==null? "" :$F{NOTAS4})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="01123eaf-4d74-4aa2-a544-51fdcb3790c9" x="3" y="55" width="266" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{NOTAS3}==null? "" :$F{NOTAS3})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="b050c3b0-429c-47f8-8d3b-4d379157eb14" x="3" y="75" width="265" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{NOTAS5}==null? "" :$F{NOTAS5})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="a690d97c-ec37-4b11-9054-8aa66d2dfe25" x="4" y="85" width="265" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{NOTAS6}==null? "" :$F{NOTAS6})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="1cbf6ea9-ab88-47d0-8856-6b10053a13f8" x="4" y="95" width="265" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{NOTAS7}==null? "" :$F{NOTAS7})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="bfb9cd80-15a4-4659-ad99-139901db4bef" x="109" y="182" width="42" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[NOTAS]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="1f4d6df9-fecc-47a4-9081-7e6de22a5bdf" x="3" y="197" width="260" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{notas8}==null? "" :$F{notas8})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="b3e17cc4-964c-487d-9841-c7ff4fa2d599" x="3" y="212" width="260" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{notas9}==null? "" :$F{notas9})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="3fabb75d-f008-4a88-8200-2340abc94f4c" x="3" y="227" width="260" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{notas10}==null? "" :$F{notas10})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="9966c6f0-be9a-4846-ba66-2fcab551e210" x="3" y="242" width="260" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{notas11}==null? "" :$F{notas11})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="fd6cdbb4-1e66-4665-b0a5-e295a3f3e4de" x="3" y="257" width="260" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{notas12}==null? "" :$F{notas12})]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement uuid="20f56c11-e25b-4972-bf75-b85f1a8b67df" x="1" y="340" width="349" height="15"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{NOTAHORARIO}==null? " ":$F{NOTAHORARIO})]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement uuid="cd14f117-c97f-41fc-a11d-24b478eb8603" x="1" y="355" width="349" height="15"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{NOTAHORARIO2}==null? " ":$F{NOTAHORARIO2})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="73beb202-7d84-4e6d-8b05-96d9eda70127" x="274" y="35" width="200" height="11"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[001                        SUELDO SEMANAL]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="1cbf6ea9-ab88-47d0-8856-6b10053a13f8" x="4" y="105" width="265" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{NOTASotrosP}==null? "" :$F{NOTASotrosP})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="48ded0b9-581c-4f4f-ab20-04cb99260371" x="274" y="105" width="200" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[016                        OTROS]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="9e6256d5-178f-4e47-8178-aeacb951f7d3" x="474" y="105" width="71" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{otrosP}==null? 0.0 :$F{otrosP})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="48ded0b9-581c-4f4f-ab20-04cb99260371" x="274" y="115" width="200" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[021                        PRIMA VACACIONAL]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="9e6256d5-178f-4e47-8178-aeacb951f7d3" x="474" y="115" width="71" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{Prima_vac}==null? 0.0 :$F{Prima_vac})]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="1cbf6ea9-ab88-47d0-8856-6b10053a13f8" x="4" y="115" width="265" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{NOTASPrima_vac}==null? "" :$F{NOTASPrima_vac})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Productividad_Usuarios" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b02769ae-d884-4532-a674-cbccdd505254">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fec_ini" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fec_fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select id_usuarios as USUARIO,nombre_usuario as NOMBRE,SUM(fac.FAC_IMPORTE) as IMPORTE,SUM(fac.FAC_IMPUESTO1) as IMPUESTO1,SUM(fac.FAC_IMPUESTO2) as IMPUESTO2,SUM(fac.FAC_TOTAL) as TOTAL,SUM(fac_deta.FACD_CANTIDAD) as ARTICULOS
+from usuarios usu, vta_facturas fac,vta_facturasdeta fac_deta
+where usu.id_usuarios =  fac.FAC_US_ALTA
+and fac.FAC_ID = fac_deta.FAC_ID
+AND fac.FAC_FECHA BETWEEN $P{fec_ini} AND $P{fec_fin}
+GROUP BY usu.id_usuarios,usu.nombre_usuario]]>
+	</queryString>
+	<field name="USUARIO" class="java.lang.Integer"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="IMPORTE" class="java.math.BigDecimal"/>
+	<field name="IMPUESTO1" class="java.math.BigDecimal"/>
+	<field name="IMPUESTO2" class="java.math.BigDecimal"/>
+	<field name="TOTAL" class="java.math.BigDecimal"/>
+	<field name="ARTICULOS" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4c97f71d-5ad4-4aeb-8b71-56e009c74032" x="185" y="0" width="198" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCTIVIDAD POR USUARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1ca45716-d6e8-4cec-a9d9-ecde713b8050" x="185" y="39" width="82" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[FEC. INICIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b3cd4511-8c1a-4019-8db3-20850155f8b2" x="185" y="59" width="82" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[FEC. FINAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c00db10c-9472-494e-b86f-355809dfe66a" x="185" y="19" width="111" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[FECHA EMISION:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0de605b8-6bbc-4798-8d55-cdefb18e71ad" x="267" y="39" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{fec_ini}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="09f2fd98-17d6-453f-8070-a978db36d789" x="267" y="59" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{fec_fin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9c6c05d8-6a30-4142-bcae-07a27d8cea9d" x="296" y="19" width="71" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="16273954-938d-4fbb-9487-fc81badede19" mode="Opaque" x="0" y="2" width="35" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<textElement/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6ebdefdc-34e1-4cd9-b144-57bd52a4cf97" mode="Opaque" x="35" y="2" width="116" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<textElement/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5d889198-3c0d-48a1-a384-b85c2aa4644c" mode="Opaque" x="151" y="2" width="90" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<textElement/>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4a43238a-aa6c-411a-b775-97e749f07593" mode="Opaque" x="241" y="2" width="90" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<textElement/>
+				<text><![CDATA[IMPUESTO1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aa513ab8-ca75-49d9-9190-a1382a5f3161" mode="Opaque" x="331" y="2" width="93" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<textElement/>
+				<text><![CDATA[IMPUESTO2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="84ead236-7f43-40f3-baa2-52e02b9ef71f" mode="Opaque" x="424" y="2" width="66" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<textElement/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0b06e215-1d9d-4722-83ec-035214f010a4" mode="Opaque" x="490" y="2" width="65" height="20" forecolor="#FFFFFF" backcolor="#006699"/>
+				<textElement/>
+				<text><![CDATA[ARTICULOS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="4887a0f8-6c17-4b81-9757-169eea276a61" x="0" y="0" width="35" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{USUARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2623a94f-bea0-4a60-bc17-c3e8e50fc00d" x="35" y="0" width="116" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="e86ef7ba-e757-453e-8aff-d769030ccc49" x="151" y="0" width="90" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="6efa2113-96db-439c-8c7e-697350e4537f" x="241" y="0" width="90" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{IMPUESTO1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="6820cd0c-4227-4ff9-b179-8c5689181833" x="331" y="0" width="93" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{IMPUESTO2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="7f546a96-b8ee-4024-a2fa-914598f2e882" x="424" y="0" width="66" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2fb9a746-2c1a-43e8-9fd0-6d335c4763d5" x="490" y="0" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ARTICULOS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

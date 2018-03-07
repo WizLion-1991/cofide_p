@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2016-02-09T13:40:59 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_personas_curso" pageWidth="610" pageHeight="792" columnWidth="570" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2e32a96d-0d3f-43b4-90cc-db27d85a9252">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="COFIDE"/>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[call sp_cofide_cursos]]>
+	</queryString>
+	<field name="TMPC_CURSO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TMPC_FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CURSOS" class="java.lang.Long"/>
+	<field name="LOGO" class="java.lang.String"/>
+	<field name="empresa" class="java.lang.String"/>
+	<pageHeader>
+		<band height="101" splitType="Stretch">
+			<textField pattern="MMM d, yyyy">
+				<reportElement x="480" y="71" width="90" height="30" uuid="bc287573-21d0-4519-a853-6d6d2933ef9e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="71" width="100" height="30" uuid="1c12b5b9-31a8-4f9d-bf23-445911a5a606"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[FECHA DE EMISION:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="380" height="30" uuid="3050efb4-e1ac-431a-a4b3-f548de7044cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE CURSOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="100" y="30" width="379" height="30" forecolor="#172983" uuid="e8d08c7a-512d-4c90-a0df-76052d9b9175"/>
+				<textElement textAlignment="Center">
+					<font fontName="Cambria" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa}]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="100" height="100" uuid="32183a87-b75a-4752-a4fb-118daff03179"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+ $F{LOGO}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="570" height="30" backcolor="#EDACAB" uuid="af2267fe-e952-4ccc-8b6e-64cad843ebf3"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="480" height="30" uuid="c723fc15-9261-4360-b4a9-f649376d9e31"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="cambria" size="14"/>
+				</textElement>
+				<text><![CDATA[NOMBRE DEL CURSO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="90" height="30" uuid="46601340-79b6-4abf-8f4f-5db372cd4dbd"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="cambria" size="14"/>
+				</textElement>
+				<text><![CDATA[CURSOS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="480" height="30" uuid="2ef865df-44af-4f67-8071-3787d48be936"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Candara" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TMPC_CURSO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="90" height="30" uuid="3cca58a9-22fb-42fe-95c9-f928f33b9b73"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Candara" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CURSOS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="181" y="24" width="100" height="30" uuid="b64d0c43-999e-4ea3-9b80-2b4bc984c146"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="281" y="24" width="100" height="30" uuid="cdb04aa9-0331-4486-84cf-6a5d93afdeb8"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="128"/>
+	</summary>
+</jasperReport>

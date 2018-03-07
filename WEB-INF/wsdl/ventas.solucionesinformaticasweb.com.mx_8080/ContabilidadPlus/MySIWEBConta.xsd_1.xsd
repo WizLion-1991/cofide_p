@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2-hudson-740-. --><xs:schema xmlns:tns="http://WebService.Contabilidad/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://WebService.Contabilidad/">
+
+<xs:element name="doEvalUser" type="tns:doEvalUser" />
+
+<xs:element name="doEvalUserResponse" type="tns:doEvalUserResponse" />
+
+<xs:element name="doPolizaAuto" type="tns:doPolizaAuto" />
+
+<xs:element name="doPolizaAutoResponse" type="tns:doPolizaAutoResponse" />
+
+<xs:complexType name="doPolizaAuto">
+<xs:sequence>
+<xs:element name="User" type="xs:string" minOccurs="0" />
+<xs:element name="Pass" type="xs:string" minOccurs="0" />
+<xs:element name="item1" type="xs:string" minOccurs="0" />
+<xs:element name="item2" type="xs:string" minOccurs="0" />
+<xs:element name="item3" type="xs:string" minOccurs="0" />
+<xs:element name="item4" type="xs:string" minOccurs="0" />
+<xs:element name="item5" type="xs:string" minOccurs="0" />
+<xs:element name="Headers" type="xs:string" minOccurs="0" />
+<xs:element name="item6" type="xs:string" minOccurs="0" />
+<xs:element name="item7" type="xs:string" minOccurs="0" />
+<xs:element name="item8" type="xs:string" minOccurs="0" />
+<xs:element name="item9" type="xs:string" minOccurs="0" />
+<xs:element name="item10" type="xs:string" minOccurs="0" />
+<xs:element name="item11" type="xs:string" minOccurs="0" />
+<xs:element name="item12" type="xs:string" minOccurs="0" />
+<xs:element name="item13" type="xs:string" minOccurs="0" />
+<xs:element name="item14" type="xs:string" minOccurs="0" />
+<xs:element name="item15" type="xs:string" minOccurs="0" />
+<xs:element name="item16" type="xs:string" minOccurs="0" />
+<xs:element name="item17" type="xs:string" minOccurs="0" />
+<xs:element name="item18" type="xs:string" minOccurs="0" />
+<xs:element name="item19" type="xs:string" minOccurs="0" />
+<xs:element name="item20" type="xs:string" minOccurs="0" />
+<xs:element name="item21" type="xs:string" minOccurs="0" />
+<xs:element name="item22" type="xs:string" minOccurs="0" />
+<xs:element name="item23" type="xs:string" minOccurs="0" />
+<xs:element name="item24" type="xs:string" minOccurs="0" />
+<xs:element name="item25" type="xs:string" minOccurs="0" />
+<xs:element name="item26" type="xs:string" minOccurs="0" />
+<xs:element name="item27" type="xs:string" minOccurs="0" />
+<xs:element name="item28" type="xs:string" minOccurs="0" />
+<xs:element name="item29" type="xs:string" minOccurs="0" />
+<xs:element name="item30" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="doPolizaAutoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="doEvalUser">
+<xs:sequence>
+<xs:element name="User" type="xs:string" minOccurs="0" />
+<xs:element name="Pass" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="doEvalUserResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+
+<struts-config>
+   <form-beans>
+      <form-bean name="SelEmpresaForm" type="com.SIWeb.struts.SelEmpresaForm"/>
+      <form-bean name="LoginForm" type="com.SIWeb.struts.LoginForm"/>
+
+   </form-beans>
+
+   <global-exceptions>
+
+   </global-exceptions>
+
+   <global-forwards>
+      <forward name="DamePantalla" path="/DamePantalla.do"/>
+      <forward name="Login" path="/Login.do"/>
+      <forward name="welcome"  path="/Welcome.do"/>
+      <forward name="DamePrecio" path="/DamePrecio.do"/>
+      <forward name="InvMov" path="/InvMov.do"/>
+      <forward name="VtasMov" path="/VtasMov.do"/>
+      <forward name="NotasCargoMov" path="/NotasCargoMov.do"/>
+      <forward name="NotasCargoMovProv" path="/NotasCargoMovProv.do"/>
+      <forward name="CXPMov" path="/CXPMov.do"/>
+      <forward name="ODCMov" path="/ODCMov.do"/>
+      <forward name="PediMov" path="/PediMov.do"/>
+      <forward name="Cobros" path="/Cobros.do"/>
+      <forward name="Bancos" path="/Bancos.do"/>
+      <forward name="Acceso" path="/Acceso.do"/>
+      <forward name="UpKey" path="/UpKey.do"/>
+      <forward name="MiCuenta" path="/MiCuenta.do"/>
+      <forward name="Contrasenia" path="/Contrasenia.do"/>
+      <forward name="SelEmpresa" path="/SelEmpresa.do"/>
+      <forward name="MainDo" path="/MainDo.do"/>
+      <forward name="NCMov" path="/NCMov.do"/>
+      <forward name="Promociones" path="/Promociones.do"/>
+   </global-forwards>
+
+   <action-mappings>
+      <action name="LoginForm" path="/login" scope="request" type="com.SIWeb.struts.LoginAction" validate="false">
+         <forward name="success" path="/MainDo.do"/>
+         <forward name="successMulti" path="/SelEmpresa.do"/>
+         <forward name="successcte" path="/CIP_MainCte.jsp"/>
+         <forward name="failure" path="/frmLogin.jsp"/>
+      </action>
+      <action name="SelEmpresaForm" path="/selEmpresa" scope="request" type="com.SIWeb.struts.SelEmpresaAction" validate="false">
+         <forward name="success" path="/CIP_Main.jsp"/>
+         <forward name="failure" path="/ERP_SelEmpresa.jsp"/>
+      </action>
+      <action path="/Login" forward="/frmLogin.jsp"/>
+      <action path="/DamePantalla" forward="/CIP_DamePantalla.jsp"/>
+      <action path="/DamePrecio" forward="/ERP_Precios.jsp"/>
+      <action path="/InvMov" forward="/ERP_Inventario.jsp"/>
+      <action path="/VtasMov" forward="/ERP_Ventas.jsp"/>
+      <action path="/NotasCargoMov" forward="/ERP_NotaCargo.jsp"/>
+      <action path="/NotasCargoMovProv" forward="/ERP_NotaCargoProv.jsp"/>
+      <action path="/CXPMov" forward="/ERP_CxPagar.jsp"/>
+      <action path="/PediMov" forward="/ERP_Pedimentos.jsp"/>
+      <action path="/ODCMov" forward="/ERP_Compras.jsp"/>
+      <action path="/NCMov" forward="/ERP_NCredito.jsp"/>
+      <action path="/NCMovp" forward="/ERP_NCreditoProv.jsp"/>
+      <action path="/Promociones" forward="/ERP_Promociones.jsp"/>
+      <action path="/Cobros" forward="/ERP_Cobros.jsp"/>
+      <action path="/Acceso" forward="/CIP_evalPermisos.jsp"/>
+      <action path="/UpKey" forward="/ERP_UPPrivateKey.jsp"/>
+      <action path="/MiCuenta" forward="/CIP_miCuentaOp.jsp"/>
+      <action path="/Bancos" forward="/ERP_Bancos.jsp"/>
+      <action path="/Contrasenia" forward="/CIP_PASS.jsp"/>
+      <action path="/SelEmpresa" forward="/ERP_SelEmpresa.jsp"/>
+      <action path="/MainDo" forward="/CIP_Main.jsp"/>
+   </action-mappings>
+
+   <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+   <message-resources parameter="com/SIWeb/struts/ApplicationResource"/>
+
+   <!-- ========================= Tiles plugin ===============================-->
+    <!--
+    This plugin initialize Tiles definition factory. This later can takes some
+    parameters explained here after. The plugin first read parameters from
+    web.xml, thenoverload them with parameters defined here. All parameters
+    are optional.
+    The plugin should be declared in each struts-config file.
+    - definitions-config: (optional)
+    Specify configuration file names. There can be several comma
+    separated file names (default: ?? )
+    - moduleAware: (optional - struts1.1)
+    Specify if the Tiles definition factory is module aware. If true
+    (default), there will be one factory for each Struts module.
+    If false, there will be one common factory for all module. In this
+    later case, it is still needed to declare one plugin per module.
+    The factory will be initialized with parameters found in the first
+    initialized plugin (generally the one associated with the default
+    module).
+    true : One factory per module. (default)
+    false : one single shared factory for all modules
+    - definitions-parser-validate: (optional)
+    Specify if xml parser should validate the Tiles configuration file.
+    true : validate. DTD should be specified in file header (default)
+    false : no validation
+
+    Paths found in Tiles definitions are relative to the main context.
+    -->
+   <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+      <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+      <set-property property="moduleAware" value="true" />
+   </plug-in>
+
+   <!-- ========================= Validator plugin ================================= -->
+   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+      <set-property
+         property="pathnames"
+         value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+   </plug-in>
+
+</struts-config>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
+<!-- 2015-03-24T11:36:45 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="11aaa0c3-29f1-41ef-85e2-1fdea94f60ab">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GrupoMak"/>
+	<parameter name="TKT_FECHAINI" class="java.lang.String">
+		<defaultValueExpression><![CDATA[20130101]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TKT_FECHAFIN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[201401231]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<parameter name="EMP_id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT usuarios.id_usuarios, 
+	usuarios.nombre_usuario, COUNT(view_ventasglobales.FAC_ID) AS TFOLIOS, 
+	sum(view_ventasglobales.FAC_IMPORTE) as TIMPOTE, 
+	sum(view_ventasglobales.FAC_IMPUESTO1) as TIVA, 
+	sum(view_ventasglobales.FAC_TOTAL) as TTOTAL, 
+	sum(view_ventasglobales.FAC_SALDO) as TSALDO, 
+	sum(view_ventasglobales.FAC_IMPORTE_PUNTOS) as TPUNTOS, 
+	sum(view_ventasglobales.FAC_IMPORTE_NEGOCIO) as TNEGOCIO,
+  vta_empresas.EMP_PATHIMGFORM as Logo,
+									vta_empresas.EMP_IMGCUERPO as ImagenFondo
+FROM view_ventasglobales INNER 
+JOIN usuarios ON view_ventasglobales.FAC_US_ALTA = usuarios.id_usuarios
+JOIN vta_empresas On vta_empresas.EMP_ID = view_ventasglobales.EMP_ID
+where view_ventasglobales.FAC_FECHA>= $P{TKT_FECHAINI} and view_ventasglobales.FAC_FECHA<= $P{TKT_FECHAFIN} AND FAC_ANULADA = 0 AND view_ventasglobales.EMP_ID = $P{EMP_id}
+GROUP BY usuarios.id_usuarios, 
+	usuarios.nombre_usuario]]>
+	</queryString>
+	<field name="id_usuarios" class="java.lang.Integer"/>
+	<field name="nombre_usuario" class="java.lang.String"/>
+	<field name="TFOLIOS" class="java.lang.Long"/>
+	<field name="TIMPOTE" class="java.math.BigDecimal"/>
+	<field name="TIVA" class="java.math.BigDecimal"/>
+	<field name="TTOTAL" class="java.math.BigDecimal"/>
+	<field name="TSALDO" class="java.math.BigDecimal"/>
+	<field name="TPUNTOS" class="java.math.BigDecimal"/>
+	<field name="TNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="Logo" class="java.lang.String"/>
+	<field name="ImagenFondo" class="java.lang.String"/>
+	<background>
+		<band height="507">
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement x="0" y="0" width="802" height="507" uuid="a1b5ee0f-b1ae-4c42-ad23-e1b5f66b0e8d"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+$F{ImagenFondo}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="258" height="20" uuid="2aae3433-b52d-4d2e-ba42-c76a688740f0"/>
+				<textElement>
+					<font size="13" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[FACTURACION POR USUARIO GENERAL]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="100" y="20" width="120" height="20" uuid="64b04450-fb9a-4aa1-9922-9c69a6b050e6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="20" uuid="22d340ea-6271-4693-8503-5d22414bfecd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha De Emision:]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="58" y="40" width="58" height="20" uuid="c23e0491-dc6e-4e0c-833f-4796f27f9086"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{TKT_FECHAINI})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="58" height="20" uuid="8fa47684-b22b-495c-89f8-6028728873a5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Periodo del]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="40" width="10" height="20" uuid="8fa47684-b22b-495c-89f8-6028728873a5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[al]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="126" y="40" width="86" height="20" uuid="c23e0491-dc6e-4e0c-833f-4796f27f9086"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{TKT_FECHAFIN})]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement x="730" y="0" width="72" height="60" uuid="a1b5ee0f-b1ae-4c42-ad23-e1b5f66b0e8d"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+$F{Logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="20" backcolor="#9999FF" uuid="57233802-eddf-4769-a3d8-7404973288a9"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="25" height="20" uuid="e06b9aa1-c96e-4ba6-b6a9-f69413132237"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="38" y="0" width="182" height="20" uuid="d0ec560b-4ffe-4765-8e46-24cccfad10c2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="713" y="0" width="89" height="20" uuid="a1ca60bb-5eeb-4c81-8fa9-c24f29908834"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NEGOCIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="624" y="0" width="89" height="20" uuid="522e9788-2a8f-4966-b9a5-4a4a3e4e9098"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PUNTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="535" y="0" width="89" height="20" uuid="47ce364f-cf80-487a-9a88-f19bc1cdb4a5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[SALDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="0" width="89" height="20" uuid="26cfa84a-bfce-428e-b9d8-c84c0440db25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="0" width="89" height="20" uuid="eb1abd34-b452-4165-bfed-1878bb5f7423"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="0" width="89" height="20" uuid="20153c3d-f307-4ef4-b0df-61995453aa1f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="41" height="20" uuid="cc486069-ed95-4e1c-b9f2-83adf91cb2b9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[FOLIOS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="25" height="20" uuid="5e9eb84d-7c59-4f05-aff8-bc7b4a43c58a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id_usuarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="38" y="0" width="182" height="20" uuid="6bdae7f7-d1d0-4053-94da-6e1dc37d03df"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre_usuario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="220" y="0" width="38" height="20" uuid="1444d773-e820-4bed-ba68-b5588da4e735"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TFOLIOS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="357" y="0" width="89" height="20" uuid="75fdf7a5-29e7-471d-a7e1-b6218a2fe466"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIVA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="446" y="0" width="89" height="20" uuid="79b42bf6-cfd8-4338-ab7a-a9a8f6af57e6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TTOTAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="535" y="0" width="89" height="20" uuid="8b06ed40-ed9a-4005-8a64-3bc09d123fad"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TSALDO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="624" y="0" width="89" height="20" uuid="0907641d-e076-46de-b60f-31cb473d6f47"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TPUNTOS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="713" y="0" width="89" height="20" uuid="b48b767f-7fe9-4e97-928f-19fccc103da0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TNEGOCIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="268" y="0" width="89" height="20" uuid="011fc144-4c90-4177-be81-fe70e9b9d0fc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIMPOTE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="589" y="0" width="173" height="20" uuid="1f057582-9d4a-4235-8089-30c925b10290"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="762" y="0" width="40" height="20" uuid="a8562823-50d0-474e-ade7-ddc3da029a74"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

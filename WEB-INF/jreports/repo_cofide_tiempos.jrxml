@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2016-02-10T10:10:14 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_tiempos" pageWidth="610" pageHeight="792" columnWidth="570" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d84fc2d1-584d-4619-92fa-65a3c96159a6">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="vta_cofide"/>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select (select EMP_PATHIMG from vta_empresas where vta_empresas.EMP_ID = 1 ) as LOGO, 
+(select EMP_RAZONSOCIAL from vta_empresas where vta_empresas.EMP_ID =1) as empresa,
+ l.CL_FECHA,u.nombre_usuario
+,count(*) as numero_llamadas
+,sum(getDiffHoras(CL_FECHA,CL_HORA,CL_FIN_LLAMADA) ) AS duracion_llamada
+,avg(getDiffHoras(CL_FECHA,CL_HORA,CL_FIN_LLAMADA) ) AS promedio_llamada
+,sum(if(  l.CL_PAUSA_CAPACITA = 1,getDiffHoras(CL_FECHA,CL_HORA,CL_FIN_LLAMADA) ,0  )) AS tiempo_en_pausa_por_capacitacion
+,sum(if(  l.CL_PAUSA_ADMIN = 1,getDiffHoras(CL_FECHA,CL_HORA,CL_FIN_LLAMADA) ,0  )) AS tiempo_en_pausa_por_admin
+,sum(if(  l.CL_PAUSA_SANIT = 1,getDiffHoras(CL_FECHA,CL_HORA,CL_FIN_LLAMADA) ,0  )) AS tiempo_en_pausa_por_sanitario
+,sum(if(  l.CL_PAUSA_COMIDA = 1,getDiffHoras(CL_FECHA,CL_HORA,CL_FIN_LLAMADA) ,0  )) AS tiempo_en_pausa_por_comida
+,max(getDiffHoras(CL_FECHA,CL_HORA,CL_FIN_LLAMADA)) as tiempo_maximo_llamada
+from cofide_llamada l inner join usuarios u on  l.CL_USUARIO = u.id_usuarios
+ where CL_FECHA>= '20160101' and CL_FECHA <= '20160228'
+group by l.CL_FECHA,u.nombre_usuario;]]>
+	</queryString>
+	<field name="LOGO" class="java.lang.String"/>
+	<field name="empresa" class="java.lang.String"/>
+	<field name="CL_FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre_usuario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero_llamadas" class="java.lang.Long"/>
+	<field name="duracion_llamada" class="java.math.BigDecimal"/>
+	<field name="promedio_llamada" class="java.math.BigDecimal"/>
+	<field name="tiempo_en_pausa_por_capacitacion" class="java.math.BigDecimal"/>
+	<field name="tiempo_en_pausa_por_admin" class="java.math.BigDecimal"/>
+	<field name="tiempo_en_pausa_por_sanitario" class="java.math.BigDecimal"/>
+	<field name="tiempo_en_pausa_por_comida" class="java.math.BigDecimal"/>
+	<field name="tiempo_maximo_llamada" class="java.math.BigDecimal"/>
+	<pageHeader>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="0" width="410" height="30" uuid="74059cc5-fd70-4006-a759-af7409219055"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DURACION DE LLAMADAS]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="100" height="100" uuid="6dd30f1a-46cd-432a-a204-fcdce8e231cf"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+ $F{LOGO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement mode="Opaque" x="100" y="30" width="410" height="30" forecolor="#172983" uuid="261a6eba-77d0-4332-90fa-2ecb020f5be5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Cambria" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="350" y="75" width="100" height="25" uuid="7fa3e22b-094c-49f8-ad83-832ff30fd1eb"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha de emision:]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="450" y="75" width="120" height="25" uuid="4348f437-dfce-4906-bdcb-de19623c7cfb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="120" height="30" uuid="57e8d215-648c-46b4-a74e-047608140139"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="0" width="30" height="30" uuid="7c31f1b4-5b9f-434d-af68-fc897b1e933a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NO. LLAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="0" width="60" height="30" uuid="3d92f653-7cc8-4b79-af7d-238364ac42e6">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DURACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="0" width="60" height="30" uuid="8c1a43df-d4ce-4b23-b4c8-371ea3ccb7ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PROMEDIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="0" width="60" height="30" uuid="dabf74a0-20fd-4d1a-b72b-d2ff84e7a8d8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TIEMPO CAPACIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="0" width="60" height="30" uuid="07dc19db-330d-4f7d-af8f-f12728149626">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TIEMPO ADMIN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="60" height="30" uuid="7013eca2-c868-4c16-ba3e-e1bcf4a76d21">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TIEMPO SANITARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="60" height="30" uuid="be77bd1f-d186-4f96-830e-ba3d54df6d42"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TIEMPO COMIDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="510" y="0" width="60" height="30" uuid="40a3a0fb-9589-4adf-86ee-6b6bfaebaf5f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TIEMPO MAX]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="120" height="30" uuid="5644ef15-2d0b-4815-9549-3ca09a93a09c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre_usuario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###.###;(#,###.###-)">
+				<reportElement x="120" y="0" width="30" height="30" uuid="5df6e448-65f1-4f4e-9ecd-4e66cdf3a031"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{numero_llamadas}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###.###;(#,###.###-)">
+				<reportElement x="150" y="0" width="60" height="30" uuid="d8120a8d-ce1e-49f7-af12-1b02c2396bb1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{duracion_llamada}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###.###;(#,###.###-)">
+				<reportElement x="210" y="0" width="60" height="30" uuid="0f4dc51b-8c52-42ec-934e-b316f62fe6f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{promedio_llamada}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###.###;(#,###.###-)">
+				<reportElement x="270" y="0" width="60" height="30" uuid="b70a9564-d716-4bdd-b8d7-4e4f1bbff6b7">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tiempo_en_pausa_por_capacitacion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###.###;(#,###.###-)">
+				<reportElement x="330" y="0" width="60" height="30" uuid="020bf306-613c-4f49-a285-88779eafe690"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tiempo_en_pausa_por_admin}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###.###;(#,###.###-)">
+				<reportElement x="390" y="0" width="60" height="30" uuid="261672ad-d608-4147-b2da-01df1f93bc6c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tiempo_en_pausa_por_sanitario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###.###;(#,###.###-)">
+				<reportElement x="450" y="0" width="60" height="30" uuid="eea6433a-6ea8-4c32-a220-84626ee1bebf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tiempo_en_pausa_por_comida}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###.###;(#,###.###-)">
+				<reportElement x="510" y="0" width="60" height="30" uuid="b629fa39-895b-4695-9173-cff10c1d668d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tiempo_maximo_llamada}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="180" y="24" width="100" height="30" uuid="f320fa0c-98c9-44ab-8a6f-4caaf83894dc"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="280" y="24" width="100" height="30" uuid="2ab77ef6-5246-4cb8-90b9-a5a42c4a9677"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

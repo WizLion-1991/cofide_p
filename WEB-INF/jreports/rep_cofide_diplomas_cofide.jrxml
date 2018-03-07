@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
+<!-- 2016-02-08T11:03:41 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_Letter_Landscape" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="625121df-8af7-4e41-9cc6-3e6aca37c44d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="COFIDE"/>
+	<queryString>
+		<![CDATA[SELECT 
+    ccu.CC_INSTRUCTOR,
+    ccu.CC_NOMBRE_CURSO,
+    ccu.CC_DURACION_HRS,
+    ccu.CC_FECHA_FINAL,
+    CONCAT(cco.CCO_TITULO,' ',
+            cco.CCO_APMATERNO,' ',
+            cco.CCO_APPATERNO) AS participante 
+FROM
+    cofide_cursos AS ccu
+        INNER JOIN
+    cofide_contactos AS cco ON ccu.cc_curso_id = 1]]>
+	</queryString>
+	<field name="CC_INSTRUCTOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CC_NOMBRE_CURSO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CC_DURACION_HRS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CC_FECHA_FINAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="participante" class="java.lang.String"/>
+	<pageHeader>
+		<band height="166"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="50"/>
+	</columnHeader>
+	<detail>
+		<band height="220" splitType="Stretch">
+			<textField>
+				<reportElement x="180" y="1" width="400" height="30" uuid="9e1ceb9c-ca0c-4366-b3d5-fa4b0e68cd96"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{participante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="31" width="400" height="30" uuid="a1263298-7f4a-430c-8167-f060437759aa"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CC_NOMBRE_CURSO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="330" y="61" width="40" height="30" uuid="ff964cbb-5fa8-44f5-a625-24bd7022501c"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CC_DURACION_HRS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="370" y="61" width="209" height="30" uuid="b96a6e52-9d7c-4057-bb66-926556edf8b0"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[horas]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="60">
+			<textField pattern="MMMM d, yyyy">
+				<reportElement x="560" y="0" width="192" height="30" uuid="6c1bd29e-3e7a-4aa3-85fd-491a75db2e35"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{CC_FECHA_FINAL})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="30" width="271" height="30" uuid="ff86da6c-55cf-4067-8fff-f526ca805f3f"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CC_INSTRUCTOR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="50"/>
+	</pageFooter>
+</jasperReport>

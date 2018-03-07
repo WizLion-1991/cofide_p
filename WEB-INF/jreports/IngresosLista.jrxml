@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="71a4deea-f8f1-443d-9bf0-f54fd73fb995">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="Cliente" class="java.lang.String"/>
+	<parameter name="FechaInicial" class="java.lang.String"/>
+	<parameter name="FechaFinal" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT  c.EMP_RAZONSOCIAL, a.CT_RAZONSOCIAL, a.CT_UPLINE, a.CT_FECHAREG, a.CT_ID,a.CT_NOTAS  FROM vta_cliente a, vta_empresas c 
+WHERE c.EMP_ID = a.EMP_ID AND a.CT_ARMADONUM>=(SELECT CT_ARMADOINI from vta_cliente where CT_ID= $P{Cliente} )
+ and a.CT_ARMADONUM<=(SELECT CT_ARMADOFIN from vta_cliente where CT_ID= $P{Cliente} ) AND a.CT_FECHAREG >= $P{FechaInicial} AND a.CT_FECHAREG <= $P{FechaFinal}]]>
+	</queryString>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="CT_UPLINE" class="java.lang.Integer"/>
+	<field name="CT_FECHAREG" class="java.lang.String"/>
+	<field name="CT_ID" class="java.lang.Long"/>
+	<field name="CT_NOTAS" class="java.lang.String"/>
+	<background>
+		<band height="575" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f41604de-70b8-4050-bdaf-9d1f3bb1df3a" style="SubTitle" x="92" y="67" width="256" height="37" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Ingresos: Por Fecha de Ingreso]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e8868b54-d4cb-497f-8a23-7df60b39af4b" style="Detail" x="311" y="20" width="173" height="28"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="613e4afc-927a-49a9-bce2-ef2734bec209" x="491" y="67" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FechaInicial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fbcc6f9b-1bee-4956-8f4d-d918a41b525a" x="491" y="84" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FechaFinal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9441c75a-eff2-4e11-89e9-f0e05254d6c6" x="418" y="67" width="74" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Facha Inicial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b88e0d69-5cac-4278-9859-c4da10d63d1a" x="424" y="84" width="62" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha Final:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="21e5ab7c-af6e-4dfa-a719-1f5edbbf3a71" mode="Opaque" x="83" y="5" width="602" height="20" backcolor="#666666"/>
+				<staticText>
+					<reportElement uuid="780f3e90-8596-4866-894c-693876eff284" style="Column header" x="71" y="0" width="228" height="15"/>
+					<textElement/>
+					<text><![CDATA[Nombre]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="92df3c68-2644-4d97-8c0a-74f54ee24a5c" style="Column header" x="298" y="0" width="75" height="15"/>
+					<textElement/>
+					<text><![CDATA[Upline]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="52c79535-542f-4362-b8b6-b2465755d848" style="Column header" x="374" y="0" width="112" height="15"/>
+					<textElement/>
+					<text><![CDATA[Fecha de Registro]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="669520b4-edbb-4701-b9d3-add040f21d3d" style="Column header" x="0" y="0" width="72" height="15"/>
+					<textElement/>
+					<text><![CDATA[Clave]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="88092158-e075-4dd1-b121-68f636f0809f" style="Column header" x="487" y="0" width="115" height="15"/>
+					<textElement/>
+					<text><![CDATA[Notas]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement uuid="e07d5c4e-33c2-41c5-9a7d-d8c1705c4d09" x="23" y="1" width="662" height="15"/>
+				<textField>
+					<reportElement uuid="7b6e3321-f9db-4845-bc50-c6b2a46e9784" style="Detail" x="131" y="0" width="228" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="6945f5b0-06a7-4ade-aa70-3bbf01c3d69c" style="Detail" x="360" y="0" width="74" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{CT_UPLINE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0193bc3e-226f-4299-962c-f3c5f5d6b1f2" style="Detail" x="455" y="0" width="48" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{CT_FECHAREG}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="f5fa862c-4c5e-4ff3-9202-bcdcd9db9564" style="Detail" x="553" y="0" width="107" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{CT_NOTAS}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0f27a5c3-4cf7-4b02-9802-20f95d76d0e0" style="Detail" x="59" y="0" width="72" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{CT_ID}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement uuid="741d6fa1-c9b7-4042-a1e3-94a81e182060" positionType="FixRelativeToBottom" x="83" y="16" width="602" height="1" forecolor="#666666"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="3b380bde-cc19-4471-bdb1-402ef602dfcc" style="Column header" x="618" y="0" width="131" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ddf74fc9-5218-4f90-b58c-36819d5bbd5b" x="361" y="0" width="57" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Ingresos]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement uuid="bd21dd66-2b13-4c1e-b756-bd4b343ee970" style="Column header" x="41" y="0" width="56" height="20" forecolor="#000000"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="794f8f9a-969a-4dee-b0d2-339e690190f4" x="0" y="0" width="52" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

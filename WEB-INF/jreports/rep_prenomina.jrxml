@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nomina1" language="groovy" pageWidth="6480" pageHeight="600" orientation="Landscape" columnWidth="6440" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2492ec62-2e26-4428-9847-f81509ea7ee5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="registro_patronal" class="java.lang.String"/>
+	<parameter name="rfc" class="java.lang.String"/>
+	<parameter name="empresa" class="java.lang.String"/>
+	<parameter name="intMesIni" class="java.lang.String"/>
+	<parameter name="intAnioIni" class="java.lang.String"/>
+	<parameter name="intDiaIni" class="java.lang.String"/>
+	<parameter name="intMesFin" class="java.lang.String"/>
+	<parameter name="intAnioFin" class="java.lang.String"/>
+	<parameter name="intDiaFin" class="java.lang.String"/>
+	<parameter name="intNumNomina" class="java.lang.String"/>
+	<parameter name="intDiasNom" class="java.lang.String"/>
+	<field name="consNom" class="java.lang.String"/>
+	<field name="clave" class="java.lang.String"/>
+	<field name="centroDeCostos" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="sdi" class="java.lang.Double"/>
+	<field name="sdn" class="java.lang.Double"/>
+	<field name="faltaJustificada" class="java.lang.Integer"/>
+	<field name="faltaInjustificada" class="java.lang.Integer"/>
+	<field name="incapacidad" class="java.lang.String"/>
+	<field name="diasTrabajados" class="java.lang.Integer"/>
+	<field name="sueldo" class="java.lang.Double"/>
+	<field name="retroActivo" class="java.lang.Double"/>
+	<field name="pensionAlimenticia" class="java.lang.Double"/>
+	<field name="bonoyGratificaciones" class="java.lang.Double"/>
+	<field name="diaFestivo" class="java.lang.Double"/>
+	<field name="bonoDeCumplimiento" class="java.lang.Double"/>
+	<field name="importeBone" class="java.lang.Double"/>
+	<field name="retardos" class="java.lang.Double"/>
+	<field name="domingosTrabajados" class="java.lang.Integer"/>
+	<field name="primaDominical" class="java.lang.Double"/>
+	<field name="aportacionFondoDeAhorro" class="java.lang.Double"/>
+	<field name="aportacionFondoDeAhorroEmpresa" class="java.lang.Double"/>
+	<field name="totalPercepciones" class="java.lang.Double"/>
+	<field name="totalDeducciones" class="java.lang.Double"/>
+	<field name="gravado" class="java.lang.Double"/>
+	<field name="exento" class="java.lang.Double"/>
+	<field name="subsidioAlEmpleo" class="java.lang.Double"/>
+	<field name="isrRetenido" class="java.lang.Double"/>
+	<field name="imss" class="java.lang.Double"/>
+	<field name="retencionInfonavit" class="java.lang.Double"/>
+	<field name="otrosDescuentos" class="java.lang.Double"/>
+	<field name="otrosAnticipos" class="java.lang.Double"/>
+	<field name="aguinaldo" class="java.lang.Double"/>
+	<field name="primaVacacional" class="java.lang.Double"/>
+	<field name="diasDeDescansoTrabajados" class="java.lang.Integer"/>
+	<field name="netoApagar" class="java.lang.Double"/>
+	<field name="noDeRecibido" class="java.lang.String"/>
+	<field name="diaFestivoGravado" class="java.lang.Double"/>
+	<field name="diaFestivoExento" class="java.lang.Double"/>
+	<field name="primaDominicalExento" class="java.lang.Double"/>
+	<field name="primaDomicicalGravado" class="java.lang.Double"/>
+	<field name="aguinaldoGravado" class="java.lang.Double"/>
+	<field name="aguinaldoExento" class="java.lang.Double"/>
+	<field name="primaVacacionalGravado" class="java.lang.Double"/>
+	<field name="primaVacacionalExento" class="java.lang.Double"/>
+	<field name="diasDeDescansoGravado" class="java.lang.Double"/>
+	<field name="diasDeDescansoExento" class="java.lang.Double"/>
+	<variable name="sdi_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{sdi}]]></variableExpression>
+	</variable>
+	<variable name="sdi_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sdi}]]></variableExpression>
+	</variable>
+	<variable name="sdn_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sdn}]]></variableExpression>
+	</variable>
+	<variable name="faltaJustificada_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{faltaJustificada}]]></variableExpression>
+	</variable>
+	<variable name="faltaJustificada_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{faltaJustificada}]]></variableExpression>
+	</variable>
+	<variable name="faltaInjustificada_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{faltaInjustificada}]]></variableExpression>
+	</variable>
+	<variable name="incapacidad_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{incapacidad}]]></variableExpression>
+	</variable>
+	<variable name="incapacidad_2" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{incapacidad}]]></variableExpression>
+	</variable>
+	<variable name="diasTrabajados_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{diasTrabajados}]]></variableExpression>
+	</variable>
+	<variable name="sueldo_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sueldo}]]></variableExpression>
+	</variable>
+	<variable name="retroActivo_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{retroActivo}]]></variableExpression>
+	</variable>
+	<variable name="pensionAlimenticia_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{pensionAlimenticia}]]></variableExpression>
+	</variable>
+	<variable name="retroActivo_2" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{retroActivo}]]></variableExpression>
+	</variable>
+	<variable name="faltaJustificada_3" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{faltaJustificada}]]></variableExpression>
+	</variable>
+	<variable name="faltaInjustificada_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{faltaInjustificada}]]></variableExpression>
+	</variable>
+	<variable name="incapacidad_3" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{incapacidad}]]></variableExpression>
+	</variable>
+	<variable name="diasTrabajados_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{diasTrabajados}]]></variableExpression>
+	</variable>
+	<variable name="sueldo_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sueldo}]]></variableExpression>
+	</variable>
+	<variable name="retroActivo_3" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{retroActivo}]]></variableExpression>
+	</variable>
+	<variable name="pensionAlimenticia_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{pensionAlimenticia}]]></variableExpression>
+	</variable>
+	<variable name="bonoyGratificaciones_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{bonoyGratificaciones}]]></variableExpression>
+	</variable>
+	<variable name="diaFestivo_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{diaFestivo}]]></variableExpression>
+	</variable>
+	<variable name="bonoDeCumplimiento_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{bonoDeCumplimiento}]]></variableExpression>
+	</variable>
+	<variable name="importeBone_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{importeBone}]]></variableExpression>
+	</variable>
+	<variable name="retardos_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{retardos}]]></variableExpression>
+	</variable>
+	<variable name="domingosTrabajados_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{domingosTrabajados}]]></variableExpression>
+	</variable>
+	<variable name="primaDominical_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{primaDominical}]]></variableExpression>
+	</variable>
+	<variable name="aportacionFondoDeAhorro_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{aportacionFondoDeAhorro}]]></variableExpression>
+	</variable>
+	<variable name="aportacionFondoDeAhorroEmpresa_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{aportacionFondoDeAhorroEmpresa}]]></variableExpression>
+	</variable>
+	<variable name="totalPercepciones_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalPercepciones}]]></variableExpression>
+	</variable>
+	<variable name="totalDeducciones_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalDeducciones}]]></variableExpression>
+	</variable>
+	<variable name="gravado_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{gravado}]]></variableExpression>
+	</variable>
+	<variable name="exento_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{exento}]]></variableExpression>
+	</variable>
+	<variable name="subsidioAlEmpleo_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{subsidioAlEmpleo}]]></variableExpression>
+	</variable>
+	<variable name="isrRetenido_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{isrRetenido}]]></variableExpression>
+	</variable>
+	<variable name="imss_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{imss}]]></variableExpression>
+	</variable>
+	<variable name="retencionInfonavit_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{retencionInfonavit}]]></variableExpression>
+	</variable>
+	<variable name="otrosDescuentos_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{otrosDescuentos}]]></variableExpression>
+	</variable>
+	<variable name="otrosAnticipos_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{otrosAnticipos}]]></variableExpression>
+	</variable>
+	<variable name="aguinaldo_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{aguinaldo}]]></variableExpression>
+	</variable>
+	<variable name="primaVacacional_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{primaVacacional}]]></variableExpression>
+	</variable>
+	<variable name="diasDeDescansoTrabajados_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{diasDeDescansoTrabajados}]]></variableExpression>
+	</variable>
+	<variable name="netoApagar_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{netoApagar}]]></variableExpression>
+	</variable>
+	<variable name="diaFestivoGravado_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{diaFestivoGravado}]]></variableExpression>
+	</variable>
+	<variable name="diaFestivoExento_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{diaFestivoExento}]]></variableExpression>
+	</variable>
+	<variable name="aguinaldoGravado_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{aguinaldoGravado}]]></variableExpression>
+	</variable>
+	<variable name="aguinaldoGravado_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{aguinaldoGravado}]]></variableExpression>
+	</variable>
+	<variable name="primaDominicalExento_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{primaDominicalExento}]]></variableExpression>
+	</variable>
+	<variable name="aguinaldoGravado_3" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{aguinaldoGravado}]]></variableExpression>
+	</variable>
+	<variable name="aguinaldoExento_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{aguinaldoExento}]]></variableExpression>
+	</variable>
+	<variable name="primaVacacionalGravado_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{primaVacacionalGravado}]]></variableExpression>
+	</variable>
+	<variable name="primaVacacionalExento_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{primaVacacionalExento}]]></variableExpression>
+	</variable>
+	<variable name="diasDeDescansoGravado_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{diasDeDescansoGravado}]]></variableExpression>
+	</variable>
+	<variable name="diasDeDescansoExento_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{diasDeDescansoExento}]]></variableExpression>
+	</variable>
+	<variable name="primaDomicicalGravado_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{primaDomicicalGravado}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="135" splitType="Stretch">
+			<textField>
+				<reportElement x="1029" y="55" width="439" height="20" uuid="782b2478-2b96-4cdb-829d-e3e4ebdbc581"/>
+				<textFieldExpression><![CDATA["RFC : " + $P{rfc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1029" y="35" width="439" height="20" uuid="973f2c9e-fbbc-4246-a7f7-7001a03cd437"/>
+				<textFieldExpression><![CDATA["Registro patronal: " + $P{registro_patronal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="35" width="692" height="20" uuid="1c6b95bc-ac8a-4bfe-b8ff-bcb7a3a306ef"/>
+				<textFieldExpression><![CDATA["Periodo de Nómina: Del " + $P{intDiaIni} +
+" de " + $P{intMesIni} +
+" del " + $P{intAnioIni} +
+" al " + $P{intDiaFin} +
+" de " + $P{intMesFin} +
+" del " + $P{intAnioFin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="75" width="358" height="20" uuid="e5c5deb5-b7fd-404f-8003-b8df2dcfcc0b"/>
+				<textFieldExpression><![CDATA["Días de la Nómina : "  + $P{intDiasNom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="115" width="358" height="20" uuid="2879f26e-94da-4f7b-9acd-850389ef3609"/>
+				<textFieldExpression><![CDATA["Nómina : " + $P{intNumNomina}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="358" y="0" width="100" height="20" uuid="f916e1e5-c6a9-4902-b4d2-f5f48a35f52f"/>
+				<text><![CDATA[NOMBRE ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="458" y="0" width="100" height="20" uuid="86366423-5f17-44b5-aa08-2f13f0c640b5"/>
+				<text><![CDATA[SDI ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="558" y="0" width="100" height="20" uuid="f7ada02d-87dc-41a7-bc75-f4e51e8a4f4e"/>
+				<text><![CDATA[SDN ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="929" y="0" width="100" height="20" uuid="13df614a-7ec6-4d35-a7ed-026405bd42a6"/>
+				<text><![CDATA[INCAPACIDAD ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1129" y="0" width="100" height="20" uuid="f3bdbfa5-6ad2-419b-9227-7e9da81cef8e"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[SUELDO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2058" y="0" width="100" height="20" uuid="2d834d68-9bb6-4f2d-91b3-4f6ba8d1e9b6"/>
+				<text><![CDATA[RETARDOS QL 4 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3202" y="0" width="100" height="20" uuid="ee6e123a-c931-4f2d-af7d-59cdf04cbaed"/>
+				<text><![CDATA[GRAVADO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3302" y="0" width="100" height="20" uuid="df44f2dc-8af8-405e-a921-a90c0105d38f"/>
+				<text><![CDATA[EXENTO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3635" y="0" width="100" height="20" uuid="1feded52-9f03-437f-9f63-870e7c01380b"/>
+				<text><![CDATA[IMSS ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4149" y="0" width="100" height="20" uuid="dada7ad2-a63f-46e6-b3a2-74cbeb7f94be"/>
+				<text><![CDATA[AGUINALDO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="8b42ebd7-5125-40f8-9274-afe8fb52b386"/>
+				<text><![CDATA[CONS NOM ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20" uuid="5169ce0e-f112-4ea1-85a6-9ff8afbb368f"/>
+				<text><![CDATA[CLAVE ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="0" width="156" height="20" uuid="67d2985e-87dc-4981-b639-ebf8c762572e"/>
+				<text><![CDATA[CENTRO DE COSTOS ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="658" y="0" width="134" height="20" uuid="371e7f2f-2366-4157-8bf7-87a1f4362673"/>
+				<text><![CDATA[FALTA JUSTIFICADA
+	 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="792" y="0" width="137" height="20" uuid="639b536e-8ce8-41c8-831c-89f4a3a9a782"/>
+				<text><![CDATA[FALTA INJUSTIFICADA ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1029" y="0" width="100" height="20" uuid="0fd443c4-bba1-4c27-ba3b-7fab13dabb2c"/>
+				<text><![CDATA[DÍAS TRABAJADOS ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1229" y="0" width="100" height="20" uuid="ed96a774-a2ce-4f34-baec-58aae843ef2e"/>
+				<text><![CDATA[RETROACTIVO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1329" y="0" width="139" height="20" uuid="22aff962-a7f6-4eed-80ec-fd18287408cc"/>
+				<text><![CDATA[PENSION ALIMENTICIA ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1641" y="0" width="100" height="20" uuid="6752a071-f054-46e8-943f-d3eb39d888b7"/>
+				<text><![CDATA[DÍA FESTIVO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1741" y="0" width="143" height="20" uuid="1feb0075-a87b-4929-afe4-a5d9b40ebe41"/>
+				<text><![CDATA[BONO DE CUMPLIMIENTO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1884" y="0" width="174" height="20" uuid="c7052a57-f781-46b4-9f1d-99afb507b757"/>
+				<text><![CDATA[IMPORTE BONO PUNT Y ASIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2158" y="0" width="155" height="20" uuid="95bf673f-4530-4661-b692-4445a9aaa214"/>
+				<text><![CDATA[DOMINGOS TRABAJADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2313" y="0" width="109" height="20" uuid="32e92a51-be9a-4cde-a44d-a5f0b9f97452"/>
+				<text><![CDATA[PRIMA DOMINICAL ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2422" y="0" width="247" height="20" uuid="02a47a70-10aa-4c1d-82b4-43f37dd745a5"/>
+				<text><![CDATA[APORTACION FONDO DE AHORRO TRABAJADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2669" y="0" width="242" height="20" uuid="ba80046a-5f77-4490-9ace-c42b00930080"/>
+				<text><![CDATA[APORTACION FONDO DE AHORRO EMPRESA ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2911" y="0" width="128" height="20" uuid="20787cd7-f4ca-425b-8767-38820c05a919"/>
+				<text><![CDATA[TOTAL PERCEPCIONES ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3039" y="0" width="163" height="20" uuid="32dd8027-4bda-4b83-bbee-20583a0453c2"/>
+				<text><![CDATA[TOTAL DEDUCCIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3535" y="0" width="100" height="20" uuid="a71148ff-caf2-4adf-b321-9ba44580e0fc"/>
+				<text><![CDATA[ISR RETENIDO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3735" y="0" width="150" height="20" uuid="47024bdf-ecc3-41f7-a6cf-c37f61dd1986"/>
+				<text><![CDATA[RETENCION INFONAVIT
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3885" y="0" width="151" height="20" uuid="d51b6d0c-ae54-41d1-88c6-ffc2d4f26810"/>
+				<text><![CDATA[OTROS DESCUENTOS ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4036" y="0" width="113" height="20" uuid="d4ca32d8-eede-4997-b3c4-19c82ab46760"/>
+				<text><![CDATA[OTROS ANTICIPOS ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4249" y="0" width="120" height="20" uuid="b8264430-440f-4606-8941-b1a8ad9f15ce"/>
+				<text><![CDATA[PRIMA VACACIONAL ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4369" y="0" width="200" height="20" uuid="db893c9b-62c7-4f8f-bb0b-a2ac075e4f2e"/>
+				<text><![CDATA[DIAS DE DESCANSO TRABAJADOS
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4569" y="0" width="100" height="20" uuid="0169fb32-26b7-4fb8-9be4-fbea4d6b9e98"/>
+				<text><![CDATA[NETO A PAGAR ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4669" y="0" width="100" height="20" uuid="e461599b-58f8-40af-a854-f4d00dd78e85"/>
+				<text><![CDATA[NO DE RECIBO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4769" y="0" width="156" height="20" uuid="72fb8488-7d77-4f28-a76e-7cbdc49bd690"/>
+				<text><![CDATA[DÍA FESTIVO GRAVADO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5222" y="0" width="152" height="20" uuid="09ba95e4-60f6-4e4c-86b3-88b96d2e13f9"/>
+				<text><![CDATA[PRIMA DOMINICAL EXENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5515" y="0" width="119" height="20" uuid="987c8a32-73c9-44cd-91cd-b53ab220fad4"/>
+				<text><![CDATA[AGUINALDO EXENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5805" y="0" width="163" height="20" uuid="71ee97a1-0bfa-4eed-ab95-dfa8485bdcf2"/>
+				<text><![CDATA[PRIMA VACACIONAL EXENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5968" y="0" width="185" height="20" uuid="67b4acd1-8510-490b-b1d8-a6af09574dae"/>
+				<text><![CDATA[DIAS DE DESCANSO TRABAJADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6153" y="0" width="242" height="20" uuid="28d68064-515e-445d-824e-8b4aa6535247"/>
+				<text><![CDATA[DIAS DE DESCANSO TRABAJADOS EXENTO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5061" y="0" width="161" height="20" uuid="e92d3f18-b4f5-488f-bab2-d895754d0f2b"/>
+				<text><![CDATA[PRIMA DOMINICAL GRAVADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4925" y="0" width="136" height="20" uuid="f9e8fd9c-1576-4e5b-951e-6bc5a15ba84e"/>
+				<text><![CDATA[DÍA FESTIVO EXENTO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5374" y="0" width="141" height="20" uuid="2d65225e-75cb-4796-b098-f6612d0fdcd5"/>
+				<text><![CDATA[AGUINALDO GRAVADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1468" y="0" width="173" height="20" uuid="347c5db5-92bf-4843-a9c1-389897d7c9f2"/>
+				<text><![CDATA[BONO Y GRATIFICACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3402" y="0" width="133" height="20" uuid="bf9258d2-db85-4b71-b080-1c05259fbf32"/>
+				<text><![CDATA[SUBSIDIO AL EMPLEO
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5634" y="0" width="171" height="20" uuid="cb609290-8ffa-48a8-ba5c-9c7d5adb2fe8"/>
+				<text><![CDATA[PRIMA VACACIONAL GRAVADO ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField pattern="#,##0.00">
+				<reportElement x="358" y="0" width="100" height="20" uuid="265d26aa-0ce6-453d-b08b-8866421075aa"/>
+				<textFieldExpression><![CDATA[$F{nombre}.equals(null)
+? "0" : $F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="458" y="0" width="100" height="20" uuid="3d40da2e-bcfc-457b-a539-bdad029cfbd6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sdi}.equals(null)
+? "0" : $F{sdi}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="558" y="0" width="100" height="20" uuid="e6483d25-5552-4c6d-bf93-cb55457b8a22"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sdn}.equals(null)
+? "0" : $F{sdn}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="929" y="0" width="100" height="20" uuid="9299e78e-7856-4779-abdb-8d854b8af0d1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{incapacidad}.equals(null)
+? "0" : $F{incapacidad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1129" y="0" width="100" height="20" uuid="1171ccde-ee17-4117-9f5b-fd136d1a6342"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sueldo}.equals(null)
+? "0" : $F{sueldo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2058" y="0" width="100" height="20" uuid="febc1832-f05e-4fad-b88c-7270f70c6019"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{retardos}.equals(null)
+? "0" : $F{retardos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3202" y="0" width="100" height="20" uuid="8920eca0-020d-4d35-9fd4-7026afe64d1d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{gravado}.equals(null)
+? "0" : $F{gravado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3302" y="0" width="100" height="20" uuid="03b295ff-d25d-4813-94f2-07dc17139373"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{exento}.equals(null)
+? "0" : $F{exento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4149" y="0" width="100" height="20" uuid="f37a8af4-14df-42d7-a732-c2511ddab988"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{aguinaldo}.equals(null)
+? "0" : $F{aguinaldo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="4b354f50-3ce4-4c48-b4a9-ba1ad8c6c045"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{consNom}.equals(null)
+? "0" : $F{consNom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="fdce19a2-15d8-42bb-ae73-e00aa4068ff6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{clave}.equals(null)
+? "0" : $F{clave}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="158" height="20" uuid="9974bcd7-85f5-4138-a087-c5167c5e1c16"/>
+				<textFieldExpression><![CDATA[$F{centroDeCostos}.equals(null)
+? "0" :$F{centroDeCostos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="658" y="0" width="134" height="20" uuid="ee4b027d-4782-4090-a95a-24b947b331ce"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{faltaJustificada}.equals(null)
+? "0" : $F{faltaJustificada}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="792" y="0" width="137" height="20" uuid="dce1a9fe-1a9d-4165-ae74-ad05ebcd96ac"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{faltaInjustificada}.equals(null)
+? "0" : $F{faltaInjustificada}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1029" y="0" width="100" height="20" uuid="b9c3e07c-7faf-4e6b-aaa3-3b494088f6e2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{diasTrabajados}.equals(null)
+? "0" : $F{diasTrabajados}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1329" y="0" width="139" height="20" uuid="36a3024f-238d-4ef9-9630-9fbb7fae8d6a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{pensionAlimenticia}.equals(null)
+? "0" : $F{pensionAlimenticia}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1229" y="0" width="100" height="20" uuid="f4abf19a-608e-4c54-b1fe-1a29920583a8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{retroActivo}.equals(null)
+? "0" : $F{retroActivo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1641" y="0" width="100" height="20" uuid="f5b6632a-4fa6-4eab-8f26-d6e8224b5a43"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{diaFestivo}.equals(null)
+? "0" : $F{diaFestivo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1741" y="0" width="143" height="20" uuid="3b69c51e-0281-4258-a95d-75a436915c42"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{bonoDeCumplimiento}.equals(null)
+? "0" : $F{bonoDeCumplimiento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1884" y="0" width="174" height="20" uuid="f4cc7814-595e-43b7-bfba-f519f385bf7d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{importeBone}.equals(null)
+? "0" : $F{importeBone}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2158" y="0" width="155" height="20" uuid="cd8a63f5-43c3-4353-8088-9ede0ad6f478"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{domingosTrabajados}.equals(null)
+? "0" : $F{domingosTrabajados}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2313" y="0" width="109" height="20" uuid="2202b292-99ac-4a60-b129-787efebab1f3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{primaDominical}.equals(null)
+? "0" : $F{primaDominical}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2422" y="0" width="247" height="20" uuid="2e73857d-c832-462e-8211-cab721c41d1a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{aportacionFondoDeAhorro}.equals(null)
+? "0" : $F{aportacionFondoDeAhorro}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2669" y="0" width="242" height="20" uuid="7e020f58-8549-43d3-87e2-e86ed100f3da"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{aportacionFondoDeAhorroEmpresa}.equals(null)
+? "0" : $F{aportacionFondoDeAhorroEmpresa}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2911" y="0" width="128" height="20" uuid="e56e0c19-79bd-4f7f-892e-5ab361523ef6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{totalPercepciones}.equals(null)
+? "0" : $F{totalPercepciones}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3039" y="0" width="163" height="20" uuid="442b751a-7830-420a-8e33-36b0bd692816"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{totalDeducciones}.equals(null)
+? "0" : $F{totalDeducciones}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3535" y="0" width="100" height="20" uuid="026e7663-b137-4bfb-9477-3547c0946e19"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{isrRetenido}.equals(null)
+? "0" : $F{isrRetenido}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3735" y="0" width="150" height="20" uuid="9529e3ca-ebae-47e5-8301-902c4f92d665"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{retencionInfonavit}.equals(null)
+? "0" : $F{retencionInfonavit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3635" y="0" width="100" height="20" uuid="69a83088-01c7-4a03-ac5b-3d2e69519afb"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{imss}.equals(null)
+? "0" : $F{imss}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3885" y="0" width="151" height="20" uuid="66cf808f-c2fa-4219-b926-bcc42a9726b8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{otrosDescuentos}.equals(null)
+? "0" : $F{otrosDescuentos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4036" y="0" width="113" height="20" uuid="5a944d3e-f7a5-4f03-bfee-8387464f98f4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{otrosAnticipos}.equals(null)
+? "0" : $F{otrosAnticipos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4249" y="0" width="120" height="20" uuid="b360cdf8-7645-4578-acea-a12aac99186f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{primaVacacional}.equals(null)
+? "0" : $F{primaVacacional}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4369" y="0" width="200" height="20" uuid="fdf73e07-5cdc-42b4-a09c-bba3e7ee1efd"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{diasDeDescansoTrabajados}.equals(null)
+? "0" : $F{diasDeDescansoTrabajados}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4569" y="0" width="100" height="20" uuid="88408b60-5b8b-49b9-81a5-0bc56ff96571"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{netoApagar}.equals(null)
+? "0" : $F{netoApagar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4669" y="0" width="100" height="20" uuid="d374d40d-6bc0-4743-8b26-762483725e53"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{noDeRecibido}.equals(null)
+? "0" : $F{noDeRecibido}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4769" y="0" width="156" height="20" uuid="1416d0f3-503f-4a70-84c3-284cce1d71db"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{diaFestivoGravado}.equals(null)
+? "0" : $F{diaFestivoGravado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5222" y="0" width="152" height="20" uuid="36234271-642b-4cb6-92a1-0956e8749cda"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{primaDominicalExento}.equals(null)
+? "0" : $F{primaDominicalExento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5515" y="0" width="119" height="20" uuid="884c2e50-b16c-44f7-8f9b-be57f0d9d522"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{aguinaldoExento}.equals(null)
+? "0" : $F{aguinaldoExento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5805" y="0" width="163" height="20" uuid="da7c239a-e0a7-4f05-ac79-5c33009fa3d7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{primaVacacionalExento}.equals(null)
+? "0" : $F{primaVacacionalExento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5968" y="0" width="185" height="20" uuid="7e4fa278-de6e-418f-9f1e-04364803c052"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{diasDeDescansoGravado}.equals(null)
+? "0" : $F{diasDeDescansoGravado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="6153" y="0" width="242" height="20" uuid="b2285430-a39d-47f5-8980-903557e79716"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{diasDeDescansoExento}.equals(null)
+? "0" : $F{diasDeDescansoExento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5061" y="0" width="161" height="20" uuid="4a936f33-d2c6-4c89-bb2a-2ac15df6bedb"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{primaDomicicalGravado}.equals(null)
+? "0" : $F{primaDomicicalGravado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4925" y="0" width="136" height="20" uuid="c198d1c4-dc76-41e7-bd47-7013b9e8d96b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{diaFestivoExento}.equals(null)
+? "0" : $F{diaFestivoExento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5374" y="0" width="141" height="20" uuid="3508702f-21fa-4444-b705-08cf6dce202e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{aguinaldoGravado}.equals(null)
+? "0" : $F{aguinaldoGravado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1468" y="0" width="173" height="20" uuid="5de34773-fae5-45a9-9f57-85adc3b525c5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{bonoyGratificaciones}.equals(null)
+? "0" : $F{bonoyGratificaciones}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3402" y="0" width="133" height="20" uuid="eced7865-1484-4528-aa72-9b30d908afd2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{subsidioAlEmpleo}.equals(null)
+? "0" : $F{subsidioAlEmpleo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5634" y="0" width="171" height="20" uuid="d187654c-479f-416f-b263-16642f3950c3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{primaVacacionalGravado}.equals(null)
+? "0" : $F{primaVacacionalGravado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="52" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="358" y="0" width="100" height="20" uuid="1831a038-7b56-41de-a256-210aaa0dab94"/>
+				<textElement markup="none"/>
+				<text><![CDATA[SUMAS]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="458" y="0" width="100" height="20" uuid="26311e6b-4ab3-4230-87a5-df099183940f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{sdi_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="558" y="0" width="100" height="20" uuid="bf555c52-51d7-4b57-b8db-6877bcfab172"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{sdn_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="658" y="0" width="134" height="20" uuid="d1a421f3-cf1c-492c-9032-474898d54ba9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{faltaJustificada_3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="792" y="0" width="137" height="20" uuid="240c624f-41af-4453-b84e-fd083fce0025"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{faltaInjustificada_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="929" y="0" width="100" height="20" uuid="ff918e8a-b872-4b09-aa25-8c0b8fa64201"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{incapacidad_3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1029" y="0" width="100" height="20" uuid="61f52e6a-f935-45ee-9565-03dbf3893885"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{diasTrabajados_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1129" y="0" width="100" height="20" uuid="5ae9bfab-9dcc-42bb-a544-6c1c0f498135"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{sueldo_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1229" y="0" width="100" height="20" uuid="4603ae63-24c9-4afb-b490-b64912142082"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{retroActivo_3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1329" y="0" width="139" height="20" uuid="cd280a88-87b5-4c56-ba09-f26cac7894fa"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{pensionAlimenticia_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1468" y="0" width="173" height="20" uuid="77ab54ea-c4b0-4a33-9644-2c1d9d62009c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{bonoyGratificaciones_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1641" y="0" width="100" height="20" uuid="d4241233-64f0-4e68-b2b5-c22e2c4ce589"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{diaFestivo_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1741" y="0" width="143" height="20" uuid="3797e1c3-715b-4b91-b0c0-228476ebefdd"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{bonoDeCumplimiento_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1884" y="0" width="174" height="20" uuid="2479b575-86b4-48d7-8697-ca8b424ad376"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{importeBone_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2058" y="0" width="100" height="20" uuid="ae6f8285-7eb9-484a-8576-db5b5b2bd94b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{retardos_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2158" y="0" width="155" height="20" uuid="ed96cb31-4a7d-41a8-98bf-db7bebad1e2e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{domingosTrabajados_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2313" y="0" width="109" height="20" uuid="98919e80-89bc-49da-aad6-e5a9c72397c6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{primaDominical_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2422" y="0" width="247" height="20" uuid="d82ec4e5-47d4-418d-a351-c1f02c1ed764"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{aportacionFondoDeAhorro_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2669" y="0" width="242" height="20" uuid="e85aad5d-9178-42e7-a20c-8b1fe242af7d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{aportacionFondoDeAhorroEmpresa_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="2911" y="0" width="128" height="20" uuid="3d385679-1196-4940-b119-1ae77c40b866"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{totalPercepciones_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3039" y="0" width="163" height="20" uuid="7f6587f5-c666-4b8b-80e9-40dde469f11f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{totalDeducciones_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3202" y="0" width="100" height="20" uuid="4abb6630-ebdb-4be3-a10b-307b7a4e5cd9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{gravado_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3302" y="0" width="100" height="20" uuid="057f6070-f37a-40ac-aa3c-6c456e722174"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{exento_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3402" y="0" width="133" height="20" uuid="9bc3034d-4b7a-4f0f-961e-64dfa12c49ee"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{subsidioAlEmpleo_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3535" y="0" width="100" height="20" uuid="859a7e2a-6728-4d00-990e-322b2c1a99ea"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{isrRetenido_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3635" y="0" width="100" height="20" uuid="53977851-9b51-45ee-a93c-29eb4963316b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{imss_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3735" y="0" width="150" height="20" uuid="aa1e9c79-9f43-4d8e-86fb-d3a1cefb3e67"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{retencionInfonavit_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="3885" y="0" width="151" height="20" uuid="01dba2bf-80e0-48b5-9bb3-cb321ed6a51d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{otrosDescuentos_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4036" y="0" width="113" height="20" uuid="bbc2cf2f-fbc8-4a80-8bdd-7c7a8304f97c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{otrosAnticipos_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4149" y="0" width="100" height="20" uuid="a85f6416-dfa0-4736-88dc-0ad414134ac0"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{aguinaldo_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4249" y="0" width="120" height="20" uuid="af28bce7-4817-4bff-985b-23f5afeae8e2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{primaVacacional_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4369" y="0" width="200" height="20" uuid="61633c85-c93f-484e-8865-bc25ac8c1d70"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{diasDeDescansoTrabajados_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4569" y="0" width="100" height="20" uuid="d5f3fa6c-59d0-4a17-9a55-6e3a437c1a33"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{netoApagar_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4769" y="0" width="156" height="20" uuid="9a4ae2d1-5514-4d1a-94aa-8a640f770cbd"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{diaFestivoGravado_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="4925" y="0" width="136" height="20" uuid="f2ebc4c1-5d73-4860-b50a-0946dd49fccc"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{diaFestivoExento_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5222" y="0" width="152" height="20" uuid="d82bfe00-1667-41f6-ab91-4535c537f096"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{primaDominicalExento_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5374" y="0" width="141" height="20" uuid="327fbb08-0c4b-4c26-910c-10351d31f9e1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{aguinaldoGravado_3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5515" y="0" width="119" height="20" uuid="5d2bda60-98e1-44da-ad13-923e0f1a4c3f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{aguinaldoExento_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5634" y="0" width="171" height="20" uuid="6528c11a-5947-465e-8665-95723ed65877"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{primaVacacionalGravado_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5805" y="0" width="163" height="20" uuid="9c319293-f3b9-40f5-879f-1ca7800fb813"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{primaVacacionalExento_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5968" y="0" width="185" height="20" uuid="38e033f8-047f-4cf5-aabc-f25a72f94640"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{diasDeDescansoGravado_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="6153" y="0" width="242" height="20" uuid="739cd50c-3bd9-4b1e-968f-cb6400754344"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{diasDeDescansoExento_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="5061" y="0" width="161" height="20" uuid="89c52362-96fb-43d6-90cf-24c553a28484"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{primaDomicicalGravado_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

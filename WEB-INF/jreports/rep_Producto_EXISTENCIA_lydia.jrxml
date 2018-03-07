@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2015-11-05T10:49:39 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Producto_EXISTENCIA" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="262afaf9-b7c7-4519-a5f5-d8ecf12529ce">
+	<property name="ireport.zoom" value="5.0"/>
+	<property name="ireport.x" value="1391"/>
+	<property name="ireport.y" value="213"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Prods2" uuid="9bb6e901-47aa-4e8f-968e-7afd25e686e9">
+		<parameter name="PR_CODIGO" class="java.lang.String">
+			<defaultValueExpression><![CDATA[1010050]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select PR_CODIGO,PR_DESCRIPCION,PR_EXISTENCIA,(SC_ID) as ID,(EMP_ID) as ID_EMP,(select SC_NOMBRE from vta_sucursal where SC_ID = ID) as SC_NOMBRE,
+(select EMP_RAZONSOCIAL from vta_empresas where EMP_ID = ID_EMP)as EMPRESA from vta_producto where PR_CODIGO = $P{PR_CODIGO}]]>
+		</queryString>
+		<field name="PR_CODIGO" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="PR_DESCRIPCION" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="PR_EXISTENCIA" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="ID" class="java.lang.Long"/>
+		<field name="ID_EMP" class="java.lang.Integer"/>
+		<field name="SC_NOMBRE" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="EMPRESA" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="id_empresa" class="java.lang.String">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[call sp_getProdExistenciaBodegas($P{id_empresa})]]>
+	</queryString>
+	<field name="codigoProd" class="java.lang.String"/>
+	<field name="nombreProd" class="java.lang.String"/>
+	<field name="dblExistencia" class="java.math.BigDecimal"/>
+	<field name="VolumenProd" class="java.lang.String"/>
+	<field name="Empresa" class="java.lang.String"/>
+	<field name="img_Emp" class="java.lang.String"/>
+	<field name="ExistSuc1" class="java.math.BigDecimal"/>
+	<field name="ExistSuc2" class="java.math.BigDecimal"/>
+	<field name="ExistSuc3" class="java.math.BigDecimal"/>
+	<variable name="VolumenProd_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{VolumenProd}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="67" splitType="Stretch">
+			<textField>
+				<reportElement mode="Transparent" x="0" y="47" width="472" height="20" uuid="8b94b822-94c3-4654-810a-da9ad686bddc"/>
+				<textElement verticalAlignment="Top" markup="none">
+					<font isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EMPRESA: " +$F{Empresa}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="100" y="27" width="150" height="20" uuid="438a23ae-9b1d-47af-8d99-f6b97de5cfdb"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="27" width="100" height="20" uuid="1dbd679f-5184-442f-9d5f-1e64ccbfe821"/>
+				<text><![CDATA[Fecha emisión: ]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="472" y="0" width="100" height="67" uuid="492303b8-6b16-4956-88d9-d213c5b2abea"/>
+				<imageExpression><![CDATA[$F{img_Emp}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="0" width="472" height="27" uuid="6929e665-da35-4d06-b8b3-d8db8b30caff"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[REPORTE EXISTENCIA DE PRODUCTOS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="10" splitType="Stretch">
+			<staticText>
+				<reportElement x="60" y="0" width="140" height="10" uuid="e97e8c68-39ee-4707-aad4-a9cc1a8e2d85"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="0" width="40" height="10" uuid="ede33d26-8a2c-49ee-b080-77637d318e04"/>
+				<textElement textAlignment="Center">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="0" width="30" height="10" uuid="12fd3ddf-230f-40a7-adec-e3543fa88f2f"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="40" height="10" uuid="47f9b15c-03db-475e-bcf2-2b170e86a241"/>
+				<textElement textAlignment="Center">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[VOLUMEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="30" height="10" uuid="28651a77-25d3-4f29-929f-e1752ccc0bd3"/>
+				<textElement textAlignment="Center">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[MATRIZ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="0" width="81" height="10" uuid="1f68c41c-4aa0-4c06-9ca6-de0cf4ba36ff"/>
+				<textElement textAlignment="Center">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DRA. VANIA TORRES]]></text>
+			</staticText>
+			<line>
+				<reportElement x="312" y="0" width="1" height="10" uuid="b0e006d3-8e3a-4606-be7e-e32c2487ad39"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="263" y="0" width="1" height="10" uuid="3d46f2e2-9ab8-49af-95f3-701a50068ac5"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="210" y="0" width="1" height="10" uuid="aabadb1a-096d-4e1d-a08b-06d8dd772a01"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="357" y="0" width="1" height="10" uuid="0ee5c1f1-efce-4193-a281-c8a42b2ac855"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="50" y="0" width="1" height="10" uuid="3bfb3cd1-af56-4e10-9adf-76207cfef85a"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="10" uuid="df30ca6f-b808-4868-b95a-8c180ee99934"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="450" y="0" width="1" height="10" uuid="2a1bc79a-1a09-4686-9af5-2ece22bbadff"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="450" y="0" width="90" height="10" uuid="e7e27213-f2dc-4e77-852b-c2ba655804fd">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[PAULINA BONILLA NUÑO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="30" height="10" uuid="1c5e8b91-bb0e-4cd0-867a-8dd11e7620fc"/>
+				<textElement textAlignment="Center">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoProd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="140" height="10" uuid="d39e233b-612f-4447-bab4-2fbc5840a845"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreProd}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="270" y="0" width="30" height="10" uuid="4e7221fe-a331-4d4a-ae50-b7787e929d06"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dblExistencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="40" height="10" uuid="2069788a-a4dd-44b2-aa39-30419b7c1734"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VolumenProd}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="320" y="0" width="30" height="10" uuid="d01dc21c-591d-448c-b202-f4c6c8b798fa"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ExistSuc1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="364" y="0" width="76" height="10" uuid="a88e4253-82c2-48c9-b150-340b7b4a670a"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ExistSuc2}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="312" y="0" width="1" height="12" uuid="3c1b8c52-6d31-429d-bb05-f9a1bd3fb6dd"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="357" y="0" width="1" height="12" uuid="17337807-b764-4411-809b-81b21ff4cf7c"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="263" y="0" width="1" height="12" uuid="e7955a26-19d2-4076-b0ae-568b533d97dd"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="210" y="0" width="1" height="12" uuid="51ef4b33-2cb1-4dd5-9162-65960277d3ae"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="50" y="0" width="1" height="12" uuid="af8209d4-c9a8-4011-8516-7ded27fdb298"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="12" uuid="a593ee28-d979-4a59-a97a-f438ef2e9c49"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="450" y="0" width="1" height="12" uuid="23fa4f57-e2a5-4b21-9e9f-eace22a24546"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="451" y="0" width="79" height="10" uuid="e004df1b-d723-4713-a86d-f1f4a15eed62">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ExistSuc3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

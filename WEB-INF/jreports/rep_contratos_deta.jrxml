@@ -1,0 +1,1443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="839" pageHeight="595" orientation="Landscape" columnWidth="799" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="15131f3f-dc67-479c-b898-3cec3e7faf8c">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Innte"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="detalle_contrato" uuid="9e2f3910-e777-43bd-8288-890064f0283e">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Innte"/>
+		<parameter name="Folio" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select TKT_ID,TKT_FOLIO,TKT_FECHA,
+DATE_FORMAT(STR_TO_DATE(TKT_FECHA,'%Y%m%d'),'%d/%m/%Y') AS FECHA,
+TKT_IMPORTE,TKT_IMPUESTO1,TKT_TOTAL,TKT_SALDO,TKT_NOTAS,TKT_NOTASPIE
+FROM vta_tickets
+WHERE vta_tickets.TKT_REFERENCIA = $P{Folio} and vta_tickets.TKT_ANULADA = 0]]>
+		</queryString>
+		<field name="TKT_ID" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="TKT_FOLIO" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="TKT_FECHA" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="TKT_IMPORTE" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="TKT_IMPUESTO1" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="TKT_TOTAL" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="TKT_SALDO" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="TKT_NOTAS" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="TKT_NOTASPIE" class="java.lang.String">
+			<fieldDescription><![CDATA[NOTAS AL PIE DE LA FACTURA]]></fieldDescription>
+		</field>
+		<field name="FECHA" class="java.lang.String"/>
+		<variable name="total_importe" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{TKT_IMPORTE}]]></variableExpression>
+		</variable>
+		<variable name="total_impuesto1" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{TKT_IMPUESTO1}]]></variableExpression>
+		</variable>
+		<variable name="total_total" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{TKT_TOTAL}]]></variableExpression>
+		</variable>
+		<variable name="total_Saldo" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{TKT_SALDO}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="detalle_contrato2" uuid="7cb53ac4-f499-44f9-8579-25e08f865b77">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Innte"/>
+		<parameter name="Folio" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select FAC_ID,FAC_FOLIO,FAC_FOLIO_C,FAC_FECHA,
+DATE_FORMAT(STR_TO_DATE(FAC_FECHA,'%Y%m%d'),'%d/%m/%Y') AS FECHA,
+FAC_IMPORTE,FAC_IMPUESTO1,FAC_TOTAL,FAC_SALDO,FAC_NOTAS,FAC_NOTASPIE
+FROM vta_facturas
+WHERE vta_facturas.FAC_REFERENCIA =  $P{Folio} and vta_facturas.FAC_ANULADA = 0]]>
+		</queryString>
+		<field name="FAC_ID" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="FAC_FOLIO" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="FAC_FECHA" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="FAC_IMPORTE" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="FAC_IMPUESTO1" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="FAC_TOTAL" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="FAC_SALDO" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="FAC_NOTAS" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="FAC_NOTASPIE" class="java.lang.String">
+			<fieldDescription><![CDATA[NOTAS AL PIE DE LA FACTURA]]></fieldDescription>
+		</field>
+		<field name="FAC_FOLIO_C" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="FECHA" class="java.lang.String"/>
+		<variable name="total_importe" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{FAC_IMPORTE}]]></variableExpression>
+		</variable>
+		<variable name="total_impuesto1" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{FAC_IMPUESTO1}]]></variableExpression>
+		</variable>
+		<variable name="total_total" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{FAC_TOTAL}]]></variableExpression>
+		</variable>
+		<variable name="total_Saldo" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{FAC_SALDO}]]></variableExpression>
+		</variable>
+		<group name="group1"/>
+	</subDataset>
+	<parameter name="Vigentes" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select *,
+(
+(select if(vta_facturas.FAC_REFERENCIA !='',SUM(FAC_IMPORTE),0)
+FROM vta_facturas
+WHERE vta_facturas.FAC_REFERENCIA = ct.CTOA_FOLIO and vta_facturas.FAC_ANULADA = 0
+)
+) AS Facturado
+,(
+(select if(vta_tickets.TKT_REFERENCIA !='',SUM(TKT_IMPORTE),0)
+FROM vta_tickets
+WHERE vta_tickets.TKT_REFERENCIA = ct.CTOA_FOLIO and vta_tickets.TKT_ANULADA = 0
+)
+) AS remisionado
+,(CTOA_MTO_ARRENDAMIENTO -
+(
+(select if(vta_tickets.TKT_REFERENCIA !='',SUM(TKT_IMPORTE),0)
+FROM vta_tickets
+WHERE vta_tickets.TKT_REFERENCIA = ct.CTOA_FOLIO and vta_tickets.TKT_ANULADA = 0
+ AND vta_tickets.TKT_NOTAS<> 'VIATICOS'
+)
++
+(select if(vta_facturas.FAC_REFERENCIA !='',SUM(FAC_IMPORTE),0)
+FROM vta_facturas
+WHERE vta_facturas.FAC_REFERENCIA = ct.CTOA_FOLIO and vta_facturas.FAC_ANULADA = 0
+ AND vta_facturas.FAC_NOTAS <> 'VIATICOS'
+)
+)
+) AS Saldo,
+(CTOA_MTO_ARRENDAMIENTO2 -
+(
+(select if(vta_tickets.TKT_REFERENCIA !='',SUM(TKT_IMPORTE),0)
+FROM vta_tickets
+WHERE vta_tickets.TKT_REFERENCIA = ct.CTOA_FOLIO and vta_tickets.TKT_ANULADA = 0 AND vta_tickets.TKT_NOTAS= 'VIATICOS'
+)
++
+(select if(vta_facturas.FAC_REFERENCIA !='',SUM(FAC_IMPORTE),0)
+FROM vta_facturas
+WHERE vta_facturas.FAC_REFERENCIA = ct.CTOA_FOLIO and vta_facturas.FAC_ANULADA = 0  AND vta_facturas.FAC_NOTAS= 'VIATICOS'
+)
+)
+) AS SaldoViatico, ct.CTOA_ARRENDAMIENTO as tipo
+
+from vta_contrato_arrend ct, vta_cliente c  where ct.CTE_ID = c.CT_ID
+
+
+/*PARAMETRO PRIMER DIGITO*/
+/*Calculo vencimiento fecha*/
+and if($P{Vigentes} = 0, 1=1, if(
+CURDATE() < STR_TO_DATE(ct.CTOA_VENCIMIENTO,'%Y%m%d')
+, 1=1,0=1))
+/*Calculo vencimiento fecha*/
+
+
+
+ order by ct.CTE_FIADOR,ct.CTOA_FOLIO;]]>
+	</queryString>
+	<field name="CTOA_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTE_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTE_FIADOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_ARRENDAMIENTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_MES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_VENCIMIENTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_DIASPAGO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_MTO_ARRENDAMIENTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_VALORBMUEBLE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_CUENTA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_SEGURO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_NUMPOLIZA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_IMPORTEGARANTIA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_MONEDA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_FOLIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_NUMERO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_CLAVE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_INICIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_CPP" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_VCP" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_MTO_ARRENDAMIENTO2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_IMPORTE_MENSUAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_DIAS_VENCIMIENTO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_PORC_SALDO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_TEXTO_CPP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_TIPO_FACTOR_AJUSTE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTE_IDF" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTE_NOMBREF" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_MENSUALIDAD_ACTUAL" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_DIAS_CREDITO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_ACTIVO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RFC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CALLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_COLONIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_TXTIVA" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL TEXTO DEL IVA]]></fieldDescription>
+	</field>
+	<field name="CT_TXTIVAAGUA" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL TEXTO DEL IVA DEL AGUA]]></fieldDescription>
+	</field>
+	<field name="CT_MUNICIPIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ESTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_TELEFONO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_TELEFONO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTACTO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTACTO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FOLIO" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NUMCEROS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_SALDO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_EMAIL1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_EMAIL2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NUMERO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NUMINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LPRECIOS" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_DIASCREDITO" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_MONTOCRED" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHAREG" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_IDIOMA" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_PASSWORD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_DESCUENTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_VENDEDOR" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTAVTA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTAPAG" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTANC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHAULTINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_HORAULTINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHAEXIT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_HORAEXIT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FALLIDOS" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NOTAS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_EXITOSOS" class="java.lang.Long">
+		<fieldDescription><![CDATA[CUANTAS VECES SE HA FIRMADO EL CLIENTE]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA1" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES LA CATEGORIA 1]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA2" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES LA CATEGORIA 2]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA3" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES LA CATEGORIA 3]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA4" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES LA CATEGORIA 4]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA5" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES LA CATEGORIA 5]]></fieldDescription>
+	</field>
+	<field name="CT_TIPOPERS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[1 PERSONA MORAL 2 PERSONA FISICA]]></fieldDescription>
+	</field>
+	<field name="CT_USOIMBUEBLE" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL USO DEL INMUEBL EN CASO DE ARRENDAMIENTO]]></fieldDescription>
+	</field>
+	<field name="CT_TIPOFAC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[ES EL TIPO DE FACTURA PARA EL CLIENTE]]></fieldDescription>
+	</field>
+	<field name="CT_TIT_CONT1" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL TITULO DEL CONTACTO 1]]></fieldDescription>
+	</field>
+	<field name="CT_TIT_CONT2" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL TITULO DEL CONTACTO 2]]></fieldDescription>
+	</field>
+	<field name="CT_CONT_AP1" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL APE PAT DEL CONTACTO 1]]></fieldDescription>
+	</field>
+	<field name="CT_CONT_AP2" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL APE PAT DEL CONTACTO 2]]></fieldDescription>
+	</field>
+	<field name="CT_CONT_AM1" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL AP MATERNO 1]]></fieldDescription>
+	</field>
+	<field name="CT_CONT_AM2" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL AP MATERNO 2]]></fieldDescription>
+	</field>
+	<field name="CT_CONTACTE" class="java.lang.String">
+		<fieldDescription><![CDATA[ES LA CUENTA PARA CLIENTES]]></fieldDescription>
+	</field>
+	<field name="CT_CUENTAVTACRED" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ALTA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_MODIFICADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SEG_PROXIMO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_UPLINE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTACTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHAULTIMOCONTACTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ARMADOINI" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ARMADOFIN" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ARMADONUM" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ARMADODEEP" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_SPONZOR" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_IS_LOGGED" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LAST_ACT" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LASTSESSIONID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LASTIPADDRESS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LAST_TIME" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LAST_TIME_FAIL" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_IS_DISABLED" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RAZONCOMERCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTABANCO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTABANCO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTATARJETA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NUMPREDIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PA_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ACTIVO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA6" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA7" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA8" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA9" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA10" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MON_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TI_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TTC_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RBANCARIA1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RBANCARIA2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RBANCARIA3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_BANCO1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_BANCO2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_BANCO3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_METODODEPAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FORMADEPAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHA_NAC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_APATERNO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_AMATERNO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_PPUNTOS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_PNEGOCIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_GPUNTOS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_GNEGOCIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_COMISION" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NIVELRED" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MPE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTEO_HIJOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTEO_HIJOS_ACTIVOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTEO_INGRESOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RLEGAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FIADOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_F1DIRECCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_F1IFE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FIADOR2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_F2DIRECCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_F2IFE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FIADOR3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_F3DIRECCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_F3IFE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CHANGE_PASSWRD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_BANCO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_BANCO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_SUCURSAL1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_SUCURSAL2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_CLABE1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_CLABE2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTACTE_COMPL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_ANTICIPO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTACTE_COMPL_ANTI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTA_RET_ISR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTA_RET_IVA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TI2_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TI3_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_BANCO_CTA1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_BANCO_CTA2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CLABE1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CLABE2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CRED_ELECTOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ES_PROSPECTO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHA_CONTACTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CAT_MED_CONT_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_UBICACION_GOOGLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FACEBOOK" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_PAGINA_WEB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_POR_CIERRE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EP_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CAM_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ENVIO_FACTURA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Facturado" class="java.lang.Double"/>
+	<field name="remisionado" class="java.lang.Double"/>
+	<field name="Saldo" class="java.math.BigDecimal"/>
+	<field name="SaldoViatico" class="java.math.BigDecimal"/>
+	<field name="tipo" class="java.lang.String"/>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="111" y="25" width="384" height="37" uuid="f89b8e31-a955-4172-b7b4-fa8cc8674c97"/>
+				<textElement>
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE CONTRATOS DETALLADO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="569" y="0" width="100" height="20" uuid="2d0a40e7-649b-4cab-b0ab-b38b2f8610ee"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="495" y="0" width="74" height="20" uuid="6e9f43c8-f7da-4d48-b0c4-63cf88e50aeb"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<rectangle radius="0">
+				<reportElement x="0" y="0" width="669" height="20" backcolor="#0099CC" uuid="f30dcf43-c42e-40a4-a634-6a9b81ecddb0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="28" y="0" width="83" height="20" forecolor="#FFFFFF" uuid="0a698fdc-5edd-45cf-b224-e906615b2359"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="28" height="20" forecolor="#FFFFFF" uuid="0b8dbbbf-93ee-4f34-a2f9-fb5e93ddd8f7"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[NUM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="102" height="20" forecolor="#FFFFFF" uuid="8c6a42cf-2155-4a62-8ace-e327ddd37621"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[ORDEN DE COMPRA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="213" y="0" width="73" height="20" forecolor="#FFFFFF" uuid="ad0e5df3-ccea-40f8-8071-cbbf319d6aec"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[PROYECTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="0" width="64" height="20" forecolor="#FFFFFF" uuid="d258fc80-bb04-43f3-9941-a9ec55392372"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[MONTO FIJO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="0" width="89" height="20" forecolor="#FFFFFF" uuid="de65421e-3d29-4402-946e-4e239be4b887"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[MONTO VIATICOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="495" y="1" width="74" height="20" forecolor="#FFFFFF" uuid="de65421e-3d29-4402-946e-4e239be4b887"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[SALDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="56" height="20" forecolor="#FFFFFF" uuid="de65421e-3d29-4402-946e-4e239be4b887"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[SALDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="569" y="1" width="100" height="20" forecolor="#FFFFFF" uuid="27dfd700-3df6-4135-ba70-fd2120a844aa"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[TIPO O.C.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="28" height="20" uuid="480c5da1-9e1e-4f8b-af59-8f8fa4e010a8"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTE_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="102" height="20" uuid="6dfba573-ab07-429d-a878-855203740c19"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTOA_FOLIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="0" width="73" height="20" uuid="149b1063-953b-47d2-b8af-a0f3514f9436"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTE_FIADOR}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="286" y="0" width="64" height="20" uuid="c229dc7d-5510-4bdd-a5e8-158d8ebf934b"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTOA_MTO_ARRENDAMIENTO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="406" y="0" width="89" height="20" uuid="3c3362a2-420b-41f1-bc88-f369026c9cf0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTOA_MTO_ARRENDAMIENTO2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="495" y="0" width="74" height="20" uuid="3c3362a2-420b-41f1-bc88-f369026c9cf0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SaldoViatico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="28" y="0" width="83" height="20" uuid="df097e13-1554-48e3-9c5c-e74e4db7c2a2"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTE_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="350" y="0" width="56" height="20" uuid="3c3362a2-420b-41f1-bc88-f369026c9cf0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Saldo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="569" y="0" width="100" height="20" uuid="51055e93-9cfc-4c02-b7a4-3350cdd45c6d"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="70" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[new Boolean($F{remisionado} >= 0 )]]></printWhenExpression>
+			<componentElement>
+				<reportElement key="table" style="table" x="0" y="0" width="727" height="70" isRemoveLineWhenBlank="true" uuid="dd3680dd-18ef-441b-8981-50d835f6ac11">
+					<printWhenExpression><![CDATA[new Boolean($F{remisionado} >= 0 )]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="detalle_contrato" uuid="8cb99963-a096-4824-979b-3976ba074eef">
+						<datasetParameter name="Folio">
+							<datasetParameterExpression><![CDATA[$F{CTOA_FOLIO}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="29" uuid="2102ec08-c77e-4ed2-aec8-b7a4f36bd3c4">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="29" height="20" uuid="cd2e6260-e717-4494-8503-c8671aba7e90"/>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="20" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="29" height="30" uuid="c9028802-b3ad-4039-979d-a9cb53e7adc3"/>
+								<textElement>
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TKT_ID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="79" uuid="c3e8773d-931f-474a-a1c1-b400ab8e5455">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="79" height="20" uuid="db5752d2-9dbd-40f0-a5bb-49289de4829b"/>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[FOLIO TICKET]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="20" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="79" height="30" uuid="b9443e6a-5dc4-4b16-8ae3-7406ba05cd96"/>
+								<textElement>
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TKT_FOLIO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="61" uuid="48a2d848-db4b-46f2-b06e-08873345846c">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="61" height="20" uuid="89f2da15-6ff6-422b-a5e4-f41096333227"/>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[FECHA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="20" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="20" y="0" width="41" height="30" uuid="93ce4eca-1b7c-4690-ab8e-a01a17b2c06f"/>
+								<textElement textAlignment="Center">
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c9952b4d-045d-4c30-8160-806ce5a27eee">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="20" uuid="d3a06f86-9b67-4d4a-a913-232bd945890a"/>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[IMPORTE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="90" height="20" uuid="be902f66-7f07-4985-8538-c55daca27901"/>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{total_importe}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="90" height="30" uuid="2e1bbef8-804d-40f6-8cc3-3db09f6ed268"/>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TKT_IMPORTE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="b3a851af-66b6-42d3-87da-428f6564614e">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="20" uuid="05b3ca7a-4aa5-4aac-9aae-8976cd1e56d1"/>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[IMPUESTO1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="90" height="20" uuid="be902f66-7f07-4985-8538-c55daca27901"/>
+								<textElement textAlignment="Right">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{total_impuesto1}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="90" height="30" uuid="dfcfca3d-e6fb-4d95-b4cd-dc7a066cb8f9"/>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TKT_IMPUESTO1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="b960227b-c001-448c-a4be-55a9f6eedbb0">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="20" uuid="127319b2-7ba2-4ffd-b14f-8e29110d01cc"/>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="20" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="90" height="20" uuid="be902f66-7f07-4985-8538-c55daca27901"/>
+								<textElement textAlignment="Right">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{total_total}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0.00">
+								<reportElement x="0" y="0" width="90" height="30" uuid="1445a9c5-c4a1-41b6-8aa1-40afd7881d65"/>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TKT_TOTAL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="158" uuid="dee25118-6209-47ac-9cad-ceefff224a76">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="158" height="20" uuid="64a375b0-025c-4348-b887-b612a277c457"/>
+								<textElement textAlignment="Center">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[NOTAS]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="20" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="158" height="30" uuid="69405c38-c130-4f9d-a30c-40250d008206"/>
+								<textElement>
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TKT_NOTAS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="130" uuid="c8b29e27-c300-4670-9e3e-d098fa256f75">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="130" height="20" uuid="5d2ef2cd-e8a2-441b-b963-5a8aadecf40c"/>
+								<textElement textAlignment="Center">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[NOTAS DE PIE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="20" rowSpan="1"/>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="130" height="30" uuid="a647086b-6db2-459c-be77-68a1e05209b0"/>
+								<textElement>
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TKT_NOTASPIE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="70" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[new Boolean($F{Facturado} >= 0 )]]></printWhenExpression>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="0" y="0" width="727" height="70" isRemoveLineWhenBlank="true" uuid="80b3b3aa-7d1d-46d4-9e04-7dcc3f5ebc2d">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[new Boolean($F{Facturado} >= 0 )]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="detalle_contrato2" uuid="ca6766bb-2bce-4222-8aba-6261de0334f2">
+						<datasetParameter name="Folio">
+							<datasetParameterExpression><![CDATA[$F{CTOA_FOLIO}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="29" uuid="f0400a1b-a53c-4a2f-a878-463c7e2dabe2">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<jr:columnHeader style="table 1_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="29" height="20" uuid="8c410c2c-f1e2-489e-9b09-a943cd8b0435">
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="20" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="29" height="30" uuid="7c28124b-a606-43d3-b5f4-1cfdfd2e6d6a">
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FAC_ID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="79" uuid="f526776c-3e0c-4b8b-b88c-7c4fb0b69909">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="table 1_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="79" height="20" uuid="427c73b9-ddc4-4cc3-a761-80b881238eac">
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[FOLIO FACTURA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="20" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="79" height="30" uuid="5a03f0ac-957d-4fc8-8d23-1662bbcbe399">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FAC_FOLIO_C}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="61" uuid="56369320-c809-4710-91bc-6420eb6c4700">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="table 1_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="61" height="20" uuid="45773835-75df-4659-a0ff-3724a004b50a">
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[FECHA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="20" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="61" height="30" uuid="342b07b9-9a05-4bf2-9178-3014ea7895c8">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c091ec5a-6136-4819-93de-5a12ca24354c">
+						<jr:columnHeader style="table 1_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="20" uuid="7ec36f0f-60d4-4666-bbfd-9532f62b1008">
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[IMPORTE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="20" rowSpan="1">
+							<textField pattern="#,##0.###;(#,##0.###-)">
+								<reportElement x="0" y="0" width="90" height="20" uuid="16687767-4a2e-48c8-9b7a-809a15e5270a">
+									<property name="local_mesure_unity" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{total_importe}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0.00#;(#,##0.00#-)">
+								<reportElement x="0" y="0" width="90" height="30" uuid="05019909-47c9-45a5-a06c-638d41e6e301">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FAC_IMPORTE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0a841f19-1aa6-4ef6-b408-d906de9cce1b">
+						<jr:columnHeader style="table 1_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="20" uuid="d492e47a-a63f-492b-b6dd-23e471d0b564">
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[IMPUESTO1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="20" rowSpan="1">
+							<textField pattern="#,##0.###;(#,##0.###-)">
+								<reportElement x="0" y="0" width="89" height="20" uuid="f395a35e-366a-46f8-9938-f6d5b5a7ab2b">
+									<property name="local_mesure_unity" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{total_impuesto1}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0.00#;(#,##0.00#-)">
+								<reportElement x="0" y="0" width="90" height="30" uuid="f6afd61d-5393-4b41-8ffb-033a0dba4ec3">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FAC_IMPUESTO1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e63227ea-3415-41a4-aec7-57fa832498ad">
+						<jr:columnHeader style="table 1_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="20" uuid="05819215-e3fb-463c-a6ad-3087bc15fa92">
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="20" rowSpan="1">
+							<textField pattern="#,##0.###;(#,##0.###-)">
+								<reportElement x="0" y="0" width="89" height="20" uuid="02cf908d-2734-4fe6-88ac-69ea98cea991">
+									<property name="local_mesure_unity" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{total_total}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0.00#;(#,##0.00#-)">
+								<reportElement x="0" y="0" width="90" height="30" uuid="81bf1b71-7266-43d1-b74c-2d7248deb66e">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right">
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FAC_TOTAL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="158" uuid="c7ff6af0-23fb-440c-bcaa-524e70f566de">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="table 1_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="158" height="20" uuid="3eb704bf-dd53-425a-86ae-4dced51f7adb">
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[NOTAS]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="20" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="158" height="30" uuid="cb14f597-b79d-41bc-b6d3-20bd640d7430">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement>
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FAC_NOTAS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="130" uuid="51922e71-82d9-445e-8d47-fe50875efa04">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader height="20" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" x="0" y="0" width="130" height="20" uuid="852958df-d8d6-4f34-92a7-42c1db1263b6">
+									<property name="local_mesure_unitheight" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement>
+									<font fontName="Arial" size="9"/>
+								</textElement>
+								<text><![CDATA[NOTAS DE PIE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="20" rowSpan="1"/>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="130" height="30" uuid="daf8be2c-5fbc-4d80-9f7c-33fe60e47d25">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement>
+									<font size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FAC_NOTASPIE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

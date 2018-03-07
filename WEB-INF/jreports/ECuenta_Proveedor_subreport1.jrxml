@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Subreporte_EdoProv" language="groovy" pageWidth="752" pageHeight="572" orientation="Landscape" columnWidth="752" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="095f8eab-5dcd-41cf-9695-567af2d762e1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Proveedor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Fecha_Inicial" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Moneda" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SoloMonedaOrig" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT 
+ if(SUM(MP_CARGO-MP_ABONO) is null, 0 ,
+SUM(
+(MP_CARGO-MP_ABONO) * 
+/*obtenemos la paridad*/
+if(if($P{Moneda} <> 0,$P{Moneda},vta_proveedor.MON_ID) = vta_mov_prov.MP_MONEDA , 1,
+if(MP_TASAPESO <> 1 AND MP_TASAPESO <> 0 ,if(vta_mov_prov.MP_MONEDA = 1 or (vta_mov_prov.MP_MONEDA = 2 and $P{Moneda} = 3 ),1/MP_TASAPESO,MP_TASAPESO),GetParidadAuto(vta_mov_prov.MP_MONEDA,if($P{Moneda} <> 0,$P{Moneda},vta_proveedor.MON_ID),4,MP_FECHA) )
+)
+/*obtenemos la paridad*/
+
+)
+) AS SALDO_INICIAL
+FROM vta_proveedor,vta_mov_prov WHERE vta_mov_prov.PV_ID=vta_proveedor.PV_ID and vta_proveedor.PV_ID=  $P{Proveedor} 
+AND MP_FECHA < $P{Fecha_Inicial} AND MP_ANULADO = 0 
+and if($P{SoloMonedaOrig} = 1,if(vta_mov_prov.CXP_ID = 0,vta_mov_prov.MP_MONEDA = $P{Moneda},(SELECT CXP_MONEDA FROM vta_cxpagar WHERE vta_cxpagar.CXP_ID=vta_mov_prov.CXP_ID) =$P{Moneda} ),1=1 );]]>
+	</queryString>
+	<field name="SALDO_INICIAL" class="java.math.BigDecimal"/>
+	<variable name="SaldoInicial" class="java.lang.Number">
+		<variableExpression><![CDATA[$F{SALDO_INICIAL}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="dc8e83a0-e82e-459d-a171-61e492b46679" x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{SALDO_INICIAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="15" splitType="Stretch"/>
+	</summary>
+</jasperReport>

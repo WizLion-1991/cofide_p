@@ -1,0 +1,1 @@
+function vta_sugerencias(){}function OpnDiagCte(){OpnOpt("CLIENTES","grid","dialogCte",false,false);}

@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
+<!-- 2016-01-20T18:56:26 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_cofide_evaluacion" columnCount="3" pageWidth="840" pageHeight="595" orientation="Landscape" columnWidth="266" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ea24fb8-ceba-4451-9fb0-840bb49c48fb">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="vta_cofide"/>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select *,(select EMP_PATHIMG from vta_empresas where vta_empresas.EMP_ID = 1 ) as LOGO,
+(select EMP_RAZONSOCIAL from vta_empresas where vta_empresas.EMP_ID =1) as empresa
+
+from cofide_evaluacion]]>
+	</queryString>
+	<field name="CE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_ID_USER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_FECHAREV" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_HORAREV" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_NO_LLAMADAS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA1" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA2" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA3" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA4" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA5" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA6" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA7" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_PREGUNTA8" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_MSGCOMPLETO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_CALIFICACION" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_CAMP_TELEMARKETING" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_REGPENDIENTE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CE_OBSERVACIONES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LOGO" class="java.lang.String"/>
+	<field name="empresa" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="88" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="0" width="400" height="30" uuid="a70d5ce7-99dd-4118-918f-d1cf59f6c88c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Cambria" size="14"/>
+				</textElement>
+				<text><![CDATA[Reporte de Monitoreo de llamadas y Bases de Datos]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="80" height="80" uuid="d14a8702-86a5-4fbf-8b44-c9f92d7546ae"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+$F{LOGO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement mode="Opaque" x="180" y="30" width="400" height="34" forecolor="#172983" uuid="8b06d837-9aa8-4005-a71f-082aa707e90a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Cambria" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="670" y="64" width="130" height="16" uuid="45532dd1-2f0d-48f1-aebb-641192a625a3"/>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="530" y="64" width="139" height="16" uuid="aa08b9b9-055b-47df-a456-7b181d41531d"/>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[FECHA DE EMISION:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="64" width="110" height="14" uuid="2bc2557c-8120-4a4f-9fa3-9339e9a391aa">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Candara" size="10"/>
+				</textElement>
+				<text><![CDATA[FECHA DE REVISION]]></text>
+			</staticText>
+			<textField pattern="MMMM d, yyyy">
+				<reportElement x="200" y="64" width="100" height="14" uuid="9773186d-57fc-437a-ba30-792b242edfc8"/>
+				<textElement textAlignment="Left">
+					<font fontName="Candara" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{CE_FECHAREV})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="303" splitType="Stretch">
+			<textField>
+				<reportElement x="90" y="0" width="110" height="10" uuid="7fb3712a-39ef-45b4-b184-7c1aeeda16c7"/>
+				<textElement textAlignment="Left">
+					<font fontName="Candara" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_ID_USER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="10" width="110" height="10" uuid="e9062617-018f-44c9-aad2-ecf128dead8d"/>
+				<textElement textAlignment="Left">
+					<font fontName="Candara" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="30" width="110" height="10" uuid="fc42e48d-81c1-4785-97a5-e1b92b7619fe">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Candara" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_HORAREV}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="20" width="110" height="10" uuid="146a94be-a91b-4456-b4e0-51ab5c2d0b3b"/>
+				<textElement textAlignment="Left">
+					<font fontName="Candara" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_NO_LLAMADAS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="50" width="100" height="15" uuid="c2fea776-24d6-4075-a701-4290d740b157">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_PREGUNTA1} == 1 ? "OK" : "X"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="50" width="200" height="15" uuid="77ef30e6-2ad4-4a9c-b4b0-e02729c6b235">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[ETIQUETA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="65" width="100" height="15" uuid="2cbc366c-e680-4d47-b845-6553b43c7d67">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_PREGUNTA2} == 1 ? "OK" : "X"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="65" width="200" height="15" uuid="630dc6a2-3e52-46a8-bb82-aeec113a344e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[OBTIENE CONTACTO CORRECTO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="80" width="100" height="15" uuid="ea5d51b7-784b-4146-ae6f-ce9a90e02f47">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_PREGUNTA3} == 1 ? "OK" : "X"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="80" width="200" height="15" uuid="d7595127-2879-4aac-89d0-dc1e5ff7edc0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[SEGMENTA REGISTRO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="95" width="100" height="15" uuid="ee9760fe-d058-4517-a637-3ea367399912">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_PREGUNTA4} == 1 ? "OK" : "X"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="95" width="200" height="15" uuid="f1970dfe-286d-424c-ae28-fe038eb86968">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[PROMOCIÓN DE CURSOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="110" width="100" height="15" uuid="2f40a2df-5715-431a-90e7-3b02ada4da40">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_PREGUNTA5} == 1 ? "OK" : "X"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="110" width="200" height="15" uuid="41117f0c-da7a-49fd-82c7-1b71d3cccb33">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[LABOR DE VENTA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="125" width="100" height="15" uuid="5e943925-a662-4919-ad1e-eea71d159885">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_PREGUNTA6} == 1 ? "OK" : "X"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="125" width="200" height="15" uuid="cee1f5ab-bfe3-44b6-843c-378a8fe01169">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[MANEJA OBJECIONES CORRECTAMENTE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="140" width="100" height="15" uuid="e29fc247-43ce-4ae6-8864-c52a2114e6ae">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_PREGUNTA7} == 1 ? "OK" : "X"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="140" width="200" height="15" uuid="d7ea8f82-45fb-4dcd-90fe-5b7711855d77">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[INTENTA CIERRE DE VENTA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="155" width="100" height="15" uuid="c5dafe03-2389-48cf-beb9-ca835ed6ab42">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_PREGUNTA8} == 1 ? "OK" : "X"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="155" width="200" height="15" uuid="cbf19597-b938-44ba-bab2-b7be232d6468">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[CONSIGUE DATOS DE OTRAS AREAS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="185" width="100" height="15" uuid="150b81ff-9bcd-4274-ac08-c03e0d10cf8a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_CALIFICACION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="185" width="200" height="15" uuid="190fa71a-09fd-4a7f-abe9-a9051380564c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[CALIFICACIÓN]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="170" width="100" height="15" uuid="c98757e5-48b2-41e3-944c-9d468cd40684">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_MSGCOMPLETO} == 0 ? "NO":"SI"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="170" width="200" height="15" uuid="4a4f6683-9784-4d58-a02b-3dd72468a7a1">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[DEJA MENSAJE COMPLETO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="200" width="100" height="15" uuid="e33a8e9d-2514-4b54-b532-da11c15d5c5f">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_CAMP_TELEMARKETING} == 0 ? "NO":"SI"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="200" width="200" height="15" uuid="4f13ed28-ff4b-4377-8080-dad99bab5ad9">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[CAMPAÑA DE TELEMARKETING]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="215" width="100" height="30" uuid="d13f6360-9bc0-4689-bb78-fd594020c37a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_REGPENDIENTE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="215" width="200" height="30" uuid="0fcfdefe-5e0a-416d-810a-0b9800c980eb">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[RESGISTROS PENDIENTES DE REGISTRAR EN NOTAS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="245" width="100" height="45" uuid="cb71b38d-7cd3-4c17-8251-b9af9199319d">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CE_OBSERVACIONES}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="245" width="200" height="45" uuid="cfdf36be-1988-4621-95de-e9b436114de7">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[OBSERVACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="90" height="10" uuid="4abfc910-cbb6-48a8-9748-bb97a90462f8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Candara" size="7"/>
+				</textElement>
+				<text><![CDATA[HORA DE REVICION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="90" height="10" uuid="809f6435-66bb-4de4-b0f7-eeb71bd94245">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Candara" size="7"/>
+				</textElement>
+				<text><![CDATA[NUMERO DE LLAMADAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="10" width="90" height="10" uuid="0de69123-4b91-45de-9b69-c4ba9bbd8608">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Candara" size="7"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="90" height="10" uuid="6c2b233e-373a-4474-8e3b-c8ab499bcafb">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Candara" size="7"/>
+				</textElement>
+				<text><![CDATA[ID USUARIO]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="311" y="0" width="100" height="30" uuid="693dad66-96aa-49f6-b680-f670680f673e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="411" y="0" width="100" height="30" uuid="f440461d-d816-4ece-b797-9448f069d953"/>
+				<textElement textAlignment="Left">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

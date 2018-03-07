@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacturasporFecha" language="groovy" pageWidth="1057" pageHeight="595" orientation="Landscape" columnWidth="1017" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="7a8031cd-f0e8-4738-88c6-dbc762041725">
+	<property name="ireport.zoom" value="2.9282000000000012"/>
+	<property name="ireport.x" value="1410"/>
+	<property name="ireport.y" value="336"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="FechaInicial" class="java.lang.String"/>
+	<parameter name="FechaFinal" class="java.lang.String"/>
+	<parameter name="EMP_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select EMP_RAZONSOCIAL, FAC_RAZONSOCIAL,FAC_FOLIO_C ,DATE_FORMAT(STR_TO_DATE(FAC_FECHA,'%Y%m%d'),'%d/%m/%Y') AS TFECHA,DATE_FORMAT(STR_TO_DATE(FAC_FECHA_COBRO,'%Y%m%d'),'%d/%m/%Y') AS FECHA_COBRO,
+FAC_ID,FAC_FOLIO,FAC_TOTAL,if(FAC_SALDO <= 1 ,'COBRADO','PENDIENTE') as ESTATUS
+,CT_DIASCREDITO
+,(select GROUP_CONCAT(distinct vta_prodcat1.PC_DESCRIPCION SEPARATOR ',') from vta_producto, vta_prodcat1, vta_facturasdeta where
+vta_producto.PR_CATEGORIA1 = vta_prodcat1.PC_ID AND vta_facturasdeta.PR_ID = vta_producto.PR_ID and vta_facturasdeta.fac_id = vta_facturas.FAC_ID ) as tproducto
+,(select GROUP_CONCAT(DATE_FORMAT(STR_TO_DATE(MC_FECHA,'%Y%m%d'),'%d/%m/%Y')) from vta_mov_cte where vta_mov_cte.FAC_ID =  vta_facturas.FAC_ID AND MC_ESPAGO = 1 AND MC_ANULADO = 0)  AS fcobros,
+fac_notaspie
+ from vta_empresas,vta_facturas,vta_cliente where vta_empresas.EMP_ID = vta_facturas.EMP_ID and vta_facturas.CT_ID = vta_cliente.CT_ID and FAC_ANULADA = 0
+AND FAC_FECHA>= $P{FechaInicial} AND FAC_FECHA<= $P{FechaFinal} AND vta_facturas.EMP_ID =$P{EMP_ID}  ORDER BY FAC_FOLIO_C]]>
+	</queryString>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FAC_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FAC_FOLIO_C" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TFECHA" class="java.lang.String"/>
+	<field name="FECHA_COBRO" class="java.lang.String"/>
+	<field name="FAC_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FAC_FOLIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FAC_TOTAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ESTATUS" class="java.lang.String"/>
+	<field name="CT_DIASCREDITO" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tproducto" class="java.lang.String"/>
+	<field name="fcobros" class="java.lang.String"/>
+	<field name="fac_notaspie" class="java.lang.String">
+		<fieldDescription><![CDATA[NOTAS AL PIE DE LA FACTURA]]></fieldDescription>
+	</field>
+	<variable name="Total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{FAC_TOTAL}]]></variableExpression>
+	</variable>
+	<background>
+		<band height="575" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="82" y="42" width="488" height="17" forecolor="#000000" uuid="cd852f45-b9a5-48cb-9d72-2dc4f4bbe829"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Facturas por Fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="82" y="27" width="488" height="15" uuid="c1e2509d-9ac3-44c1-abf8-937abc4b8d8b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="63" width="198" height="20" uuid="254c30b9-31a8-4419-a979-8f716fd3934a"/>
+				<textFieldExpression><![CDATA[$P{FechaInicial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="84" width="198" height="20" uuid="ffac690e-da0b-4aad-8cf6-b61a6cfe6837"/>
+				<textFieldExpression><![CDATA[$P{FechaFinal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="63" width="82" height="20" uuid="9d99c507-bcfe-41a3-8b57-7bf3d18e0964"/>
+				<text><![CDATA[Fecha Inicial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="84" width="82" height="20" uuid="c2d4f41b-1ae4-485e-b76c-b06e1e153b2d"/>
+				<text><![CDATA[Fecha Final:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="82" height="25" forecolor="#000000" uuid="50bd3f42-2f44-4669-8e2b-7d1c016d8f44"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="280" y="0" width="60" height="25" forecolor="#000000" uuid="7492669b-1f32-4bbb-b10c-653742a881ab"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Folio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="402" y="0" width="78" height="25" forecolor="#000000" uuid="7da56992-645c-44e0-acdd-f8552d1777c7"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="480" y="0" width="90" height="25" forecolor="#000000" uuid="39b31e9e-7a92-4483-abfb-aada228e5921"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Estatus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="82" y="0" width="198" height="25" forecolor="#000000" uuid="e2e97dba-13c8-4997-80bf-e3caa11d9d99"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="0" width="62" height="25" uuid="7bbf0e90-d732-4ad2-a168-50a9a46fd83b"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Días Credito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="740" y="0" width="74" height="25" forecolor="#000000" uuid="39b31e9e-7a92-4483-abfb-aada228e5921"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Tipo Venta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="570" y="0" width="95" height="25" forecolor="#000000" uuid="39012271-1db8-4c41-913a-215a68ecec19"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Fecha Programo Cobro ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="814" y="0" width="203" height="25" uuid="feeaaceb-1d34-4b2b-a4b0-ab152845a749"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[NOTAS AL PIE DE LA FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="665" y="0" width="75" height="25" forecolor="#000000" uuid="39b31e9e-7a92-4483-abfb-aada228e5921"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Fecha cobro]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="340" y="0" width="62" height="36" uuid="7d5924a3-c838-4cb7-b524-c6172b989445"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_DIASCREDITO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="82" height="36" uuid="ce5ae06b-f188-4dad-ab69-e265ad0ea5d9"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TFECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="280" y="0" width="60" height="36" uuid="e893de10-ebdb-4d7a-8e5f-91347088a638"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_FOLIO_C}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00">
+				<reportElement style="Detail" x="402" y="0" width="78" height="36" uuid="0acd0b49-23aa-4be2-814a-759e1b4d06ad"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="480" y="0" width="90" height="36" uuid="8c783651-3587-4864-a859-63f453a0563c"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ESTATUS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="0" width="198" height="36" uuid="6f0f9404-5c88-4dc0-aaca-96456bfeb654"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="665" y="0" width="75" height="36" uuid="9b77ee2f-c75e-4b55-a51f-d50d220f1392"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{fcobros} == null ? "" : $F{fcobros})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="740" y="0" width="74" height="36" uuid="9b77ee2f-c75e-4b55-a51f-d50d220f1392"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{tproducto} == null ? "" : $F{tproducto})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="570" y="0" width="95" height="36" uuid="089a89d9-527a-4a65-83e1-868a710cce9a"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA_COBRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="814" y="0" width="203" height="36" uuid="81d88ae4-8ab7-4991-8aee-6156c2303418"/>
+				<textFieldExpression><![CDATA[$F{fac_notaspie}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="82" y="0" width="198" height="20" forecolor="#000000" uuid="a921124e-2835-4bb1-b828-fabb14a224e8"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="0" width="78" height="20" uuid="dcba33b3-b4a5-4b7c-8230-3210cdc0d7ae"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="21" splitType="Stretch">
+			<textField pattern="#,##0.00">
+				<reportElement x="480" y="0" width="90" height="20" uuid="4c961c22-74c3-40df-95d0-0750fe9e0895"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

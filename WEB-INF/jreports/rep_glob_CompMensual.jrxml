@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0057130a-0ab0-4bcf-991d-49083d587dae">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="strConvertido" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="strAnio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="strEmp" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="strMoneda" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="strSc" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="NUM" class="java.lang.Integer"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="TIPO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ZONA" class="java.lang.String"/>
+	<field name="ENERO" class="java.lang.Double"/>
+	<field name="FEBRERO" class="java.lang.Double"/>
+	<field name="MARZO" class="java.lang.Double"/>
+	<field name="ABRIL" class="java.lang.Double"/>
+	<field name="MAYO" class="java.lang.Double"/>
+	<field name="JUNIO" class="java.lang.Double"/>
+	<field name="JULIO" class="java.lang.Double"/>
+	<field name="AGOSTO" class="java.lang.Double"/>
+	<field name="SEPTIEMBRE" class="java.lang.Double"/>
+	<field name="OCTUBRE" class="java.lang.Double"/>
+	<field name="NOVIEMBRE" class="java.lang.Double"/>
+	<field name="DICIEMBRE" class="java.lang.Double"/>
+	<field name="TTOTAL" class="java.lang.Double"/>
+	<field name="ENERO_PORC" class="java.lang.Double"/>
+	<field name="FEBRERO_PORC" class="java.lang.Double"/>
+	<field name="MARZO_PORC" class="java.lang.Double"/>
+	<field name="ABRIL_PORC" class="java.lang.Double"/>
+	<field name="MAYO_PORC" class="java.lang.Double"/>
+	<field name="JUNIO_PORC" class="java.lang.Double"/>
+	<field name="JULIO_PORC" class="java.lang.Double"/>
+	<field name="AGOSTO_PORC" class="java.lang.Double"/>
+	<field name="SEPTIEMBRE_PORC" class="java.lang.Double"/>
+	<field name="OCTUBRE_PORC" class="java.lang.Double"/>
+	<field name="NOVIEMBRE_PORC" class="java.lang.Double"/>
+	<field name="DICIEMBRE_PORC" class="java.lang.Double"/>
+	<field name="TTOTAL_PORC" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="b2ae52d8-8e3e-408a-bfb4-0290ac5a17e0" x="197" y="0" width="192" height="20"/>
+				<textElement/>
+				<text><![CDATA[COMPARACION MENSUAL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

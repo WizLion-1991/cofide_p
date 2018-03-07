@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.4.final using JasperReports Library version 6.0.4  -->
+<!-- 2015-05-18T16:02:02 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_Retenciones" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f7e5738c-820f-4750-8382-e8a168200ab6">
+	<property name="ireport.zoom" value="1.3636363636363658"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Grupo Mak"/>
+	<parameter name="folio_ini" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="folio_fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PathBaseWeb" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emp_id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sc_id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select rhh_ret_retenciones.*,
+vta_empresas.EMP_RAZONSOCIAL,
+vta_empresas.EMP_REPRESENTANTE, 
+vta_empresas.EMP_RFC,
+(select TD_CONCEPTO from rhh_ret_tipo_dividendo where TD_ID= rhh_ret_retenciones.RET_CLAVTIPDIVOUTIL) as TIPO_DIVIDENDO,
+(select CONCAT(RET_CLAVE,"-",RET_CONCEPTO )  from rhh_ret_cat_retenciones where RET_ID= rhh_ret_retenciones.RET_CVERETENC ) as TIPO_RETENCION
+
+from rhh_ret_retenciones join vta_empresas on rhh_ret_retenciones.EMP_ID = vta_empresas.EMP_ID
+where RET_FOLIOINT >=$P{folio_ini} and RET_FOLIOINT <= $P{folio_fin}]]>
+	</queryString>
+	<field name="RET_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_FOLIOINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_SELLO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_NUMCERT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_FECHAEXP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_CADENAORIGINAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_UUID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_SELLOTIMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_HORA_TIMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_FOLIO_ANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_SELLOTIMBRE_ANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_HORA_TIMBRE_ANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_CADENA_TIMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_PATH_CBB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_NOSERIECERTTIM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_CVERETENC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_DESCRETENC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_RFCEMISOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_NOMDENRAZSOCE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_CURPE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NUM" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_RFCRECEP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_NOMDENRAZSOCR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_CURPR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_NAC_O_EXTR" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MESINI" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MESFIN" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_EJERC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONTOTOTOPERACION" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONTOTOTGRAV" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONTOTOTEXENT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONTOTOTRET" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_BASERET_ISR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONTORET_ISR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_TIPOPAGORET_ISR" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_ES_DIVIDENDO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_CLAVTIPDIVOUTIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONTOISR_ACREDIRETMEXICO" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONTOISR_ACREDIRETEXTRANJ" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONTRETEXTDIVIEXTRA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_TIPOSOCDISTDIV" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONISR_ACREDNACIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONTDIVACUNNACIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONTDIVACUNEXTRANJ" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_PORPORCREMNET" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_ID_USER_ALTA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_ID_USER_ANULA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_FECHA_REG" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_FECHA_ANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_HORA_REG" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_HORA_ANUL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_BASERET_IVA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONTORET_IVA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_TIPOPAGORET_IVA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_BASERET_IEPS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_MONTORET_IEPS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_TIPOPAGORET_IEPS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_SE_TIMBRO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_CONSECUTIVO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RET_ANULADO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_REPRESENTANTE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_RFC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TIPO_DIVIDENDO" class="java.lang.String"/>
+	<field name="TIPO_RETENCION" class="java.lang.String"/>
+	<field name="RET_OTRO_CONCEPTO" class="java.lang.String"/>
+	<detail>
+		<band height="667" splitType="Stretch">
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="459" y="344" width="87" height="12" uuid="1cf16375-d93b-4355-8d08-3adf89050868">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{RET_TIPOPAGORET_IEPS}.intValue() == 0 ? "NO" : "SI" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="62" y="0" width="397" height="20" uuid="ef961fb0-a35f-4810-9f0b-969cdd7a4c7b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CONSTANCIA DE PAGOS Y RETENCIONES DEL ISR, IVA E IEPS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="0" width="47" height="20" uuid="02408b97-3ff4-48b0-bec7-f3162fab5601"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[FOLIO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="15" y="20" width="47" height="20" uuid="21bff8fb-7c95-4a83-972b-b8b4dcc981bb"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{RET_FOLIOINT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="341" y="20" width="118" height="20" uuid="2d777ec6-5fbb-4015-8545-3dcb37a2cbb0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[PERIODO QUE AMPARA LA CONSTANCIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="537" y="0" width="35" height="20" uuid="bdfef569-1229-4636-9e53-a9be5bfe93b9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[EJERCICIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="0" width="37" height="20" uuid="4fd5c94e-1d52-4bbc-b58e-bf9fac5c9464"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[MES FINAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="459" y="0" width="41" height="20" uuid="76be0dde-29c3-4185-bbbe-e76bee50a25f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[MES INICIAL]]></text>
+			</staticText>
+			<textField pattern="###00">
+				<reportElement x="500" y="20" width="37" height="20" uuid="07cd6909-b7a7-4e88-8d8f-a3c23842a21e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_MESFIN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###00">
+				<reportElement x="459" y="20" width="41" height="20" uuid="e19cc79c-ec67-43c2-81f5-61a4c133cc2b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_MESINI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="40" width="572" height="20" backcolor="#FFFFFF" uuid="79f8ac59-ffc0-46c8-985c-92b1f0e19c38"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DE IDENTIFICACIÓN DEL TERCERO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="537" y="20" width="35" height="20" uuid="91bbc8b9-714e-47a7-9011-92e546c91d34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_EJERC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="61" width="133" height="20" uuid="f7fec5d6-aedc-49f4-9297-7818ecf0ba95"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[REGISTRO FEDERAL DE CONTRIBUYENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="81" width="133" height="20" uuid="0fbfceed-b972-47d3-bd1e-903b42f66e10"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[CLAVE ÚNICA DE REGISTRO DE POBLACIÓN(*)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="101" width="133" height="30" uuid="2e382434-7e0c-4af2-8c5d-1033a26ff92a"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[APELLIDO PATERNO, MATERNO Y NOMBRE(S) O DENOMINACIÓN O RAZÓN SOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="131" width="572" height="20" uuid="29ed9f3c-7e3e-4e2b-8e63-f4713396bdab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIVIDENDOS O UTILIDADES DISTRIBUIDOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="147" y="61" width="425" height="20" uuid="93c6916a-7380-498e-8806-1325c6a79cb6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{RET_RFCRECEP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="101" width="425" height="30" uuid="a7eeef7b-e15c-42c0-8b02-30df96142fb0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{RET_NOMDENRAZSOCR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="81" width="425" height="20" uuid="be361b96-e2b8-4670-b3c1-23b05f35038a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{RET_CURPR}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="60" width="571" height="1" uuid="95b62826-a17d-425d-95af-55626f0671e4"/>
+			</line>
+			<line>
+				<reportElement x="1" y="40" width="571" height="1" uuid="0055423b-96ee-4b83-aa8d-679f33fc1452"/>
+			</line>
+			<line>
+				<reportElement x="1" y="40" width="571" height="1" uuid="1f5dfd89-b27c-4021-895d-afa8f252016b"/>
+			</line>
+			<line>
+				<reportElement x="134" y="61" width="1" height="69" uuid="401f60ec-58e7-4018-8122-2026e846c994"/>
+			</line>
+			<line>
+				<reportElement x="134" y="61" width="1" height="69" uuid="78962590-90ca-4e2f-85ea-d0386385ac1d"/>
+			</line>
+			<line>
+				<reportElement x="134" y="61" width="1" height="69" uuid="f041ed37-440a-4c65-a0e0-621998066772"/>
+			</line>
+			<line>
+				<reportElement x="134" y="61" width="1" height="69" uuid="35b67927-b827-4694-9b55-987e1fcef010"/>
+			</line>
+			<line>
+				<reportElement x="0" y="253" width="571" height="1" uuid="0bdbd61d-5858-4c58-a46b-0520492d32b0"/>
+			</line>
+			<line>
+				<reportElement x="1" y="151" width="571" height="2" uuid="504af1b6-1ebf-4895-901d-5e5a767dc231"/>
+			</line>
+			<line>
+				<reportElement x="0" y="273" width="571" height="1" uuid="5076799f-389f-4f43-af36-c72590d2418b"/>
+			</line>
+			<line>
+				<reportElement x="1" y="131" width="571" height="1" uuid="a1c0a466-04bf-4b3c-9128-0112712a7709"/>
+			</line>
+			<staticText>
+				<reportElement x="15" y="153" width="239" height="20" uuid="d56175fe-8758-4783-8add-f10c7471ef2a"/>
+				<textElement markup="none">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[RESUMEN DE DIVIDENDOS NACIONALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="173" width="239" height="20" uuid="45cc3e5b-0cc0-4ee7-b4b7-75f299ec97c6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[TIPO DE DIVIDENDO O UTILIDAD DISTRIBUIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="193" width="239" height="20" uuid="7263fba5-a4b1-46a5-b720-8f87f2736452"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[MONTO DEL MOVIMIENTO O UTILIDAD DISTRIBUIDO]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="254" y="193" width="139" height="20" uuid="6e2422a9-40b1-4813-9444-f6adec266af7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{RET_MONTOISR_ACREDIRETMEXICO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="213" width="239" height="20" uuid="88ede378-ecbe-4016-a9fe-fbdf1e0afd1b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[MONTO DEL DIVIDENDO O UTILIDAD ACUMULABLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="233" width="239" height="20" uuid="f6cb4f99-c150-48a3-8544-a1d201c1e3cd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[MONTO DEL ISR RETENIDO ACREDITABLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="254" width="572" height="19" uuid="c62e386b-2798-4ccb-b7fd-6f8b8b937a9e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[OTROS PAGOS Y RETENCIONES]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="436" width="572" height="1" uuid="bf73d940-1ae8-457d-a2b9-ebdfea4828d2"/>
+			</line>
+			<staticText>
+				<reportElement x="15" y="310" width="253" height="12" uuid="7087fb2f-2b2e-4844-a52c-cfea8a59f5af">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[BASE DEL IMPUESTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="328" width="253" height="12" uuid="a6e7dcd7-f408-4717-b172-c3b923f65552">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[MONTO DEL ISR RETENIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="356" width="573" height="20" uuid="306b42f5-a92d-46e9-b60e-6b188a3de3a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL RETENEDOR]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="356" width="570" height="1" uuid="0a54eb08-4cbd-474b-ae41-fa0033b591f7"/>
+			</line>
+			<line>
+				<reportElement x="0" y="376" width="570" height="1" uuid="40998d9a-66fd-41c8-808c-7beac4ed6e06"/>
+			</line>
+			<staticText>
+				<reportElement x="14" y="417" width="253" height="20" uuid="0b57fa2d-e30b-470b-b66f-e67e431837a0"/>
+				<text><![CDATA[REGISTRO FEDERAL DE CONTRIBUYENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="376" width="253" height="22" uuid="7c5bb49a-d4d4-4b29-809e-f7f87749166a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[REGISTRO FEDERAL DE CONTRIBUYENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="398" width="253" height="19" uuid="0443d213-208b-43d9-84a7-489cbe7f7e29"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[APELLIDO PATERNO, MATERNO Y NOMBRE(S), DENOMINACIÓN O RAZÓN SOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="438" width="556" height="20" uuid="3cf14a6f-6cbf-45e6-88ec-acc7851721f3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CADENA ORIGINAL DEL COMPLEMENTO DE CERTIFICACIÓN DIGITAL DEL SAL]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="15" y="458" width="558" height="20" uuid="c4e91d49-e953-4d4a-8de4-32dd0eb3fbaa"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_CADENAORIGINAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="135" y="478" width="162" height="20" uuid="3a121823-4150-46d9-b963-cabe57991fd4"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[No. Serie Certificado SAT:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="297" y="478" width="274" height="20" uuid="2962480d-cd91-4b96-b4db-3252df556eb5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_NUMCERT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="135" y="518" width="100" height="20" uuid="5e75ad25-284a-4cf0-bb66-f90d92595ff5"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Sello Digital del CFDI]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="134" y="538" width="436" height="44" uuid="d5259b88-6fd5-4ecc-861e-1a83a1a8e220"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_SELLOTIMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="154" y="595" width="263" height="16" uuid="eaf6344d-0231-4965-a247-8e86b7b64bf7"/>
+				<textElement markup="none">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA["Este Documento es una representación impresa de un CFDI"]]></text>
+			</staticText>
+			<image>
+				<reportElement x="15" y="478" width="111" height="100" uuid="835c6071-3ca9-4bd7-a0b0-76abeaee2fe8"/>
+				<imageExpression><![CDATA[$F{RET_PATH_CBB}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="281" y="292" width="87" height="12" uuid="2ea2140e-b5e2-4d76-966f-06dc3cbc46a1">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[ISR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="292" width="87" height="12" uuid="c395ea26-d173-45cd-91e5-f87e7c078c52">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="459" y="292" width="87" height="12" uuid="abf6300c-dcee-4752-bd29-77d2874b7a50">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[IEPS]]></text>
+			</staticText>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="459" y="310" width="87" height="12" uuid="e7779111-f617-444e-8db4-f42beb90a872">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_BASERET_IEPS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="459" y="328" width="87" height="12" uuid="bceada94-53a3-4a45-9e06-c8fa1cd7b62c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_MONTORET_IEPS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="370" y="344" width="87" height="12" uuid="c2b0f6bd-35fa-4629-9f00-6a699b3540c6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{RET_TIPOPAGORET_IVA}.intValue() == 0 ? "NO" : "SI" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="370" y="328" width="87" height="12" uuid="c3c906cd-50a7-465d-8d35-7f4ac21bd559">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_MONTORET_IVA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="370" y="310" width="87" height="12" uuid="b6d76a82-57e0-4e18-b401-f797e72dc21a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_BASERET_IVA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="280" y="344" width="87" height="12" uuid="332b2cb8-d94f-462c-9d49-5227f2dbc914">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{RET_TIPOPAGORET_ISR}.intValue() == 0 ? "NO" : "SI" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="280" y="328" width="87" height="12" uuid="b1d5e991-7fbe-49fa-b3ca-c81c3a1d9fa0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_MONTORET_ISR}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="280" y="310" width="87" height="12" uuid="1cd989c2-0feb-44fe-b887-8cdc8dc9bdc5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_BASERET_ISR}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="-9" y="20" width="589" height="647" uuid="46cb47ac-e4e3-4b5c-9a96-3fdb60927c47"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="135" y="498" width="162" height="20" uuid="24e2df07-ceeb-4709-a7a0-7eb1e24c09a4"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[No. Serie Certificado Emisor:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="297" y="498" width="274" height="20" uuid="5661d28a-f462-42f7-87f7-5b90565bb57a"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_NOSERIECERTTIM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="19" width="206" height="21" forecolor="#FF000C" uuid="ccb5e786-c783-41bf-94ac-0c540559d1ac"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_UUID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="62" y="20" width="73" height="20" uuid="514dbcca-0be1-4e22-bc9a-1ea4a50cc418"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[FOLIO FISCAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="267" y="377" width="303" height="20" uuid="a4d53536-2ccb-4b81-8bcf-9cca3a97900a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="397" width="303" height="20" uuid="5cbe67d9-1a9e-4fe2-b1a2-b905f087165b"/>
+				<textFieldExpression><![CDATA[$F{EMP_REPRESENTANTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="416" width="303" height="20" uuid="67b2c181-3c83-4c81-b582-2916737d6a3c"/>
+				<textFieldExpression><![CDATA[$F{EMP_RFC}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="341" y="173" width="229" height="20" uuid="6826474d-eb95-422d-bf57-7cd630c2018b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TIPO_DIVIDENDO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="254" y="233" width="139" height="20" uuid="0f9d9625-0eb8-4a59-9ac4-618df4e7ea42"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{RET_MONISR_ACREDNACIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="254" y="213" width="139" height="20" uuid="2f66cc54-730f-4b17-a142-6d76263e52d6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{RET_MONTDIVACUNNACIO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="254" y="173" width="87" height="20" uuid="fa18dc28-dc19-4bc8-ae32-948c9b0b08f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{RET_CLAVTIPDIVOUTIL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="344" width="252" height="12" uuid="6bd5a8df-eb55-4d66-82ab-319a57a4a665">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[PAGO DEFINITIVO]]></text>
+			</staticText>
+			<textField>
+				<reportElement key="" x="14" y="277" width="174" height="12" uuid="cf7a6e62-b5b7-4b27-a218-454075937a0f"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TIPO_RETENCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="277" width="382" height="12" uuid="b5e7f8bc-b44f-4e26-b3ba-eb5a3e780378"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RET_OTRO_CONCEPTO}.equals("") ? "":"OTROS CONCEPTOS: "+$F{RET_OTRO_CONCEPTO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

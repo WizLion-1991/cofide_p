@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="038de831-60f9-4ff0-ab6d-6db4b51f0ce2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="CT_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PathBaseWeb" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT vta_empresas.EMP_RAZONSOCIAL,CT_ID,CT_UPLINE,CT_RAZONSOCIAL,CT_TELEFONO1,
+                 CT_TELEFONO2,CT_EMAIL1,CT_ARMADODEEP,CT_ARMADOINI,CT_ARMADOFIN
+                 ,CT_PPUNTOS,CT_PNEGOCIO,CT_GPUNTOS,CT_GNEGOCIO,CT_COMISION,CT_NIVELRED,CT_PASSWORD
+                  FROM vta_cliente 	
+	Join vta_empresas on vta_empresas.EMP_ID = vta_cliente.EMP_ID
+WHERE 
+                  CT_ARMADONUM>=(SELECT CT_ARMADOINI FROM vta_cliente where CT_ID = $P{CT_ID}  ) AND 
+                  CT_ARMADONUM<=(SELECT CT_ARMADOFIN FROM vta_cliente where CT_ID = $P{CT_ID})
+                  ORDER BY CT_ARMADONUM
+
+]]>
+	</queryString>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="CT_ID" class="java.lang.Long"/>
+	<field name="CT_UPLINE" class="java.lang.Integer"/>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="CT_TELEFONO1" class="java.lang.String"/>
+	<field name="CT_TELEFONO2" class="java.lang.String"/>
+	<field name="CT_EMAIL1" class="java.lang.String"/>
+	<field name="CT_ARMADODEEP" class="java.lang.Integer"/>
+	<field name="CT_ARMADOINI" class="java.lang.Integer"/>
+	<field name="CT_ARMADOFIN" class="java.lang.Integer"/>
+	<field name="CT_PPUNTOS" class="java.math.BigDecimal"/>
+	<field name="CT_PNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="CT_GPUNTOS" class="java.math.BigDecimal"/>
+	<field name="CT_GNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="CT_COMISION" class="java.math.BigDecimal"/>
+	<field name="CT_NIVELRED" class="java.lang.Integer"/>
+	<field name="CT_PASSWORD" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="62" splitType="Stretch">
+			<textField>
+				<reportElement uuid="bbcfbf38-8a30-4287-b3ff-0b3830cdf3a7" x="671" y="42" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CT_ID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2eef499d-3965-4f8f-89da-ce78920018ef" x="563" y="42" width="108" height="20"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[CLAVE DEL CLIENTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3f08145f-05db-46ed-920e-505dede93303" x="671" y="22" width="38" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="0672645e-822a-4b8d-bcb8-756238aa4a47" x="571" y="22" width="100" height="20" forecolor="#000000" backcolor="#006699"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE EMISION:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7d917c45-9b94-482f-8bde-d55e8608277e" x="192" y="0" width="379" height="30"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTA TELEFONICA POR DESCENDENCIA]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="38a47265-99bd-4321-b2b8-5a466d9c5e84" x="296" y="30" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="cc671314-4a0a-43a5-8d5e-faff0efcf34b" x="196" y="30" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[EMPRESA:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="309208aa-c2ff-45aa-9c36-84f43fbbe51c" mode="Opaque" x="24" y="0" width="747" height="20" forecolor="#0066CC" backcolor="#006699"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="22b858e1-42df-4082-92e2-01b65c5ae983" x="626" y="0" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONO 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="acf0d4b5-6561-4c29-9468-b3811057dedf" x="441" y="0" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONO 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="172e9cc0-86d6-4bcf-bb90-6d891adab3e4" x="277" y="0" width="103" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a6322bf5-01ed-4f96-9437-82b109e43866" x="105" y="0" width="117" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[GENERACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7f700a6c-1f43-4cff-852f-c4e429ba23e7" x="24" y="0" width="35" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="c756066b-a570-413c-b24d-5be39caa6b22" x="24" y="0" width="35" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CT_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="08a30a80-6f0f-4b12-a2d2-4d392380a25a" x="277" y="0" width="103" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a2d9e360-c95e-4172-96f4-0180969ae9ec" x="626" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CT_TELEFONO2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9b86fa41-3870-4d59-82b5-3ca3d96a4a0f" x="441" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CT_TELEFONO1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f1975c64-b24b-43c3-80d7-fcb3104f087c" x="105" y="0" width="117" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{CT_ARMADODEEP}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="63c40dea-950e-4730-88a1-f4e6788e339c" x="300" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="848e7dcb-f490-489a-b511-ace37632cc87" x="380" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

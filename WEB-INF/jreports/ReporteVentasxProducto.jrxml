@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="57fc7764-036f-47b7-bc06-500e5d710c02">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecIni" class="java.lang.String"/>
+	<parameter name="fecFin" class="java.lang.String"/>
+	<parameter name="EMP_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT PR_CODIGO,PR_CODIGO_CORTO  ,PR_DESCRIPCION,
+(select SUM(tkd.TKTD_CANTIDAD) from vta_tickets as tk,vta_ticketsdeta as tkd 
+ where  tk.TKT_ID = tkd.TKT_ID and tkd.PR_ID = vta_producto.PR_ID AND tk.TKT_ANULADA = 0 AND tk.TKT_FECHA BETWEEN $P{fecIni} AND $P{fecFin}) AS TPIEZAS_TICKETS,
+(select SUM(fd.FACD_CANTIDAD) from vta_facturas as f,vta_facturasdeta as fd 
+ where  F.FAC_ID = FD.FAC_ID and fd.PR_ID = vta_producto.PR_ID AND f.FAC_ANULADA = 0  AND f.FAC_FECHA BETWEEN $P{fecIni} AND $P{fecFin}) AS TPIEZAS_FACTURAS,
+if((select SUM(tkd.TKTD_CANTIDAD) from vta_tickets as tk,vta_ticketsdeta as tkd 
+ where  tk.TKT_ID = tkd.TKT_ID and tkd.PR_ID = vta_producto.PR_ID AND tk.TKT_ANULADA = 0 AND tk.TKT_FECHA BETWEEN $P{fecIni} AND $P{fecFin}) is null, 0,(select SUM(tkd.TKTD_CANTIDAD) from vta_tickets as tk,vta_ticketsdeta as tkd 
+ where  tk.TKT_ID = tkd.TKT_ID and tkd.PR_ID = vta_producto.PR_ID AND tk.TKT_ANULADA = 0 AND tk.TKT_FECHA BETWEEN $P{fecIni} AND $P{fecFin})) + 
+if((select SUM(fd.FACD_CANTIDAD) from vta_facturas as f,vta_facturasdeta as fd 
+ where  F.FAC_ID = FD.FAC_ID and fd.PR_ID = vta_producto.PR_ID AND f.FAC_ANULADA = 0  AND f.FAC_FECHA BETWEEN $P{fecIni} AND $P{fecFin}) is null, 0,(select SUM(fd.FACD_CANTIDAD) from vta_facturas as f,vta_facturasdeta as fd 
+ where  F.FAC_ID = FD.FAC_ID and fd.PR_ID = vta_producto.PR_ID AND f.FAC_ANULADA = 0  AND f.FAC_FECHA BETWEEN $P{fecIni} AND $P{fecFin})) AS TPIEZAS_VENDIDAS,(SELECT EMP_RAZONSOCIAL FROM vta_empresas WHERE EMP_ID=$P{EMP_ID}) AS NOMBRE_EMPRESA,(SELECT DATE_FORMAT(CURDATE(), '%d/%m/%Y')) as Fecha_Actual
+,vta_empresas.EMP_PATHIMG as LOGO
+from vta_producto, vta_empresas where vta_producto.EMP_ID = vtA_empresas.EMP_ID  
+HAVING TPIEZAS_VENDIDAS > 0
+ORDER BY TPIEZAS_VENDIDAS DESC]]>
+	</queryString>
+	<field name="PR_CODIGO" class="java.lang.String"/>
+	<field name="PR_CODIGO_CORTO" class="java.lang.String"/>
+	<field name="PR_DESCRIPCION" class="java.lang.String"/>
+	<field name="TPIEZAS_TICKETS" class="java.math.BigDecimal"/>
+	<field name="TPIEZAS_FACTURAS" class="java.math.BigDecimal"/>
+	<field name="TPIEZAS_VENDIDAS" class="java.math.BigDecimal"/>
+	<field name="NOMBRE_EMPRESA" class="java.lang.String"/>
+	<field name="Fecha_Actual" class="java.lang.String"/>
+	<field name="LOGO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="78842692-f252-4a08-a184-86e756b6eb17" x="183" y="23" width="193" height="20"/>
+				<textElement/>
+				<text><![CDATA[LISTADO DE VENTAS POR PRODUCTO]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement uuid="235fdcec-540b-4c9e-96f5-075093d30bb7" x="0" y="0" width="139" height="79"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb} + "/" + $F{LOGO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="882f1006-60d3-4faf-b1f6-02c0305ff7c8" x="210" y="0" width="156" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NOMBRE_EMPRESA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d5418964-3999-4c66-bf84-713e40066c18" x="183" y="43" width="92" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Emisión:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="489303a9-610a-4613-989b-f64abe4c35d1" x="276" y="43" width="90" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Fecha_Actual}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3a7297d2-4c42-485b-90a9-ce0dce098aac" x="0" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1934cfa6-658e-41a8-9474-96d1c0f515c8" x="100" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[CODIGO CORTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="13ff84fa-1946-426d-9582-110f3991313a" x="200" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6d01e784-2686-44c7-8f2d-c2b2f731c55f" x="300" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[PIEZAS TICKET]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="79a9558f-ccf7-46d6-873c-27064eaf706f" x="400" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[PIEZAS FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6980803c-0c6b-41a4-8b82-333b368175f1" x="500" y="41" width="55" height="20"/>
+				<textElement/>
+				<text><![CDATA[TOTAL PIEZAS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="64e69872-dc63-4f87-b420-338ae17c9b34" x="0" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PR_CODIGO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="882f2a80-9a0a-422e-9921-8525af4a889b" x="100" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PR_CODIGO_CORTO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="513f20a9-0161-4bf2-af6a-5e8249b2bb7c" x="200" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PR_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="49381d73-b326-4665-b6ef-3cd10b01d640" x="300" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TPIEZAS_TICKETS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="eb8d08d5-3e1a-4f3e-84cb-6564c9bf74e4" x="400" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TPIEZAS_FACTURAS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="1efef1e6-8524-487e-aff2-72059c077c6c" x="500" y="1" width="55" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TPIEZAS_VENDIDAS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement uuid="c1f440d6-2834-4e62-86be-86d420b91416" x="217" y="34" width="69" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+""]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="386caccd-8842-4955-a91a-5d418950a919" x="286" y="34" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["  de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

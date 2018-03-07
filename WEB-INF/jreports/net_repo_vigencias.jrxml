@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8490d3d5-3d10-44b5-a3ef-2653b5c501a1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select FAC_RAZONSOCIAL,DATE_FORMAT( STR_TO_DATE(FAC_FECHA,'%Y%m%d'),'%d/%m/%Y') AS FECHA,DATE_FORMAT( DATE_ADD(STR_TO_DATE(FAC_FECHA,'%Y%m%d'),INTERVAL 365 DAY),'%d/%m/%Y') as FECHA_VIGENCIA,vta_facturasdeta.* from vtA_facturas,vta_facturasdeta,vta_movproddeta where 
+vta_facturas.FAC_ID = vta_facturasdeta.FAC_ID AND vta_facturasdeta.FAC_ID AND vta_movproddeta.MPD_IDORIGEN
+ AND vta_movproddeta.PR_CODIGO = 'AAAAEQUIPO1']]>
+	</queryString>
+	<field name="FAC_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="FECHA" class="java.lang.String"/>
+	<field name="FECHA_VIGENCIA" class="java.lang.String"/>
+	<field name="FACD_ID" class="java.lang.Long"/>
+	<field name="FAC_ID" class="java.lang.Long"/>
+	<field name="FACD_CVE" class="java.lang.String"/>
+	<field name="FACD_DESCRIPCION" class="java.lang.String"/>
+	<field name="FACD_IMPORTE" class="java.math.BigDecimal"/>
+	<field name="FACD_CANTIDAD" class="java.math.BigDecimal"/>
+	<field name="FACD_TASAIVA1" class="java.math.BigDecimal"/>
+	<field name="FACD_TASAIVA2" class="java.math.BigDecimal"/>
+	<field name="FACD_TASAIVA3" class="java.math.BigDecimal"/>
+	<field name="FACD_DESGLOSA1" class="java.lang.Integer"/>
+	<field name="FACD_DESGLOSA2" class="java.lang.Integer"/>
+	<field name="FACD_DESGLOSA3" class="java.lang.Integer"/>
+	<field name="SC_ID" class="java.lang.Long"/>
+	<field name="FACD_IMPUESTO1" class="java.math.BigDecimal"/>
+	<field name="FACD_IMPUESTO2" class="java.math.BigDecimal"/>
+	<field name="FACD_IMPUESTO3" class="java.math.BigDecimal"/>
+	<field name="FACD_NOSERIE" class="java.lang.String"/>
+	<field name="FACD_ESREGALO" class="java.lang.Integer"/>
+	<field name="FACD_IMPORTEREAL" class="java.math.BigDecimal"/>
+	<field name="FACD_PRECIO" class="java.math.BigDecimal"/>
+	<field name="FACD_EXENTO1" class="java.lang.Integer"/>
+	<field name="FACD_EXENTO2" class="java.lang.Integer"/>
+	<field name="FACD_EXENTO3" class="java.lang.Integer"/>
+	<field name="PR_ID" class="java.lang.Long"/>
+	<field name="FACD_COSTO" class="java.math.BigDecimal"/>
+	<field name="FACD_GANANCIA" class="java.math.BigDecimal"/>
+	<field name="FACD_DESCUENTO" class="java.math.BigDecimal"/>
+	<field name="FACD_PORDESC" class="java.math.BigDecimal"/>
+	<field name="FACD_PRECFIJO" class="java.lang.Integer"/>
+	<field name="FACD_PRECREAL" class="java.math.BigDecimal"/>
+	<field name="FACD_ESDEVO" class="java.lang.Integer"/>
+	<field name="FACD_COMENTARIO" class="java.lang.String"/>
+	<field name="FACD_PEDINUM" class="java.lang.String"/>
+	<field name="FACD_PEDIFECHA" class="java.lang.String"/>
+	<field name="FACD_PEDIADUANA" class="java.lang.String"/>
+	<field name="FACD_UNIDAD_MEDIDA" class="java.lang.String"/>
+	<field name="FACD_RET_ISR" class="java.lang.Integer"/>
+	<field name="FACD_RET_IVA" class="java.lang.Integer"/>
+	<field name="FACD_RET_FLETE" class="java.lang.Integer"/>
+	<field name="PDD_ID" class="java.lang.Integer"/>
+	<field name="TKTD_ID" class="java.lang.Integer"/>
+	<field name="COTD_ID" class="java.lang.Integer"/>
+	<field name="FACD_PUNTOS" class="java.math.BigDecimal"/>
+	<field name="FACD_VNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="FACD_IMP_PUNTOS" class="java.math.BigDecimal"/>
+	<field name="FACD_IMP_VNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="FACD_DESC_PREC" class="java.lang.Integer"/>
+	<field name="FACD_DESC_PUNTOS" class="java.lang.Integer"/>
+	<field name="FACD_DESC_VNEGOCIO" class="java.lang.Integer"/>
+	<field name="FACD_DESC_ORI" class="java.math.BigDecimal"/>
+	<field name="FACD_REGALO" class="java.lang.Integer"/>
+	<field name="FACD_ID_PROMO" class="java.lang.Integer"/>
+	<field name="FACD_EXEN_RET_ISR" class="java.lang.Integer"/>
+	<field name="FACD_EXEN_RET_IVA" class="java.lang.Integer"/>
+	<field name="FACD_CAN_DEV" class="java.lang.Integer"/>
+	<field name="FACD_SERIES_DEV" class="java.lang.String"/>
+	<field name="CF_ID" class="java.lang.Integer"/>
+	<variable name="totalImporte" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{FACD_IMPORTE}]]></variableExpression>
+	</variable>
+	<variable name="totalCantidad" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{FACD_CANTIDAD}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="1ec4c061-ef6c-4279-95d9-40d4f9d87f01" x="177" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NETMEDICAL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4cf0fc37-ca66-464e-8b1a-04ffd05bddcb" x="35" y="0" width="430" height="20"/>
+				<textElement/>
+				<text><![CDATA[REPORTE DE EQUIPOS VENDIDOS EN EL MES]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="52a33138-79c3-421a-9859-bfbf09cd6371" x="0" y="0" width="92" height="20"/>
+				<textElement/>
+				<text><![CDATA[CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="824625bf-1138-4eee-bc1a-a0173e078103" x="92" y="0" width="92" height="20"/>
+				<textElement/>
+				<text><![CDATA[F.COMPRA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1ad8b24e-55c6-4d99-9df5-00443b85ca20" x="184" y="0" width="80" height="20"/>
+				<textElement/>
+				<text><![CDATA[F.VIGENCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b996d81a-4ece-407e-b085-af9f464b8500" x="264" y="0" width="131" height="20"/>
+				<textElement/>
+				<text><![CDATA[EQUIPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="00a13461-84d1-427a-be6a-83c52a0b6cb7" x="395" y="0" width="92" height="20"/>
+				<textElement/>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="737881b4-216f-4c63-9be3-642de19d7d3e" x="487" y="0" width="65" height="20"/>
+				<textElement/>
+				<text><![CDATA[CANTIDAD VENDIDA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement uuid="d90cc650-c3fe-41bb-a112-18081cbea52b" x="0" y="0" width="92" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FAC_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6368b328-3b3d-462e-8512-6fb49c7c7b0c" x="92" y="0" width="92" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0fa3da15-7f02-4a0d-8e9d-756982c221cb" x="184" y="0" width="80" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FECHA_VIGENCIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e51bb722-3bf7-4220-bf8c-05be95ee1021" x="264" y="0" width="131" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FACD_CVE} + " S/N" + $F{FACD_NOSERIE} ]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00">
+				<reportElement uuid="74a8740a-0c2f-4311-a01e-598f734cc660" x="395" y="0" width="92" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FACD_IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement uuid="07b644b2-f882-435f-ba6f-7f9174644721" x="487" y="0" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FACD_CANTIDAD}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="25" splitType="Stretch">
+			<textField pattern="$ #,##0.00">
+				<reportElement uuid="085a00f5-fb91-4992-ac0c-52420ff54b9f" x="395" y="0" width="92" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{totalImporte}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement uuid="f47edc64-b243-48dc-98e0-7ace0dc35842" x="487" y="0" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{totalCantidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement uuid="a90391da-3eb1-4053-8e58-c495e016576c" x="0" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="3832cccb-40a3-401e-b3b7-fc90be8cbcdd" x="80" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="17" splitType="Stretch"/>
+	</summary>
+</jasperReport>

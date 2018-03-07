@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Listado de remisiones" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="e7ebc949-bf10-4d92-b4c7-be2cdd8d955c">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="558"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="vta_grupomak"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="TRAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[1,2,3]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+EMP_RAZONSOCIAL,
+DATE_FORMAT(STR_TO_DATE(TKT_FECHA,'%Y%m%d'),'%d/%m/%Y') AS TFECHA,
+vta_cliente.CT_ID,
+CT_RAZONSOCIAL,
+SC_NOMBRE,
+TKT_IMPORTE,
+TKT_IMPUESTO1,
+TKT_TOTAL,
+TKT_SALDO,
+TKT_IMPORTE_PUNTOS,
+TKT_IMPORTE_NEGOCIO,
+id_usuarios,
+vta_tickets.EMP_ID,
+TKT_ID
+from
+vta_empresas,
+vta_tickets,
+vta_cliente,
+vta_sucursal,
+usuarios
+where
+vta_empresas.EMP_ID = vta_tickets.EMP_ID AND
+TKT_ANULADA = 0 AND
+vta_cliente.CT_ID = vta_tickets.CT_ID AND
+vta_sucursal.SC_ID = vta_tickets.SC_ID AND
+TKT_US_ALTA=id_usuarios and
+TKT_ID IN ($P{TRAN})]]>
+	</queryString>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TFECHA" class="java.lang.String"/>
+	<field name="CT_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TKT_IMPORTE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TKT_IMPUESTO1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TKT_TOTAL" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TKT_SALDO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TKT_IMPORTE_PUNTOS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TKT_IMPORTE_NEGOCIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_usuarios" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TKT_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="Total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{TKT_TOTAL}]]></variableExpression>
+	</variable>
+	<background>
+		<band height="575" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="72" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="92" y="45" width="100" height="20" uuid="3f32e848-a559-42c4-89c1-71cd5bf982f0"/>
+			</textField>
+			<staticText>
+				<reportElement x="7" y="45" width="85" height="20" uuid="ed5e1690-224c-4f71-8325-1569b1b80d18"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[TRANZACIONES:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="291" y="30" width="223" height="15" uuid="43b3cf4c-dabc-4960-b0aa-96fa77b736f4"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="SubTitle" x="255" y="10" width="293" height="20" forecolor="#000000" uuid="d863c4fc-c593-45f1-878a-62c781fc3175"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE FACTURAS DETERMINADAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="533" y="45" width="116" height="20" uuid="df7c251c-cdd4-4519-8b2e-f3b419c578fa"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha de Emision:
+]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="649" y="45" width="100" height="20" uuid="55efd2b2-2cbc-4986-8e65-d5d2f260bebd"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="92" y="45" width="100" height="20" uuid="4e324523-d26b-4d30-85d0-c1f2fb023acb"/>
+				<textFieldExpression><![CDATA[$P{TRAN}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="46" y="0" width="65" height="15" forecolor="#000000" uuid="02132657-e328-4d90-a498-cc655c8494e7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="58" height="15" forecolor="#000000" uuid="d4124f59-411c-448c-9d46-50c654d51696"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="0" width="79" height="15" forecolor="#000000" uuid="d3457f33-e8ec-463a-a467-5e8496a2adaf"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUCURSAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="0" width="125" height="15" forecolor="#000000" uuid="a9a44a58-11b5-4e82-9e89-96395d7e41d6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="516" y="0" width="65" height="15" forecolor="#000000" uuid="9f3477bc-f33b-4ad3-aba6-2eaa37c97b66"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="581" y="0" width="51" height="15" forecolor="#000000" uuid="1afe484a-8516-47b6-8a28-b9464adad25d"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SALDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="632" y="0" width="53" height="15" forecolor="#000000" uuid="5b287e67-cf85-49d6-939c-63dbcc21f492"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PUNTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="688" y="0" width="61" height="15" forecolor="#000000" uuid="28b407db-5bab-4075-a1be-9e09701aaaa9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NEGOCIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="749" y="0" width="53" height="15" forecolor="#000000" uuid="cf71092f-4175-4a67-b8a7-9fc945519241"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[USUARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="0" width="79" height="15" forecolor="#000000" uuid="f600b771-fbd2-4722-87ca-7fcc6b1fc37c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPUESTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="0" width="39" height="15" forecolor="#000000" uuid="5bbefb66-950d-4d69-baae-dc726796510d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="0" width="64" height="15" forecolor="#000000" uuid="92b78c56-2631-413d-ae4d-b4e9fb2b3f64"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="Detail" x="46" y="0" width="65" height="15" uuid="c6050e6f-d027-4d54-a2cd-70a775482872"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TFECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="111" y="0" width="58" height="15" uuid="bf1fd705-4607-4096-b607-c065c9f5f8bc"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_ID}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Detail" x="294" y="0" width="79" height="15" uuid="a72433e0-534d-4edf-a423-7463ed9a8217"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SC_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="169" y="0" width="125" height="15" uuid="55a9b1fb-548c-42fd-92bb-5ac2afd0b894"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Detail" x="373" y="0" width="64" height="15" uuid="d2d1741e-7f1a-40dc-8c9b-b3246b4771e1"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Detail" x="514" y="0" width="67" height="15" uuid="a2e3f076-0aa5-48a0-a5ea-8cf77716bc50"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Detail" x="581" y="0" width="51" height="15" uuid="39d5ec5f-2413-4ed0-94b5-9a2c008c9d2f"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_SALDO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="632" y="0" width="53" height="15" uuid="9f084410-bb41-46a5-85fb-141ee06d75f9"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_IMPORTE_PUNTOS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="688" y="0" width="61" height="15" uuid="3f0829f1-49fa-459f-85ed-e57fdb1b857f"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_IMPORTE_NEGOCIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="749" y="0" width="53" height="15" uuid="fbd6e429-094a-4bda-9829-5ed231407347"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_usuarios}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Detail" x="437" y="0" width="79" height="15" uuid="e1f8a52e-b23e-4b61-8845-2037f206858e"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_IMPUESTO1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="7" y="0" width="39" height="15" uuid="8c324598-1fc9-4b70-b78d-db998375b22e"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TKT_ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="36" splitType="Immediate">
+			<textField pattern="#,##0.00">
+				<reportElement style="Detail" x="406" y="11" width="79" height="15" uuid="f24194ab-a21f-43a9-86d5-e9cc6f8f1495"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="92" y="20" width="123" height="20" forecolor="#000000" uuid="2340a5e9-ccf2-4962-9d75-03a6f556d6c3"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-1" y="20" width="93" height="20" uuid="df4c0fbb-d204-4bc1-bf9f-08746106c1a6"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER} + " de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="41" splitType="Stretch"/>
+	</summary>
+</jasperReport>

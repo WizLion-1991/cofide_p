@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2-hudson-740-. --><xs:schema xmlns:tns="http://ws.interconecta.tsp.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.interconecta.tsp.com/">
+
+<xs:element name="cancelaCFDI" type="tns:cancelaCFDI" />
+
+<xs:element name="cancelaCFDI32" type="tns:cancelaCFDI32" />
+
+<xs:element name="cancelaCFDI32Response" type="tns:cancelaCFDI32Response" />
+
+<xs:element name="cancelaCFDIResponse" type="tns:cancelaCFDIResponse" />
+
+<xs:element name="otorgarAccesoContribuyente" type="tns:otorgarAccesoContribuyente" />
+
+<xs:element name="otorgarAccesoContribuyenteResponse" type="tns:otorgarAccesoContribuyenteResponse" />
+
+<xs:element name="timbraEnviaCFDI" type="tns:timbraEnviaCFDI" />
+
+<xs:element name="timbraEnviaCFDIBytes" type="tns:timbraEnviaCFDIBytes" />
+
+<xs:element name="timbraEnviaCFDIBytesResponse" type="tns:timbraEnviaCFDIBytesResponse" />
+
+<xs:element name="timbraEnviaCFDIReexpide" type="tns:timbraEnviaCFDIReexpide" />
+
+<xs:element name="timbraEnviaCFDIReexpideResponse" type="tns:timbraEnviaCFDIReexpideResponse" />
+
+<xs:element name="timbraEnviaCFDIResponse" type="tns:timbraEnviaCFDIResponse" />
+
+<xs:element name="timbraEnviaCFDIxp" type="tns:timbraEnviaCFDIxp" />
+
+<xs:element name="timbraEnviaCFDIxpResponse" type="tns:timbraEnviaCFDIxpResponse" />
+
+<xs:complexType name="otorgarAccesoContribuyente">
+<xs:sequence>
+<xs:element name="user" type="xs:string" minOccurs="0" />
+<xs:element name="userPassword" type="xs:string" minOccurs="0" />
+<xs:element name="contribuyenteRFC" type="xs:string" minOccurs="0" />
+<xs:element name="contribuyenteRazonSocial" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="otorgarAccesoContribuyenteResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:wsInsertaClienteResp" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="wsInsertaClienteResp">
+<xs:sequence>
+<xs:element name="errorMessage" type="xs:string" minOccurs="0" />
+<xs:element name="isError" type="xs:boolean" minOccurs="0" />
+<xs:element name="numError" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="timbraEnviaCFDIBytes">
+<xs:sequence>
+<xs:element name="user" type="xs:string" minOccurs="0" />
+<xs:element name="userPassword" type="xs:string" minOccurs="0" />
+<xs:element name="certificadoEmisor" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="llavePrivadaEmisor" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="llavePrivadaEmisorPassword" type="xs:string" minOccurs="0" />
+<xs:element name="bytesXmlCFDI" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="versionCFDI" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="timbraEnviaCFDIBytesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:wsGenericResp" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="wsGenericResp">
+<xs:sequence>
+<xs:element name="acuse" type="xs:base64Binary" minOccurs="0" />
+<xs:element name="arrayFoliosCancelacion" type="tns:wsArregloCancelacion" minOccurs="0" />
+<xs:element name="cadenaOriginal" type="xs:string" minOccurs="0" />
+<xs:element name="errorMessage" type="xs:string" minOccurs="0" />
+<xs:element name="fechaHoraTimbrado" type="xs:dateTime" minOccurs="0" />
+<xs:element name="folioCodCancelacion" type="xs:string" minOccurs="0" />
+<xs:element name="folioUUID" type="xs:string" minOccurs="0" />
+<xs:element name="isError" type="xs:boolean" minOccurs="0" />
+<xs:element name="numError" type="xs:int" />
+<xs:element name="selloDigitalEmisor" type="xs:string" minOccurs="0" />
+<xs:element name="selloDigitalTimbreSAT" type="xs:string" minOccurs="0" />
+<xs:element name="XML" type="xs:base64Binary" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="wsArregloCancelacion">
+<xs:sequence>
+<xs:element name="arreglo" type="tns:wsItemCancelacion" nillable="true" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="wsItemCancelacion">
+<xs:sequence>
+<xs:element name="estatus" type="xs:int" />
+<xs:element name="UUID" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelaCFDI">
+<xs:sequence>
+<xs:element name="user" type="xs:string" minOccurs="0" />
+<xs:element name="userPassword" type="xs:string" minOccurs="0" />
+<xs:element name="certificadoEmisor" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="llavePrivadaEmisor" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="llavePrivadaEmisorPassword" type="xs:string" minOccurs="0" />
+<xs:element name="xmlCFDI" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelaCFDIResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:wsGenericResp" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelaCFDI32">
+<xs:sequence>
+<xs:element name="user" type="xs:string" minOccurs="0" />
+<xs:element name="userPassword" type="xs:string" minOccurs="0" />
+<xs:element name="certificadoEmisor" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="llavePrivadaEmisor" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="llavePrivadaEmisorPassword" type="xs:string" minOccurs="0" />
+<xs:element name="xmlCFDI" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelaCFDI32Response">
+<xs:sequence>
+<xs:element name="return" type="tns:wsGenericResp" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="timbraEnviaCFDI">
+<xs:sequence>
+<xs:element name="user" type="xs:string" minOccurs="0" />
+<xs:element name="userPassword" type="xs:string" minOccurs="0" />
+<xs:element name="certificadoEmisor" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="llavePrivadaEmisor" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="llavePrivadaEmisorPassword" type="xs:string" minOccurs="0" />
+<xs:element name="xmlCFDI" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="timbraEnviaCFDIResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:wsGenericResp" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="timbraEnviaCFDIxp">
+<xs:sequence>
+<xs:element name="user" type="xs:string" minOccurs="0" />
+<xs:element name="userPassword" type="xs:string" minOccurs="0" />
+<xs:element name="certificadoEmisor" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="llavePrivadaEmisor" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="llavePrivadaEmisorPassword" type="xs:string" minOccurs="0" />
+<xs:element name="xmlCFDI" type="xs:string" minOccurs="0" />
+<xs:element name="versionCFDI" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="timbraEnviaCFDIxpResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:wsGenericResp" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="timbraEnviaCFDIReexpide">
+<xs:sequence>
+<xs:element name="user" type="xs:string" minOccurs="0" />
+<xs:element name="userPassword" type="xs:string" minOccurs="0" />
+<xs:element name="certificadoEmisor" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="llavePrivadaEmisor" type="xs:base64Binary" nillable="true" minOccurs="0" />
+<xs:element name="llavePrivadaEmisorPassword" type="xs:string" minOccurs="0" />
+<xs:element name="xmlCFDI" type="xs:string" minOccurs="0" />
+<xs:element name="versionCFDI" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="timbraEnviaCFDIReexpideResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:wsGenericResp" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

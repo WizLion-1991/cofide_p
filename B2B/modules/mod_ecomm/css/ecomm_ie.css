@@ -1,0 +1,65 @@
+/* 
+    Document   : ecomm_ie
+    Created on : 26-abr-2013, 22:31:43
+    Author     : aleph_79
+    Description:
+        Purpose of the stylesheet follows.
+*/
+/* ############## productos ##############*/
+.prod_left{
+   height: 270px;
+   position: absolute;
+   width: 185px;
+   border-left: 1px solid #DDDDDD;
+   border-right: 1px solid #DDDDDD;
+   text-align: center;
+}
+.prod_center{
+   height: 270px;
+   position: absolute;
+   left: 380px;
+   width: 185px;
+   border-left: 1px solid #DDDDDD;
+   border-right: 1px solid #DDDDDD;
+   text-align: center;
+}
+.prod_right{
+   height: 270px;
+   position: absolute;
+   left: 580px;
+   width: 185px;
+   border-left: 1px solid #DDDDDD;
+   border-right: 1px solid #DDDDDD;
+   text-align: center;
+}
+.prod_row{
+   overflow: hidden;
+   margin: 0;
+   padding: 0;
+   height: 250px;
+   position: relative;
+}
+.prod_txt{
+   font-size: 11px;
+   font-weight: bold;
+}
+.prod_img{
+   height: 160px;
+   margin: 0;
+   padding: 0;   
+   border-top: 1px solid #DDDDDD;
+}
+.prod_btn{
+   margin: 0;
+   padding: 0;   
+}
+/* ######### lado derecho #######*/
+.prod_right2{
+   height: 270px;
+   position: absolute;
+   right: 160px;
+   width: 185px;
+   border-left: 1px solid #DDDDDD;
+   border-right: 1px solid #DDDDDD;
+   text-align: center;
+}

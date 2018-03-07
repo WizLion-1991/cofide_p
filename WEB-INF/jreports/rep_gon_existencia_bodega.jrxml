@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_gon_existencia_bodega" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6a4d8114-fc8d-4ba0-9f3e-41c7faa52c41">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="6"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.white.page.background" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.6" value="columnFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<parameter name="empresa" class="java.lang.String"/>
+	<parameter name="codigo" class="java.lang.String"/>
+	<parameter name="descripcion" class="java.lang.String"/>
+	<parameter name="PathLogoWeb" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="almacen" class="java.lang.String"/>
+	<field name="existencia" class="java.lang.Integer"/>
+	<variable name="existencia" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{existencia}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement x="140" y="0" width="240" height="22" uuid="fb6db4fe-1aa5-4d73-9be8-8c00beb5e4bb"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EMPRESA:"+$P{empresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="140" y="22" width="240" height="22" uuid="aa8c54b4-04d6-444b-83d1-90a8889ba5d3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Existencia en Bodega]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="82" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="67" width="140" height="15" uuid="cca30f2e-5405-4a3a-b75d-f33c77c8dfc3"/>
+				<textFieldExpression><![CDATA["Codigo: "+$P{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="67" width="430" height="15" uuid="72f29323-cc6f-43d5-9827-3fd369ace0ef"/>
+				<textFieldExpression><![CDATA["Descripción: "+$P{descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="140" y="52" width="240" height="15" uuid="f598f2fa-f5be-45eb-b8b3-c5d271a5cad3"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[                     		               Fecha emisión:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="380" y="52" width="190" height="15" uuid="2c5ad1fb-18e8-413a-a758-948601598c07"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="2" width="70" height="65" uuid="a9477c9c-00f4-4935-b174-a458de36f220"/>
+				<imageExpression><![CDATA[$P{PathLogoWeb}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="140" height="20" uuid="e8b4e940-46fa-419b-8611-11ffb4268e5e"/>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="0" width="240" height="20" uuid="8435edcd-2ff8-4804-96ba-9250aa4756fc"/>
+				<text><![CDATA[Almacen]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="190" height="20" uuid="afae79bc-0c9e-45bd-8511-3e2c548ef099"/>
+				<text><![CDATA[Existencia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="140" height="20" uuid="42c92802-280d-42c3-828b-8a60ce18e0c7"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="0" width="240" height="20" uuid="de850858-7b33-4138-8fb5-a704727b1036"/>
+				<textFieldExpression><![CDATA[$F{almacen}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="190" height="20" uuid="3c556a91-28e5-4664-a2de-303f6f171d55"/>
+				<textFieldExpression><![CDATA[$F{existencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="140" height="20" uuid="994881cc-ff32-4fd6-a5ba-e3507e6cbb07"/>
+				<text><![CDATA[Totales:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="0" width="190" height="20" uuid="88250876-0aa7-4530-85aa-32046df92edc"/>
+				<textFieldExpression><![CDATA[$V{existencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

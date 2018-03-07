@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_EST_cartera" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7b321528-f05b-4a75-937a-8350a1b8e5eb">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.white.page.background" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.6" value="columnFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<parameter name="Cliente" class="java.lang.String"/>
+	<parameter name="Moneda" class="java.lang.String"/>
+	<parameter name="Bodega" class="java.lang.String"/>
+	<parameter name="Convertido" class="java.lang.Integer"/>
+	<parameter name="fechaIni" class="java.lang.String"/>
+	<parameter name="fechaFin" class="java.lang.String"/>
+	<parameter name="empresa" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="valor" class="java.lang.Double"/>
+	<field name="porcentaje" class="java.lang.Double"/>
+	<variable name="sumValor" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+	</variable>
+	<variable name="sumPorcentaje" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{porcentaje}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="97" splitType="Stretch">
+			<staticText>
+				<reportElement x="199" y="20" width="356" height="28" uuid="c259232b-a800-4aa7-b2e6-a1203a8ce805"/>
+				<textElement>
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estadística de Clientes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="48" width="356" height="20" uuid="bc539279-1ddb-4013-8649-af621a8e5a80"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cartera]]></text>
+			</staticText>
+			<image hAlign="Center" onErrorType="Blank">
+				<reportElement x="0" y="0" width="100" height="97" uuid="bcdf3932-5e47-4828-b6df-8efa4ff24b20"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="199" y="0" width="356" height="20" uuid="ebc2191a-fe22-4479-861a-b057ee82eff7"/>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="371" y="20" width="26" height="20" uuid="1ac67134-f589-4d31-90d7-fcde50c76ce3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="40" width="99" height="20" uuid="86f38c36-6398-4215-9ff2-b1e6722ad1a1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{Convertido} == 1 ? "SI":"NO")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="20" uuid="29f4270f-22e0-4bb2-b61f-d49cfe2787a6"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Moneda:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="0" width="99" height="20" uuid="26171e23-4128-4b88-a4bb-c3b878c23ca7"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="397" y="20" width="158" height="20" uuid="d048ca9d-821a-4649-af9e-2930f65b17ea"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{fechaFin})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="199" y="20" width="99" height="20" uuid="7772e988-2000-4104-a0b7-350fac5b1150"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[                      De:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="40" width="99" height="20" uuid="1827a87e-211f-43eb-b4e2-f3758da2512f"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emisión:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="20" width="99" height="20" uuid="74036f7d-6d2e-4548-98e6-d058ad018deb"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Moneda}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="e55f06e3-5c70-49d6-8416-e082a0681588"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sucursal:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="100" height="20" uuid="7799237a-6906-48cb-8318-c8c3eb646d29"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Convertido:]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="298" y="20" width="73" height="20" uuid="be2212ab-de38-4469-8161-3678a3b84426"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{fechaIni})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="99" height="20" uuid="08d89884-8e79-4799-9290-de1c5f4969bc"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Bodega}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="397" y="40" width="158" height="20" uuid="ac393746-ddd8-4845-a1cc-08095010aa8c"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="298" y="0" width="257" height="20" uuid="4b208fa7-77b7-44a1-93d5-7141ceb77943"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Cliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="21" uuid="ac535309-4159-49df-b011-c5a9f4135f5f"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="99" height="21" uuid="0da2d66d-2bf6-47d4-9ae7-f92bc781475d"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="0" width="99" height="21" uuid="93556963-725c-449e-9fec-5a65d3b2e335"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Porcentaje]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="b7f087f5-fcd1-4fd0-a404-bd09474e4c8d"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="100" y="0" width="99" height="20" uuid="ab393d97-7d9a-4992-8386-f5b90099b314"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="199" y="0" width="99" height="20" uuid="f890074c-4b84-46fb-8708-a58bea5004b4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{porcentaje}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="20" splitType="Stretch">
+			<textField pattern="###0.00">
+				<reportElement x="199" y="0" width="99" height="20" uuid="f5b8b8a0-00a1-472b-bf5f-06e86ad02881"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sumPorcentaje}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="100" y="0" width="99" height="20" uuid="d29b6a59-6f25-4146-a8a6-707d21e1a70d"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sumValor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="6227c1f6-5566-42bb-89bb-11ca85963d96"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[TOTALES]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

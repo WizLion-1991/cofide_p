@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2016-02-10T05:49:24 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_cofide_evaluacionCurso" pageWidth="800" pageHeight="842" orientation="Landscape" columnWidth="760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="10272410-b23c-40be-84f8-4bc4912ff4d9">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="vta_cofide"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<parameter name="CURSO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 
+    CONCAT(CP_NOMBRE, ' ', CP_APPAT, ' ', CP_APMAT) AS NOMBRE,
+    CP_NOSOCIO,
+    CP_OBSERVACIONES,
+    CC_NOMBRE_CURSO,
+    CC_SEDE,
+    CC_ESTATUS,
+    CP_MATERIAL_IMPRESO,
+    (select EMP_PATHIMG from vta_empresas where vta_empresas.EMP_ID = 1 ) as LOGO, 
+	(select EMP_RAZONSOCIAL from vta_empresas where vta_empresas.EMP_ID =1) as empresa
+FROM
+    cofide_participantes
+        INNER JOIN
+    cofide_cursos ON cofide_participantes.CP_ID_CURSO =cofide_cursos.CC_CURSO_ID and cofide_cursos.CC_CURSO_ID  = $P{CURSO} order by NOMBRE]]>
+	</queryString>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="CP_NOSOCIO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CP_OBSERVACIONES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CC_NOMBRE_CURSO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CC_SEDE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CC_ESTATUS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CP_MATERIAL_IMPRESO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LOGO" class="java.lang.String"/>
+	<field name="empresa" class="java.lang.String"/>
+	<pageHeader>
+		<band height="115" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement x="0" y="15" width="190" height="79" uuid="2683ba5f-3474-4d64-919c-fa1704d973cd"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+ $F{LOGO}]]></imageExpression>
+			</image>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="590" y="95" width="169" height="20" uuid="eb222fe2-2249-4105-b533-2761ba49424f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="390" y="95" width="100" height="20" uuid="95f3f6cc-8731-41c0-b27d-4c6c99d749f6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Cambria"/>
+				</textElement>
+				<text><![CDATA[SEDE: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="490" y="95" width="100" height="20" uuid="96a47ab1-73dc-410f-a2cf-694b28dd909e">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CC_SEDE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="15" width="400" height="45" uuid="6379c07a-2afb-4976-a90d-1f5f2216ac00">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Candara" size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="60" width="400" height="34" uuid="45967524-ba3d-413a-86a8-01a598529d14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Candara" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CC_NOMBRE_CURSO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="190" height="30" uuid="4087efe6-0dc7-4d2c-bfc0-dcbcdcbb0081"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="0" width="100" height="30" uuid="cf676729-3c02-4fef-9e01-5604fd3b25a7">
+					<property name="local_mesure_unity" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria"/>
+				</textElement>
+				<text><![CDATA[ESTATUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="100" height="30" uuid="37089cbf-dc6d-4d72-b9a7-b032d919b723"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria"/>
+				</textElement>
+				<text><![CDATA[NUMERO DE SOCIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="0" width="100" height="30" uuid="2e491572-cf11-4e3b-a5ac-64e7b15f305f"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria"/>
+				</textElement>
+				<text><![CDATA[DESCARGA DE MATERIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="590" y="0" width="169" height="30" uuid="d6ec11ea-1005-47a4-bffc-39bc752f5690"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria"/>
+				</textElement>
+				<text><![CDATA[OBSERVACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="100" height="30" uuid="12bbc4c6-f853-4c8c-849d-afc87516ede6"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria"/>
+				</textElement>
+				<text><![CDATA[FIRMA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="190" height="30" uuid="04c17f74-cab2-4ba8-919c-4855ff534aaf"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="100" height="30" uuid="708bc4b2-10a5-46f3-ae27-b378cea38750"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CC_ESTATUS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="100" height="30" uuid="af3462de-4648-40de-932b-45f07bd12768"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CP_NOSOCIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="100" height="30" uuid="a7cb9d1e-c84e-4de5-bc25-e9d410b83939"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CP_MATERIAL_IMPRESO} > 0 ? "SI": "NO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="590" y="0" width="169" height="30" uuid="7b72bd77-f825-4972-8ac0-6dd680a8beb2">
+					<property name="local_mesure_unity" value="pixel"/>
+				</reportElement>
+				<box leftPadding="3">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CP_OBSERVACIONES}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="190" y="0" width="100" height="30" uuid="4eb0e43a-d1af-471e-a7b9-f85d2486598b"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="290" y="0" width="100" height="30" uuid="c2affa13-6dbf-42af-8daa-74992b3ad8a8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="390" y="0" width="100" height="30" uuid="87ab6f7c-133a-4c0e-8edb-6c7a16bc21b4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2015-11-11T12:40:56 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_EV_Vtas_globales_prod_cte vtaCatCte" language="groovy" pageWidth="700" pageHeight="1000" columnWidth="660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21fcd215-0792-4739-9cfd-ed3d5136752f">
+	<property name="ireport.zoom" value="1.1000000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="CATEGORIA" class="java.lang.String"/>
+	<parameter name="BODEGA" class="java.lang.String"/>
+	<parameter name="FEC_FIN" class="java.lang.String"/>
+	<parameter name="FEC_INI" class="java.lang.String"/>
+	<parameter name="MONEDA" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select * from usuarios]]>
+	</queryString>
+	<field name="intCT_IT" class="java.lang.String"/>
+	<field name="strRazonSocial" class="java.lang.String"/>
+	<field name="strClasif" class="java.lang.String"/>
+	<field name="dblTSubtotal" class="java.lang.Double"/>
+	<field name="dblTSubtotal_Porc" class="java.lang.Double"/>
+	<field name="dblCantidad" class="java.lang.Double"/>
+	<variable name="dblTSubtotal_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{dblTSubtotal}]]></variableExpression>
+	</variable>
+	<variable name="dblTSubtotal_Porc_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{dblTSubtotal_Porc}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="152" splitType="Stretch">
+			<textField>
+				<reportElement x="140" y="68" width="70" height="20" uuid="dfb90da7-4403-44eb-b6f8-b9bde2f4c2dd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{FEC_FIN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="48" width="70" height="20" uuid="724224dc-bc12-493d-a65c-69dff04cd6a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{FEC_INI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="60" y="28" width="80" height="20" uuid="ce8e3e4a-a72d-44b2-9958-97c17e3d58e5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[MONEDA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="68" width="80" height="20" uuid="32631df9-dd7d-4484-be45-8ac30ff025cc"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[FECHA FINAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="48" width="80" height="20" uuid="8b5359ec-3d02-4af4-b95f-8181980e5973"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[FECHA INICIAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="28" width="70" height="20" uuid="7d26efba-7e9a-4857-a4e8-551740abc2a5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{MONEDA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="112" width="660" height="20" uuid="967a6dcf-93ab-4c80-98f8-40fdab5a9e3c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{CATEGORIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="88" width="70" height="24" uuid="c5ee711b-d3a1-4a40-a09c-5cc3a3898fa4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{BODEGA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="60" y="88" width="80" height="24" uuid="e9d0c201-d65f-4fe0-b422-841ca5344b65"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[BODEGA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="132" width="120" height="20" uuid="6063b13d-b483-4467-afb2-7819bd52ac03"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[FECHA DE EMISIÓN:  ]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="572" y="132" width="88" height="20" uuid="f7bc6dfa-0f4e-49a3-8658-24952faff2e3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="-1" width="660" height="30" uuid="1144bea5-23d3-4f92-90de-36bba3c65cc0"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TOP QUIEN ES EL CLIENTE QUE MAS COMPRA POR " + $P{CATEGORIA} + " DE PRODUCTOS" ]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="66" height="20" uuid="add379e6-c3fa-4551-8009-da07fb9dd07d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[CLIENTE ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="0" width="218" height="20" uuid="24d9535f-fd83-4980-aa0c-3f6bd85d0289"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[RAZÓN SOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="0" width="107" height="20" uuid="d28138cb-8feb-414d-89d2-c5a24aa5af59"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="468" y="0" width="104" height="20" uuid="86e054ad-d1a3-437d-af26-5f61f7ad1ba2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[% DE VENTA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="284" y="0" width="76" height="20" uuid="88b09bb9-cdb0-49fe-80db-2a82527e90f8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CATEGORIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="572" y="0" width="88" height="20" uuid="c6cb06e4-9394-492d-88c0-fc0e9d054587"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="66" height="20" uuid="03b6285e-a4a5-432f-acbf-7b9e419cb0da"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{intCT_IT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="468" y="0" width="104" height="20" uuid="c89ad781-9929-44c5-8f19-4f24e0f7c7b5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dblTSubtotal_Porc}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="361" y="0" width="107" height="20" uuid="e4ec4280-1462-4535-a7f1-68398229d618"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dblTSubtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="0" width="218" height="20" uuid="6fc94d28-6965-405c-b443-a89e4ece47bb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{strRazonSocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="0" width="77" height="20" uuid="0ec60bc4-e594-4d58-9823-c7ba51a33bff"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{strClasif}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="572" y="0" width="88" height="20" uuid="0f8eee9c-f43e-4b95-9a5f-58c401e046cc"/>
+				<textFieldExpression><![CDATA[$F{dblCantidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="20">
+			<textField pattern="#,##0.00">
+				<reportElement x="450" y="0" width="107" height="20" uuid="a052772a-ed90-4806-9f40-32c0b0a323dd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{dblTSubtotal_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="556" y="0" width="104" height="20" uuid="95d955df-58dc-4d69-9c16-fbca5ceb4fbb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{dblTSubtotal_Porc_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="360" y="0" width="90" height="20" uuid="9b0a8e30-0a11-4b72-b46b-815671cff1f7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTE TOTAL:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

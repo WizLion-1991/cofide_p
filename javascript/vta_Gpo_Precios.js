@@ -1,0 +1,1 @@
+function vta_Gpo_Precios(){}function dblClicGpoPrecios(id){var strNomMain=objMap.getNomMain();var grid=jQuery("#GPO_MODP");var lstVal=grid.getRowData(id);if(strNomMain=="PROD"){document.getElementById("PR_GPO_MODI_PREC").value=lstVal.PMP_DESCRIPCION;$("#dialogCte").dialog("close");}else{OpnEdit(document.getElementById("Ed"+strNomMain));}}

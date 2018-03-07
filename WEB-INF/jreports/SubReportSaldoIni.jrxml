@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SubReportSaldoIni" language="groovy" pageWidth="555" pageHeight="200" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b4bc9acf-29dd-4f7d-8a49-bc01aa66ab5e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Cliente" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Fecha_Inicial" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Moneda" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SoloMonedaOrig" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT sum(MC_CARGO-MC_ABONO),if(sum(MC_CARGO-MC_ABONO) is null,0,
+sum(
+(MC_CARGO-MC_ABONO)*
+/*obtenemos la paridad*/
+if(if($P{Moneda} <> 0,$P{Moneda},vta_cliente.MON_ID) = vta_mov_cte.MC_MONEDA , 1,
+if(MC_TASAPESO <> 1 AND MC_TASAPESO <> 0 ,if(vta_mov_cte.MC_MONEDA = 1 or (vta_mov_cte.MC_MONEDA = 2 and $P{Moneda} = 3 ),1/MC_TASAPESO,MC_TASAPESO),GetParidadAuto(vta_mov_cte.MC_MONEDA,if($P{Moneda} <> 0,$P{Moneda},vta_cliente.MON_ID),4,MC_FECHA) )
+)
+/*obtenemos la paridad*/
+)
+)  as  SALDO_INICIAL
+FROM vta_mov_cte,vta_cliente WHERE
+vta_mov_cte.CT_ID = vta_cliente.CT_ID and 
+vta_cliente.CT_ID= $P{Cliente} AND MC_FECHA < $P{Fecha_Inicial} AND MC_ANULADO = 0
+ and if($P{SoloMonedaOrig} <> 1, 1 = 1,
+              if(FAC_ID = 0,
+              if(NC_ID = 0 ,
+              if(TKT_ID = 0 ,vta_mov_cte.MC_MONEDA = $P{Moneda},(SELECT t.TKT_MONEDA from vta_tickets t WHERE t.TKT_ID =  vta_mov_cte.TKT_ID) = $P{Moneda})
+              ,(SELECT n.NC_MONEDA from vta_ncredito n WHERE n.NC_ID =  vta_mov_cte.NC_ID) = $P{Moneda})
+              ,(SELECT f.FAC_MONEDA from vta_facturas f WHERE f.FAC_ID =  vta_mov_cte.FAC_ID) = $P{Moneda})
+              )
+;]]>
+	</queryString>
+	<field name="sum(MC_CARGO-MC_ABONO)" class="java.math.BigDecimal"/>
+	<field name="SALDO_INICIAL" class="java.math.BigDecimal"/>
+	<variable name="Saldo_Retorna" class="java.lang.Number">
+		<variableExpression><![CDATA[$F{SALDO_INICIAL}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="729ee4c5-c694-4f2b-8c9a-251e906bc90a" x="0" y="0" width="81" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SALDO_INICIAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="14" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2015-12-10T09:49:33 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_comis_sem_gral" pageWidth="600" pageHeight="842" columnWidth="560" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="181323f9-16d8-4044-97be-d2ebaea722ef">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="Periodo" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT mlm_periodos_semanal.MSE_NOMBRE,
+vta_cliente.CT_ID,
+vta_cliente.CT_RAZONSOCIAL,
+mlm_comision_semanal.CO_IMPORTE,
+mlm_comision_semanal.CO_IMPUESTO1,
+mlm_comision_semanal.CO_IMPUESTO2,
+mlm_comision_semanal.CO_IMPUESTO3,
+mlm_comision_semanal.CO_RET1,
+mlm_comision_semanal.CO_RET2,
+mlm_comision_semanal.CO_RET3,
+mlm_comision_semanal.CO_CHEQUE,
+mlm_comision_semanal.CO_NIVEL,
+vta_empresas.EMP_RAZONSOCIAL,
+vta_empresas.EMP_RFC,
+vta_empresas.EMP_PATHIMGFORM
+FROM
+mlm_comision_semanal,
+vta_cliente,
+vta_empresas,mlm_periodos_semanal
+WHERE mlm_periodos_semanal.MSE_ID = mlm_comision_semanal.MSE_ID AND 
+vta_empresas.EMP_ID = vta_cliente.EMP_ID AND 
+mlm_comision_semanal.CT_ID =  vta_cliente.CT_ID
+AND mlm_comision_semanal.MSE_ID =  $P{Periodo} 
+ORDER BY vta_cliente.CT_RAZONSOCIAL]]>
+	</queryString>
+	<field name="MSE_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CO_IMPORTE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CO_IMPUESTO1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CO_IMPUESTO2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CO_IMPUESTO3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CO_RET1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CO_RET2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CO_RET3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CO_CHEQUE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CO_NIVEL" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_RFC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_PATHIMGFORM" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL URL DE LA IMG DEL FORMATO]]></fieldDescription>
+	</field>
+	<variable name="CO_CHEQUE1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{CO_CHEQUE}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="560" height="30" uuid="b67445b7-0b7f-464c-abcb-d4d577d4f93f"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESUMEN DE COMISIONES SEMANALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="50" height="20" uuid="c140d8c6-84b9-4539-86d4-afba648a77c2"/>
+				<text><![CDATA[PERIODO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="30" width="560" height="30" uuid="43a9e0fe-4199-498e-92b1-99c637d7b1d2"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="60" width="140" height="20" uuid="d74349ea-f60c-43bc-8033-57e0c3e766d2"/>
+				<textFieldExpression><![CDATA[$F{MSE_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="410" y="60" width="150" height="20" uuid="354ae9cf-643a-4da1-8fcd-dadaef67c016"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="260" y="60" width="150" height="20" uuid="85bbdb34-2199-42b6-859d-830ad65528c1"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[FECHA DE EMISION:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="20" uuid="51aa8f44-10b0-479c-a737-05573afddb6c"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="140" height="20" uuid="f762ec21-8dbd-4df6-9726-16295f869e34"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="70" height="20" uuid="e2f5dba8-36ad-44bc-9761-c8205117912e"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="0" width="70" height="20" uuid="7df08943-476f-4fdf-9b91-71d056d482d6"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="1" width="80" height="19" uuid="3e6c3f6e-d0c3-4633-afed-e3dfe2336aae"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[RET.ISR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="0" width="50" height="20" uuid="2952d1ce-ee5b-4eec-a8ba-a1c2df7da045"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[RET.IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="100" height="20" uuid="8e504806-5299-4744-9af5-a4a2627b7abd"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[CHEQUE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="20" uuid="5872b9d5-c10a-455d-9476-0f79a88d872b"/>
+				<textFieldExpression><![CDATA[$F{CT_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="0" width="140" height="20" uuid="9720e7f6-2b07-4d9a-8ecf-a521c8cd7f31"/>
+				<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;#,##0.00#-">
+				<reportElement x="190" y="0" width="70" height="20" uuid="860d9b7f-ebb6-4540-8971-6ee0c9175bfc"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{CO_IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;#,##0.00#-">
+				<reportElement x="260" y="0" width="70" height="20" uuid="1cd6638a-f47a-4f8f-8d24-37f8d56ff032"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{CO_IMPUESTO1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;#,##0.00#-">
+				<reportElement x="330" y="0" width="80" height="20" uuid="1eadd896-2d3d-4c4a-99f9-75afa94a7989"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{CO_RET1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;#,##0.00#-">
+				<reportElement x="410" y="0" width="50" height="20" uuid="8a46bea0-e0a5-4aa9-8f30-117c84f41a02"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{CO_RET2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;#,##0.00#-">
+				<reportElement x="460" y="0" width="100" height="20" uuid="4faf4dbf-044b-4c12-b701-67ecb07a9a36"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{CO_CHEQUE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="180" y="0" width="100" height="30" uuid="f1b6df55-bdc2-4797-a812-495d610ed1b8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="280" y="0" width="100" height="30" uuid="785bf27b-c8cd-44d7-8d50-3b45a472a1e6"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="50">
+			<textField>
+				<reportElement x="460" y="0" width="100" height="19" uuid="f910dbe7-78af-4ba2-a60d-e85d7d3c27f6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{CO_CHEQUE1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="410" y="0" width="50" height="18" uuid="6413cfee-54e2-4cce-af1c-f407fa638880"/>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

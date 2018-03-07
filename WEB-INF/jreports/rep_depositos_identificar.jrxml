@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2015-11-20T12:13:05 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_depositos_identificar" pageWidth="700" pageHeight="842" columnWidth="660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e62336d4-d649-43b8-815c-f565585284c5">
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GrupoMak"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="FechaInicial" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="FechaFinal" class="java.lang.String"/>
+	<parameter name="PathBaseWeb" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EMP_ID" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select MCB_ID,MCB_FECHA,
+(SELECT b.BC_DESCRIPCION from vta_bcos b where b.BC_ID = vta_mov_cta_bcos.BC_ID) AS BANCO 
+, MCB_CONCEPTO,MCB_DEPOSITO,MCB_RETIRO,MCB_BENEFICIARIO,
+(select m.MON_DESCRIPCION from vta_monedas m where m.MON_ID = MCB_MONEDA) as moneda
+, e.EMP_PATHIMG  as LOGO
+,e.EMP_RAZONSOCIAL
+from vta_mov_cta_bcos, vta_empresas e where 
+ vta_mov_cta_bcos.EMP_ID = e.EMP_ID and  MCB_TIPO1 = 1 and vta_mov_cta_bcos.EMP_ID = $P{EMP_ID}   and MCB_ANULADO = 0]]>
+	</queryString>
+	<field name="MCB_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MCB_FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[es la fecha de la operacion]]></fieldDescription>
+	</field>
+	<field name="BANCO" class="java.lang.String"/>
+	<field name="MCB_CONCEPTO" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL CONCEPTO DEL MOVIMIENTO]]></fieldDescription>
+	</field>
+	<field name="MCB_DEPOSITO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[es el importe del deposito]]></fieldDescription>
+	</field>
+	<field name="MCB_RETIRO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[es el importe del retiro]]></fieldDescription>
+	</field>
+	<field name="MCB_BENEFICIARIO" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL BENEFICIARIO]]></fieldDescription>
+	</field>
+	<field name="moneda" class="java.lang.String"/>
+	<field name="LOGO" class="java.lang.String"/>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="$F{MCB_DEPOSITO}" class="java.lang.String" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{MCB_DEPOSITO}]]></variableExpression>
+	</variable>
+	<variable name="MCB_DEPOSITO1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{MCB_DEPOSITO}]]></variableExpression>
+	</variable>
+	<variable name="MCB_RETIRO1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{MCB_RETIRO}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="87" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="0" width="460" height="29" uuid="383ea9d3-d52a-47a7-bd93-84725303fda2"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEPOSITOS POR IDENTIFICAR]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="80" height="80" uuid="895df31c-ef6a-472a-9d82-8ea0e391c0a7"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+$F{LOGO}]]></imageExpression>
+			</image>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="210" y="49" width="90" height="18" uuid="b882a27d-86b9-42bc-883e-b3ecfabe0092"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="100" y="29" width="459" height="20" uuid="3a556eae-9046-44e0-a1c7-83e7c7f9a355"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MICHELLE' S DIVE SHOP, S.A. DE C.V.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="49" width="110" height="19" uuid="aba2c531-1e2c-485b-a378-5ff85ed81966"/>
+				<text><![CDATA[FECHA DE EMICION:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="38" height="20" uuid="10fbe552-468d-4e38-b763-fbf1e8a138c8"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="38" y="0" width="62" height="20" uuid="c9882787-a077-4f4f-b0b2-93beb297195d"/>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="90" height="20" uuid="b1a49d60-489d-4d91-aeda-5f7a22e6adfa"/>
+				<text><![CDATA[BANCO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="150" height="20" uuid="92e80664-1480-45e0-90de-fe0be18f80b2"/>
+				<text><![CDATA[CONCEPTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="0" width="60" height="20" uuid="ab9ec765-6cb0-4289-bf58-c2138af67058"/>
+				<text><![CDATA[DEPOSITO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="60" height="20" uuid="e35df45a-c41a-47d3-9c7e-9b49440b26c9"/>
+				<text><![CDATA[RETIRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="150" height="20" uuid="27bfd064-7f89-4bb0-813a-48852ca8404f"/>
+				<text><![CDATA[BENEFICIARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="610" y="0" width="50" height="20" uuid="e31de1bd-3dd4-47b2-8c2f-48db15434e51"/>
+				<text><![CDATA[MONEDA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="38" height="20" uuid="367c69aa-b0e6-4a95-94ea-2db4f8cee0b1"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MCB_ID}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="38" y="0" width="62" height="20" uuid="93cfd76f-a9a9-4f94-a368-b4955a0d7c01"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{MCB_FECHA})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="90" height="20" uuid="882cb1a0-8400-43a9-a07b-3df75953e6e6"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BANCO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="150" height="20" uuid="c8c09d96-70a6-4e2c-a7c6-4ab9a3281bd9"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MCB_CONCEPTO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;(#,##0.00#-)">
+				<reportElement x="340" y="0" width="60" height="20" uuid="45bb775c-6aca-473f-9860-395a5804f188"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MCB_DEPOSITO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;(#,##0.00#-)">
+				<reportElement x="400" y="0" width="60" height="20" uuid="b8135862-9828-4523-89a0-4637251948ac"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MCB_RETIRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="150" height="20" uuid="4ff30259-2808-4dd1-9add-729713ec4762"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MCB_BENEFICIARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="610" y="0" width="50" height="20" uuid="a49e3c0d-75f0-4b76-99b1-b37852efdfc7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{moneda}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="50">
+			<textField pattern="#,##0.00#;(#,##0.00#-)">
+				<reportElement x="340" y="0" width="60" height="20" uuid="af4d924f-973d-4c4f-9733-bcdecbc71f85"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{MCB_DEPOSITO1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="400" y="0" width="60" height="20" uuid="8ab0a003-f3cf-4db0-af10-a36b9d554d4c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{MCB_RETIRO1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="0" width="60" height="20" uuid="1096db8c-c28c-4ee1-8a11-14dbba0745ef"/>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

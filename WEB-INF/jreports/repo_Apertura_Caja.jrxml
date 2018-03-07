@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
+<!-- 2016-01-22T07:32:08 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repo_Apertura_Caja" pageWidth="945" pageHeight="560" columnWidth="905" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2ad95fac-b1b1-4110-8c99-73a3204113e2">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Grupo Mak"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="7092a07e-5b43-45c8-97c0-96229fa1387a">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Grupo Mak"/>
+		<parameter name="APC_ID" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[select * from vta_aper_caja_deta wher APC_ID =  $P{APC_ID}]]>
+		</queryString>
+		<field name="APCD_VALOR" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="APCD_PESOS" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="APCD_DOLARES" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="SC_ID" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select vta_aper_caja.APC_ID,(select SC_NOMBRE from vta_sucursal where SC_ID = vta_aper_caja.SC_ID) as SC_NOM,
+(select EMP_RAZONSOCIAL from vta_empresas where EMP_ID = vta_aper_caja.EMP_ID) as EMP_NOM,
+vta_aper_caja.APC_FECHA_APER,vta_aper_caja.APC_HORA_APER, 
+vta_aper_caja.APC_FECHA_CIERRE, vta_aper_caja.APC_HORA_CIERRE,
+vta_aper_caja.APC_TOTAL_PESOS, vta_aper_caja.APC_TOTAL_DOLARES,
+(select nombre_usuario from usuarios where usuarios.id_usuarios = vta_aper_caja.id_usuario) as Usuario,
+vta_aper_caja_deta.APCD_VALOR, vta_aper_caja_deta.APCD_PESOS, vta_aper_caja_deta.APCD_DOLARES
+ from vta_aper_caja inner join vta_aper_caja_deta on vta_aper_caja.APC_ID = vta_aper_caja_deta.APC_ID    
+  where vta_aper_caja.SC_ID =  $P{SC_ID} 
+ order by vta_aper_caja.APC_FECHA_APER,vta_aper_caja.APC_ID,vta_aper_caja_deta.APCD_VALOR]]>
+	</queryString>
+	<field name="APC_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="APC_FECHA_APER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="APC_HORA_APER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="APC_TOTAL_PESOS" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="APC_TOTAL_DOLARES" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="APCD_VALOR" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="APCD_PESOS" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_NOM" class="java.lang.String"/>
+	<field name="APCD_DOLARES" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NOM" class="java.lang.String"/>
+	<field name="APC_FECHA_CIERRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="APC_HORA_CIERRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Usuario" class="java.lang.String"/>
+	<group name="APER_CAJA" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{APC_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="2"/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="111">
+			<textField>
+				<reportElement x="604" y="81" width="100" height="30" uuid="80ce26e1-b3ae-4206-92dc-0b4f57ef24be"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{APC_HORA_APER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="51" width="210" height="30" uuid="0199577a-8194-4f5d-ba8f-5c00c28ed909"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[EMPRESA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="51" width="134" height="30" uuid="b95b85a8-2c33-4dc0-90d0-7bb4b766b7de"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[FECHA APERTURA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="290" y="81" width="180" height="30" uuid="69b5b9bb-5f7e-442d-a629-da20d81af004"/>
+				<textFieldExpression><![CDATA[$F{SC_NOM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="51" width="80" height="30" uuid="bb4666f6-269d-4d6d-997e-e771ef8dd84d"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[APERTURA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="81" width="80" height="30" uuid="69f1b70a-29da-4b09-9877-3f72117e5a39"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{APC_ID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="604" y="51" width="100" height="30" uuid="931a538e-3552-4479-9331-a44b68491d45"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[HORA APERTURA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="470" y="81" width="134" height="30" uuid="29cab3d5-361a-4a81-9aa9-5e6ac4e0e76d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{APC_FECHA_APER})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="81" width="210" height="30" uuid="3f1879c9-5dd1-4674-8754-98afa35bbf0e"/>
+				<textFieldExpression><![CDATA[$F{EMP_NOM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="51" width="180" height="30" uuid="b1a8d3b6-2b1e-4822-b833-ff7e369394ea"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[BODEGA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="904" height="50" uuid="f44cd696-52d7-4de2-8be0-40790ae576d3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[APERTURA DE CAJA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="704" y="81" width="100" height="30" uuid="fc630b66-cca1-463b-9ea8-bb0c6be3e36f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{APC_FECHA_CIERRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="704" y="51" width="100" height="30" uuid="1f37fa88-eb32-4429-8fd9-9b96fe873df8"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[FECHA CIERRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="804" y="51" width="100" height="30" uuid="e9f23bb7-0ebb-4572-8038-c6a4d34a17ac"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[HORA CIERRE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="804" y="81" width="100" height="30" uuid="66727b30-dd02-463d-bc42-3e090f93178d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{APC_HORA_CIERRE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="360" y="0" width="100" height="30" uuid="88b03123-f10d-4ec2-bbaa-dfe4d6169c49"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[PESOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="99" height="30" uuid="10fd1745-192c-43b1-b1e7-d66c720ca7ca"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[DOLARES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="0" width="100" height="30" uuid="33a33784-f901-4006-b911-e14fe49dd4a4"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[VALOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="704" y="0" width="100" height="30" uuid="35d7d767-9024-430e-a94a-50b46316daf1"/>
+				<text><![CDATA[Usuario]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="804" y="0" width="100" height="30" uuid="a2997a1d-9547-4a66-aab9-c9a1ffda9af6"/>
+				<textFieldExpression><![CDATA[$F{Usuario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="260" y="0" width="100" height="30" uuid="592f892d-20e1-47e0-89d4-d87c63155d64"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{APCD_VALOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="100" height="30" uuid="9fdae2ab-c36f-4722-8d1c-5f75ee272dbc"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{APCD_DOLARES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="100" height="30" uuid="9f014fe6-227e-4dc4-963f-fac0a3152fc1"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{APCD_PESOS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="460" y="0" width="100" height="30" uuid="7a13f67d-5ff9-4ab4-a729-e1e1a5b3bd3b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{APC_TOTAL_DOLARES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="100" height="30" uuid="28687a78-bfd5-4564-b0fa-4029c686b379"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{APC_TOTAL_PESOS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="260" y="0" width="100" height="30" uuid="e8c3601b-51af-45e7-a630-a4d27e9179af"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

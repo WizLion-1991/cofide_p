@@ -1,0 +1,1 @@
+if(/msie/i.test(navigator.userAgent)){document.nativeGetElementById=document.getElementById;document.getElementById=function(id){var elem=document.nativeGetElementById(id);if(elem){if(elem.id==id){return elem;}else{for(var i=1;i<document.all[id].length;i++){if(document.all[id][i].id==id){return document.all[id][i];}}}}return null;};}

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
+<!-- 2015-04-21T11:51:39 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dfcc044c-ddd2-483c-abfb-0fb469d7d3ea">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FirmWorldWide"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#BFE0FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#E6F2FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Pagos_realizado" uuid="662e6357-354f-493e-8b55-31dc4f3eb374">
+		<parameter name="SC_ID" class="java.lang.Integer"/>
+		<parameter name="FECHA" class="java.lang.String"/>
+		<parameter name="EMP_ID" class="java.lang.Integer"/>
+		<parameter name="VerTickets" class="java.lang.Integer"/>
+		<parameter name="VerFacturas" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[select FAC_METODODEPAGO,sum(FAC_TOTAL) as tot
+
+ from view_ventasglobales, vta_sucursal 
+where view_ventasglobales.SC_ID = vta_sucursal.SC_ID  and FAC_ANULADA = 0 
+AND view_ventasglobales.SC_ID = $P{SC_ID} AND FAC_FECHA = $P{FECHA} and view_ventasglobales.EMP_ID = $P{EMP_ID}
+ AND if (  $P{VerTickets}   = 1 AND  $P{VerFacturas}    = 1 ,1=1, 
+  	if (  $P{VerTickets}   = 1 AND  $P{VerFacturas}    = 0 ,TIPO_DOC ="T" AND FAC_ID_FACTURA = 0,
+  		if (  $P{VerTickets}   = 0 AND  $P{VerFacturas}    =1 ,TIPO_DOC ="F",1=1)
+  	)
+  )
+ group by FAC_METODODEPAGO;]]>
+		</queryString>
+		<field name="FAC_METODODEPAGO" class="java.lang.String"/>
+		<field name="tot" class="java.math.BigDecimal"/>
+		<variable name="Totales" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{tot}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="Fecha" class="java.lang.String"/>
+	<parameter name="SC_ID" class="java.lang.Integer"/>
+	<parameter name="EMP_ID" class="java.lang.Integer"/>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<parameter name="VerTickets" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="VerFacturas" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select FAC_ID,FAC_FOLIO,view_ventasglobales.CT_ID,CT_RAZONSOCIAL,FAC_TOTAL,SC_NUM,SC_NOMBRE,
+(SELECT vta_empresas.EMP_PATHIMG FROM vta_empresas where vta_sucursal.EMP_ID= vta_empresas.EMP_ID ) as LOGO
+
+ from view_ventasglobales, vta_sucursal ,vta_cliente
+where view_ventasglobales.SC_ID = vta_sucursal.SC_ID  and FAC_ANULADA = 0 
+  AND vta_cliente.CT_ID = view_ventasglobales.CT_ID 
+AND view_ventasglobales.SC_ID = $P{SC_ID} AND FAC_FECHA = $P{Fecha} and view_ventasglobales.EMP_ID = $P{EMP_ID} 
+  AND if (  $P{VerTickets}   = 1 AND  $P{VerFacturas}    = 1 ,1=1, 
+  	if (  $P{VerTickets}   = 1 AND  $P{VerFacturas}    = 0 ,TIPO_DOC ="T" AND FAC_ID_FACTURA = 0,
+  		if (  $P{VerTickets}   = 0 AND  $P{VerFacturas}    =1 ,TIPO_DOC ="F",1=1)
+  	)
+  )]]>
+	</queryString>
+	<field name="CT_ID" class="java.lang.Long"/>
+	<field name="SC_NUM" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LOGO" class="java.lang.String"/>
+	<field name="FAC_ID" class="java.lang.Long"/>
+	<field name="FAC_FOLIO" class="java.lang.String"/>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FAC_TOTAL" class="java.math.BigDecimal"/>
+	<variable name="Totales" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{FAC_TOTAL}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="4" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="103" splitType="Stretch">
+			<staticText>
+				<reportElement x="165" y="0" width="279" height="20" uuid="64acb790-6a37-47c6-8e12-253d053a6d5a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CORTE DE CAJA]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="100" height="100" uuid="47dbd2f1-415b-4fd6-af64-511bd50d4521"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb} + "/" + $F{LOGO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="165" y="20" width="111" height="20" uuid="154c598a-8fa1-4a83-809a-90b6640ce6cc"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[BODEGA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="165" y="40" width="111" height="20" uuid="154c598a-8fa1-4a83-809a-90b6640ce6cc"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="165" y="60" width="111" height="20" uuid="154c598a-8fa1-4a83-809a-90b6640ce6cc"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[EMITIDO:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="276" y="60" width="168" height="20" uuid="5e1c93ee-7037-425f-b3e6-01902c4f850c"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="276" y="40" width="100" height="20" uuid="16122f4a-2833-4dce-802b-520a8f7e5764"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{Fecha})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="20" width="168" height="20" uuid="551ea6b7-ee3c-4e1f-b1e4-5741a8a3566d"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SC_NUM} + " " + $F{SC_NOMBRE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="54" height="20" uuid="bf4f9ab8-cac3-478e-8402-a3703911d500"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRX]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="54" y="0" width="111" height="20" uuid="9de88994-0125-4074-88bf-869c05061c0a"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FOLIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="165" y="0" width="111" height="20" uuid="38a25475-eabb-492e-9149-c892b280f6a7"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NUM.CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="168" height="20" uuid="53e270c8-30cc-4f9e-ab4f-8f491738c21d"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="20" uuid="c06327da-8623-4e1e-93fc-cc777b7b6180"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="54" height="20" uuid="5b61b7a6-c83a-4bb2-a50f-6c5f15cc6a07"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="0" width="111" height="20" uuid="6fabb72e-6c3e-40f2-a5c4-b259bc135e32"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_FOLIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="165" y="0" width="111" height="20" uuid="76eec8d5-69b8-4df6-a032-be37c40b55ff"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="168" height="20" uuid="b8f959ae-69f2-48e7-81c8-71ce8144e9e7"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="444" y="0" width="111" height="20" uuid="4e1328f2-5202-4907-bb8f-23f625b882f3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAC_TOTAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="80" height="20" uuid="8fc9ce0b-1af3-4e1a-924c-952de415acf5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="80" y="0" width="40" height="20" uuid="ebac2041-1347-4050-b82c-516cafabb968"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="87" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="301" y="22" width="254" height="65" uuid="0183ddcb-6145-4c8a-a64a-b791c2a9588d"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Pagos_realizado" uuid="6125d1e6-590c-4e51-8fbf-64e3c20944a7">
+						<datasetParameter name="SC_ID">
+							<datasetParameterExpression><![CDATA[$P{SC_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="FECHA">
+							<datasetParameterExpression><![CDATA[$P{Fecha}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="EMP_ID">
+							<datasetParameterExpression><![CDATA[$P{EMP_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="VerTickets">
+							<datasetParameterExpression><![CDATA[$P{VerTickets}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="VerFacturas">
+							<datasetParameterExpression><![CDATA[$P{VerFacturas}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="9b6d9077-4725-467d-bb1c-ac74aa5d4902">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="c2a2d3f7-74d8-49d7-b4d3-0462409f750c"/>
+								<text><![CDATA[Forma de pago]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="0d05a686-3aec-4d66-b59f-69f163baa85f"/>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="1c4c0b72-0766-4a62-9b9c-da12ed431b97"/>
+								<textFieldExpression><![CDATA[$F{FAC_METODODEPAGO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="53cc34da-df63-47e9-9b9e-a95037cc958e">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="742f4f08-1fbe-4add-a0cb-bfd37a55fe3c"/>
+								<textElement textAlignment="Right"/>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1">
+							<textField pattern="¤ #,##0.00">
+								<reportElement x="0" y="0" width="90" height="30" uuid="bf543735-7f78-4c38-83f9-75ac7c931a63"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$V{Totales}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField pattern="¤ #,##0.00">
+								<reportElement x="0" y="0" width="90" height="20" uuid="e11f1086-c4ba-426a-a77d-edef4dde8a26"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$F{tot}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="444" y="2" width="111" height="20" uuid="54164af8-f058-4d84-92c7-95d049dedee6"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Totales}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" forecolor="#999999" uuid="903aa092-eb45-4d97-a861-11199604910c"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

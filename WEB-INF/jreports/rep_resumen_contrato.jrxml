@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AnexoContrato" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5a8a2fd5-d009-4d3b-a302-6a326fb1f882">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="CTOA_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[23]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select d.*,e.EMP_RAZONSOCIAL,e.EMP_REPRESENTANTE,e.EMP_RFC,
+e.EMP_CALLE,e.EMP_COLONIA,e.EMP_NUMERO,e.EMP_NUMINT,e.EMP_ESTADO,e.EMP_LOCALIDAD,e.EMP_MUNICIPIO,e.EMP_CP,e.EMP_TELEFONO1
+,DATE_FORMAT(STR_TO_DATE(d.CTOA_INICIO,'%Y%m%d'),'%d del mes de %M de %Y') AS FECHA
+,DATE_FORMAT(STR_TO_DATE(d.CTOA_FECHA_ACTUAL,'%Y%m%d'),'%d del mes de %M de %Y') AS FECHA_ACTUAL
+,c.CT_RAZONSOCIAL,c.CT_RLEGAL
+,e.EMP_REPRESENTANTE
+ from vta_contrato_arrend d , vta_cliente c , vta_empresas  e where
+d.CTE_ID = c.CT_ID and c.EMP_ID = e.EMP_ID
+ and CTOA_ID = $P{CTOA_ID}]]>
+	</queryString>
+	<field name="CTOA_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTE_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTE_FIADOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_ARRENDAMIENTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_MES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_VENCIMIENTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_DIASPAGO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_MTO_ARRENDAMIENTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_VALORBMUEBLE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_CUENTA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_SEGURO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_NUMPOLIZA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_IMPORTEGARANTIA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_MONEDA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_FOLIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_NUMERO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_CLAVE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_INICIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_FECHA_ACTUAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_CPP" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_VCP" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MON_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTO_TIPO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_MTO_TOTALARREN" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_DEPOSITO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_TIIE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_VARES" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CTOA_TEXTO_CPP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_REPRESENTANTE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_RFC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CALLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_COLONIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NUMERO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NUMINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ESTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_MUNICIPIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_TELEFONO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHA_ACTUAL" class="java.lang.String"/>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RLEGAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement uuid="2ecacf50-d6ef-4310-9d56-289d823fb147" x="0" y="0" width="307" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="62951772-aee5-40ac-88e8-ab3ff723315d" x="455" y="0" width="100" height="20" forecolor="#6699FF"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTOA_FOLIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7fe1efc4-4c6e-4f8e-ae07-e2d376d8b166" x="0" y="20" width="555" height="20" forecolor="#FF9999"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_CALLE} + " NO." + $F{EMP_NUMERO} + " " + $F{EMP_NUMINT} + ",COL. " + $F{EMP_COLONIA} + " " + $F{EMP_LOCALIDAD} + ", DELEGACIÓN " + $F{EMP_MUNICIPIO} + ", " + $F{EMP_ESTADO} + ",C.P." + $F{EMP_CP}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="147" splitType="Stretch">
+			<textField pattern="###0.00">
+				<reportElement uuid="dfccdc54-9134-4506-a6d1-e5081f7e01cb" x="0" y="0" width="555" height="53"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Anexo del Contrato de Arrendamiento No." + $F{CTOA_FOLIO}.replace( "ECO " , "" ) + ",celebrado el día " + $F{FECHA_ACTUAL}.replace("August","Agosto").replace("May","Mayo").replace("January","Enero").replace("February","Febrero").replace("March","Marzo").replace("April","Abril").replace("June","Junio").replace("July","Julio").replace("September","Septiembre").replace("October","Octubre").replace("November","Noviembre").replace("December","Diciembre") + ", entre " + $F{EMP_RAZONSOCIAL}  + ", en carácter de Arrendadora y " + $F{CT_RAZONSOCIAL} + ", en carácter de arrendataria y en carácter de fiador (es):" + $F{CTE_FIADOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8490cf73-4f3f-46ad-bc80-816160e92e2a" x="0" y="53" width="555" height="86"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Las partes en el Contrato de Arrendamiento del que forma parte este Anexo, declaran que todas y cada una de las cláusulas a que se hacen referencia en este último, son cláusulas del Contrato mencionado y que la única finalidad de referirse a ellas es la de precisar y determinar los correspondientes pactos y estipulaciones del aludido Contrato en relación exclusiva al (los) equipos (s) que a continuación se describe (n) en este Anexo.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d236eeb9-10fb-4b7b-9f4f-50d8811e6d4a" x="0" y="20" width="100" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[NUMERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="70af6296-d051-4ebc-b58c-2b481b274b1d" x="100" y="0" width="194" height="20"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLÁUSULAS DEL CONTRATO 1a.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4e8c575d-382f-449d-9cf1-08537d48d30e" x="294" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3a.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b2a90e83-e972-41d0-be66-ed7e06b3086d" x="394" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4a.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9ff9d019-5e54-416b-8e73-598c82e6763e" x="494" y="0" width="61" height="20"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4a.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="22b166b4-1446-4eff-ab54-02f1da9ce183" x="100" y="20" width="94" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[MARCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="25f258a9-0f0f-4cb1-ad1f-53d2da290832" x="194" y="20" width="100" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[MODELO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="041d4bef-0581-40f9-b586-f87120a88115" x="100" y="35" width="94" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[MOTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="891f9137-3365-4634-8105-34b3018cd194" x="194" y="35" width="100" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[SERIE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c58d8b93-6c08-46b3-85fc-2b867e1c92f9" x="294" y="20" width="100" height="25"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[PLAZO FORZOSO EN MESES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a4b421f5-214d-4473-9834-899bb5b665b3" x="394" y="20" width="100" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[RENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6126ac9f-44f9-4d1d-a324-5c5427fa857d" x="494" y="20" width="61" height="55"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[IVA A PAGAR CADA MES (F)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="31b761fa-1742-4284-b8a3-2dac499e1f4b" x="0" y="45" width="100" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[( A )]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="68500544-cb72-4c68-b273-b0876afb18a1" x="100" y="50" width="194" height="10"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[( B )]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="986c3d91-1c78-4d2a-9665-e5a7dd367e48" x="294" y="45" width="100" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[( C )]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edf14a5c-0092-4f57-886c-ae6bb79225ec" x="394" y="45" width="100" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[( D )      ( E )]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="115" splitType="Stretch">
+			<textField>
+				<reportElement uuid="f5dda581-1704-4a8d-aeaa-d565039a9a4f" x="0" y="1" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTOA_FOLIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5d5f99f8-9f57-4e16-ba90-fb5167b4778c" x="100" y="1" width="194" height="86"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTOA_ARRENDAMIENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="16984bfe-da99-4890-88de-79d4c7292e53" x="294" y="1" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTOA_MES}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="71804757-8edc-4a22-93b6-b95d9099039b" x="394" y="1" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTOA_MTO_ARRENDAMIENTO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c14b8eb5-e493-499e-9727-3a183b0feb28" x="494" y="1" width="61" height="55"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[el IVA que corresponda]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="5dbe2140-79f4-4b92-b411-7937a09367bc" x="194" y="87" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTOA_MTO_TOTALARREN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7f6cca60-a6b1-4002-9cc0-82db261f05c8" x="100" y="87" width="94" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[TOTAL DE ANEXO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5496f539-424c-4dc9-a856-cc1eafc80d64" x="294" y="87" width="140" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[+ el IVA que corresponda]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="339" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a386f982-d03e-46a7-90e5-d88d1d54a61f" x="0" y="0" width="555" height="14"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[CLÁUSULA 1a. DEL CONTRATO equipo(s) que se arrienda (n) mediante el contrato y este Anexo (columna A y B)]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="13ebf9c4-5df9-430b-bd33-f3066e2b7e0e" x="0" y="14" width="555" height="28"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["FECHA DE PAGO: LA ARRENDATARIA DEBE PAGAR A ARRENDADORA MAK, S.A. DE C.V., PRECISAMENTE LOS DÍAS " + $F{CTOA_DIASPAGO} + " DE CADA MES."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5b7b54fe-5cef-45a9-95a6-a68b7d1e869b" x="0" y="42" width="555" height="26"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CLÁUSULA 3a. DEL CONTRATO el plazo de arrendamiento de (de los) equipo (s) se inicia a partir del día " + $F{FECHA}.replace("August","Agosto").replace("May","Mayo").replace("January","Enero").replace("February","Febrero").replace("March","Marzo").replace("April","Abril").replace("June","Junio").replace("July","Julio").replace("September","Septiembre").replace("October","Octubre").replace("November","Noviembre").replace("December","Diciembre")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="641d06bb-8645-4df1-a6e4-45549794496f" x="0" y="68" width="542" height="17"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[CLÁUSULA 4a. DEL CONTRATO lugar de entrega de (los) equipo (s):]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ce471d23-b6a6-479e-aa92-d237aa214af1" x="0" y="85" width="555" height="20" forecolor="#FF9999"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_CALLE} + " NO." + $F{EMP_NUMERO} + " " + $F{EMP_NUMINT} + ",COL. " + $F{EMP_COLONIA} + " " + $F{EMP_LOCALIDAD} + ", DELEGACIÓN " + $F{EMP_MUNICIPIO} + ", " + $F{EMP_ESTADO} + ",C.P." + $F{EMP_CP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="bbaa20b1-448c-40a9-bfd2-605d249903ec" x="0" y="105" width="555" height="75"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[CLÁUSULA 19a. DEL CONTRATO riesgos cubiertos y suma asegurada: la suma asegurada por pérdida total del (de los) equipos(s) descrito(s) en este Anexo, es su valor comercial al momento del (de los) siniestro(s) del (de los) mismo (s) con deducible según póliza sobre valor comercial con cargo a la Arrendataria. Los riesgos cubiertos son Incendio, Explosión. Robo Total, Huelgas, Alborotos Populares y fenómenos Meteorológicos y RC.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="0b02ad9a-2a4c-4d51-91b4-6a3dc4940e5c" x="0" y="189" width="555" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Hecho y firmado en la ciudad de " + $F{EMP_ESTADO} + ", el día " + $F{FECHA_ACTUAL}.replace("August","Agosto").replace("May","Mayo").replace("January","Enero").replace("February","Febrero").replace("March","Marzo").replace("April","Abril").replace("June","Junio").replace("July","Julio").replace("September","Septiembre").replace("October","Octubre").replace("November","Noviembre").replace("December","Diciembre")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="efff29e2-52cc-4d6c-a216-c74e69e18ea0" x="0" y="217" width="194" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ed6c8bda-2783-401b-ad56-7f2fdc534a05" x="207" y="217" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[LA ARRENDATARIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dbadcb20-7564-4b26-b078-78ae4461f21f" x="361" y="217" width="194" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[FIADOR U OBLIGADO SOLIDARIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="98d68a4b-dcf3-45fc-9bb9-0b9693b293e7" x="174" y="237" width="170" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d92e7b6f-96dd-4db9-b3ef-dc09c07dd955" x="0" y="257" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Representada por]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f6a1a6ed-d463-40b2-8c46-a952059a439c" x="194" y="257" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Representada por]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b2bfa8d9-dc42-4728-ac96-04f819a0b26b" x="0" y="277" width="174" height="47"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_REPRESENTANTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d4cf0969-aa46-4b99-994e-32303c62023e" x="174" y="277" width="187" height="47"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_RLEGAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="84e2c4ae-97a8-45a3-a212-fbe5ff5d3c85" x="361" y="277" width="194" height="47"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CTE_FIADOR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

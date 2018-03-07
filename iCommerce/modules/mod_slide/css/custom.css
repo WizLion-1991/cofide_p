@@ -1,0 +1,90 @@
+
+.shadow {
+    background: url("../images/shadow.png") no-repeat scroll center bottom / 100% 100% transparent;
+    display: none;
+    height: 168px;
+    margin-top: -110px;
+    position: relative;
+    width: 100%;
+    z-index: -1;
+}
+.sb-description h3 {
+    font-size: 20px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.sb-description h3 a {
+    color: #4A3C27;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+.nav-arrows {
+    display: none;
+}
+.nav-arrows a {
+    background: url("../images/nav.png") no-repeat scroll left top #CBBFAE;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    height: 42px;
+    left: 200px;
+    margin-top: -21px;
+    opacity: 0.9;
+    position: absolute;
+    text-indent: -9000px;
+    top: 100%;
+    width: 42px;
+}
+.nav-arrows a:first-child {
+    background-position: right top;
+    left: auto;
+    right: 500px;
+}
+.nav-arrows a:hover {
+    opacity: 1;
+}
+.nav-dots {
+    bottom: -5px;
+    display: none;
+    height: 30px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+.nav-dots span {
+    background: none repeat scroll 0 0 #CBBFAE;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.6), 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+    cursor: pointer;
+    display: inline-block;
+    height: 16px;
+    margin: 3px;
+    width: 16px;
+}
+.nav-dots span.nav-dot-current {
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.6), 0 1px 1px rgba(0, 0, 0, 0.1) inset, 0 0 0 3px #CBBFAE inset, 0 0 0 8px #FFFFFF inset;
+}
+.nav-options {
+    bottom: 80px;
+    display: none;
+    height: 30px;
+    position: absolute;
+    right: 5px;
+    width: 70px;
+}
+.nav-options span {
+    background: url("../images/options.png") no-repeat scroll left top #CBBFAE;
+    border-radius: 50% 50% 50% 50%;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    opacity: 0.7;
+    text-indent: -9000px;
+    width: 30px;
+}
+.nav-options span:first-child {
+    background-position: -30px 0;
+    margin-right: 3px;
+}
+.nav-options span:hover {
+    opacity: 1;
+}

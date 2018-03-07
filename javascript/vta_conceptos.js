@@ -1,0 +1,1 @@
+function vta_conceptos(){}function dblClickCon(id){var strNomMain=objMap.getNomMain();var grid=jQuery("#CON");var lstVal=grid.getRowData(id);if(strNomMain=="CON"){OpnEdit(document.getElementById("Ed"+strNomMain));}else{document.getElementById("FAC_DESC").value=lstVal.CF_CONCEPTO;AddNomConcepto(id);}}

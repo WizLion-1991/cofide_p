@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
+<!-- 2015-06-29T17:51:48 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Etiqueta_producto_1" columnCount="2" pageWidth="270" pageHeight="648" columnWidth="133" columnSpacing="3" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4a167ea3-5c80-44f3-80db-e9662ecf7d7c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GrupoMak"/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="206"/>
+	<parameter name="EMP_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SC_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PR_CODIGO" class="java.lang.String"/>
+	<parameter name="NUM_COPIAS" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[Select
+                 (Select PC_DESCRIPCION From vta_prodcat1 Where PC_ID = vta_producto.PR_CATEGORIA1) as Marca,
+                 (Select PC2_DESCRIPCION From vta_prodcat2 Where PC2_ID = vta_producto.PR_CATEGORIA2) as Pais,
+                 (Select PC3_DESCRIPCION From vta_prodcat3 Where PC3_ID = vta_producto.PR_CATEGORIA3) as Color,
+                 (Select PC4_DESCRIPCION From vta_prodcat4 Where PC4_ID = vta_producto.PR_CATEGORIA4) as Talla,
+                 (Select PC5_DESCRIPCION From vta_prodcat5 Where PC5_ID = vta_producto.PR_CATEGORIA5) as Comp,
+                 (Select PC6_DESCRIPCION From vta_prodcat6 Where PC6_ID = vta_producto.PR_CATEGORIA6) as Norma,
+                 (Select PC7_DESCRIPCION From vta_prodcat7 Where PC7_ID = vta_producto.PR_CATEGORIA7) as Cat7,
+                 (Select PC8_DESCRIPCION From vta_prodcat8 Where PC8_ID = vta_producto.PR_CATEGORIA8) as ListaPrec,
+                 (Select PC9_DESCRIPCION From vta_prodcat9 Where PC9_ID = vta_producto.PR_CATEGORIA9) as Grupo,
+                 (Select PC10_DESCRIPCION From vta_prodcat10 Where PC10_ID = vta_producto.PR_CATEGORIA10) as SubGpo,
+                 (Select ME_DESCRIPCION From vta_unidadmedida Where ME_ID = vta_producto.PR_UNIDADMEDIDA_COMPRA) as UM,
+                 vta_producto.PR_CODIGO,vta_producto.PR_DESCRIPCION,vta_producto.PR_CODBARRAS,
+vta_producto.PR_CUIDADO1,vta_producto.PR_CUIDADO2,vta_producto.PR_CUIDADO3,vta_producto.PR_CUIDADO4,vta_producto.PR_CUIDADO5,
+vta_producto.PR_PRECAUCION1,vta_producto.PR_PRECAUCION2,vta_producto.PR_PRECAUCION3,vta_producto.PR_PRECAUCION4,vta_producto.PR_PRECAUCION5,
+vta_producto.PR_AVISOS1,vta_producto.PR_AVISOS2,vta_producto.PR_AVISOS3,vta_producto.PR_AVISOS4,vta_producto.PR_AVISOS5,
+EMP_RAZONSOCIAL,EMP_RFC,EMP_CALLE,EMP_NUMERO,EMP_NUMINT,EMP_COLONIA,EMP_MUNICIPIO,EMP_CP,EMP_LOCALIDAD,EMP_ESTADO
+                  From vta_producto , vta_empresas, vta_tmp_series
+                  Where  vta_producto.EMP_ID = vta_empresas.EMP_ID  and vta_producto.PR_CODIGO =$P{PR_CODIGO}
+AND vta_producto.EMP_ID =  $P{EMP_ID}  and SC_ID =  $P{SC_ID} and vta_tmp_series.ID_SERIE <=  $P{NUM_COPIAS}]]>
+	</queryString>
+	<field name="Marca" class="java.lang.String"/>
+	<field name="Pais" class="java.lang.String"/>
+	<field name="Color" class="java.lang.String"/>
+	<field name="Talla" class="java.lang.String"/>
+	<field name="Comp" class="java.lang.String"/>
+	<field name="Norma" class="java.lang.String"/>
+	<field name="Cat7" class="java.lang.String"/>
+	<field name="ListaPrec" class="java.lang.String"/>
+	<field name="Grupo" class="java.lang.String"/>
+	<field name="SubGpo" class="java.lang.String"/>
+	<field name="UM" class="java.lang.String"/>
+	<field name="PR_CODIGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_DESCRIPCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_CODBARRAS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_CUIDADO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_CUIDADO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_CUIDADO3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_CUIDADO4" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_CUIDADO5" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_PRECAUCION1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_PRECAUCION2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_PRECAUCION3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_PRECAUCION4" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_PRECAUCION5" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_AVISOS1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_AVISOS2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_AVISOS3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_AVISOS4" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR_AVISOS5" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_RFC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CALLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NUMERO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_NUMINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_COLONIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_MUNICIPIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_CP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMP_ESTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="207">
+			<property name="local_mesure_unitheight" value="cm"/>
+			<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+			<staticText>
+				<reportElement x="46" y="14" width="40" height="10" uuid="60116de2-5542-418d-b521-b9b2f83dd68c"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[IMPORTADOR:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="7" y="24" width="125" height="8" uuid="b24eef63-4b68-4ad0-826e-4ac6e5a39cf0">
+					<property name="local_mesure_unitheight" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="32" width="125" height="8" uuid="979ce323-bbd3-4f49-ba22-95ee13ded535">
+					<property name="local_mesure_unitheight" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_CALLE} + " " + $F{EMP_NUMERO} + " " + $F{EMP_NUMINT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="40" width="125" height="8" uuid="8fec8a4a-8efd-40b9-ac6e-687aeb3aa47e">
+					<property name="local_mesure_unitheight" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_MUNICIPIO} + "  " + $F{EMP_ESTADO} + " CP." + $F{EMP_CP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="48" width="124" height="8" uuid="d8f2da45-7d73-4782-a60e-97a7a1c660b0">
+					<property name="local_mesure_unitheight" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["MEXICO RFC:" + $F{EMP_RFC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="72" width="40" height="9" uuid="938e7106-0553-490e-8175-46cf9fd5ce45">
+					<property name="local_mesure_unitheight" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[No. DE PARTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="46" y="72" width="85" height="9" uuid="79ee887d-4e4d-4849-aa49-5f29cf2772e3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="5" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PR_CODIGO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="7" y="56" width="40" height="9" uuid="25e9957e-5b2a-4a14-9ec7-e80c819228c2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[PRODUCTO:]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement x="47" y="56" width="85" height="16" uuid="06090d98-8a37-4c03-b3da-e0079d23569d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PR_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="48" y="81" width="85" height="9" uuid="94e5f725-3340-4f63-ba82-02779c99f136">
+					<property name="local_mesure_unitheight" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UM}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="50" y="143" width="82" height="10" uuid="51c97f57-ac27-4308-9b3d-fb1614406caa"/>
+				<textElement verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Pais}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="47" y="153" width="85" height="10" uuid="9087150c-8012-48ac-a2ac-7893a01ba4af"/>
+				<textElement verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Comp}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="49" y="163" width="61" height="9" uuid="ca1e579b-fdb5-49df-9231-a02a43be40aa">
+					<property name="local_mesure_unitx" value="cm"/>
+					<property name="local_mesure_unitwidth" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Talla}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="189" width="136" height="13" uuid="afa13e3f-04de-46e2-8720-57746b8f2f7d">
+					<property name="local_mesure_unitheight" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PR_CODBARRAS}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="18" y="173" width="100" height="21" uuid="c226e635-0445-4e43-9ad5-f21272bd68a7"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="EAN128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{PR_CODBARRAS}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<staticText>
+				<reportElement x="8" y="81" width="40" height="9" uuid="597dd71e-e2d7-4735-ac19-2652bd0eeb61"/>
+				<textElement verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[CONTENIDO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="153" width="40" height="10" uuid="40fb40b3-0e08-40a4-aaa2-7f58ffe38e3c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[INSUMOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="143" width="39" height="10" uuid="5dba5aff-3173-4fff-92b1-18d46ce3ab83"/>
+				<textElement verticalAlignment="Middle">
+					<font size="4" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PAIS DE ORIGEN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="163" width="38" height="9" uuid="1438a9ee-1588-4e2b-8fad-cb735e13b62c">
+					<property name="local_mesure_unitx" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[TALLA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="6" width="30" height="8" uuid="7a508c46-0359-4e26-a3c6-632c5ed3d71a"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[MARCA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="47" y="6" width="72" height="8" uuid="a1a82ae2-a346-4227-81f7-bbfead5b48e8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Marca}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="90" width="32" height="10" uuid="b2f8a3ff-08e5-4bd4-906b-3475c0b643dd"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[CUIDADOS:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="39" y="90" width="93" height="27" uuid="859c29bc-ff0d-4ab6-8fa9-833295b7cd59"/>
+				<textElement verticalAlignment="Top" markup="html">
+					<font size="4"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PR_CUIDADO1} + "<br>" +  $F{PR_CUIDADO2}+ "<br>" +  $F{PR_CUIDADO3} + "<br>" +  $F{PR_CUIDADO4} + "<br>" + $F{PR_CUIDADO5}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="7" y="117" width="31" height="8" uuid="95b14f05-16e8-4ee6-8f89-16f93c6da508"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[AVISO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="39" y="117" width="93" height="27" uuid="99599a75-2c4c-4a12-a93e-437d11a99b9b"/>
+				<textElement markup="html">
+					<font size="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PR_AVISOS1} + "<br> " + $F{PR_AVISOS2} + " <br> " +  $F{PR_AVISOS3}+ " <br> " + $F{PR_AVISOS4} + "<br> " +  $F{PR_AVISOS5}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="1" y="0" width="132" height="207" uuid="01ebbcc9-99ca-4127-a42b-f8cb2a70aafe"/>
+			</rectangle>
+		</band>
+	</detail>
+</jasperReport>

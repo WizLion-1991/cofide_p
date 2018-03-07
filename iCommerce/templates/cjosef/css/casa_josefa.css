@@ -1,0 +1,17 @@
+/* 
+    Document   : casa_josefa
+    Created on : 30-ago-2014, 12:31:56
+    Author     : ZeusGalindo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#column-right {
+   float: right;
+   margin-top: 0px;
+   width: 180px;
+}
+
+.ui-helper-clearfix:after {
+    /*clear: both;*/
+}

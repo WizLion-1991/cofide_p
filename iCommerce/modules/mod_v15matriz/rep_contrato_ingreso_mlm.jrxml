@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2015-09-29T12:53:34 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contrato" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6365224e-7d1f-4699-abe6-cf502cff01fe">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="CT_ID" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select *,
+(select EMP_RAZONSOCIAL from vta_empresas where EMP_ID = vta_cliente.EMP_ID) as Empresa,
+(select PA_NOMBRE from paises where PA_ID = vta_cliente.PA_ID) as Nacionalidad,
+(select DAY(NOW())) as Dia,
+(select Date_format(now(),'%M')) as Mes 
+from vta_cliente where CT_ID = $P{CT_ID}]]>
+	</queryString>
+	<field name="CT_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RFC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CALLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_COLONIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LOCALIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_TXTIVA" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL TEXTO DEL IVA]]></fieldDescription>
+	</field>
+	<field name="CT_TXTIVAAGUA" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL TEXTO DEL IVA DEL AGUA]]></fieldDescription>
+	</field>
+	<field name="CT_MUNICIPIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ESTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_TELEFONO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_TELEFONO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTACTO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTACTO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FOLIO" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NUMCEROS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_SALDO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_EMAIL1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_EMAIL2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NUMERO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NUMINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LPRECIOS" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_DIASCREDITO" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_MONTOCRED" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHAREG" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_IDIOMA" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SC_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_PASSWORD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_DESCUENTO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_VENDEDOR" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTAVTA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTAPAG" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTANC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHAULTINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_HORAULTINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHAEXIT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_HORAEXIT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FALLIDOS" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NOTAS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_EXITOSOS" class="java.lang.Long">
+		<fieldDescription><![CDATA[CUANTAS VECES SE HA FIRMADO EL CLIENTE]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA1" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES LA CATEGORIA 1]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA2" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES LA CATEGORIA 2]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA3" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES LA CATEGORIA 3]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA4" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES LA CATEGORIA 4]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA5" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES LA CATEGORIA 5]]></fieldDescription>
+	</field>
+	<field name="CT_TIPOPERS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[1 PERSONA MORAL 2 PERSONA FISICA]]></fieldDescription>
+	</field>
+	<field name="CT_USOIMBUEBLE" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL USO DEL INMUEBL EN CASO DE ARRENDAMIENTO]]></fieldDescription>
+	</field>
+	<field name="CT_TIPOFAC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[ES EL TIPO DE FACTURA PARA EL CLIENTE]]></fieldDescription>
+	</field>
+	<field name="CT_TIT_CONT1" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL TITULO DEL CONTACTO 1]]></fieldDescription>
+	</field>
+	<field name="CT_TIT_CONT2" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL TITULO DEL CONTACTO 2]]></fieldDescription>
+	</field>
+	<field name="CT_CONT_AP1" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL APE PAT DEL CONTACTO 1]]></fieldDescription>
+	</field>
+	<field name="CT_CONT_AP2" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL APE PAT DEL CONTACTO 2]]></fieldDescription>
+	</field>
+	<field name="CT_CONT_AM1" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL AP MATERNO 1]]></fieldDescription>
+	</field>
+	<field name="CT_CONT_AM2" class="java.lang.String">
+		<fieldDescription><![CDATA[ES EL AP MATERNO 2]]></fieldDescription>
+	</field>
+	<field name="EMP_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[ES EL ID DE LA EMPRESA]]></fieldDescription>
+	</field>
+	<field name="CT_CONTACTE" class="java.lang.String">
+		<fieldDescription><![CDATA[ES LA CUENTA PARA CLIENTES]]></fieldDescription>
+	</field>
+	<field name="CT_CUENTAVTACRED" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_UPLINE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTACTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHAULTIMOCONTACTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ARMADOINI" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ARMADOFIN" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ARMADONUM" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ARMADODEEP" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_SPONZOR" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_IS_LOGGED" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LAST_ACT" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LASTSESSIONID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LASTIPADDRESS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LAST_TIME" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_LAST_TIME_FAIL" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_IS_DISABLED" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTABANCO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTABANCO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTATARJETA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NUMPREDIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PA_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ACTIVO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RAZONCOMERCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA6" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA7" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA8" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA9" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CATEGORIA10" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MON_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TI_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TTC_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RBANCARIA1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RBANCARIA2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RBANCARIA3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_BANCO1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_BANCO2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_BANCO3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_METODODEPAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FORMADEPAGO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHA_NAC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_APATERNO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_AMATERNO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_PPUNTOS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_PNEGOCIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_GPUNTOS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_GNEGOCIO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_COMISION" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NIVELRED" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MPE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTEO_HIJOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTEO_HIJOS_ACTIVOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTEO_INGRESOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RLEGAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FIADOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_F1DIRECCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_F1IFE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FIADOR2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_F2DIRECCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_F2IFE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FIADOR3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_F3DIRECCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_F3IFE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CHANGE_PASSWRD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_BANCO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_BANCO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_SUCURSAL1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_SUCURSAL2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_CLABE1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_CLABE2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTACTE_COMPL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTA_ANTICIPO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CTACTE_COMPL_ANTI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTA_RET_ISR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CONTA_RET_IVA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TI2_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TI3_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_BANCO_CTA1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_BANCO_CTA2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CLABE1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CLABE2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CRED_ELECTOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ES_PROSPECTO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHA_CONTACTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CAT_MED_CONT_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_UBICACION_GOOGLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FACEBOOK" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_PAGINA_WEB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_POR_CIERRE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EP_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CAM_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CURP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ID_INVITO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NOMBRE_INVITO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_NUM_HIJOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_NUM_NIETOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_NUM_BISNIETOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_NUM_TATA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO1_FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO1_PER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO1_COMIS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO1_SALDO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO2_FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO2_PER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO2_COMIS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO2_SALDO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO3_FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO3_PER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO3_COMIS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO3_SALDO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO4_FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO4_PER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO4_COMIS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO4_SALDO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_PLAN_ORO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO5_FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO5_PER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO5_COMIS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO5_SALDO" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_FECHA_ACTIVA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_ID_MASTER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ENVIO_FACTURA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO_ACTUAL" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CICLO_CERRADO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CONSUME_PTOS_CICLO1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CONSUME_PTOS_CICLO2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CONSUME_PTOS_CICLO3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CONSUME_PTOS_CICLO4" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CONSUME_PTOS_CICLO5" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CONSUME_PTOS_CICLO6" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CONSUME_PTOS_CICLO7" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_CONSUME_PTOS_CICLO8" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_PUNTOS_CICLO1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_PUNTOS_CICLO2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_PUNTOS_CICLO3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_PUNTOS_CICLO4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_PUNTOS_CICLO5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_PUNTOS_CICLO6" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_PUNTOS_CICLO7" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_PUNTOS_CICLO8" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_PUNTOS_CICLO9" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_HIJOS_CICLO1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_NIETOS_CICLO1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_BISNIETOS_CICLO1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_TATA_CICLO1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_HIJOS_CICLO2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_NIETOS_CICLO2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_BISNIETOS_CICLO2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_TATA_CICLO2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_HIJOS_CICLO3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_NIETOS_CICLO3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_BISNIETOS_CICLO3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_TATA_CICLO3" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_HIJOS_CICLO4" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_NIETOS_CICLO4" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_BISNIETOS_CICLO4" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_TATA_CICLO4" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_HIJOS_CICLO5" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_NIETOS_CICLO5" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_BISNIETOS_CICLO5" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_TATA_CICLO5" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_NIVEL_MAX" class="java.lang.Integer">
+		<fieldDescription><![CDATA[Es el nivel maximo alcanzado]]></fieldDescription>
+	</field>
+	<field name="CT_BCO_CTA_BNCA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_COMPANIA_TEL_RECA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_TELEFONO_RECARGAR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KL_REFERENCIADOS" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NUMGENERACIONES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_TESTIGO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_TESTIGO2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CODIGO_PROMO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Empresa" class="java.lang.String"/>
+	<field name="Nacionalidad" class="java.lang.String"/>
+	<field name="Dia" class="java.lang.Long"/>
+	<field name="Mes" class="java.lang.String"/>
+	<title>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="570" height="30" uuid="0bda843c-09cb-4192-8ef4-223f235a1450"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["CONTRATO No." + $F{CT_ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="700" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="570" height="70" uuid="348f6aa6-c67f-4362-9779-e7a979d68546"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA["CONTRATO DE PRESTACIÓN DE SERVICIOS QUE CELEBRAN, POR UNA PARTE," + $F{Empresa} + ", A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ EL PRESTADOR, Y POR OTRA " + $F{CT_RAZONSOCIAL} + ", A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ EL CLIENTE." +
+"\nContrato de prestación de servicios que celebran, por una parte, " + $F{Empresa} + ", representada en este acto por XXXXXXXXXXXXXXXXX, Apoderado de la empresa, a quien en lo sucesivo se le denominará EL PRESTADOR, y por otra " + $F{CT_RAZONSOCIAL} + ", a quien en lo sucesivo se le denominará EL CLIENTE, el cual se celebra al tenor de las siguientes:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="70" width="570" height="30" uuid="7daf9ac7-6cd3-4570-bee6-ebaaf59ebcfb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[G E N E R A L E S]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="100" width="570" height="50" uuid="823a590a-eb24-487f-9afb-cd42929224ac"/>
+				<textElement textAlignment="Justified">
+					<paragraph firstLineIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["I. Declara EL PRESTADOR ser una empresa legalmente constituida con domicilio en Calle José Rubén Romero No. 62 Despacho 5, Colonia Bosques Camelinas, CP 58290 en Morelia, Michoacán, según consta en acta constitutiva de fecha 14 de Septiembre de 2015 otorgada ante la fe del Notario Público Número 95, en la ciudad de Morelia, Michoacán."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="150" width="570" height="150" uuid="fcdd91d1-1c18-48a6-b5fe-36a569bf5710"/>
+				<textElement textAlignment="Justified">
+					<paragraph firstLineIndent="0" leftIndent="15"/>
+				</textElement>
+				<text><![CDATA[Teniendo como su objeto social entre otras, las siguientes actividades:
+
+Comprar, vender, administrar, promover, arrendar, financiar y comercializar en general todo tipo de unidades de tracción mecánica, nuevas o usadas, tales como vehículos, motocicletas, camiones, tracto camiones, etc, así como sus accesorios, refacciones y todo tipo de artículos relacionados con los mismos.
+
+La dirección, promoción, publicidad, mercadotecnia, desarrollo y administración de toda clase de servicios relacionados con el objeto social.
+
+Recibir organizar, administrar las aportaciones económicas realizadas de forma voluntaria a la sociedad con la finalidad de obtener un bien inmueble nuevo mediante el cumplimiento de las condiciones descritas en dicho contrato.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="300" width="570" height="30" uuid="f65488dd-a8bd-4faa-8fb3-6af77dc469a9"/>
+				<textElement textAlignment="Justified">
+					<paragraph firstLineIndent="10"/>
+				</textElement>
+				<text><![CDATA[II. Declara EL CLIENTE INICIADOR tener las siguientes generales:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="330" width="140" height="30" uuid="f05edff4-bbee-4ee6-9c25-22956c065a8b"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="360" width="140" height="30" uuid="a7d56df9-5677-457e-9086-56e5d6bba513"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[RFC:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="390" width="140" height="30" uuid="4f5382c8-519d-4574-90dc-819f5fd269cf"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NACIONALIDAD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="420" width="140" height="30" uuid="7ce3fa11-3bb3-42e0-8d9d-4d24c742ba9c"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[FECHA DE NACIMIENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="450" width="140" height="30" uuid="9c518d11-880b-4149-8c94-0ee4ce47c956"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[CIUDAD DE NACIMIENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="480" width="140" height="30" uuid="2f9714c3-a6fa-4598-b075-58a3ffc8bced"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[CIUDAD DE RESIDENCIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="510" width="140" height="30" uuid="164e7f56-5daf-4144-9334-f680bde161cc"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ESTADO DE RESIDENCIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="540" width="140" height="30" uuid="c38f0a3e-580a-4c00-ad8c-1ad20aa48ba2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[DOMICILIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="570" width="140" height="30" uuid="8d8114f3-7a4b-4e0a-a02b-65b97cd59f3c"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[COLONIA - FRACCIONAMIENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="600" width="140" height="30" uuid="14f8e2e0-b7ac-433f-92d5-0c1aa79d26d5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[CÓDIGO POSTAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="630" width="140" height="30" uuid="d938cdc9-114d-4ece-ad5a-100ecf99d3ed"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[BENEFICIARIO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="330" width="430" height="30" uuid="e712dec7-2c7d-49ab-871b-06fb10d4f30e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="360" width="430" height="30" uuid="52054322-3831-4243-ac35-5c3f4dd20d01"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CT_RFC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="390" width="430" height="30" uuid="7b742401-8b1e-4c39-8cf3-f63ca34399ac"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Nacionalidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="510" width="430" height="30" uuid="06f10329-f0ff-4289-8555-e5e83a7c028a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CT_ESTADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="480" width="430" height="30" uuid="f0be2863-814b-4f38-8d5b-df1f3b29907e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CT_LOCALIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="600" width="430" height="30" uuid="66e5ec85-472a-4ec1-8339-762a0a9b4b5c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CT_CP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="570" width="430" height="30" uuid="b60cee57-89a5-4b15-824a-cf67074c7617"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CT_COLONIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="540" width="430" height="30" uuid="a14cb7ad-d84a-47a9-a95d-4c6cfebd5353"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["CALLE: " + $F{CT_CALLE} + ", NÚMERO:	" + $F{CT_NUMERO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="660" width="570" height="40" uuid="5e95b21d-ba34-422a-b0e0-cc9701d581fe"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Y que es SÚ VOLUNTAD el suscribir el presente contrato, mismo que HA LEIDO Y ESTÁ CONCIENTE DE SUS ALCANCES Y CONSECUENCIAS LEGALES E IMPLICACIONES QUE PRESENTA.]]></text>
+			</staticText>
+			<textField pattern="M/d/yy">
+				<reportElement x="140" y="420" width="428" height="30" uuid="9e40a999-cfcc-458d-8221-a4f6ed57442b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[
+new java.text.SimpleDateFormat("dd MMMM yyyy").format(new java.text.SimpleDateFormat("yyyyMMdd").parse($F{CT_FECHA_NAC}))]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="745">
+			<staticText>
+				<reportElement x="0" y="0" width="570" height="30" uuid="c1c4400f-c335-4ade-8e42-2a2eeef49fbd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[D E S C R I P C I Ó N]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="570" height="90" uuid="b930e866-f1d2-47eb-93c4-26edd7d2d054"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[EL CLIENTE Y EL PRESTADOR ACUERDAN LA CREACIÓN DE UNA MATRIZ EN LA QUE TODOS Y CADA UNO DE LOS CLIENTES APORTARÁN LA CANTIDAD DE $15,000 QUINCE MIL PESOS MONEDA NACIONAL POR POSICIÓN CONTRATADA, DE LOS CUALES $1,500 UN MIL QUINIENTOS PESOS SERÁN PAGADOS A VEINTE 15 MATRIZ, S. de R.L. de C.V. POR CONCEPTO DE COMISIÓN POR ORGANIZAR, ADMINISTRAR, EN SÍ POR LA PRESTACIÓN DEL SERVICIO; Y $13,500 TRECE MIL QUINIENTOS PESOS SE DESTINARÁN A LA ADQUISICIÓN DE UN VEHÍCULO NUEVO DE AGENCIA PARA EL CLIENTE INICIADOR DE LA MATRIZ, LO CUAL FUNCIONARÁ BAJO EL ESQUEMA QUE SE ACOMPAÑA EN EL ANEXO. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="120" width="570" height="30" uuid="fc86e13b-b597-48e6-b565-643190d05cc2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[C O M I S I O N E S]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="150" width="570" height="40" uuid="eac35451-9473-42d4-9bef-bba02440e222"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[VEINTE 15 MATRIZ, S. de R.L. de C.V. cobrará la cantidad de $1,500 UN MIL QUINIENTOS PESOS moneda nacional, por posición contratada, equivalente al 10% de la aportación del cliente iniciador del ciclo financiero como pago al prestador.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="190" width="570" height="30" uuid="a7dfe8f8-fa51-491b-bf96-c07f9f336bf4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[O B L I G A C I O N E S  D E L  C L I E N T E  I N I C I A D O R  
+INSCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="220" width="570" height="160" uuid="f1bbca27-821a-48db-9ddb-331101ce6e88"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[EL CLIENTE INICIADOR de la matriz financiera, tiene la obligación de aportar la cantidad de $15,000 QUINCE MIL PESOS moneda nacional por posición contratada, esto es, por cada lugar en la matriz financiera en que desee iniciar y participar, para formalizar el inicio de su matriz financiera, cantidad que será transferida o depositada por él, desde sú cuenta bancaria, a la cuenta XXXXXXXXXXXXXXXXXX, del Banco XXXXXXXXXXXXXXXXXXXXX con CLABE XXXXXXXXXXXXXXXX, a nombre del prestador de servicios, de la cantidad o cantidades aportadas, el prestador le facturará al cliente iniciador, por concepto de comisión por la Prestación del Servicio la cantidad de $1,500 UN MIL QUINIENTOS PESOS equivalente al 10% de la aportación y los restantes $13,500 TRECE MIL QUINIENTOS PESOS se destinarán a la creación del fondo para la compra colectiva del vehículo que el cliente haya seleccionado, dentro de los parámetros que adelante se citan.
+EL PRESTADOR se reserva el derecho de poder acomodar, agregar nuevos clientes que se inscriban sin persona referida aleatoriamente en cualquier matriz.
+El cliente se obliga a recibir el vehículo contratado en especie, renunciando a ejecutar una cancelación de la compra o hacer devoluciones, firmando de recibido de la factura expedida por la agencia correspondiente.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="380" width="570" height="30" uuid="d205b6a9-0917-4e25-96e2-4ab2c07f132d"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INTEGRACIÓN DE LA MATRIZ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="410" width="569" height="334" uuid="9cdd26ac-6670-4897-ba2b-948e12e0684e"/>
+				<textElement textAlignment="Justified">
+					<paragraph firstLineIndent="28" leftIndent="14"/>
+				</textElement>
+				<text><![CDATA[I. EL CLIENTE INICIADOR de la matriz tiene la obligación y será de su estricta responsabilidad el invitar a DOS clientes para crear el nivel número uno logrando que se unan a su matriz financiera y, de manera similar, aporten la cantidad de $15,000 QUINCE MIL PESOS moneda nacional por posición contratada por cada uno, cantidades que serán transferidas o depositadas desde sus respectivas cuentas bancarias, a la cuenta XXXXXXXXXXXXXXXXXX, del Banco XXXXXXXXXXXXXXXXXXXXX con CLABE XXXXXXXXXXXXXXXX, a nombre del prestador de servicios, de la cantidad o cantidades aportadas, el prestador le facturará al cliente iniciador, por concepto de comisión por la prestación del servicio la cantidad de $1,500 UN MIL QUINIENTOS PESOS equivalente al 10% de la aportación y los restantes $13,500 TRECE MIL QUINIENTOS PESOS se destinarán a la creación del fondo para la compra colectiva del vehículo que el cliente haya seleccionado, dentro de los parámetros que adelante se citan.
+
+II. EL CLIENTE INICIADOR Y LOS DOS NUEVOS CLIENTES DEL NIVEL UNO invitados por el cliente iniciador del matriz financiera, tendrán a su vez, la misma obligación y será de su estricta responsabilidad de invitar y lograr que se unan al matriz financiera a otros dos clientes cada uno (serán cuatro clientes de este nivel) para crear el nivel número dos y de manera similar, aporten la cantidad de $15,000 QUINCE MIL PESOS moneda nacional por cada posición contratada por cada uno, cantidades que serán transferidas o depositadas desde sus respectivas cuentas bancarias, a la cuenta XXXXXXXXXXXXXXXXXX, del Banco XXXXXXXXXXXXXXXXXXXXX con CLABE XXXXXXXXXXXXXXXX, a nombre del prestador de servicios, de la cantidad o cantidades aportadas, el prestador le facturará al cliente iniciador, por concepto de comisión por la prestación del servicio la cantidad de $1,500 UN MIL QUINIENTOS PESOS equivalente al 10% de la aportación y los restantes $13,500 TRECE MIL QUINIENTOS PESOS se destinarán a la creación del fondo para la compra colectiva del vehículo que el cliente haya seleccionado, dentro de los parámetros que adelante se citan.]]></text>
+			</staticText>
+		</band>
+		<band height="751">
+			<staticText>
+				<reportElement x="0" y="0" width="570" height="289" uuid="53adca4c-ddc1-40cc-9867-c4baf88c0134"/>
+				<textElement textAlignment="Justified">
+					<paragraph firstLineIndent="28" leftIndent="14"/>
+				</textElement>
+				<text><![CDATA[III. EL CLIENTE INICIADOR, LOS DOS CLIENTES DEL NIVEL UNO Y LOS CUATRO NUEVOS CLIENTES DEL NIVEL DOS invitados por los dos clientes del nivel uno, tendrán a su vez, la misma obligación y será de su estricta responsabilidad de invitar y lograr que se unan al matriz financiera a otros dos clientes cada uno (serán ocho clientes de este nivel) para crear el nivel número tres  y de manera similar, aporten la cantidad de $15,000 QUINCE MIL PESOS moneda nacional por posición contratada cada uno, cantidades que serán transferidas o depositadas desde sus respectivas cuentas bancarias, a la cuenta XXXXXXXXXXXXXXXXXX, del Banco XXXXXXXXXXXXXXXXXXXXX con CLABE XXXXXXXXXXXXXXXX, a nombre del prestador de servicios, de la cantidad o cantidades aportadas, el prestador le facturará al cliente iniciador, por concepto de comisión por la prestación del Servicio la cantidad de $1,500 UN MIL QUINIENTOS PESOS equivalente al 10% de la aportación y los restantes $13,500 TRECE MIL QUINIENTOS PESOS se destinarán a la creación del fondo para la compra colectiva del vehículo que el cliente haya seleccionado, dentro de los parámetros que adelante se citan.
+IV. EL CLIENTE INICIADOR, LOS DOS CLIENTES DEL NIVEL UNO, LOS CUATRO CLIENTES DEL NIVEL DOS Y LOS OCHO CLIENTES DEL NIVEL TRES invitados por los cuatro clientes del nivel dos, tendrán a su vez, la misma obligación y será de su estricta responsabilidad de invitar y lograr que se unan a la matriz financiera a otros dos clientes cada uno (serán diez y seis clientes de este nivel) para crear el nivel número cuatro y de manera similar, aporten la cantidad de $15,000 QUINCE MIL PESOS moneda nacional por posición contratada cada uno, cantidades que serán transferidas o depositadas desde sus respectivas cuentas bancarias, a la cuenta XXXXXXXXXXXXXXXXXX, del Banco XXXXXXXXXXXXXXXXXXXXX con CLABE XXXXXXXXXXXXXXXX, a nombre del prestador de servicios, de la cantidad o cantidades aportadas, el prestador le facturará al cliente iniciador, por concepto de comisión por la prestación del Servicio la cantidad de $1,500 UN MIL QUINIENTOS PESOS equivalente al 10% de la aportación y los restantes $13,500 TRECE MIL QUINIENTOS PESOS se destinarán a la creación del fondo para la compra colectiva del vehículo que el cliente haya seleccionado, dentro de los parámetros que adelante se citan.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="289" width="569" height="30" uuid="6052b71a-c839-47ca-a224-b97951d7a2f6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[O B L I G A C I O N E S  D E L  P R E S T A D O R]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="319" width="569" height="180" uuid="bb255f12-e3d3-40b7-8566-28d010c53fdc"/>
+				<textElement textAlignment="Justified">
+					<paragraph firstLineIndent="28" leftIndent="14" rightIndent="0"/>
+				</textElement>
+				<text><![CDATA[I. Recibir en su cuenta bancaria número XXXXXXXXXX, del banco BBVA Bancomer con CLABE XXXXXXXXXXXXXXXXXXX , las cantidades que a manera de aportación voluntaria le transfieran o depositen desde sus cuentas los clientes iniciadores de la matriz o de cualquier nivel, llevando un registro minucioso de la matriz al que pertenece cada uno así como de su posición dentro de la matriz.
+
+II. EL PRESTADOR creará una oficina virtual para cada CLIENTE INICIADOR al momento de hacer su inscripción recibirá vía email un ID y un PASSWORD con el cual podrá ver a sus invitados directos e indirectos, así como la persona que lo refirio .
+III. Una vez que en sus registros aparezca que una matriz fue completada o le sea comunicada por un cliente iniciador de matriz tal situación, proceder a la compra y entrega del vehículo pactado a nombre del CLIENTE INICIADOR.
+
+IV. EL PRESTADOR, procederá a la adquisición del vehículo para el CLIENTE INCIADOR dentro del plazo de tres días hábiles una vez completado la matriz, lo cual acreditará al cliente con el pago correspondiente.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="499" width="569" height="30" uuid="ac758383-9988-478c-ab93-d911bd9a0316"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[M A T R I Z  C O M P L E T A D A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="529" width="570" height="120" uuid="c1bea89f-cc9d-4b39-be61-b60086d97a5a"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Una vez completado la matriz financiera con los treinta y un clientes (el cliente iniciador del ciclo, dos clientes del nivel uno, cuatro clientes del nivel dos, ocho clientes del nivel tres y dieciséis clientes del nivel cuatro), el cliente iniciador de la matriz lo comunicará al prestador para que, dentro del plazo de tres días hábiles, proceda a realizar la adquisición de contado del vehículo pactado, el cual será facturado por la agencia asignada y a nombre del cliente iniciador de la matriz. En el entendido de que el vehículo para el comprador inicial será adquirido con las aportaciones de los 16 clientes del cuarto nivel, que suman un fondo para adquisición de vehículo y pago al prestador por $216,000 DOS CIENTOS DIECISEIS MIL PESOS moneda nacional, que serán destinados a la adquisición de la unidad vehicular, según cotización informando características e información necesaria para su compra.]]></text>
+			</staticText>
+		</band>
+		<band height="752">
+			<staticText>
+				<reportElement x="0" y="3" width="570" height="30" uuid="e07696e1-928d-4ad7-bc14-0c95073c3334"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[I N C U M P L I M I E N T O   P O R   C L I E N T E   I N I C I A D O R]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="33" width="570" height="137" uuid="d3be8fa0-31af-4446-bdc1-35d0237187e3"/>
+				<textElement textAlignment="Justified">
+					<paragraph firstLineIndent="28" leftIndent="14" rightIndent="0"/>
+				</textElement>
+				<text><![CDATA[I. EL CLIENTE INICIADOR de la matriz financiera, sabedor del funcionamiento, viabilidad y operatividad del ciclo financiero que contrata, siendo de su estricta responsabilidad, junto con sus invitados directos e indirectos, de que la matriz iniciada por él se complete en todas sus etapas y niveles, para estar en condiciones de que el prestador cuente con los recursos económicos, provenientes de los clientes por él invitados, y proceda a la compra del vehículo pactado, por lo que no será responsabilidad del prestador, en el caso de que la matriz no se cumpla, por incumplimiento del cliente iniciador o sus invitados directos o indirectos.
+
+II. Toda vez que la matriz financiera, iniciada por el cliente, requiere de que se complete cabalmente en sus etapas y niveles, en el caso de que no se complete conforme a dicho contrato y sea interrumpido dicho matriz financiera, dará lugar a las consecuencias siguientes:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="170" width="570" height="100" uuid="0c977504-1689-4e61-9ca4-ab1f220ad54c"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[A) LA NO COMPRA DEL VEHÍCULO CUYA ADQUISICIÓN ES EL OBJETO DEL CONTRATO.
+
+B) LA PÉRDIDA DE LA APORTACIÓN REALIZADA POR EL CLIENTE INICIADOR DE LA MATRIZ EN FAVOR DEL PRESTADOR, COMO PENA CONVENCIONAL POR EL INCUMPLIMIENTO DE SUS OBLIGACIONES.
+
+C) LA TERMINACIÓN TOTAL DE LOS EFECTOS DE ESTE CONTRATO, SIN RESPONSABILIDAD ALGUNA PARA EL PRESTADOR, RENUNCIANDO, DESDE ESTE MOMENTO A CLIENTE, A RECLAMAR DAÑOS Y PERJUICIOS O CUALESQUIERA OTRA CANONJÍA O BENEFICIO EN SU FAVOR, EN RELACIÓN O DERIVADO CON ESTE CONTRATO. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="270" width="570" height="20" uuid="a09b0373-7d49-47c5-9a4c-532f11ce0127"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[E N T R E G A  D E L  V E H Í C U L O]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="290" width="570" height="462" uuid="8a4503aa-325e-418c-bb70-1d69e847f8e5"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[I. El vehículo a adquirir para el cliente iniciador, una vez que haya completado su matriz, será el vehículo señalado por el CLIENTE INICIADOR según cotización previa, con un valor de hasta $216,000 DOSCIENTOS DIECISEIS MIL PESOS moneda nacional por posición contratada.
+
+II. Si entre el tiempo de inicio y final de matriz, el vehículo acordado incrementa su precio, el cliente podrá elegir otro vehículo diferente siempre y cuando el precio sea igual al pactado, o pagar la diferencia a la agencia dentro del plazo de tres días hábiles una vez completado el ciclo.
+
+III. En el supuesto de que el cliente quiera modificar el modelo del auto a comprar, siempre y cuando éste no se haya comprado, deberá elegir otro de precio igual al pactado.
+
+IV. En caso de fallecimiento del cliente, su lugar será asumido por quien haya sido designado como su beneficiario, por lo que será bajo sú estricta responsabilidad tal designación y el beneficiario deberá suscribir el presente contrato, aceptando tal designación y como adherente en los efectos legales de este contrato, por cuanto responsabilidades, derechos y obligaciones asumidas por el cliente iniciador corresponda.
+
+V. La empresa se reserva el derecho de aceptar las solicitudes de los clientes.
+
+VI. En el supuesto de que un CLIENTE INICIADOR adquiera dos o más posiciones en la matriz, la unidad vehicular será adquirida una vez que haya completado todos sus ciclos financieros.
+
+VII. EL PRESTADOR NO ES RESPONSABLE respecto del plazo, días en que la agencia automotriz asignada por el CLIENTE INICIADOR tarde en  entregar el vehículo al cliente
+
+VIII. Será la agencia automotriz quien expida la factura correspondiente a nombre del cliente. El cliente se obliga a recibir el vehículo.
+
+IX. Todo cliente que haya adquirido un vehículo mediante este procedimiento, no podrá realizar otra solicitud o contratación sino hasta transcurridos ocho meses contados a partir de la fecha en que el vehículo le haya sido entregado.
+
+X. El presente contrato cesará sus efectos una vez realizada la entrega del vehículo al cliente iniciador de la matriz. EL PRESTADOR no es responsable por vicios ocultos o defectos de fabricación de la unidad vehicular ya que ello corresponde a la agencia y/o armadora vehicular conforme a las garantías correspondientes. Igualmente, los pagos correspondientes a placas de circulación y tenencia vehicular corren por cuenta del cliente.
+
+XI. EL PRESTADOR avisa al cliente que la adjudicación del vehículo incide sobre su situación fiscal ante el SAT, la cual puede variar de persona a persona, por lo que deberá consultar a su asesor contable y/o fiscal.]]></text>
+			</staticText>
+		</band>
+		<band height="580">
+			<textField>
+				<reportElement x="0" y="100" width="570" height="30" uuid="ddf08ff0-e76c-4dc6-a4f5-c8944b87fb3a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="570" height="70" uuid="4fa7a5a8-309a-4200-98c2-a0ad4ff41549"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA["\nLeído que fue el presente contrato en todos sus apartados y contenido, estando plenamente enterados, sin existir, dolo, error o vicio alguno en el consentimiento, siendo su objeto legal, las partes lo ratifican y firman en la ciudad de Morelia, Michoacán, siendo " + new java.text.SimpleDateFormat("dd MMMM yyyy").format(new java.util.Date()) + ", firmando para constancia ante la presencia de los testigos " + $F{CT_TESTIGO1} + " y " + $F{CT_TESTIGO2} + ", que dan fe."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="70" width="570" height="30" uuid="4a070270-63c7-4346-ad85-1b0f3d3c0b60"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NOMBRE CLIENTE INICIADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="130" width="570" height="30" uuid="a551b1c3-ac6e-48c9-ad3b-a3fbdafafa89"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[FIRMA DEL CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="160" width="260" height="60" uuid="927c0c55-3084-4597-83ef-a9b58c595008"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[______________________________________________]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="290" width="570" height="30" uuid="bc698d2a-5e3d-479e-bc62-4b497589b83d"/>
+				<textFieldExpression><![CDATA[$F{Empresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="260" width="570" height="30" uuid="9874d8f4-5344-4711-9586-514c75241412"/>
+				<text><![CDATA[FIRMA DEL PRESTADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="320" width="260" height="60" uuid="c5b6cb92-90e7-465f-bcdf-329bbc84f7ce"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[______________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="400" width="570" height="30" uuid="93b56e5a-5d3f-4b36-a572-15d67920f5cb"/>
+				<text><![CDATA[TESTIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="460" width="260" height="60" uuid="ecc46a8f-da79-43ad-b113-c6574a093956"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[______________________________________________]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="430" width="570" height="30" uuid="b7b37dc6-b1d7-47cf-b830-44acf3417658"/>
+				<textFieldExpression><![CDATA[$F{CT_TESTIGO1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

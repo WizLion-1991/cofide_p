@@ -1,0 +1,1 @@
+function getMenuItem(strMyScript,strMyLabel,strMyIcon){return"<li>"+'  <a href="javascript:'+strMyScript+'">'+"    <span>"+strMyLabel+"</span>"+'    <img src="'+strMyIcon+'" alt="'+strMyLabel+'" title="'+strMyLabel+'"/>'+"  </a>"+"</li>";}function getMenuItem1(strMyScript,strMyLabel,strMyIcon){return'<img src="'+strMyIcon+'"  onclick="'+strMyScript+'" alt="'+strMyLabel+'">';}

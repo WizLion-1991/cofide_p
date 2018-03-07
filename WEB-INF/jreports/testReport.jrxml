@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TestReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="79abbaff-ccb3-4c7c-9e70-c729d99308af">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="Upline" class="java.lang.Integer">
+		<parameterDescription><![CDATA[Upline mlm]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from vta_cliente where CT_UPLINE = $P{Upline}]]>
+	</queryString>
+	<field name="CT_ID" class="java.lang.Long"/>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="CT_RFC" class="java.lang.String"/>
+	<field name="CT_CALLE" class="java.lang.String"/>
+	<field name="CT_COLONIA" class="java.lang.String"/>
+	<field name="CT_LOCALIDAD" class="java.lang.String"/>
+	<field name="CT_TXTIVA" class="java.lang.String"/>
+	<field name="CT_TXTIVAAGUA" class="java.lang.String"/>
+	<field name="CT_MUNICIPIO" class="java.lang.String"/>
+	<field name="CT_ESTADO" class="java.lang.String"/>
+	<field name="CT_CP" class="java.lang.String"/>
+	<field name="CT_TELEFONO1" class="java.lang.String"/>
+	<field name="CT_TELEFONO2" class="java.lang.String"/>
+	<field name="CT_CONTACTO1" class="java.lang.String"/>
+	<field name="CT_CONTACTO2" class="java.lang.String"/>
+	<field name="CT_FOLIO" class="java.lang.Long"/>
+	<field name="CT_NUMCEROS" class="java.lang.Integer"/>
+	<field name="CT_SALDO" class="java.math.BigDecimal"/>
+	<field name="CT_EMAIL1" class="java.lang.String"/>
+	<field name="CT_EMAIL2" class="java.lang.String"/>
+	<field name="CT_NUMERO" class="java.lang.String"/>
+	<field name="CT_NUMINT" class="java.lang.String"/>
+	<field name="CT_LPRECIOS" class="java.lang.Long"/>
+	<field name="CT_DIASCREDITO" class="java.lang.Long"/>
+	<field name="CT_MONTOCRED" class="java.math.BigDecimal"/>
+	<field name="CT_FECHAREG" class="java.lang.String"/>
+	<field name="CT_IDIOMA" class="java.lang.Long"/>
+	<field name="SC_ID" class="java.lang.Long"/>
+	<field name="CT_PASSWORD" class="java.lang.String"/>
+	<field name="CT_DESCUENTO" class="java.math.BigDecimal"/>
+	<field name="CT_VENDEDOR" class="java.lang.Long"/>
+	<field name="CT_CONTAVTA" class="java.lang.String"/>
+	<field name="CT_CONTAPAG" class="java.lang.String"/>
+	<field name="CT_CONTANC" class="java.lang.String"/>
+	<field name="CT_FECHAULTINT" class="java.lang.String"/>
+	<field name="CT_HORAULTINT" class="java.lang.String"/>
+	<field name="CT_FECHAEXIT" class="java.lang.String"/>
+	<field name="CT_HORAEXIT" class="java.lang.String"/>
+	<field name="CT_FALLIDOS" class="java.lang.Long"/>
+	<field name="CT_NOTAS" class="java.lang.String"/>
+	<field name="CT_EXITOSOS" class="java.lang.Long"/>
+	<field name="CT_CATEGORIA1" class="java.lang.Long"/>
+	<field name="CT_CATEGORIA2" class="java.lang.Long"/>
+	<field name="CT_CATEGORIA3" class="java.lang.Long"/>
+	<field name="CT_CATEGORIA4" class="java.lang.Long"/>
+	<field name="CT_CATEGORIA5" class="java.lang.Long"/>
+	<field name="CT_TIPOPERS" class="java.lang.Integer"/>
+	<field name="CT_USOIMBUEBLE" class="java.lang.String"/>
+	<field name="CT_TIPOFAC" class="java.lang.Integer"/>
+	<field name="CT_TIT_CONT1" class="java.lang.String"/>
+	<field name="CT_TIT_CONT2" class="java.lang.String"/>
+	<field name="CT_CONT_AP1" class="java.lang.String"/>
+	<field name="CT_CONT_AP2" class="java.lang.String"/>
+	<field name="CT_CONT_AM1" class="java.lang.String"/>
+	<field name="CT_CONT_AM2" class="java.lang.String"/>
+	<field name="EMP_ID" class="java.lang.Long"/>
+	<field name="CT_CONTACTE" class="java.lang.String"/>
+	<field name="CT_CUENTAVTACRED" class="java.lang.String"/>
+	<field name="CT_UPLINE" class="java.lang.Integer"/>
+	<field name="CT_CONTACTO" class="java.lang.String"/>
+	<field name="CT_FECHAULTIMOCONTACTO" class="java.lang.String"/>
+	<field name="CT_ARMADOINI" class="java.lang.Integer"/>
+	<field name="CT_ARMADOFIN" class="java.lang.Integer"/>
+	<field name="CT_ARMADONUM" class="java.lang.Integer"/>
+	<field name="CT_ARMADODEEP" class="java.lang.Integer"/>
+	<field name="CT_SPONZOR" class="java.lang.Integer"/>
+	<field name="CT_LADO" class="java.lang.String"/>
+	<field name="CT_IS_LOGGED" class="java.lang.Integer"/>
+	<field name="CT_LAST_ACT" class="java.sql.Timestamp"/>
+	<field name="CT_LASTSESSIONID" class="java.lang.String"/>
+	<field name="CT_LASTIPADDRESS" class="java.lang.String"/>
+	<field name="CT_LAST_TIME" class="java.lang.Long"/>
+	<field name="CT_LAST_TIME_FAIL" class="java.lang.Long"/>
+	<field name="CT_IS_DISABLED" class="java.lang.Integer"/>
+	<field name="CT_CTABANCO1" class="java.lang.String"/>
+	<field name="CT_CTABANCO2" class="java.lang.String"/>
+	<field name="CT_CTATARJETA" class="java.lang.String"/>
+	<field name="CT_NUMPREDIAL" class="java.lang.String"/>
+	<field name="PA_ID" class="java.lang.String"/>
+	<field name="CT_ACTIVO" class="java.lang.Integer"/>
+	<field name="CT_RAZONCOMERCIAL" class="java.lang.String"/>
+	<field name="CT_CATEGORIA6" class="java.lang.Integer"/>
+	<field name="CT_CATEGORIA7" class="java.lang.Integer"/>
+	<field name="CT_CATEGORIA8" class="java.lang.Integer"/>
+	<field name="CT_CATEGORIA9" class="java.lang.Integer"/>
+	<field name="CT_CATEGORIA10" class="java.lang.Integer"/>
+	<field name="MON_ID" class="java.lang.Integer"/>
+	<field name="TI_ID" class="java.lang.Integer"/>
+	<field name="TTC_ID" class="java.lang.Integer"/>
+	<field name="CT_RBANCARIA1" class="java.lang.String"/>
+	<field name="CT_RBANCARIA2" class="java.lang.String"/>
+	<field name="CT_RBANCARIA3" class="java.lang.String"/>
+	<field name="CT_BANCO1" class="java.lang.Integer"/>
+	<field name="CT_BANCO2" class="java.lang.Integer"/>
+	<field name="CT_BANCO3" class="java.lang.Integer"/>
+	<field name="CT_METODODEPAGO" class="java.lang.String"/>
+	<field name="CT_FORMADEPAGO" class="java.lang.String"/>
+	<field name="CT_FECHA_NAC" class="java.lang.String"/>
+	<field name="CT_NOMBRE" class="java.lang.String"/>
+	<field name="CT_APATERNO" class="java.lang.String"/>
+	<field name="CT_AMATERNO" class="java.lang.String"/>
+	<field name="CT_PPUNTOS" class="java.math.BigDecimal"/>
+	<field name="CT_PNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="CT_GPUNTOS" class="java.math.BigDecimal"/>
+	<field name="CT_GNEGOCIO" class="java.math.BigDecimal"/>
+	<field name="CT_COMISION" class="java.math.BigDecimal"/>
+	<field name="CT_NIVELRED" class="java.lang.Integer"/>
+	<field name="MPE_ID" class="java.lang.Integer"/>
+	<field name="FIRM_ST1_N" class="java.math.BigDecimal"/>
+	<field name="FIRM_ST2_N" class="java.math.BigDecimal"/>
+	<field name="FIRM_ST3_N" class="java.math.BigDecimal"/>
+	<field name="FIRM_ST4_N" class="java.math.BigDecimal"/>
+	<field name="FIRM_ST1_P" class="java.math.BigDecimal"/>
+	<field name="FIRM_ST2_P" class="java.math.BigDecimal"/>
+	<field name="FIRM_ST3_P" class="java.math.BigDecimal"/>
+	<field name="FIRM_ST4_P" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_1" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_2" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_3" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_4" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_5" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_6" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_7" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_8" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_9" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_10" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_11" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_12" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_13" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_14" class="java.math.BigDecimal"/>
+	<field name="FIRM_MES_15" class="java.math.BigDecimal"/>
+	<field name="CT_CONTEO_HIJOS" class="java.lang.Integer"/>
+	<field name="CT_CONTEO_HIJOS_ACTIVOS" class="java.lang.Integer"/>
+	<field name="CT_CONTEO_INGRESOS" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement uuid="5d0fa32e-b315-4851-8ebe-50ffe0244804" x="456" y="0" width="99" height="132"/>
+				<imageExpression><![CDATA["cherry.jpg"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement uuid="ba51d86e-188c-4f60-9759-c8de2b54d7c5" mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000"/>
+				<staticText>
+					<reportElement uuid="5a8bea1b-c5b8-4d03-8c38-98857fac56a5" style="Title" x="0" y="0" width="370" height="66"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Reporte Demo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="8f88348b-328f-4d34-a411-5417aad59411" style="SubTitle" x="157" y="66" width="249" height="29"/>
+					<textElement>
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Subtitulo]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement uuid="b8ae4b8a-f9ff-40bf-9e6b-6363c3c02f0e" mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="3f7c67f4-becd-4e2c-ab77-c60f9c97b257" x="307" y="12" width="144" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="238da031-fe8b-43d5-8e98-b34c306ad9ac" style="Column header" x="0" y="7" width="138" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[CT_RAZONSOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f0536e7e-993e-4a6f-b656-6ab945e79005" style="Column header" x="138" y="7" width="138" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[CT_RFC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="55d95141-f634-4483-a3c1-8a7cfe5049cb" style="Column header" x="276" y="7" width="138" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[CT_CALLE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement uuid="d3748b55-4fa9-40f6-931b-f69fda0e5b8d" style="Row" mode="Opaque" x="0" y="0" width="555" height="18"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="c121ec38-bb3e-44d0-a8bf-bcc70470404e" style="Detail" positionType="Float" x="0" y="0" width="138" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="38d7a91d-6426-49ef-9962-6f154dda3c02" style="Detail" positionType="Float" x="276" y="0" width="138" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CT_CALLE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="c2850df0-8207-41f1-879a-200e2afa7b17" positionType="Float" stretchType="RelativeToTallestObject" x="414" y="0" width="139" height="18"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{CT_NOTAS}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch">
+			<line>
+				<reportElement uuid="cf9e5b8f-b525-40d2-a398-c1a5000ef75e" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<frame>
+				<reportElement uuid="00fe1217-b2bb-4ac2-ae22-89c8e91ebf21" mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="49b7e41c-b3b8-4f11-94ab-df7e07d5738e" style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="28d2e25a-a3c8-4f7d-8810-91b5e79decc5" style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="9a4f9e95-48ef-4ae4-914f-bda7ea12b8d8" style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

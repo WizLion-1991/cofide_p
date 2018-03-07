@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2015-11-11T11:05:36 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_prospectos" pageWidth="1200" pageHeight="792" columnWidth="1160" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8ae9df7f-4a2c-4d0f-8b3d-4fb55f1c0833">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="FechaInicial" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="FechaFinal" class="java.lang.String"/>
+	<parameter name="PathBaseWeb" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 
+c.CT_ID AS ID,c.CT_FECHA_CONTACTO AS FECHA,c.CT_RAZONSOCIAL AS NOMBRE, c.CT_TELEFONO1
+AS TELEFONO1,c.CT_TELEFONO2 AS TELEFONO2
+,c.CT_CONTACTO1 AS CONTACTO1,c.CT_CONTACTO2 AS CONTACTO2,c.CT_EMAIL1 AS CORREO1,c.CT_EMAIL2 AS CORREO2,
+(select u.EP_DESCRIPCION from crm_prospecto_estatus u where u.EP_ID = c.EP_ID) AS ESTATUS
+,(select GROUP_CONCAT(concat(h.HS_FECHA,'.-',h.HS_COMENTARIOS),"/") from crm_historial_seguimiento h WHERE h.CT_ID = c.CT_ID) AS Seguimiento
+,if(c.CT_I_MLM = 1,'SI','NO') as QuiereMLM
+,if(c.CT_I_FAC = 1,'SI','NO') as QuiereFacturacion
+,if(c.CT_I_CONTA = 1,'SI','NO') as QuiereContabilidad
+,if(c.CT_I_RH = 1,'SI','NO') as QuiereNominas
+,if(c.CT_I_DES = 1,'SI','NO') as QuiereDesarrolloEspecial
+,if(c.CT_I_OTROS = 1,'SI','NO') as QuiereOtros
+,if(c.CT_I_XML = 1,'SI','NO') as QuiereXMLMasivo
+, e.EMP_PATHIMG  as LOGO
+,e.EMP_RAZONSOCIAL
+ from vta_cliente c, vta_empresas e where 
+ c.EMP_ID = e.EMP_ID and 
+ c.CT_ES_PROSPECTO = 1]]>
+	</queryString>
+	<field name="ID" class="java.lang.Long"/>
+	<field name="FECHA" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="TELEFONO1" class="java.lang.String"/>
+	<field name="TELEFONO2" class="java.lang.String"/>
+	<field name="CONTACTO1" class="java.lang.String"/>
+	<field name="CONTACTO2" class="java.lang.String"/>
+	<field name="CORREO1" class="java.lang.String"/>
+	<field name="CORREO2" class="java.lang.String"/>
+	<field name="ESTATUS" class="java.lang.String"/>
+	<field name="Seguimiento" class="java.lang.String"/>
+	<field name="QuiereMLM" class="java.lang.String"/>
+	<field name="QuiereFacturacion" class="java.lang.String"/>
+	<field name="QuiereContabilidad" class="java.lang.String"/>
+	<field name="QuiereNominas" class="java.lang.String"/>
+	<field name="QuiereDesarrolloEspecial" class="java.lang.String"/>
+	<field name="QuiereOtros" class="java.lang.String"/>
+	<field name="QuiereXMLMasivo" class="java.lang.String"/>
+	<field name="LOGO" class="java.lang.String"/>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="0" width="958" height="30" uuid="6ff2bc5b-6af4-485f-9418-6b7581e85ced"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE PROSPECTOS POR FECHA DE CONTACTO]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="180" y="30" width="978" height="23" uuid="3f7e61d7-34a2-452a-b70e-3a7183985a36"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{FechaInicial})]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="180" y="53" width="978" height="21" uuid="21703231-7dee-43df-aa54-a75f452fac77"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{FechaFinal})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="100" y="30" width="80" height="23" uuid="9dd4fb96-7b6f-48c5-97d1-7bd35120416f"/>
+				<text><![CDATA[FECHA INICIAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="53" width="80" height="21" uuid="866bdb6a-5223-4a1b-bf5d-c11e1a6d33dc"/>
+				<text><![CDATA[FECHA FINAL:]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="100" height="104" uuid="250452fe-71ce-48ee-b896-d4f87649e0e8"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb} + "/" + $F{LOGO}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="19" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="45" height="18" uuid="69529743-9321-490b-a6ad-9dcfe2c59427"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="45" y="0" width="55" height="18" uuid="96fb2be7-196e-433d-8d41-dc6276cfdd73"/>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="167" height="18" uuid="194cc237-c0e1-4b45-9a79-1f48f331bdcd"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="0" width="70" height="18" uuid="9c0cb082-c417-4782-9233-198b9fa0f895"/>
+				<text><![CDATA[TELEFONO1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="1" width="68" height="18" uuid="96cf47a2-393e-4b87-9100-8f4b28734eb0"/>
+				<text><![CDATA[TELEFONO2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="1" width="80" height="18" uuid="4c3e5684-3b9f-456a-b437-5e17622b8509"/>
+				<text><![CDATA[CONTACTO1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="485" y="1" width="79" height="18" uuid="f6d159e7-c7e6-423f-b237-6a6cf9526894"/>
+				<text><![CDATA[CONTACTO2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="564" y="1" width="139" height="18" uuid="402f3b7c-4926-47e5-b40b-2253283fe4d7"/>
+				<text><![CDATA[CORREO1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="703" y="1" width="119" height="18" uuid="763bcdc2-2cbe-4dd8-a707-51d35675c009"/>
+				<text><![CDATA[CORREO2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="822" y="1" width="58" height="18" uuid="faa00c71-6f30-4115-b93c-d48adaaa844d"/>
+				<text><![CDATA[ESTATUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="880" y="1" width="70" height="18" uuid="73cbb8d4-83e9-47ab-b6e5-38de6efb83a0"/>
+				<text><![CDATA[Seguimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="950" y="1" width="30" height="18" uuid="86743b22-4411-4ae8-8f94-19a14b936ace"/>
+				<text><![CDATA[MLM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="980" y="1" width="30" height="18" uuid="21e60346-4046-49fd-8106-320c5b3b51c9"/>
+				<text><![CDATA[Fact]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1010" y="0" width="30" height="19" uuid="489ee133-ace6-44fc-a786-816cd3394459"/>
+				<text><![CDATA[Conta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1040" y="0" width="30" height="19" uuid="ea22950f-6b53-4759-9b87-44489fae8c4a"/>
+				<text><![CDATA[Nomin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1070" y="0" width="30" height="19" uuid="4a9fa5b6-bbec-4099-a66d-095e87f1d3d9"/>
+				<text><![CDATA[DesEsp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1100" y="0" width="30" height="19" uuid="a19570a5-519c-4f03-ab78-2384acebdf38"/>
+				<text><![CDATA[Otros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1130" y="0" width="28" height="19" uuid="acd3ff47-865e-431f-90fe-f885c0856efc"/>
+				<text><![CDATA[XML]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="45" height="18" uuid="556ddacb-1771-4784-88a1-d29ffdbce3df"/>
+				<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="45" y="0" width="55" height="18" uuid="aef38f99-5346-430b-ab42-23968f56cf9f"/>
+				<textFieldExpression><![CDATA[($F{FECHA}.equals("") ? null : new SimpleDateFormat("yyyyMMdd").parse($F{FECHA}) )
+]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="167" height="18" uuid="4210a0a5-4ad3-4090-98db-485d4a25376d"/>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="1" width="70" height="18" uuid="3ebd665e-de74-47bb-aa09-87648cc1c9ba"/>
+				<textFieldExpression><![CDATA[$F{TELEFONO1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="1" width="67" height="18" uuid="b144e18a-0e34-4a80-93e9-699370e78522"/>
+				<textFieldExpression><![CDATA[$F{TELEFONO2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="-1" width="80" height="18" uuid="321b31e1-7578-40b3-8436-158941e7bf8f"/>
+				<textFieldExpression><![CDATA[$F{CONTACTO1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="485" y="0" width="79" height="17" uuid="0dc369a7-074f-41af-afff-d20851d6f101"/>
+				<textFieldExpression><![CDATA[$F{CONTACTO2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="564" y="0" width="139" height="17" uuid="3a350315-29bd-4f56-be82-a62700e55eb2"/>
+				<textFieldExpression><![CDATA[$F{CORREO1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="703" y="0" width="119" height="17" uuid="0fa1e167-9efc-4ea8-80a2-847ee054e179"/>
+				<textFieldExpression><![CDATA[$F{CORREO2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="822" y="0" width="58" height="17" uuid="352f26ae-28b2-40a7-97eb-7a221911de9b"/>
+				<textFieldExpression><![CDATA[$F{ESTATUS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="880" y="-1" width="70" height="18" uuid="71fca49e-3185-4e77-abb8-841309601c9b"/>
+				<textFieldExpression><![CDATA[$F{Seguimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="950" y="0" width="30" height="18" uuid="375bb1dc-8c44-4e47-96b7-89e99acb0977"/>
+				<textFieldExpression><![CDATA[$F{QuiereMLM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="980" y="0" width="30" height="18" uuid="5e06607e-1fe6-4a5a-9a2a-7e09b8491ef3"/>
+				<textFieldExpression><![CDATA[$F{QuiereFacturacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1010" y="0" width="30" height="18" uuid="d2f51ec2-4720-4f3d-89c4-cd05c7f6d4d2"/>
+				<textFieldExpression><![CDATA[$F{QuiereContabilidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1040" y="0" width="30" height="18" uuid="6cd25287-9269-4bdb-8271-ab3e01262307"/>
+				<textFieldExpression><![CDATA[$F{QuiereNominas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1070" y="0" width="30" height="18" uuid="c6749224-d65a-439f-a445-cc1ca24af17f"/>
+				<textFieldExpression><![CDATA[$F{QuiereDesarrolloEspecial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1100" y="0" width="30" height="18" uuid="6a7858fb-872c-4bbb-99e6-b42ab46d2a08"/>
+				<textFieldExpression><![CDATA[$F{QuiereOtros}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1130" y="0" width="28" height="19" uuid="be04e9fe-82d0-47e7-ae0b-ceb6eb9182d8"/>
+				<textFieldExpression><![CDATA[$F{QuiereXMLMasivo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="480" y="20" width="100" height="30" uuid="1cf9553b-78cc-4786-8277-9ace60a49d64"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="580" y="20" width="100" height="30" uuid="115b238e-1d01-4c15-98d9-2744174fefe4"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

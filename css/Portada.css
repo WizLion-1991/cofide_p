@@ -1,0 +1,81 @@
+*{
+   /* A universal CSS reset */
+   margin:0;
+   padding:0;
+}
+
+body{
+   font-size:14px;
+   color:#fff;
+   font-family:Arial, Helvetica, sans-serif;
+}
+
+#portada{
+   //background:#052751 url('../images/fondo_erp.png') no-repeat;
+   background:#2E2E2E; // url('../images/fondo_erp_.png') no-repeat; //nuevo fonde de pantalla de inicio
+   position: absolute;
+   margin: auto;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   width: 1320px;
+   height: 1020px;
+   box-shadow: 10px 10px 5px #888888;
+}
+#letreros{
+   position: relative;
+   top: 100px;
+   left: 40px;
+   font-size:18px;
+}
+#links{
+
+}
+h1{
+   color:#fff;
+   font-size:30px;
+   font-weight:normal;
+   padding:60px 0 20px;
+   text-align:center;
+}
+
+h2{
+   font-weight:normal;
+   text-align:center;
+}
+h3{
+   font-weight:normal;
+   text-align:center;
+   font-size:18px;
+}
+h4{
+   font-weight:normal;
+   text-align:center;
+   font-size:15px;
+}
+
+h1,h2,h3,h4{
+   font-family:Arial,Helvetica,sans-serif;
+}
+
+a, a:visited,a:active {
+   color:#0196e3;
+   text-decoration:none;
+   outline:none;
+}
+
+a:hover{
+   text-decoration:underline;
+}
+
+a img{
+   border:none;
+}
+
+p.note{
+   color:#fff;
+   font-size:10px;
+   text-align:center;
+   margin:50px;
+}

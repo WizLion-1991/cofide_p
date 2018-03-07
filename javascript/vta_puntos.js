@@ -1,0 +1,1 @@
+function vta_puntos(){}function OpnDiagpts(){OpnOpt("CLIENTES","grid","dialogCte",false,false);}

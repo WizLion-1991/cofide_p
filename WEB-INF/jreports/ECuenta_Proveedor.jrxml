@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Estado_de_cuenta_proveedor" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="17acb993-90c0-4001-85ce-dc15c79e8b2c">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="423"/>
+	<property name="ireport.y" value="64"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.white.page.background" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="moneda" uuid="5c38f5b3-4784-4db5-acc2-dbafa6d47698">
+		<parameter name="Moneda" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select MON_DESCRIPCION from vta_monedas where MON_ID = $P{Moneda}]]>
+		</queryString>
+		<field name="MON_DESCRIPCION" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="PathBase" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Proveedor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Moneda" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Fecha_Inicial" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Fecha_Final" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FacturaId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SoloMonedaOrig" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT *, DATE_FORMAT(STR_TO_DATE(MP_FECHA,'%Y%m%d'),'%d/%m/%Y') AS FECHA,
+(PV_RAZONSOCIAL) AS PROVEEDOR,
+(SELECT SC_NOMBRE FROM vta_sucursal WHERE vta_mov_prov.SC_ID=vta_sucursal.SC_ID) AS SUCURSAL,
+(SELECT EMP_RAZONSOCIAL FROM vta_empresas WHERE vta_proveedor.EMP_ID=vta_empresas.EMP_ID) AS NOM_EMPRESA,
+if(MP_ESPAGO > 0, if(MP_ANTICIPO = 1,'ANTICIPO','PAGO'),if(MP_USA_ANTICIPO = 1,'APLICAR ANTICIPO','FACTURA')) AS CONCEPTO,
+(SELECT MON_DESCRIPCION FROM vta_monedas where vta_monedas.MON_ID =vta_mov_prov.MP_MONEDA)AS NOM_MONEDA,
+(SELECT CXP_FOLIO FROM vta_cxpagar WHERE vta_cxpagar.CXP_ID=vta_mov_prov.CXP_ID) as TFOLIO,
+
+/*obtenemos la paridad*/
+if(if($P{Moneda} <> 0,$P{Moneda},vta_proveedor.MON_ID) = vta_mov_prov.MP_MONEDA , 1,
+if(MP_TASAPESO <> 1 AND MP_TASAPESO <> 0 ,MP_TASAPESO,GetParidad(vta_mov_prov.MP_MONEDA,if($P{Moneda} <> 0,$P{Moneda},vta_proveedor.MON_ID),4,MP_FECHA) )
+)
+/*obtenemos la paridad*/
+ as tasa
+FROM vta_proveedor,vta_mov_prov WHERE vta_mov_prov.PV_ID=vta_proveedor.PV_ID and vta_proveedor.pv_id = $P{Proveedor}
+AND MP_FECHA >= $P{Fecha_Inicial} AND MP_FECHA <= $P{Fecha_Final} AND MP_ANULADO = 0
+ AND if($P{FacturaId} = 0, 1 = 1, vta_mov_prov.CXP_ID = $P{FacturaId} )
+and if($P{SoloMonedaOrig} = 1,if(vta_mov_prov.CXP_ID = 0,vta_mov_prov.MP_MONEDA = $P{Moneda},(SELECT CXP_MONEDA FROM vta_cxpagar WHERE vta_cxpagar.CXP_ID=vta_mov_prov.CXP_ID) =$P{Moneda} ),1=1 )
+ORDER BY MP_FECHA,MP_HORA;]]>
+	</queryString>
+	<field name="PV_ID" class="java.lang.Long"/>
+	<field name="PV_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="PV_RFC" class="java.lang.String"/>
+	<field name="PV_CALLE" class="java.lang.String"/>
+	<field name="PV_COLONIA" class="java.lang.String"/>
+	<field name="PV_LOCALIDAD" class="java.lang.String"/>
+	<field name="PV_MUNICIPIO" class="java.lang.String"/>
+	<field name="PV_ESTADO" class="java.lang.String"/>
+	<field name="PV_CP" class="java.lang.String"/>
+	<field name="PV_TELEFONO1" class="java.lang.String"/>
+	<field name="PV_TELEFONO2" class="java.lang.String"/>
+	<field name="PV_CONTACTO1" class="java.lang.String"/>
+	<field name="PV_CONTACTO2" class="java.lang.String"/>
+	<field name="PV_FOLIO" class="java.lang.Long"/>
+	<field name="PV_NUMCEROS" class="java.lang.Integer"/>
+	<field name="PV_SALDO" class="java.math.BigDecimal"/>
+	<field name="PV_EMAIL1" class="java.lang.String"/>
+	<field name="PV_EMAIL2" class="java.lang.String"/>
+	<field name="PV_NUMERO" class="java.lang.String"/>
+	<field name="PV_NUMINT" class="java.lang.String"/>
+	<field name="PV_LPRECIOS" class="java.lang.Long"/>
+	<field name="PV_DIASCREDITO" class="java.lang.Long"/>
+	<field name="PV_MONTOCRED" class="java.math.BigDecimal"/>
+	<field name="PV_FECHAREG" class="java.lang.String"/>
+	<field name="PV_IDIOMA" class="java.lang.Long"/>
+	<field name="SC_ID" class="java.lang.Long"/>
+	<field name="PV_PASSWORD" class="java.lang.String"/>
+	<field name="PV_DESCUENTO" class="java.math.BigDecimal"/>
+	<field name="PV_CONTACOMP" class="java.lang.String"/>
+	<field name="PV_CONTAPAG" class="java.lang.String"/>
+	<field name="PV_CONTANC" class="java.lang.String"/>
+	<field name="PV_FECHAULTINT" class="java.lang.String"/>
+	<field name="PV_HORAULTINT" class="java.lang.String"/>
+	<field name="PV_FECHAEXIT" class="java.lang.String"/>
+	<field name="PV_HORAEXIT" class="java.lang.String"/>
+	<field name="PV_FALLIDOS" class="java.lang.Long"/>
+	<field name="PV_NOTAS" class="java.lang.String"/>
+	<field name="PV_EXITOSOS" class="java.lang.Long"/>
+	<field name="PV_CATEGORIA1" class="java.lang.Long"/>
+	<field name="PV_CATEGORIA2" class="java.lang.Long"/>
+	<field name="PV_CATEGORIA3" class="java.lang.Long"/>
+	<field name="PV_CATEGORIA4" class="java.lang.Long"/>
+	<field name="PV_CATEGORIA5" class="java.lang.Long"/>
+	<field name="PV_CONTAPROV" class="java.lang.String"/>
+	<field name="EMP_ID" class="java.lang.Integer"/>
+	<field name="PV_CUENTACOMPCRED" class="java.lang.String"/>
+	<field name="PV_CONTACTO" class="java.lang.String"/>
+	<field name="PV_TIPOPERS" class="java.lang.Integer"/>
+	<field name="PV_ENVIO_MAIL" class="java.lang.Integer"/>
+	<field name="MON_ID" class="java.lang.Integer"/>
+	<field name="PV_CONDPAGO" class="java.lang.String"/>
+	<field name="PV_METODO_ENVIO" class="java.lang.String"/>
+	<field name="PV_DIAS_TRANSITO" class="java.lang.Integer"/>
+	<field name="PV_DIAS_PROD" class="java.lang.Integer"/>
+	<field name="PV_CATEGORIA6" class="java.lang.Integer"/>
+	<field name="PV_CATEGORIA7" class="java.lang.Integer"/>
+	<field name="PV_CATEGORIA8" class="java.lang.Integer"/>
+	<field name="PV_CATEGORIA9" class="java.lang.Integer"/>
+	<field name="PV_CATEGORIA10" class="java.lang.Integer"/>
+	<field name="PV_PAIS" class="java.lang.Integer"/>
+	<field name="PA_ID" class="java.lang.Integer"/>
+	<field name="PV_AJUSTA_DIA_PAGOS" class="java.lang.Integer"/>
+	<field name="TI_ID" class="java.lang.Integer"/>
+	<field name="PV_ACTIVO" class="java.lang.Integer"/>
+	<field name="PV_ID_FISCAL" class="java.lang.String"/>
+	<field name="MP_ID" class="java.lang.Long"/>
+	<field name="MP_FECHA" class="java.lang.String"/>
+	<field name="MP_HORA" class="java.lang.String"/>
+	<field name="MP_FECHACREATE" class="java.lang.String"/>
+	<field name="MP_CARGO" class="java.math.BigDecimal"/>
+	<field name="MP_ABONO" class="java.math.BigDecimal"/>
+	<field name="MP_FOLIO" class="java.lang.String"/>
+	<field name="MP_ANULADO" class="java.lang.Integer"/>
+	<field name="MP_FECHAANUL" class="java.lang.String"/>
+	<field name="ID_USUARIOS" class="java.lang.Long"/>
+	<field name="ID_USUARIOSANUL" class="java.lang.Long"/>
+	<field name="MP_NOTAS" class="java.lang.String"/>
+	<field name="MP_IMPUESTO1" class="java.math.BigDecimal"/>
+	<field name="MP_IMPUESTO2" class="java.math.BigDecimal"/>
+	<field name="MP_IMPUESTO3" class="java.math.BigDecimal"/>
+	<field name="MP_TASAIMPUESTO1" class="java.math.BigDecimal"/>
+	<field name="MP_TASAIMPUESTO2" class="java.math.BigDecimal"/>
+	<field name="MP_TASAIMPUESTO3" class="java.math.BigDecimal"/>
+	<field name="MP_MONEDA" class="java.lang.Long"/>
+	<field name="MP_TASAPESO" class="java.math.BigDecimal"/>
+	<field name="MP_ESPAGO" class="java.lang.Integer"/>
+	<field name="CXP_ID" class="java.lang.Long"/>
+	<field name="MP_HORAANUL" class="java.lang.String"/>
+	<field name="CCJ_ID" class="java.lang.Long"/>
+	<field name="MP_ANTICIPO" class="java.lang.Integer"/>
+	<field name="MPM_ID" class="java.lang.Integer"/>
+	<field name="MP_FT" class="java.lang.Integer"/>
+	<field name="MP_EXEC_INTER_CP" class="java.lang.Long"/>
+	<field name="MP_ANTICIPO_ORIGINAL" class="java.math.BigDecimal"/>
+	<field name="FECHA" class="java.lang.String"/>
+	<field name="PROVEEDOR" class="java.lang.String"/>
+	<field name="SUCURSAL" class="java.lang.String"/>
+	<field name="NOM_EMPRESA" class="java.lang.String"/>
+	<field name="CONCEPTO" class="java.lang.String"/>
+	<field name="NOM_MONEDA" class="java.lang.String"/>
+	<field name="TFOLIO" class="java.lang.String"/>
+	<field name="tasa" class="java.math.BigDecimal"/>
+	<variable name="Saldo" class="java.lang.Number" calculation="Sum">
+		<variableExpression><![CDATA[(($P{Moneda} == 0 ? $F{MON_ID} : $P{Moneda}) == 1 || (($P{Moneda} == 0 ? $F{MON_ID} : $P{Moneda}) == 4 ) ? ($F{MP_CARGO} - $F{MP_ABONO})*$F{tasa}: ($F{MP_CARGO} - $F{MP_ABONO})/$F{tasa})]]></variableExpression>
+		<initialValueExpression><![CDATA[0.0]]></initialValueExpression>
+	</variable>
+	<variable name="Cargos" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[(($P{Moneda} == 0 ? $F{MON_ID} : $P{Moneda}) == 1 || (($P{Moneda} == 0 ? $F{MON_ID} : $P{Moneda}) == 4 ) ? ($F{MP_CARGO} )*$F{tasa}: ($F{MP_CARGO} )/$F{tasa})]]></variableExpression>
+	</variable>
+	<variable name="Abonos" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[(($P{Moneda} == 0 ? $F{MON_ID} : $P{Moneda}) == 1 || (($P{Moneda} == 0 ? $F{MON_ID} : $P{Moneda}) == 4 ) ? ($F{MP_ABONO})*$F{tasa}: ( $F{MP_ABONO})/$F{tasa})]]></variableExpression>
+	</variable>
+	<background>
+		<band height="575" splitType="Stretch">
+			<textField>
+				<reportElement uuid="f356abcf-f94b-4e23-954f-456f999541d4" x="389" y="552" width="18" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fd11ad14-b139-44b7-a9d6-38e868b2d97e" x="354" y="552" width="35" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement uuid="0b0d1559-e573-450f-9e23-f379f830f0c2" style="Column header" x="407" y="552" width="47" height="20" forecolor="#000000"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER} + " "]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band height="95" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4e772475-d80f-4a15-bf89-078c5be3143e" x="113" y="35" width="90" height="15"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROVEEDOR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="42fd4cd0-14fa-438e-b01e-8c0f09614622" x="113" y="20" width="254" height="15"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO DE CUENTA DE PROVEEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ff13913c-a5f7-4d2a-8008-a1d2a5af33f8" x="113" y="80" width="90" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emision:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1af90048-f49a-411a-b23f-a56d9f6276c3" x="259" y="51" width="13" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[al]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e55c35d-4207-4fe7-a40f-53d4f051448e" x="113" y="65" width="90" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Moneda:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fd38f2d3-2ce9-4bd6-b1f7-c700304ca7d9" x="113" y="50" width="90" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Periodo del:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="fc356efd-a3d1-4e28-9766-50e170426221" style="Column header" x="203" y="80" width="164" height="15" forecolor="#000000"/>
+				<textElement textAlignment="Left">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement uuid="f03631c1-d8f6-475c-959f-d50a0d16832d" x="1" y="18" width="101" height="69"/>
+				<imageExpression><![CDATA["D:/SIWEB/SrvApp/sitesTomcat/Ventas/GrupoMak/images/ptovta/scubaprice.png"]]></imageExpression>
+			</image>
+			<componentElement>
+				<reportElement uuid="2065b8e4-6769-4067-8c0b-39e922527e4c" key="table 2" mode="Transparent" x="203" y="65" width="164" height="15"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="moneda" uuid="8f64d18b-1d91-4765-85cb-60b56115b081">
+						<datasetParameter name="Moneda">
+							<datasetParameterExpression><![CDATA[($P{Moneda} == 0 ? $F{MON_ID}: $P{Moneda})]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column uuid="49e71d25-c129-40fc-b575-aa0c1c1fea9a" width="90">
+						<jr:detailCell height="20">
+							<textField>
+								<reportElement uuid="9f656755-7657-4101-8df4-5d00c0fb5b7c" x="0" y="0" width="90" height="20"/>
+								<textElement>
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[($F{MON_DESCRIPCION} == "" ?  "ORIGINAL" : $F{MON_DESCRIPCION})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField>
+				<reportElement uuid="042264e8-5dbb-4cd1-827b-9ad0c6d9b5d2" x="113" y="0" width="254" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOM_EMPRESA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="378b749c-683b-44af-85eb-bce1eac32ac5" x="225" y="35" width="327" height="15"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROVEEDOR}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="208b33e2-1586-4c02-9c48-bccd9223ef94" x="203" y="50" width="56" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{Fecha_Inicial})]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="9a760d3b-f5d1-4e3b-be7d-b050cc638145" x="272" y="51" width="95" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{Fecha_Final})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3ebbe327-adac-4f86-b06f-e1bafd6dba83" x="203" y="35" width="22" height="15"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PV_ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<frame>
+				<reportElement uuid="3bec9867-675d-4700-a0b3-d6a3c195bf8f" mode="Opaque" x="80" y="0" width="681" height="16" forecolor="#0066CC" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="be3fb14e-212e-48f3-9617-d7b07ad43d19" style="Column header" x="2" y="0" width="60" height="15"/>
+					<textElement/>
+					<text><![CDATA[FECHA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="9331155d-2ac6-47d2-a043-f66a3fbcafd7" style="Column header" x="62" y="0" width="130" height="15"/>
+					<textElement/>
+					<text><![CDATA[FOLIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="366c9d81-3137-4b44-b75d-650fe270c090" style="Column header" x="192" y="0" width="98" height="15"/>
+					<textElement/>
+					<text><![CDATA[CONCEPTO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c1b1d0ed-422e-4bc5-a310-56e557cebeea" style="Column header" x="291" y="0" width="96" height="15"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[CARGO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="b2104fb8-78a4-4490-b92c-41f384071aec" style="Column header" x="387" y="0" width="88" height="15"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[ABONO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="940a44b8-cf20-4caa-a0ec-703a4dea9856" style="Column header" x="575" y="0" width="45" height="15"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[TASA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="116fd45b-4d6c-4761-b01a-b6fffa807e3b" x="475" y="0" width="100" height="15" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SALDO]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() == 1 )]]></printWhenExpression>
+			<subreport>
+				<reportElement uuid="d167a283-be92-43f6-ab46-544ea6864929" x="554" y="0" width="98" height="19">
+					<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() == 1 )]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="SoloMonedaOrig">
+					<subreportParameterExpression><![CDATA[$P{SoloMonedaOrig}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="Fecha_Inicial">
+					<subreportParameterExpression><![CDATA[$P{Fecha_Inicial}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="Moneda">
+					<subreportParameterExpression><![CDATA[$P{Moneda}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="Proveedor">
+					<subreportParameterExpression><![CDATA[$P{Proveedor}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="SaldoInicial" toVariable="Saldo" calculation="Sum"/>
+				<subreportExpression><![CDATA[$P{PathBase} + "ECuenta_Proveedor_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="de8d224c-2457-4f0d-bdc7-67a7c6286449" x="464" y="0" width="88" height="17">
+					<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() == 1 )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Saldo Inicial:]]></text>
+			</staticText>
+		</band>
+		<band height="16">
+			<frame>
+				<reportElement uuid="70bc3701-ffc7-4b1f-9027-d42c44190835" x="80" y="0" width="681" height="16"/>
+				<textField>
+					<reportElement uuid="1417009c-7368-4e6e-90c4-5a71e31cc2c4" style="Detail" x="2" y="0" width="60" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="d016afd9-dfd4-4867-b7c7-7380dae3d129" style="Detail" x="62" y="0" width="130" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{TFOLIO} == null? "" : $F{TFOLIO})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0eb2c987-a3c3-457b-a220-859309253abe" style="Detail" x="192" y="0" width="98" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CONCEPTO}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement uuid="656479a3-8b45-4f4f-ab8f-80fb56e8e027" style="Detail" x="291" y="0" width="96" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(($P{Moneda} == 0 ? $F{MON_ID} : $P{Moneda}) == 1 
+ || (($P{Moneda} == 0 ? $F{MON_ID} : $P{Moneda}) == 4 )
+? $F{MP_CARGO}*$F{tasa}: $F{MP_CARGO}/$F{tasa})]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement uuid="0a9aaf82-846f-459b-b3ce-b8db1dca5150" style="Detail" x="387" y="0" width="88" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(($P{Moneda} == 0 ? $F{MON_ID} : $P{Moneda}) == 1 
+ || ($P{Moneda} == 0 ? $F{MON_ID} : $P{Moneda}) == 4
+? $F{MP_ABONO}*$F{tasa}: $F{MP_ABONO}/$F{tasa})]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement uuid="cbd4b517-15a2-4bae-99a3-626aab93e0f5" style="Detail" x="575" y="0" width="45" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tasa}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
+					<reportElement uuid="52bca3cb-67c4-4215-b1b3-cca9d0383620" x="475" y="0" width="100" height="15"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Saldo}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="2a118f47-9f0e-4bc3-91d4-6cb7e1d037a8" x="464" y="0" width="88" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Abonos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="2a118f47-9f0e-4bc3-91d4-6cb7e1d037a8" x="552" y="0" width="100" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Saldo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="bfa9588b-dfcc-4bec-a296-75010a76de52" x="237" y="0" width="99" height="16"/>
+				<textElement/>
+				<text><![CDATA[TOTALES]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="2a118f47-9f0e-4bc3-91d4-6cb7e1d037a8" x="368" y="0" width="96" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Cargos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<line>
+				<reportElement uuid="7e813bfb-7433-4485-b158-f8d9e3d6313b" positionType="FixRelativeToBottom" x="95" y="-1" width="666" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

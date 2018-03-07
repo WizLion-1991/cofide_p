@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
+<!-- 2015-07-29T12:06:13 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="WeNowInicioRapido" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1839a0d3-960e-4015-afd8-a3cea6c8842e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="WeNow"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="FechaInicial" class="java.lang.String"/>
+	<parameter name="FechaFinal" class="java.lang.String"/>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 
+	mlm_comision_activacion.CI_FUENTE, 
+	mlm_comision_activacion.CI_DESTINO, 
+	mlm_comision_activacion.CI_IMPORTE, 
+	DATE_FORMAT(STR_TO_DATE(mlm_comision_activacion.CI_FECHA,'%Y%m%d'),'%d/%m/%Y') AS FECHA,
+	mlm_comision_activacion.CI_NIVEL, 
+	a.CT_RAZONSOCIAL as NOMBRE_ORIGEN, 
+	b.CT_RAZONSOCIAL as NOMBRE_DESTINO
+FROM mlm_comision_activacion INNER JOIN vta_cliente a ON mlm_comision_activacion.CI_FUENTE = a.CT_ID
+	 INNER JOIN vta_cliente b ON mlm_comision_activacion.CI_DESTINO = b.CT_ID
+	 WHERE mlm_comision_activacion.CI_FECHA>=  $P{FechaInicial} AND mlm_comision_activacion.CI_FECHA <= $P{FechaFinal} ]]>
+	</queryString>
+	<field name="NOMBRE_ORIGEN" class="java.lang.String"/>
+	<field name="NOMBRE_DESTINO" class="java.lang.String"/>
+	<field name="CI_IMPORTE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CI_NIVEL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CI_FUENTE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CI_DESTINO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHA" class="java.lang.String"/>
+	<variable name="SumaImporte" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{CI_IMPORTE}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="74" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement x="410" y="0" width="165" height="64" uuid="8c5f97f0-d5f3-4d35-be77-c27def010fd2"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb} +  "images/logoW.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="6ba659d8-762e-4028-af8f-a3a8a7216523"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Bono rapido Afiliado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="60" y="46" width="90" height="22" uuid="203ff36b-1512-4a1c-aed4-bce995a6892a"/>
+				<text><![CDATA[Periodo:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="SubTitle" x="150" y="46" width="90" height="22" forecolor="#666666" uuid="43c08095-faea-4b6e-9203-d40ad06d184c"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{FechaInicial})]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="SubTitle" x="263" y="46" width="87" height="22" forecolor="#666666" uuid="77190b71-d9ca-4c41-a80f-937cfc3df63f"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{FechaFinal})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="SubTitle" x="240" y="46" width="23" height="22" uuid="99ef5de1-1a84-4020-a740-70f36c02eab0"/>
+				<text><![CDATA[al]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="ba8bc6fb-2c66-4c88-84ef-3543b3ef7a2f"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="60" height="15" uuid="800c3709-3747-4126-98db-c37e0f46da3e"/>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="60" y="19" width="162" height="15" uuid="dd6f5ace-ca18-4624-9d6a-d231e14616d4"/>
+				<text><![CDATA[NOMBRE ORIGEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="222" y="19" width="158" height="15" uuid="ac1cb127-76bf-4f9c-bb03-e0df6479f719"/>
+				<text><![CDATA[NOMBRE DESTINO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="380" y="19" width="90" height="15" uuid="38fa7cd7-5531-4b75-b712-cfca13af1028"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="470" y="19" width="85" height="15" uuid="803cdd84-0a07-47a3-8fa5-0047edd8f52e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[NIVEL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="3e57cdd9-6272-4dcd-b76a-5e7f8e8994f3"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="60" height="15" uuid="b5db6db8-d918-4e71-a11e-f0f096737bd5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="60" y="0" width="162" height="15" uuid="f49b5e92-a66b-4b17-bc22-4bceda5bd287"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CI_FUENTE} + ".- " + $F{NOMBRE_ORIGEN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="222" y="0" width="158" height="15" uuid="21a8c995-e0fd-40b2-af27-58eb960c2aa8"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CI_DESTINO} + ".- " + $F{NOMBRE_DESTINO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$#,##0.00#;$(#,##0.00#-)">
+				<reportElement style="Detail" x="380" y="0" width="90" height="15" uuid="b6b6e3fa-c19d-49e0-989b-a0c92c39a627">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CI_IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="470" y="0" width="85" height="15" uuid="04113757-3fcc-425a-80c9-d1d69c7c035b"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CI_NIVEL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="99e5c158-cb86-42b1-8a77-47f2a971d3f6"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField pattern="$#,##0.00#;$(#,##0.00#-)">
+				<reportElement x="359" y="5" width="111" height="20" uuid="8ec8f375-7c33-49b5-8875-46cbed52d6a3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SumaImporte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="2cb6e5af-18f2-403c-b336-bb956f9c44ba"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="6980b346-af73-4cd6-9f27-8ac644ff49f7"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="3ef25591-2f2e-41a7-a3fb-2305f11b78fa"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

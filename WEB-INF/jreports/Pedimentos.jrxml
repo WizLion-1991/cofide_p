@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="86a2e49a-b8fd-449c-8553-bee8bd771ebd">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="1494"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="Fecha_Inicial" class="java.lang.String"/>
+	<parameter name="Fecha_Final" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT *, DATE_FORMAT(STR_TO_DATE(PED_FECHA_ENTRA,'%Y%m%d'),'%d/%m/%Y') AS FECHA FROM vta_pedimentos where PED_FECHA_ENTRA >= $P{Fecha_Inicial} AND  PED_FECHA_ENTRA <= $P{Fecha_Final} ;]]>
+	</queryString>
+	<field name="PED_ID" class="java.lang.Integer"/>
+	<field name="PED_COD" class="java.lang.String"/>
+	<field name="PED_DESC" class="java.lang.String"/>
+	<field name="PED_FECHA_ENTRA" class="java.lang.String"/>
+	<field name="PED_FECHA_CRUCE" class="java.lang.String"/>
+	<field name="AD_ID" class="java.lang.Integer"/>
+	<field name="MON_ID" class="java.lang.Integer"/>
+	<field name="PED_PARIDAD" class="java.math.BigDecimal"/>
+	<field name="PED_APLICADO" class="java.lang.Integer"/>
+	<field name="PED_USR_APLIC" class="java.lang.Integer"/>
+	<field name="PED_FECHA_APLIC" class="java.lang.String"/>
+	<field name="PED_HORA_APLIC" class="java.lang.String"/>
+	<field name="PD_DOLAR" class="java.math.BigDecimal"/>
+	<field name="PED_ADUANA_16" class="java.math.BigDecimal"/>
+	<field name="PED_ADUANA_11" class="java.math.BigDecimal"/>
+	<field name="PED_IVA_16" class="java.math.BigDecimal"/>
+	<field name="PED_IVA_11" class="java.math.BigDecimal"/>
+	<field name="PED_DTA" class="java.math.BigDecimal"/>
+	<field name="PED_IGI_IGE" class="java.math.BigDecimal"/>
+	<field name="FECHA" class="java.lang.String"/>
+	<background>
+		<band height="575" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="03d71313-3ecd-4b70-9f98-a4ca5cf2cb5a" x="567" y="11" width="74" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha Inicial:]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement uuid="ed668984-69a2-48cd-961b-c36093e15bc4" x="85" y="5" width="101" height="69"/>
+				<imageExpression><![CDATA["D:/SIWEB/SrvApp/sitesTomcat/Ventas/GrupoMak/images/ptovta/scubaprice.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="cbff9975-f248-4374-ad7e-29b0237ca37e" x="231" y="26" width="239" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO DE CUENTA DE PEDIMENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9367ab6a-40c0-4642-be0f-5401e3f39c8f" x="572" y="33" width="61" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha Final:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="56c54dd1-6e68-47a1-908b-41b743a5e227" x="640" y="11" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{Fecha_Inicial})]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="a39294a5-c62d-4166-a4bf-5a805592472c" x="639" y="32" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{Fecha_Final})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="10eefb03-7c9d-426b-bd57-8f2904a407fa" x="543" y="52" width="94" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emision:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="0b9c089a-ac03-4b57-89c4-a00743e1dc2d" style="Column header" x="614" y="52" width="104" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="b2a923d3-47c4-4128-964f-797962d37bed" mode="Opaque" x="0" y="5" width="802" height="20" forecolor="#0066CC" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="e413dfed-7ab6-42fe-9f67-879376b4c87c" style="Column header" x="0" y="0" width="64" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[FECHA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="cdce8711-312d-400c-8d2c-9c44a60c6544" style="Column header" x="64" y="0" width="76" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[PEDIMENTO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="d08c6286-2b90-4b36-a756-b0a1f3d97c2b" style="Column header" x="140" y="0" width="224" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[DESCRIPCIÓN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="1bd101a2-9bcc-4a48-a886-51cda8c0609b" style="Column header" x="364" y="0" width="65" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[PARIDAD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="ed7edb6c-c49a-4343-adf6-2dd718cb0563" style="Column header" x="429" y="0" width="53" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[DOLAR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="06c6f7fb-2ac2-48e9-a0fe-d22fe27be328" style="Column header" x="482" y="0" width="80" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[ADUANA 16%]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="d89e981c-d792-4671-b3c9-dece61ac7b9a" style="Column header" x="562" y="0" width="70" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[ADUANA 11 %]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="d8ac4ecf-cf7b-4c2d-b19a-e9ad0e44677c" style="Column header" x="632" y="0" width="40" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[IVA 16 %]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="3ef3edec-1f90-4ced-abc7-d58cfe4ac55f" style="Column header" x="672" y="0" width="43" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[IVA 11]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="ee17d975-a786-4403-9ddb-6e53c50d3c16" style="Column header" x="715" y="0" width="40" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[DTA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c2339456-9685-407d-a0c0-d75f6513f4d2" style="Column header" x="755" y="0" width="47" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[IGI/IGE]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement uuid="02176517-bd6c-44b1-b63b-64340eaaccfa" x="0" y="1" width="802" height="15"/>
+				<textField>
+					<reportElement uuid="2025388f-48b9-46f2-80ff-89bd321b9f25" style="Detail" x="0" y="0" width="64" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="a2f93375-48d1-4cd6-85a3-d1a45e05f797" style="Detail" x="64" y="0" width="76" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PED_COD}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="1fdc6b8a-eb4a-4063-ab40-4932ec7668ff" style="Detail" x="140" y="0" width="224" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PED_DESC}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="aecce7c5-ec15-40e8-aeb4-2593482e549c" style="Detail" x="364" y="0" width="65" height="15"/>
+					<textElement textAlignment="Center">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PED_PARIDAD}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="8a166916-c4d1-4086-856b-a870db5fc31a" style="Detail" x="429" y="0" width="53" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PD_DOLAR}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="f0609b38-2f12-4898-8fe3-3d0ccbf36b81" style="Detail" x="482" y="0" width="80" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PED_ADUANA_16}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="8fdfa2d5-d921-4340-bb68-cb27ba3815fa" style="Detail" x="562" y="0" width="70" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PED_ADUANA_11}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="b6a06f3c-148b-4e9c-a52b-d7e22255f27b" style="Detail" x="632" y="0" width="40" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PED_IVA_16}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="55299cbf-04cc-4904-93b8-d8c8ccd5aeb5" style="Detail" x="672" y="0" width="43" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PED_IVA_11}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="1e7738f2-6903-4840-b596-8513c4a4d8ed" style="Detail" x="715" y="0" width="40" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PED_DTA}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="2055f967-e780-4188-8be4-6985a389aadf" style="Detail" x="755" y="0" width="47" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PED_IGI_IGE}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement uuid="145c84f0-7d73-4f97-bb97-cc306e310318" positionType="FixRelativeToBottom" x="0" y="16" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a87fe011-8c32-4702-90a5-c84d7ef8e446" x="65" y="0" width="267" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Pedimentos]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

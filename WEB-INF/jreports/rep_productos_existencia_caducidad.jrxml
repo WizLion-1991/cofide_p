@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Alegratel" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df784826-d017-4bef-b6ce-a2539b6e2b9c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GrupoMak"/>
+	<property name="ireport.zoom" value="1.1000000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="EMPRESA" class="java.lang.String"/>
+	<parameter name="BODEGA" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+PR_CODIGO as CLAVE,
+vta_producto.PR_DESCRIPCION AS CONCEPTO,
+(select EMP_PATHIMGFORM from vta_empresas where EMP_ID = $P{EMPRESA}) as logo,
+DATE_FORMAT(STR_TO_DATE(PL_CADFECHA,'%Y%m%d'),'%d/%m/%Y') AS FECHA_CADUCIDAD,
+	vta_prodlote.PL_LOTE_MAS AS LOTE,
+	SUM(vta_prodlote.PL_EXISTENCIA) AS TOTAL_PZAS
+
+FROM vta_prodlote inner join
+vta_producto on vta_prodlote.PR_ID = vta_producto.PR_ID
+where vta_producto.EMP_ID = $P{EMPRESA} and vta_producto.SC_ID = $P{BODEGA}
+group by
+vta_prodlote.PR_ID,
+PR_CODIGO,
+vta_producto.PR_DESCRIPCION,
+	vta_prodlote.PL_CADFECHA,
+	vta_prodlote.PL_LOTE_MAS
+order by PL_CADFECHA]]>
+	</queryString>
+	<field name="CLAVE" class="java.lang.String"/>
+	<field name="CONCEPTO" class="java.lang.String"/>
+	<field name="logo" class="java.lang.String"/>
+	<field name="FECHA_CADUCIDAD" class="java.lang.String"/>
+	<field name="LOTE" class="java.lang.String"/>
+	<field name="TOTAL_PZAS" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="222" height="136" uuid="5f03dcc0-a704-4a75-aea0-5a0481734448"/>
+				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="222" y="0" width="222" height="94" uuid="ba08d424-f241-470a-9759-0305ac09b64d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="26" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[EXISTENCIAS POR LOTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="94" width="333" height="42" uuid="553735dd-283f-42a4-9f6f-0ec3bbadd9d3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Muestra los lotes ordenados por fecha de caducidad]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="444" y="0" width="111" height="94" uuid="22bd06cf-29bb-4c3c-b51a-b53e7946880d"/>
+				<imageExpression><![CDATA["/images/ptovta/scubaprice.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="97" height="15" forecolor="#736343" uuid="cb44176f-eff2-4d90-b1cf-b965a666f6ad"/>
+				<text><![CDATA[CLAVE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="97" y="0" width="125" height="15" forecolor="#736343" uuid="67cc70e3-9e8b-4230-b146-968a2c2a095c"/>
+				<text><![CDATA[CONCEPTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="222" y="0" width="111" height="15" forecolor="#736343" uuid="988e9792-dde5-4014-b135-bbc35edabd0b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[FECHA_CADUCIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="333" y="0" width="111" height="15" forecolor="#736343" uuid="d4d91e14-24a6-46d7-a38f-f5dd4e91f6f5"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[LOTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="444" y="0" width="111" height="15" forecolor="#736343" uuid="dacf8ee9-5ce2-431d-837b-f94808d8c6a3"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[TOTAL_PZAS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="dee56f90-2e19-4498-8e45-6cf8a126f5ab"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="97" height="15" uuid="d128de59-d7d3-4fe2-886b-5d2e8b96756a"/>
+					<textFieldExpression><![CDATA[$F{CLAVE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="97" y="0" width="125" height="15" uuid="b4764529-563b-491d-82d6-87f27b248d7c"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CONCEPTO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="222" y="0" width="111" height="15" uuid="8b503617-a4f7-4a35-91d4-99e8b29127a0"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{FECHA_CADUCIDAD}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="333" y="0" width="111" height="15" uuid="ab0d92a4-fd8f-4a5f-bbc5-54c30647e2e9"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{LOTE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0.###;(#,##0.###-)">
+					<reportElement style="Detail" x="444" y="0" width="111" height="15" uuid="cf097998-12e1-43b2-a3d1-3bcf9ed46c0f"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{TOTAL_PZAS}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="d5f1e0cb-b54d-4030-a791-588155903011"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="465" y="1" width="111" height="23" forecolor="#736343" uuid="2b014fa0-8d37-48a8-9288-a7d32bc8e821"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="354" y="1" width="111" height="23" forecolor="#736343" uuid="17fd0ada-537e-4321-80d7-9d26cfa6e01f"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="221" height="23" forecolor="#736343" uuid="46cdce54-2db6-4620-b86e-105a82ba693c"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

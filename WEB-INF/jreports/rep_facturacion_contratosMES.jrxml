@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_gob_bancos" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8065effe-1f53-4086-85f7-637b00b83452">
+	<property name="ireport.zoom" value="2.0526324729228267"/>
+	<property name="ireport.x" value="647"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.white.page.background" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.6" value="columnFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<parameter name="empresa" class="java.lang.String"/>
+	<parameter name="PathLogoWeb" class="java.lang.String"/>
+	<parameter name="periodo" class="java.lang.String"/>
+	<field name="strNombre" class="java.lang.String"/>
+	<field name="strContrato" class="java.lang.String"/>
+	<field name="strMoneda" class="java.lang.String"/>
+	<field name="mes1" class="java.lang.Double"/>
+	<field name="strMes" class="java.lang.String"/>
+	<field name="strArrenda" class="java.lang.String"/>
+	<variable name="mes1_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{mes1}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="54" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="487" y="32" width="85" height="16" uuid="a72ea14d-8da1-410a-b61f-470ad8ecff2a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="412" y="17" width="160" height="15" uuid="467ca6bf-85e8-4c02-99c0-32995225adcd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["            MES: " + $F{strMes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="135" y="17" width="277" height="31" uuid="5f8cc251-c3ef-4cfa-ad74-e8140a8ce240"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL POR MES]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="135" height="48" uuid="d9fe3ef6-7863-42dc-94f7-7aa00907a88b"/>
+				<imageExpression><![CDATA[$P{PathLogoWeb}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="135" y="1" width="277" height="16" uuid="61b3ce3d-8c99-4559-bc62-e335453811eb"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EMPRESA: "+$P{empresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="487" y="1" width="85" height="16" uuid="5ad44574-7b91-4262-8cf8-e2c2b1f52bef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="412" y="1" width="75" height="16" uuid="6ad093df-3479-4aa0-b606-e90307ead2a7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[No. pagina:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="412" y="32" width="75" height="16" uuid="4432e125-994f-402b-878a-01306aee475b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Fecha de emision:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="73" height="20" uuid="43359c43-b5aa-4a77-9703-18efe702f1ac"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Contrato]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="412" y="0" width="75" height="20" uuid="f4dd806f-03f5-4742-8a10-83af80368c4d"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Moneda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="487" y="0" width="85" height="20" uuid="1873ff3b-699c-4c5d-a7ce-15ecb4d27086"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Importe mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="73" y="0" width="142" height="20" uuid="c099c0d3-e5b0-4c99-8b1d-95c9d46172d1"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="0" width="197" height="20" uuid="c8bcd74b-5228-4f5a-a2cd-4b9a8bad6c4c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Concepto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="73" y="0" width="142" height="20" uuid="bd988f8e-eb3e-4c67-a941-a37e40fa465d"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{strNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="73" height="20" uuid="9517bf61-b633-403d-bd7b-b7437e3a806c"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{strContrato}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="412" y="0" width="75" height="20" uuid="5081df72-5f01-403d-8b16-ddd805d4957e"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{strMoneda}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="487" y="0" width="71" height="20" uuid="515855b2-4d90-4fd2-bf7e-70c40f615cbe"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mes1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="215" y="0" width="197" height="20" uuid="b6fe93ee-33ec-48ce-91e1-f76859d9dbf3"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{strArrenda}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="412" y="0" width="75" height="20" uuid="11c7ffe3-e844-470c-8caa-07d7bcb24e6f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[TOTAL: ]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="487" y="0" width="71" height="20" uuid="9d549770-99eb-4a2f-bc2a-d2b9bb2c3e52"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{mes1_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

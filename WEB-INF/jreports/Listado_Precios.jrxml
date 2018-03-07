@@ -1,0 +1,1011 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
+<!-- 2015-10-09T13:50:25 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b9b905d6-cfc3-48c4-889f-4d182de50d0d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FF0000">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FF0000">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#FF0000">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#FF0000">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#FF0000">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Listado_Precios_Detalle" uuid="1baf7f99-ad9d-4efa-9ec9-af43bad3193a">
+		<parameter name="PC_ID_ENTRADA" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="PC9_ID_ENTRADA" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="PC8_ID_ENTRADA" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="PathBaseWeb" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="Reporte_Dirigido" class="java.lang.String"/>
+		<parameter name="SeMuestra" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT DISTINCT vta_producto.PR_ID, 
+	if((select a.PP_PRECIO_USD from vta_prodprecios as a where a.PR_ID = vta_producto.PR_ID AND A.LP_ID=3) > 0,'DOLARES','PESOS') as Tmoneda,
+	(select  if(a.PP_PRECIO_USD > 0,a.PP_PRECIO_USD,a.PP_PRECIO) from vta_prodprecios as a where a.PR_ID = vta_producto.PR_ID AND A.LP_ID=3) as precio_publico,
+	(select  if(a.PP_PRECIO_USD > 0,a.PP_PRECIO_USD,a.PP_PRECIO)  from vta_prodprecios as a where a.PR_ID = vta_producto.PR_ID AND A.LP_ID=4) as precio_mayoreo,
+  (select  if(a.PP_PRECIO_USD > 0,a.PP_PRECIO_USD,a.PP_PRECIO)  from vta_prodprecios as a where a.PR_ID = vta_producto.PR_ID AND A.LP_ID=5) as precio_distribuidor,
+  (select  if(a.PP_PRECIO_USD > 0,a.PP_PRECIO_USD,a.PP_PRECIO)  from vta_prodprecios as a where a.PR_ID = vta_producto.PR_ID AND A.LP_ID=1) as precio_tienda,
+	vta_producto.PR_CODIGO, 
+	vta_producto.PR_DESCRIPCION,
+	vta_producto.PR_DESCRIPCIONCORTA, 
+	vta_producto.PR_MONEDA_VTA, 
+	vta_prodcat1.PC_DESCRIPCION AS MARCA, 
+	vta_prodcat9.PC9_DESCRIPCION AS CATEGORIA, 
+	vta_prodcat8.PC8_DESCRIPCION AS NOSE, 
+	vta_monedas.MON_DESCRIPCION, 
+	vta_prodcat3.PC3_DESCRIPCION AS COLOR, 
+	vta_prodcat4.PC4_DESCRIPCION AS TALLA, 
+	vta_producto.PR_NOMIMG1, 
+	vta_producto.PR_NOMIMG2
+FROM vta_producto INNER JOIN vta_prodcat1 ON vta_producto.PR_CATEGORIA1 = vta_prodcat1.PC_ID
+	 INNER JOIN vta_prodcat9 ON vta_producto.PR_CATEGORIA9 = vta_prodcat9.PC9_ID
+	 LEFT OUTER JOIN vta_prodcat8 ON vta_producto.PR_CATEGORIA8 = vta_prodcat8.PC8_ID
+	 LEFT OUTER JOIN vta_monedas ON vta_producto.PR_MONEDA_VTA = vta_monedas.MON_ID
+	 LEFT OUTER JOIN vta_prodcat3 ON vta_producto.PR_CATEGORIA3 = vta_prodcat3.PC3_ID
+	 LEFT OUTER JOIN vta_prodcat4 ON vta_producto.PR_CATEGORIA4 = vta_prodcat4.PC4_ID
+	 LEFT OUTER JOIN vta_prodprecios ON vta_prodprecios.PR_ID = vta_producto.PR_ID
+
+Where vta_prodcat1.PC_ID = $P{PC_ID_ENTRADA} And vta_prodcat9.PC9_ID = $P{PC9_ID_ENTRADA}
+and vta_prodcat8.PC8_ID = 239
+And if($P{SeMuestra}=1,vta_producto.PR_MUESTRA_REPO=1,1=1)
+ORDER BY MARCA ASC, CATEGORIA ASC, NOSE ASC]]>
+		</queryString>
+		<field name="PR_ID" class="java.lang.Long"/>
+		<field name="Tmoneda" class="java.lang.String"/>
+		<field name="precio_publico" class="java.math.BigDecimal"/>
+		<field name="precio_mayoreo" class="java.math.BigDecimal"/>
+		<field name="precio_distribuidor" class="java.math.BigDecimal"/>
+		<field name="precio_tienda" class="java.math.BigDecimal"/>
+		<field name="PR_CODIGO" class="java.lang.String"/>
+		<field name="PR_DESCRIPCION" class="java.lang.String"/>
+		<field name="PR_DESCRIPCIONCORTA" class="java.lang.String"/>
+		<field name="PR_MONEDA_VTA" class="java.lang.Integer"/>
+		<field name="MARCA" class="java.lang.String"/>
+		<field name="CATEGORIA" class="java.lang.String"/>
+		<field name="NOSE" class="java.lang.String"/>
+		<field name="MON_DESCRIPCION" class="java.lang.String"/>
+		<field name="COLOR" class="java.lang.String"/>
+		<field name="TALLA" class="java.lang.String"/>
+		<field name="PR_NOMIMG1" class="java.lang.String"/>
+		<field name="PR_NOMIMG2" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="PathBaseWeb" class="java.lang.String"/>
+	<parameter name="Reporte_Dirigido" class="java.lang.String"/>
+	<parameter name="Marca_Entrada" class="java.lang.Integer"/>
+	<parameter name="Modelo_Entrada" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SeMuestra" class="java.lang.Integer"/>
+	<parameter name="Lista_values" class="java.util.List"/>
+	<parameter name="Categoria" class="java.lang.Integer"/>
+	<parameter name="Sucursal" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT   
+	vta_prodcat1.PC_ID,
+  vta_prodcat1.PC_DESCRIPCION AS MARCA, 
+	vta_prodcat1.PC_IMAGEN AS LOGO,
+	vta_prodcat8.PC8_ID,  
+  vta_prodcat8.PC8_DESCRIPCION AS NOSE,
+	vta_prodcat9.PC9_ID,
+	vta_prodcat9.PC9_DESCRIPCION AS CATEGORIA,  
+	
+	vta_producto.PR_CODIGO, 
+	vta_producto.PR_DESCRIPCION,
+	vta_producto.PR_DESCRIPCIONCORTA, 
+	vta_producto.PR_MONEDA_VTA,	
+	(Select vta_prodcat3.PC3_DESCRIPCION From vta_prodcat3 Where vta_producto.PR_CATEGORIA3 = vta_prodcat3.PC3_ID) as COLOR,
+	(Select vta_prodcat4.PC4_DESCRIPCION From vta_prodcat4 Where vta_producto.PR_CATEGORIA4 = vta_prodcat4.PC4_ID) as TALLA,
+	(Select vta_monedas.MON_DESCRIPCION From vta_monedas Where vta_producto.PR_MONEDA_VTA = vta_monedas.MON_ID) as MONEDA,
+	vta_producto.PR_NOMIMG1,
+  if((select a.PP_PRECIO_USD from vta_prodprecios as a where a.PR_ID = vta_producto.PR_ID AND A.LP_ID=  if($P{Reporte_Dirigido} = 1,3, if($P{Reporte_Dirigido} = 2,4, if($P{Reporte_Dirigido} = 3,5, if($P{Reporte_Dirigido} = 4,1,0)) ) )  ) > 0,'DOLARES','PESOS') as Tmoneda,
+	(select  if(a.PP_PRECIO_USD > 0,a.PP_PRECIO_USD,a.PP_PRECIO) from vta_prodprecios as a where a.PR_ID = vta_producto.PR_ID AND A.LP_ID=3) as precio_publico,
+	(select  if(a.PP_PRECIO_USD > 0,a.PP_PRECIO_USD,a.PP_PRECIO)  from vta_prodprecios as a where a.PR_ID = vta_producto.PR_ID AND A.LP_ID=4) as precio_mayoreo,
+  (select  if(a.PP_PRECIO_USD > 0,a.PP_PRECIO_USD,a.PP_PRECIO)  from vta_prodprecios as a where a.PR_ID = vta_producto.PR_ID AND A.LP_ID=5) as precio_distribuidor,
+  (select  if(a.PP_PRECIO_USD > 0,a.PP_PRECIO_USD,a.PP_PRECIO)  from vta_prodprecios as a where a.PR_ID = vta_producto.PR_ID AND A.LP_ID=1) as precio_tienda
+
+FROM vta_producto INNER JOIN vta_prodcat1 ON vta_producto.PR_CATEGORIA1 = vta_prodcat1.PC_ID
+	 INNER JOIN vta_prodcat9 ON vta_producto.PR_CATEGORIA9 = vta_prodcat9.PC9_ID
+	 LEFT OUTER JOIN vta_prodcat8 ON vta_producto.PR_CATEGORIA8 = vta_prodcat8.PC8_ID	
+
+Where 
+
+vta_producto.SC_ID = $P{Sucursal}
+
+And if($P{Marca_Entrada} !=0,vta_prodcat1.PC_ID = $P{Marca_Entrada} ,vta_prodcat1.PC_ID)
+
+And vta_prodcat8.PC8_ID = 239
+
+And if($P{Categoria}!=0,vta_prodcat9.PC9_ID =$P{Categoria} ,vta_prodcat9.PC9_ID)
+
+And $X{IN,vta_producto.PR_CATEGORIA1,Lista_values}  
+ORDER BY MARCA ASC, CATEGORIA ASC, NOSE ASC]]>
+	</queryString>
+	<field name="PC_ID" class="java.lang.Long"/>
+	<field name="MARCA" class="java.lang.String"/>
+	<field name="LOGO" class="java.lang.String"/>
+	<field name="PC8_ID" class="java.lang.Long"/>
+	<field name="NOSE" class="java.lang.String"/>
+	<field name="PC9_ID" class="java.lang.Long"/>
+	<field name="CATEGORIA" class="java.lang.String"/>
+	<field name="PR_CODIGO" class="java.lang.String"/>
+	<field name="PR_DESCRIPCION" class="java.lang.String"/>
+	<field name="PR_DESCRIPCIONCORTA" class="java.lang.String"/>
+	<field name="PR_MONEDA_VTA" class="java.lang.Integer"/>
+	<field name="COLOR" class="java.lang.String"/>
+	<field name="TALLA" class="java.lang.String"/>
+	<field name="MONEDA" class="java.lang.String"/>
+	<field name="PR_NOMIMG1" class="java.lang.String"/>
+	<field name="Tmoneda" class="java.lang.String"/>
+	<field name="precio_publico" class="java.math.BigDecimal"/>
+	<field name="precio_mayoreo" class="java.math.BigDecimal"/>
+	<field name="precio_distribuidor" class="java.math.BigDecimal"/>
+	<field name="precio_tienda" class="java.math.BigDecimal"/>
+	<group name="Grupo_Marca">
+		<groupExpression><![CDATA[$F{MARCA}]]></groupExpression>
+		<groupHeader>
+			<band height="75">
+				<rectangle>
+					<reportElement x="726" y="0" width="26" height="75" backcolor="#C1C1C1" uuid="17e0dd1e-fe8d-4d72-a141-f5b21c38f48e"/>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
+				</rectangle>
+				<textField isBlankWhenNull="true">
+					<reportElement x="380" y="11" width="346" height="41" uuid="68f72444-ee93-4ef1-94fe-7df6728e4423">
+						<printWhenExpression><![CDATA[$F{LOGO}==""]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="30" isBold="true" isItalic="true" isUnderline="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MARCA}]]></textFieldExpression>
+				</textField>
+				<image hAlign="Right" vAlign="Middle" onErrorType="Blank">
+					<reportElement x="478" y="0" width="248" height="75" uuid="13aab40a-856a-4bd7-8fc4-22d0251d09cb"/>
+					<imageExpression><![CDATA[$P{PathBaseWeb}+$F{LOGO}]]></imageExpression>
+				</image>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="3">
+				<break>
+					<reportElement x="0" y="2" width="100" height="1" uuid="30747cb9-b4db-4c69-9c85-c336ab501c4a"/>
+				</break>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Grupo Categoria">
+		<groupExpression><![CDATA[$F{CATEGORIA}]]></groupExpression>
+		<groupHeader>
+			<band height="65">
+				<textField>
+					<reportElement x="0" y="23" width="478" height="20" uuid="bf96e125-f2f1-4408-8c77-3e132c61ed04"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CATEGORIA}]]></textFieldExpression>
+				</textField>
+				<frame>
+					<reportElement x="103" y="42" width="550" height="21" uuid="86ce2288-3725-4e20-af42-7e458769d5f1">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+					</reportElement>
+					<rectangle>
+						<reportElement x="0" y="0" width="549" height="20" backcolor="#5657A0" uuid="22404409-31ed-4509-a3db-31a4de7f325f">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+						</reportElement>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+					<staticText>
+						<reportElement x="1" y="0" width="68" height="20" forecolor="#FFFFFF" uuid="2577aca7-be13-498c-aa07-73cc5d887405">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[CODIGO]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="68" y="0" width="81" height="20" forecolor="#FFFFFF" uuid="630c157f-0b5d-49ac-8b9e-8ffcc102ad87">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[DESCRIPCION]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="149" y="0" width="79" height="20" forecolor="#FFFFFF" uuid="83cc20ce-1aa1-4906-bad2-14c492330d12">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[TALLA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="285" y="0" width="48" height="20" forecolor="#FFFFFF" uuid="d5d32ccb-262e-4e53-a440-4791bacbbfc0">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[TIENDA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="334" y="0" width="58" height="20" forecolor="#FFFFFF" uuid="dd2eb68d-dad2-423c-ace2-9f19238cf71b">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[PUBLICO]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="392" y="0" width="58" height="20" forecolor="#FFFFFF" uuid="110b3b35-267b-4282-bc1f-7e83ebbaec94">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[MONEDA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="450" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="156f856e-45c0-4f8b-b29e-482cb8b889c7">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[IMAGEN]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="228" y="0" width="57" height="20" forecolor="#FFFFFF" uuid="262c22c9-d8b7-453b-8b29-091a8180fb98">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[COLOR]]></text>
+					</staticText>
+				</frame>
+				<frame>
+					<reportElement x="134" y="43" width="492" height="21" uuid="86ce2288-3725-4e20-af42-7e458769d5f1">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+					</reportElement>
+					<rectangle>
+						<reportElement x="1" y="0" width="490" height="20" backcolor="#5657A0" uuid="22404409-31ed-4509-a3db-31a4de7f325f">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+						</reportElement>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+					<staticText>
+						<reportElement x="2" y="0" width="68" height="20" forecolor="#FFFFFF" uuid="2577aca7-be13-498c-aa07-73cc5d887405">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[CODIGO]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="69" y="0" width="81" height="20" forecolor="#FFFFFF" uuid="630c157f-0b5d-49ac-8b9e-8ffcc102ad87">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[DESCRIPCION]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="150" y="0" width="79" height="20" forecolor="#FFFFFF" uuid="83cc20ce-1aa1-4906-bad2-14c492330d12">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[TALLA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="286" y="0" width="48" height="20" forecolor="#FFFFFF" uuid="d5d32ccb-262e-4e53-a440-4791bacbbfc0">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[TIENDA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="333" y="0" width="58" height="20" forecolor="#FFFFFF" uuid="110b3b35-267b-4282-bc1f-7e83ebbaec94">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[MONEDA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="391" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="156f856e-45c0-4f8b-b29e-482cb8b889c7">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[IMAGEN]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="229" y="0" width="57" height="20" forecolor="#FFFFFF" uuid="262c22c9-d8b7-453b-8b29-091a8180fb98">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[COLOR]]></text>
+					</staticText>
+				</frame>
+				<frame>
+					<reportElement x="70" y="43" width="605" height="21" uuid="86ce2288-3725-4e20-af42-7e458769d5f1">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+					</reportElement>
+					<rectangle>
+						<reportElement x="0" y="0" width="605" height="20" backcolor="#5657A0" uuid="22404409-31ed-4509-a3db-31a4de7f325f">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+						</reportElement>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+					<staticText>
+						<reportElement x="1" y="1" width="68" height="20" forecolor="#FFFFFF" uuid="2577aca7-be13-498c-aa07-73cc5d887405">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[CODIGO]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="68" y="0" width="81" height="20" forecolor="#FFFFFF" uuid="630c157f-0b5d-49ac-8b9e-8ffcc102ad87">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[DESCRIPCION]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="149" y="0" width="79" height="20" forecolor="#FFFFFF" uuid="83cc20ce-1aa1-4906-bad2-14c492330d12">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[TALLA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="285" y="0" width="48" height="20" forecolor="#FFFFFF" uuid="d5d32ccb-262e-4e53-a440-4791bacbbfc0">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[TIENDA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="334" y="1" width="58" height="20" forecolor="#FFFFFF" uuid="dd2eb68d-dad2-423c-ace2-9f19238cf71b">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[PUBLICO]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="391" y="1" width="57" height="20" forecolor="#FFFFFF" uuid="ded6a25c-804c-48dc-8e94-f2a87884d06c">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[MAYOREO]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="448" y="1" width="58" height="20" forecolor="#FFFFFF" uuid="110b3b35-267b-4282-bc1f-7e83ebbaec94">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[MONEDA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="506" y="1" width="99" height="20" forecolor="#FFFFFF" uuid="156f856e-45c0-4f8b-b29e-482cb8b889c7">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[IMAGEN]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="228" y="1" width="57" height="20" forecolor="#FFFFFF" uuid="262c22c9-d8b7-453b-8b29-091a8180fb98">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[COLOR]]></text>
+					</staticText>
+				</frame>
+				<frame>
+					<reportElement x="35" y="43" width="691" height="21" uuid="86ce2288-3725-4e20-af42-7e458769d5f1">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<rectangle>
+						<reportElement x="0" y="0" width="691" height="20" backcolor="#5657A0" uuid="22404409-31ed-4509-a3db-31a4de7f325f">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+						</reportElement>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+					<staticText>
+						<reportElement x="0" y="0" width="68" height="20" forecolor="#FFFFFF" uuid="2577aca7-be13-498c-aa07-73cc5d887405">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[CODIGO]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="68" y="0" width="81" height="20" forecolor="#FFFFFF" uuid="630c157f-0b5d-49ac-8b9e-8ffcc102ad87">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[DESCRIPCION]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="149" y="0" width="79" height="20" forecolor="#FFFFFF" uuid="83cc20ce-1aa1-4906-bad2-14c492330d12">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[TALLA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="285" y="0" width="48" height="20" forecolor="#FFFFFF" uuid="d5d32ccb-262e-4e53-a440-4791bacbbfc0">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[TIENDA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="333" y="0" width="58" height="20" forecolor="#FFFFFF" uuid="dd2eb68d-dad2-423c-ace2-9f19238cf71b">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[PUBLICO]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="391" y="0" width="57" height="20" forecolor="#FFFFFF" uuid="ded6a25c-804c-48dc-8e94-f2a87884d06c">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[MAYOREO]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="448" y="0" width="85" height="20" forecolor="#FFFFFF" uuid="4965a5e5-a541-4586-8c8b-c466ed7ee441">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[DISTRIBUIDOR]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="533" y="0" width="58" height="20" forecolor="#FFFFFF" uuid="110b3b35-267b-4282-bc1f-7e83ebbaec94">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[MONEDA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="591" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="156f856e-45c0-4f8b-b29e-482cb8b889c7">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[IMAGEN]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="228" y="0" width="57" height="20" forecolor="#FFFFFF" uuid="262c22c9-d8b7-453b-8b29-091a8180fb98">
+							<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[COLOR]]></text>
+					</staticText>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="1">
+				<break>
+					<reportElement x="0" y="0" width="100" height="1" uuid="f0597407-30ae-45af-8972-1f88a18bd951"/>
+				</break>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="66" splitType="Stretch">
+			<frame>
+				<reportElement x="35" y="-2" width="691" height="65" uuid="076ea2b7-2821-483c-9469-61e9d2f2300e">
+					<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+				</reportElement>
+				<textField>
+					<reportElement x="0" y="1" width="68" height="63" uuid="d1a08546-f14c-41ba-b18d-d8f653e1d46f">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PR_CODIGO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="68" y="1" width="81" height="63" uuid="c71d2a27-5328-400f-b921-02ae5c0265e9">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PR_DESCRIPCIONCORTA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="149" y="1" width="79" height="63" uuid="2a87bb41-033b-430c-8b53-7c5001f45c5c">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TALLA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="228" y="1" width="57" height="63" uuid="efce3671-8425-48a0-a9dd-bef0258f23b5">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COLOR}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="285" y="1" width="48" height="63" uuid="13f45c5e-fc86-4749-bcb1-59dbab32ae66">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{precio_tienda}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="333" y="1" width="58" height="63" uuid="4d1ea378-7265-4247-bb3f-8cc4b3c968c3">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{precio_publico}]]></textFieldExpression>
+				</textField>
+				<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+					<reportElement x="591" y="1" width="100" height="63" uuid="13aab40a-856a-4bd7-8fc4-22d0251d09cb">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<imageExpression><![CDATA[$P{PathBaseWeb}+$F{PR_NOMIMG1}]]></imageExpression>
+				</image>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="391" y="0" width="57" height="64" uuid="49ecc5f8-1193-44c0-b7d8-2f2601d71dce">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{precio_mayoreo}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="448" y="0" width="85" height="64" uuid="3f2c9216-1950-40bf-ab75-bbd2e2bfe03d">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{precio_distribuidor}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="532" y="0" width="58" height="64" uuid="951c36cc-7877-43f6-bda9-378e27ec14ab">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Tmoneda}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="103" y="1" width="549" height="65" uuid="076ea2b7-2821-483c-9469-61e9d2f2300e">
+					<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+				</reportElement>
+				<textField>
+					<reportElement x="0" y="1" width="68" height="63" uuid="d1a08546-f14c-41ba-b18d-d8f653e1d46f">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PR_CODIGO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="69" y="1" width="81" height="63" uuid="c71d2a27-5328-400f-b921-02ae5c0265e9">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PR_DESCRIPCIONCORTA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="150" y="1" width="79" height="63" uuid="2a87bb41-033b-430c-8b53-7c5001f45c5c">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TALLA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="228" y="1" width="57" height="63" uuid="efce3671-8425-48a0-a9dd-bef0258f23b5">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COLOR}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="285" y="1" width="49" height="63" uuid="13f45c5e-fc86-4749-bcb1-59dbab32ae66">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{precio_tienda}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="334" y="1" width="58" height="63" uuid="4d1ea378-7265-4247-bb3f-8cc4b3c968c3">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{precio_publico}]]></textFieldExpression>
+				</textField>
+				<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+					<reportElement x="450" y="1" width="99" height="63" uuid="13aab40a-856a-4bd7-8fc4-22d0251d09cb">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+					</reportElement>
+					<imageExpression><![CDATA[$P{PathBaseWeb}+$F{PR_NOMIMG1}]]></imageExpression>
+				</image>
+				<textField>
+					<reportElement x="392" y="0" width="59" height="64" uuid="951c36cc-7877-43f6-bda9-378e27ec14ab">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "1" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Tmoneda}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="67" y="0" width="605" height="65" uuid="076ea2b7-2821-483c-9469-61e9d2f2300e">
+					<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+				</reportElement>
+				<textField>
+					<reportElement x="0" y="0" width="68" height="63" uuid="d1a08546-f14c-41ba-b18d-d8f653e1d46f">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PR_CODIGO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="68" y="2" width="82" height="63" uuid="c71d2a27-5328-400f-b921-02ae5c0265e9">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PR_DESCRIPCIONCORTA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="150" y="2" width="79" height="63" uuid="2a87bb41-033b-430c-8b53-7c5001f45c5c">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TALLA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="228" y="1" width="57" height="63" uuid="efce3671-8425-48a0-a9dd-bef0258f23b5">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COLOR}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="285" y="2" width="49" height="63" uuid="13f45c5e-fc86-4749-bcb1-59dbab32ae66">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{precio_tienda}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="334" y="2" width="58" height="63" uuid="4d1ea378-7265-4247-bb3f-8cc4b3c968c3">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{precio_publico}]]></textFieldExpression>
+				</textField>
+				<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+					<reportElement x="506" y="1" width="99" height="63" uuid="13aab40a-856a-4bd7-8fc4-22d0251d09cb">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+					</reportElement>
+					<imageExpression><![CDATA[$P{PathBaseWeb}+$F{PR_NOMIMG1}]]></imageExpression>
+				</image>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="391" y="0" width="57" height="64" uuid="49ecc5f8-1193-44c0-b7d8-2f2601d71dce">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{precio_mayoreo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="448" y="1" width="59" height="64" uuid="951c36cc-7877-43f6-bda9-378e27ec14ab">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "2" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Tmoneda}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="137" y="0" width="490" height="65" uuid="076ea2b7-2821-483c-9469-61e9d2f2300e">
+					<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+				</reportElement>
+				<textField>
+					<reportElement x="0" y="1" width="68" height="63" uuid="d1a08546-f14c-41ba-b18d-d8f653e1d46f">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PR_CODIGO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="1" width="81" height="63" uuid="c71d2a27-5328-400f-b921-02ae5c0265e9">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PR_DESCRIPCIONCORTA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="151" y="1" width="79" height="63" uuid="2a87bb41-033b-430c-8b53-7c5001f45c5c">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TALLA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="229" y="1" width="57" height="63" uuid="efce3671-8425-48a0-a9dd-bef0258f23b5">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COLOR}]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="284" y="1" width="50" height="63" uuid="13f45c5e-fc86-4749-bcb1-59dbab32ae66">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{precio_tienda}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="332" y="1" width="59" height="64" uuid="951c36cc-7877-43f6-bda9-378e27ec14ab">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Tmoneda}]]></textFieldExpression>
+				</textField>
+				<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+					<reportElement x="391" y="1" width="99" height="63" uuid="13aab40a-856a-4bd7-8fc4-22d0251d09cb">
+						<printWhenExpression><![CDATA[$P{Reporte_Dirigido}.equals( "4" )]]></printWhenExpression>
+					</reportElement>
+					<imageExpression><![CDATA[$P{PathBaseWeb}+$F{PR_NOMIMG1}]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="50" splitType="Stretch">
+			<rectangle>
+				<reportElement x="42" y="0" width="710" height="50" backcolor="#5657A0" uuid="407ac664-a215-4a4e-a870-09f379c302bd"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="714" y="17" width="27" height="20" forecolor="#FFFFFF" uuid="16c5f780-d30a-4475-bf4d-33ca13909fa2"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="1" width="42" height="49" uuid="14a04c73-5adc-44e5-9821-b2fc02c3a295"/>
+				<imageExpression><![CDATA[$P{PathBaseWeb}+"/iCommerce/images/LogoMarcas/logo-mak.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="224" y="0" width="301" height="14" forecolor="#FFFFFF" uuid="20eadf01-9e76-42e3-b4ff-2ad7d2f0d47a"/>
+				<text><![CDATA[PRECIOS MAS IVA, SUJETOS A CAMBIO SIN PREVIO AVISO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="168" y="22" width="423" height="15" forecolor="#FFFFFF" uuid="f1d51530-1509-4c3b-92a6-a8235d035af8"/>
+				<text><![CDATA[T. 52 (998) 881 9060 / F. 52 (998) 882 0755 / 01 800 34 72 822 / ventas@grupomak.net]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="36" width="100" height="14" forecolor="#FFFFFF" uuid="ff814c01-7db9-4bdb-aebe-74e2463a29bc"/>
+				<textElement>
+					<font isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[www.todobuceo.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="614" y="17" width="100" height="20" forecolor="#FFFFFF" uuid="0f466729-c2f2-4a3c-a90b-8e719ccc42f7"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Página:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

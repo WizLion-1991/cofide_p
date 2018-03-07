@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="74072c8b-71d7-4501-9b76-beccc0ffdb83">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="Tickets" uuid="779644b9-abaf-4fc5-b64c-ef4639535b22">
+		<parameter name="EMP_ID" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="SC_ID" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="CT_ID" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="FECHA_INI" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="FECHA_FIN" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[Select * From vta_tickets Where CT_ID = $P{CT_ID} AND EMP_ID=$P{EMP_ID} AND SC_ID = $P{SC_ID} AND TKT_FECHA >= $P{FECHA_INI} AND TKT_FECHA <= $P{FECHA_FIN}]]>
+		</queryString>
+		<field name="TKT_ID" class="java.lang.Long"/>
+		<field name="TKT_FOLIO" class="java.lang.String"/>
+		<field name="TKT_FECHA" class="java.lang.String"/>
+		<field name="TKT_HORA" class="java.lang.String"/>
+		<field name="CT_ID" class="java.lang.Long"/>
+		<field name="TKT_IMPORTE" class="java.math.BigDecimal"/>
+		<field name="TKT_IMPUESTO1" class="java.math.BigDecimal"/>
+		<field name="TKT_IMPUESTO2" class="java.math.BigDecimal"/>
+		<field name="TKT_IMPUESTO3" class="java.math.BigDecimal"/>
+		<field name="TKT_TOTAL" class="java.math.BigDecimal"/>
+		<field name="TKT_SALDO" class="java.math.BigDecimal"/>
+		<field name="SC_ID" class="java.lang.Long"/>
+		<field name="EMP_ID" class="java.lang.Long"/>
+		<field name="TKT_RAZONSOCIAL" class="java.lang.String"/>
+		<field name="TKT_RFC" class="java.lang.String"/>
+		<field name="TKT_CALLE" class="java.lang.String"/>
+		<field name="TKT_COLONIA" class="java.lang.String"/>
+		<field name="TKT_LOCALIDAD" class="java.lang.String"/>
+		<field name="TKT_MUNICIPIO" class="java.lang.String"/>
+		<field name="TKT_ESTADO" class="java.lang.String"/>
+		<field name="TKT_CP" class="java.lang.String"/>
+		<field name="TKT_TASA1" class="java.math.BigDecimal"/>
+		<field name="TKT_TASA2" class="java.math.BigDecimal"/>
+		<field name="TKT_TASA3" class="java.math.BigDecimal"/>
+		<field name="TKT_O_REM" class="java.lang.Integer"/>
+		<field name="TKT_GANANCIA" class="java.math.BigDecimal"/>
+		<field name="ES_ID" class="java.lang.Long"/>
+		<field name="TKT_ANULADA" class="java.lang.Integer"/>
+		<field name="TKT_FECHAANUL" class="java.lang.String"/>
+		<field name="TKT_DIASCREDITO" class="java.lang.Integer"/>
+		<field name="TKT_NOTAS" class="java.lang.String"/>
+		<field name="TKT_LPRECIOS" class="java.lang.Integer"/>
+		<field name="TKT_IDNC" class="java.lang.Long"/>
+		<field name="TKT_ES_SURTIDO" class="java.lang.Integer"/>
+		<field name="TKT_US_ALTA" class="java.lang.Long"/>
+		<field name="TKT_US_ANUL" class="java.lang.Long"/>
+		<field name="TKT_MONEDA" class="java.lang.Long"/>
+		<field name="TKT_TASAPESO" class="java.math.BigDecimal"/>
+		<field name="VE_ID" class="java.lang.Long"/>
+		<field name="TKT_FECHACREATE" class="java.lang.String"/>
+		<field name="TKT_ESSERV" class="java.lang.Integer"/>
+		<field name="TKT_HORANUL" class="java.lang.String"/>
+		<field name="TKT_US_MOD" class="java.lang.Long"/>
+		<field name="TKT_COSTO" class="java.math.BigDecimal"/>
+		<field name="FAC_ID" class="java.lang.Long"/>
+		<field name="TKT_DESCUENTO" class="java.math.BigDecimal"/>
+		<field name="CCJ_ID" class="java.lang.Long"/>
+		<field name="TKT_NUMERO" class="java.lang.String"/>
+		<field name="TKT_NUMINT" class="java.lang.String"/>
+		<field name="PD_ID" class="java.lang.Long"/>
+		<field name="TKT_NOTASPIE" class="java.lang.String"/>
+		<field name="TKT_REFERENCIA" class="java.lang.String"/>
+		<field name="TKT_CONDPAGO" class="java.lang.String"/>
+		<field name="TKT_EXEC_INTER_CP" class="java.lang.Integer"/>
+		<field name="TKT_ESRECU" class="java.lang.Integer"/>
+		<field name="TKT_PERIODICIDAD" class="java.lang.Integer"/>
+		<field name="TKT_DIAPER" class="java.lang.Integer"/>
+		<field name="TKT_NUMPEDI" class="java.lang.String"/>
+		<field name="TKT_FECHAPEDI" class="java.lang.String"/>
+		<field name="TKT_ADUANA" class="java.lang.String"/>
+		<field name="TI_ID" class="java.lang.Long"/>
+		<field name="TI_ID2" class="java.lang.Long"/>
+		<field name="TI_ID3" class="java.lang.Long"/>
+		<field name="TKT_EXEC_INTER_CP_ANUL" class="java.lang.Long"/>
+		<field name="TKT_TIPOCOMP" class="java.lang.Integer"/>
+		<field name="TKT_USO_IEPS" class="java.lang.Integer"/>
+		<field name="TKT_TASA_IEPS" class="java.lang.Integer"/>
+		<field name="TKT_IMPORTE_IEPS" class="java.math.BigDecimal"/>
+		<field name="TKT_SELLOTIMBRE" class="java.lang.String"/>
+		<field name="TKT_HORA_TIMBRE" class="java.lang.String"/>
+		<field name="TKT_SELLOTIMBRE_ANUL" class="java.lang.String"/>
+		<field name="TKT_HORA_TIMBRE_ANUL" class="java.lang.String"/>
+		<field name="TKT_FOLIO_ANUL" class="java.lang.String"/>
+		<field name="TKT_CADENA_TIMBRE" class="java.lang.String"/>
+		<field name="TKT_NUMCUENTA" class="java.lang.String"/>
+		<field name="TKT_FORMADEPAGO" class="java.lang.String"/>
+		<field name="TKT_METODODEPAGO" class="java.lang.String"/>
+		<field name="TKT_REGIMENFISCAL" class="java.lang.String"/>
+		<field name="TKT_NUM_GUIA" class="java.lang.String"/>
+		<field name="TKT_TIPO_FLETE" class="java.lang.Integer"/>
+		<field name="TKT_IMPORTE_FLETE" class="java.math.BigDecimal"/>
+		<field name="TKT_ES_POR_PEDIDOS" class="java.lang.Integer"/>
+		<field name="TKT_IMPORTE_PUNTOS" class="java.math.BigDecimal"/>
+		<field name="TKT_IMPORTE_NEGOCIO" class="java.math.BigDecimal"/>
+		<field name="TKT_NO_MLM" class="java.lang.Integer"/>
+		<field name="MPE_ID" class="java.lang.Integer"/>
+		<field name="TKT_CONSIGNACION" class="java.lang.Integer"/>
+		<field name="CDE_ID" class="java.lang.Integer"/>
+		<field name="DFA_ID" class="java.lang.Integer"/>
+		<field name="TKT_RECU_FINAL" class="java.lang.String"/>
+		<field name="TKT_NO_EVENTOS" class="java.lang.Integer"/>
+		<field name="TKT_ESARRENDA" class="java.lang.Integer"/>
+		<field name="TKT_NETO" class="java.math.BigDecimal"/>
+		<field name="TKT_NOMFORMATO" class="java.lang.String"/>
+		<field name="TKT_RETISR" class="java.math.BigDecimal"/>
+		<field name="TKT_RETIVA" class="java.math.BigDecimal"/>
+		<field name="TR_ID" class="java.lang.Integer"/>
+		<field name="ME_ID" class="java.lang.Integer"/>
+		<field name="TF_ID" class="java.lang.Integer"/>
+		<field name="TKT_POR_DESCUENTO" class="java.math.BigDecimal"/>
+		<field name="TKT_FECHA_COBRO" class="java.lang.String"/>
+		<field name="PD_RECU_ID" class="java.lang.Integer"/>
+		<field name="TKT_TURNO" class="java.lang.Integer"/>
+		<field name="TKT_FOLIO_C" class="java.lang.String"/>
+		<variable name="variable1" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{TKT_TOTAL}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="Facturas" uuid="d855645c-9153-48fc-9134-953411667605">
+		<parameter name="CT_ID" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="EMP_ID" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="SC_ID" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="FECHA_INI" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="FECHA_FIN" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[Select * From vta_facturas Where CT_ID = $P{CT_ID} AND EMP_ID=$P{EMP_ID} AND SC_ID = $P{SC_ID} AND FAC_FECHA >= $P{FECHA_INI} AND FAC_FECHA <= $P{FECHA_FIN}]]>
+		</queryString>
+		<field name="FAC_ID" class="java.lang.Long"/>
+		<field name="FAC_FOLIO" class="java.lang.String"/>
+		<field name="FAC_FECHA" class="java.lang.String"/>
+		<field name="FAC_HORA" class="java.lang.String"/>
+		<field name="CT_ID" class="java.lang.Long"/>
+		<field name="FAC_IMPORTE" class="java.math.BigDecimal"/>
+		<field name="FAC_IMPUESTO1" class="java.math.BigDecimal"/>
+		<field name="FAC_IMPUESTO2" class="java.math.BigDecimal"/>
+		<field name="FAC_IMPUESTO3" class="java.math.BigDecimal"/>
+		<field name="FAC_TOTAL" class="java.math.BigDecimal"/>
+		<field name="FAC_SALDO" class="java.math.BigDecimal"/>
+		<field name="SC_ID" class="java.lang.Long"/>
+		<field name="EMP_ID" class="java.lang.Long"/>
+		<field name="FAC_RAZONSOCIAL" class="java.lang.String"/>
+		<field name="FAC_RFC" class="java.lang.String"/>
+		<field name="FAC_CALLE" class="java.lang.String"/>
+		<field name="FAC_COLONIA" class="java.lang.String"/>
+		<field name="FAC_LOCALIDAD" class="java.lang.String"/>
+		<field name="FAC_MUNICIPIO" class="java.lang.String"/>
+		<field name="FAC_ESTADO" class="java.lang.String"/>
+		<field name="FAC_CP" class="java.lang.String"/>
+		<field name="FAC_TASA1" class="java.math.BigDecimal"/>
+		<field name="FAC_TASA2" class="java.math.BigDecimal"/>
+		<field name="FAC_TASA3" class="java.math.BigDecimal"/>
+		<field name="FAC_O_REM" class="java.lang.Integer"/>
+		<field name="FAC_GANANCIA" class="java.math.BigDecimal"/>
+		<field name="ES_ID" class="java.lang.Long"/>
+		<field name="FAC_ANULADA" class="java.lang.Integer"/>
+		<field name="FAC_FECHAANUL" class="java.lang.String"/>
+		<field name="FAC_DIASCREDITO" class="java.lang.Integer"/>
+		<field name="FAC_NOTAS" class="java.lang.String"/>
+		<field name="FAC_LPRECIOS" class="java.lang.Integer"/>
+		<field name="FAC_IDNC" class="java.lang.Long"/>
+		<field name="FAC_ES_SURTIDO" class="java.lang.Integer"/>
+		<field name="FAC_US_ALTA" class="java.lang.Long"/>
+		<field name="FAC_US_ANUL" class="java.lang.Long"/>
+		<field name="FAC_MONEDA" class="java.lang.Long"/>
+		<field name="FAC_TASAPESO" class="java.math.BigDecimal"/>
+		<field name="VE_ID" class="java.lang.Long"/>
+		<field name="FAC_FECHACREATE" class="java.lang.String"/>
+		<field name="FAC_ESSERV" class="java.lang.Integer"/>
+		<field name="FAC_HORANUL" class="java.lang.String"/>
+		<field name="FAC_COSTO" class="java.math.BigDecimal"/>
+		<field name="FAC_DESCUENTO" class="java.math.BigDecimal"/>
+		<field name="FAC_CADENAORIGINAL" class="java.lang.String"/>
+		<field name="FAC_SELLO" class="java.lang.String"/>
+		<field name="CCJ_ID" class="java.lang.Long"/>
+		<field name="FAC_ESMASIVA" class="java.lang.Integer"/>
+		<field name="FAC_NUMERO" class="java.lang.String"/>
+		<field name="FAC_NUMINT" class="java.lang.String"/>
+		<field name="FAC_SERIE" class="java.lang.String"/>
+		<field name="FAC_NOAPROB" class="java.lang.String"/>
+		<field name="FAC_FECHAAPROB" class="java.lang.String"/>
+		<field name="PD_ID" class="java.lang.Long"/>
+		<field name="FAC_TIPOCOMP" class="java.lang.Integer"/>
+		<field name="FAC_RETISR" class="java.lang.Double"/>
+		<field name="FAC_RETIVA" class="java.lang.Double"/>
+		<field name="FAC_NETO" class="java.lang.Double"/>
+		<field name="FAC_NOTASPIE" class="java.lang.String"/>
+		<field name="FAC_REFERENCIA" class="java.lang.String"/>
+		<field name="FAC_CONDPAGO" class="java.lang.String"/>
+		<field name="FAC_ESARRENDA" class="java.lang.Integer"/>
+		<field name="FAC_NOMFORMATO" class="java.lang.String"/>
+		<field name="FAC_EXEC_INTER_CP" class="java.lang.Long"/>
+		<field name="FAC_ESRECU" class="java.lang.Integer"/>
+		<field name="FAC_PERIODICIDAD" class="java.lang.Integer"/>
+		<field name="FAC_DIAPER" class="java.lang.Integer"/>
+		<field name="FAC_NUMPEDI" class="java.lang.String"/>
+		<field name="FAC_FECHAPEDI" class="java.lang.String"/>
+		<field name="FAC_ADUANA" class="java.lang.String"/>
+		<field name="TI_ID" class="java.lang.Long"/>
+		<field name="TI_ID2" class="java.lang.Long"/>
+		<field name="TI_ID3" class="java.lang.Long"/>
+		<field name="FAC_EXEC_INTER_CP_ANUL" class="java.lang.Long"/>
+		<field name="FAC_CREDITO" class="java.lang.Integer"/>
+		<field name="FAC_USO_IEPS" class="java.lang.Integer"/>
+		<field name="FAC_TASA_IEPS" class="java.lang.Integer"/>
+		<field name="FAC_IMPORTE_IEPS" class="java.math.BigDecimal"/>
+		<field name="FAC_FORMADEPAGO" class="java.lang.String"/>
+		<field name="FAC_METODODEPAGO" class="java.lang.String"/>
+		<field name="FAC_UUID" class="java.lang.String"/>
+		<field name="FAC_SENDMAIL" class="java.lang.Integer"/>
+		<field name="FAC_METODOPAGO" class="java.lang.String"/>
+		<field name="FAC_SELLOTIMBRE" class="java.lang.String"/>
+		<field name="FAC_HORA_TIMBRE" class="java.lang.String"/>
+		<field name="FAC_FOLIO_ANUL" class="java.lang.String"/>
+		<field name="FAC_SELLOTIMBRE_ANUL" class="java.lang.String"/>
+		<field name="FAC_HORA_TIMBRE_ANUL" class="java.lang.String"/>
+		<field name="NC_FOLIO_ANUL" class="java.lang.String"/>
+		<field name="TKT_FOLIO_ANUL" class="java.lang.String"/>
+		<field name="PD_FOLIO_ANUL" class="java.lang.String"/>
+		<field name="COT_FOLIO_ANUL" class="java.lang.String"/>
+		<field name="FAC_CADENA_TIMBRE" class="java.lang.String"/>
+		<field name="FAC_PATH_CBB" class="java.lang.String"/>
+		<field name="FAC_NOSERIECERTTIM" class="java.lang.String"/>
+		<field name="FAC_REGIMENFISCAL" class="java.lang.String"/>
+		<field name="FAC_NUMCUENTA" class="java.lang.String"/>
+		<field name="FAC_FECHA_VENCI" class="java.lang.String"/>
+		<field name="FAC_NUM_GUIA" class="java.lang.String"/>
+		<field name="FAC_TIPO_FLETE" class="java.lang.Integer"/>
+		<field name="FAC_IMPORTE_FLETE" class="java.math.BigDecimal"/>
+		<field name="FAC_ES_POR_PEDIDOS" class="java.lang.Integer"/>
+		<field name="FAC_IMPORTE_PUNTOS" class="java.math.BigDecimal"/>
+		<field name="FAC_IMPORTE_NEGOCIO" class="java.math.BigDecimal"/>
+		<field name="FAC_NO_MLM" class="java.lang.Integer"/>
+		<field name="MPE_ID" class="java.lang.Integer"/>
+		<field name="FAC_POR_DESC" class="java.math.BigDecimal"/>
+		<field name="FAC_CONSIGNACION" class="java.lang.Integer"/>
+		<field name="CDE_ID" class="java.lang.Integer"/>
+		<field name="DFA_ID" class="java.lang.Integer"/>
+		<field name="FAC_RECU_FINAL" class="java.lang.String"/>
+		<field name="FAC_NO_EVENTOS" class="java.lang.Integer"/>
+		<field name="TR_ID" class="java.lang.Integer"/>
+		<field name="ME_ID" class="java.lang.Integer"/>
+		<field name="TF_ID" class="java.lang.Integer"/>
+		<field name="FAC_POR_DESCUENTO" class="java.math.BigDecimal"/>
+		<field name="FAC_ES_CFD" class="java.lang.Integer"/>
+		<field name="FAC_ES_CBB" class="java.lang.Integer"/>
+		<field name="FAC_FECHA_COBRO" class="java.lang.String"/>
+		<field name="PD_RECU_ID" class="java.lang.Integer"/>
+		<field name="FAC_TURNO" class="java.lang.Integer"/>
+		<field name="FAC_FOLIO_C" class="java.lang.String"/>
+		<field name="CTOA_ID" class="java.lang.Integer"/>
+		<field name="FAC_NUM_MENS" class="java.lang.Integer"/>
+		<variable name="SUM_FAC_TOTAL" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{FAC_TOTAL}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="CT_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PathBaseWeb" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EMP_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SC_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Fecha_Ini" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Fecha_Fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select *,
+     (Select CT_RAZONSOCIAL From vta_cliente Where CT_ID = $P{CT_ID}) as ctNombre,
+(Select SC_NOMBRE From vta_sucursal Where SC_ID = $P{SC_ID}) as scNombre
+From vta_empresas 
+Where EMP_ID = $P{EMP_ID}]]>
+	</queryString>
+	<field name="EMP_ID" class="java.lang.Long"/>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String"/>
+	<field name="EMP_RFC" class="java.lang.String"/>
+	<field name="EMP_CALLE" class="java.lang.String"/>
+	<field name="EMP_COLONIA" class="java.lang.String"/>
+	<field name="EMP_LOCALIDAD" class="java.lang.String"/>
+	<field name="EMP_MUNICIPIO" class="java.lang.String"/>
+	<field name="EMP_ESTADO" class="java.lang.String"/>
+	<field name="EMP_CP" class="java.lang.String"/>
+	<field name="EMP_TELEFONO1" class="java.lang.String"/>
+	<field name="EMP_TELEFONO2" class="java.lang.String"/>
+	<field name="EMP_REPRESENTANTE" class="java.lang.String"/>
+	<field name="EMP_FOLIO" class="java.lang.Long"/>
+	<field name="EMP_NUMERO" class="java.lang.String"/>
+	<field name="EMP_NUMINT" class="java.lang.String"/>
+	<field name="EMP_NOAPROB" class="java.lang.String"/>
+	<field name="EMP_FECHAPROB" class="java.lang.String"/>
+	<field name="EMP_NOSERIECERT" class="java.lang.String"/>
+	<field name="EMP_NOMKEY" class="java.lang.String"/>
+	<field name="EMP_PASSKEY" class="java.lang.Object"/>
+	<field name="EMP_FIRMA" class="java.lang.Integer"/>
+	<field name="EMP_FOLIOFIN" class="java.lang.Long"/>
+	<field name="EMP_AVISOFOLIO" class="java.lang.Integer"/>
+	<field name="EMP_TIPOCOMP" class="java.lang.Integer"/>
+	<field name="EMP_PATHIMG" class="java.lang.String"/>
+	<field name="EMP_PATHIMGFORM" class="java.lang.String"/>
+	<field name="EMP_TIPOPERS" class="java.lang.Integer"/>
+	<field name="EMP_NO_ISR" class="java.lang.Integer"/>
+	<field name="EMP_NO_IVA" class="java.lang.Integer"/>
+	<field name="EMP_CTACTE" class="java.lang.String"/>
+	<field name="EMP_CTAVTA" class="java.lang.String"/>
+	<field name="EMP_CTAIVA" class="java.lang.String"/>
+	<field name="EMP_URLCP" class="java.lang.String"/>
+	<field name="EMP_USERCP" class="java.lang.String"/>
+	<field name="EMP_PASSCP" class="java.lang.String"/>
+	<field name="EMP_USECONTA" class="java.lang.Integer"/>
+	<field name="EMP_PATHIMGCODBAR" class="java.lang.String"/>
+	<field name="EMP_TIPOCOMPNC" class="java.lang.Integer"/>
+	<field name="EMP_USACODBARR" class="java.lang.Integer"/>
+	<field name="EMP_VTA_DETA" class="java.lang.Integer"/>
+	<field name="EMP_CUENTAVTACRED" class="java.lang.String"/>
+	<field name="EMP_AVISOCANCEL" class="java.lang.Integer"/>
+	<field name="EMP_NOMCERT" class="java.lang.String"/>
+	<field name="EMP_ACUSEFACTURA" class="java.lang.Integer"/>
+	<field name="EMP_CFD_CFDI" class="java.lang.Integer"/>
+	<field name="EMP_CTAPROV" class="java.lang.String"/>
+	<field name="EMP_DONA_NUM_AUTORIZA" class="java.lang.String"/>
+	<field name="EMP_DONA_FECHA_AUTORIZA" class="java.lang.String"/>
+	<field name="EMP_DONA_LEYENDA" class="java.lang.String"/>
+	<field name="EMP_ES_DONATARIA" class="java.lang.Integer"/>
+	<field name="EMP_DIA_PAGO_PROV" class="java.lang.Integer"/>
+	<field name="EMP_IMGCUERPO" class="java.lang.String"/>
+	<field name="EMP_IMAG_CUERPO" class="java.lang.String"/>
+	<field name="EMP_CTACTE_COMPL" class="java.lang.String"/>
+	<field name="EMP_CTAPROV_COMPL" class="java.lang.String"/>
+	<field name="EMP_URL_RESTFUL_CP" class="java.lang.String"/>
+	<field name="EMP_FOLIOS_CONTRATADOS" class="java.lang.Integer"/>
+	<field name="EMP_FOLIOS_USADOS" class="java.lang.Integer"/>
+	<field name="EMP_CTA_CTE_ANTICIPO" class="java.lang.String"/>
+	<field name="EMP_CTA_PROV_ANTICIPO" class="java.lang.String"/>
+	<field name="EMP_REGISTRO_PATRONAL" class="java.lang.String"/>
+	<field name="EMP_CTACTE_COMPL_ANTI" class="java.lang.String"/>
+	<field name="EMP_CTAPROV_COMPL_ANTI" class="java.lang.String"/>
+	<field name="EMP_FRASE1" class="java.lang.String"/>
+	<field name="EMP_AVISOCANCEL_NOM" class="java.lang.Integer"/>
+	<field name="EMP_CONTAPROV_RET_ISR" class="java.lang.String"/>
+	<field name="EMP_CONTAPROV_RET_IVA" class="java.lang.String"/>
+	<field name="EMP_CONTACTE_RET_ISR" class="java.lang.String"/>
+	<field name="EMP_CONTACTE_RET_IVA" class="java.lang.String"/>
+	<field name="EMP_CONTA_ID_EMPRESA" class="java.lang.Integer"/>
+	<field name="EMP_FOLIO_SUCURSAL_NOMINA" class="java.lang.Integer"/>
+	<field name="EMP_IMGCUERPO2" class="java.lang.String"/>
+	<field name="EMP_CUENTA_DEP_IDENTIFICAR" class="java.lang.String"/>
+	<field name="EMP_CONTA_SUELDOS" class="java.lang.String"/>
+	<field name="ctNombre" class="java.lang.String"/>
+	<field name="scNombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="90" splitType="Stretch">
+			<textField>
+				<reportElement uuid="0e5db46c-8645-48e1-adda-d17c7cacb55d" x="0" y="33" width="366" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5efb586a-8b19-4579-8c4a-45afb8dcef8a" x="0" y="70" width="366" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["CLIENTE: "+$P{CT_ID}+"-"+$F{ctNombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6368da04-c3e0-498d-a311-a81463f38eb8" x="0" y="0" width="555" height="33"/>
+				<textElement textAlignment="Center">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE VENTAS POR CLIENTE]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="30dbdd40-78c2-4eb5-9dcb-fd9d491352b8" x="0" y="50" width="366" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["SUCURSAL:"+$F{scNombre}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement uuid="98a6fdea-f0f2-4c78-b99a-b05e1591dae9" x="366" y="33" width="189" height="57"/>
+				<imageExpression><![CDATA[$F{EMP_PATHIMGFORM}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="007e92a2-b058-4e6c-afa1-f69c85e05aa9" key="table" x="85" y="0" width="360" height="50"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Tickets" uuid="606adfd9-f9dd-4198-b4b6-6a769fb3d600">
+						<datasetParameter name="CT_ID">
+							<datasetParameterExpression><![CDATA[$P{CT_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="EMP_ID">
+							<datasetParameterExpression><![CDATA[$P{EMP_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="SC_ID">
+							<datasetParameterExpression><![CDATA[$P{SC_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="FECHA_INI">
+							<datasetParameterExpression><![CDATA[$P{Fecha_Ini}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="FECHA_FIN">
+							<datasetParameterExpression><![CDATA[$P{Fecha_Fin}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column uuid="07a500e8-1c1d-460f-bf09-8921a73385ee" width="90">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="8b4b53d4-40c8-47ef-8fa0-f03bfc67bc78" x="0" y="0" width="90" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[TICKETS]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="d386fcd2-b3b2-49b6-8db4-6da63b6f8c72" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="62e54b24-6bdd-456b-825e-9adfa55682fd" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{TKT_ID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="a366e75f-35db-4152-9699-4859bfd859dc" width="90">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="88339da4-34f3-4be2-99c9-60b06f2a8b32" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[FOLIO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="6828f74a-b7d3-4fc0-9d60-0ab9dcd70fa4" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{TKT_FOLIO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="aaeaa671-cf04-4313-992c-eb25a0a67d98" width="90">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="329171d2-6890-4c1d-9d0b-3d4741bafeb3" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[FECHA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="72ef12a8-187e-4569-9e24-d7d0a8fa9ae7" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL:]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField pattern="dd/MM/yyyy">
+								<reportElement uuid="88e78a72-3e4a-417f-9731-c11eee5d98b9" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{TKT_FECHA})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="d8f5c9d8-7836-4795-b026-bac688003b18" width="90">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="81c1860b-5775-4f35-bec6-fc40890f84dc" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30" rowSpan="1">
+							<textField pattern="¤ #,##0.00">
+								<reportElement uuid="87316ecc-ff3e-4411-ac6c-4ae2fa220d33" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{variable1}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField pattern="¤ #,##0.00">
+								<reportElement uuid="c6977a75-fe81-4727-8484-92231f7e5f07" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{TKT_TOTAL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="50">
+			<componentElement>
+				<reportElement uuid="0f663bc1-78bc-4dc4-9e59-5e0a5b9f86e4" key="table" x="85" y="0" width="360" height="50"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Facturas" uuid="02dc4820-9eb6-493c-a8aa-c09f1312a4d5">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column uuid="47d14b87-4e06-4e8c-884b-64ccb15b7bfa" width="90">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="575f3410-1a03-430d-a41c-41118c21b5cd" x="0" y="0" width="90" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[FACTURAS]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="21330778-0fa8-4766-bbff-23262ce5f021" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="da516df0-efad-45fe-b3ea-315bfbefbd3b" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{FAC_ID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="44f99104-db36-474d-9d14-96272b28a68a" width="90">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="03054c50-65fe-49e6-b063-eeeeed2f8b6e" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[FOLIO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="94b8104b-b587-4468-b20c-2e6085e4ee0e" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{FAC_FOLIO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="80ca6bd4-9b2c-418a-bf88-a7ac41a63c06" width="90">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="466b2bb6-59ea-4b4d-ab92-83d7f13151b3" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[FECHA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="384cc954-eb8b-48c3-b398-ae22ef575bff" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL:]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="2b4af0ad-22eb-4f5f-a042-01fc0f591ab2" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($F{FAC_FECHA})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="c791ca7b-432c-4ec1-9a40-efa634b6f3f6" width="90">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="a73f363d-b563-4064-8ba7-edbfd3710d58" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30" rowSpan="1">
+							<textField pattern="¤ #,##0.00">
+								<reportElement uuid="4297aa04-7a00-49d8-9727-763dbd78b4f2" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{SUM_FAC_TOTAL}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField pattern="¤ #,##0.00">
+								<reportElement uuid="09104a58-d838-4bbb-9c90-3b504da527c4" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{FAC_TOTAL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

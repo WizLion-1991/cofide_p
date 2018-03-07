@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="1230" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM cat_pagos_procesados;]]>
+	</queryString>
+	<field name="PP_CONSECUTIVO" class="java.lang.Integer"/>
+	<field name="PP_FECHA" class="java.sql.Date"/>
+	<field name="PP_CARGO_ABONO" class="java.lang.String"/>
+	<field name="PP_TIPO_MOV" class="java.lang.String"/>
+	<field name="PP_INDEFINIDO" class="java.lang.Integer"/>
+	<field name="PP_SUCURSAL" class="java.lang.Integer"/>
+	<field name="PP_REFERENCIA" class="java.lang.Integer"/>
+	<field name="PP_IMPORTE" class="java.lang.Double"/>
+	<field name="PP_INDEFINIDA2" class="java.lang.Double"/>
+	<field name="PP_NUM_AUTORIZA" class="java.lang.String"/>
+	<field name="PP_FECHA_APLICACION" class="java.sql.Date"/>
+	<field name="PP_HORA_APLICACION" class="java.lang.String"/>
+	<field name="PP_APLICADO" class="java.lang.String"/>
+	<title>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement x="479" y="52" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emision:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="566" y="51" width="134" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="396" y="13" width="391" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HECEN PRODUCTOS Y SERVICIOS DE FINANCIAMIENTO SA DE CV SOFOM ENR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="478" y="31" width="235" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE APLICACIÓN DE PAGOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="22" y="5" width="1146" height="34" backcolor="#666666"/>
+				<staticText>
+					<reportElement style="Column header" x="49" y="19" width="84" height="15"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[FECHA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="134" y="0" width="82" height="34"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[C-CARGO O
+A-ABONO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="216" y="0" width="59" height="34"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[TIPO DE
+MTO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="275" y="1" width="53" height="33"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[INDE-
+FINIDO I]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="328" y="19" width="77" height="15"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[SUCURSAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="405" y="19" width="95" height="15"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[REFERENCIA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="500" y="19" width="105" height="15"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[IMPORTE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="605" y="19" width="85" height="15"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[INDEFINIDA II]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="691" y="0" width="100" height="34"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[NUMERO DE
+AUTORIZACIÓN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="790" y="0" width="85" height="34"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[FECHA DE 
+APLICACIÓN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="959" y="19" width="187" height="15"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[STATUS]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" x="897" y="5" width="84" height="34"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[HORA DE 
+APLICACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="22" y="6" width="48" height="33"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[CONSE-
+CUTIVO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement x="23" y="1" width="1145" height="15"/>
+				<textField>
+					<reportElement style="Detail" x="1" y="0" width="48" height="15"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{PP_CONSECUTIVO}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement style="Detail" x="49" y="0" width="83" height="15"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{PP_FECHA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="133" y="0" width="82" height="15"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{PP_CARGO_ABONO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="215" y="0" width="59" height="15"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{PP_TIPO_MOV}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="274" y="0" width="53" height="15"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{PP_INDEFINIDO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="604" y="0" width="85" height="15"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{PP_INDEFINIDA2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="692" y="0" width="98" height="15"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{PP_NUM_AUTORIZA}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement style="Detail" x="790" y="0" width="85" height="15"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{PP_FECHA_APLICACION}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="875" y="0" width="83" height="15"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{PP_HORA_APLICACION}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="22" y="16" width="1146" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="980" y="1" width="188" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{PP_APLICADO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement style="Detail" x="522" y="1" width="105" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{PP_IMPORTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="427" y="1" width="95" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{PP_REFERENCIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="350" y="1" width="78" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{PP_SUCURSAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="568" y="11" width="18" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="533" y="11" width="35" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="586" y="11" width="47" height="20" forecolor="#000000"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER} + " "]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

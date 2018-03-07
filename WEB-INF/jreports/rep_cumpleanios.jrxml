@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_cumpleanios" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="52462e46-a2d3-4919-8368-6c1a52442770">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="MesCumpleanos" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT EMP_RAZONSOCIAL,
+vta_cliente.CT_RAZONSOCIAL,
+vta_cliente.CT_ID,CT_TELEFONO1,CT_CALLE,CT_NUMERO,CT_NUMINT,CT_COLONIA,CT_MUNICIPIO,CT_ESTADO,CT_CP,DATE_FORMAT(STR_TO_DATE(CT_FECHA_NAC,'%Y%m%d'),'%d/%m/%Y') AS F_NACIMIENTO
+FROM vta_empresas,vta_cliente WHERE MID(CT_FECHA_NAC,5,2) = $P{MesCumpleanos} ORDER BY CT_RAZONSOCIAL]]>
+	</queryString>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ID" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_TELEFONO1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CALLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NUMERO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_NUMINT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_COLONIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_MUNICIPIO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_ESTADO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CT_CP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="F_NACIMIENTO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="93" splitType="Stretch">
+			<staticText>
+				<reportElement x="211" y="0" width="417" height="23" uuid="24dc6306-52c6-42cb-9f25-d4d18672329b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="20"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE CUMPLEAÑOS POR MES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="211" y="23" width="417" height="20" uuid="2c517748-7068-4c3b-8d3a-9f94093fb0b2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="98" height="20" uuid="a8583faa-7085-4550-bdcd-2924e26b24e0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="98" y="0" width="40" height="20" uuid="53c115ea-8b36-4c3b-bdd3-814e408711ea"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="113" height="20" uuid="fd3f8426-b363-49f5-a238-ef438207b0ad"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="251" y="0" width="87" height="20" uuid="6c851d49-ccc8-4416-a436-d09b37a83ab6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[CALLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="0" width="47" height="20" uuid="9711ff47-ba1e-4efd-9f9e-5ecd68f57c93"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[NUM INT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="0" width="47" height="20" uuid="5e2c60b5-b0dc-4a08-a44b-329e6018dd8c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[NUM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="0" width="77" height="20" uuid="60a77477-a40e-40a5-a7dd-e5ce2e9316c3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[COLONIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="577" y="0" width="87" height="20" uuid="29cda1f9-0eed-474a-88d9-bffd8ca4eea3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="511" y="0" width="66" height="20" uuid="abac1c8b-5eba-4427-abf0-4af17f84e0a0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[MUNICIPIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="664" y="0" width="64" height="20" uuid="8a6b2b33-41e4-403b-97d3-fb2d27fed7ab"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[C.P.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="728" y="0" width="74" height="20" uuid="0a3cfc27-9759-4c95-a30e-047ee4158a6c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<text><![CDATA[FECHA NACIMIENTO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="98" height="20" uuid="f2943971-8ac8-4efb-8b1b-4d8cbe3e2ee2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="0" width="40" height="20" uuid="d6cbe912-d336-4769-971b-8fa30b64e705"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="113" height="20" uuid="5f9d875b-40a6-4700-b44e-7eed163ff956"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{CT_TELEFONO1}  == "." ? "": $F{CT_TELEFONO1})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="0" width="87" height="20" uuid="a47bb325-bba3-4b81-94d2-7e94d90214bb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_CALLE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="0" width="47" height="20" uuid="039d15c8-5a1e-4126-a399-5ad4e5e70af8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_NUMINT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="0" width="47" height="20" uuid="9ea2d09c-6400-4dce-a860-665d9df2354a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CT_NUMERO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="0" width="77" height="20" uuid="283bd831-fc60-4ba4-a123-5dea18b5b9c4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{CT_COLONIA}  == "." ? "": $F{CT_COLONIA})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="577" y="0" width="87" height="20" uuid="7ad0a9bf-3f22-4913-9bc3-96b31868f64d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{CT_ESTADO}  == "." ? "": $F{CT_ESTADO})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="511" y="0" width="66" height="20" uuid="274f46f6-a48a-4bad-b3b2-b5b961c8964c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{CT_MUNICIPIO}  == "." ? "": $F{CT_MUNICIPIO})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="664" y="0" width="64" height="20" uuid="d45082a2-3fe6-4563-a151-c71fe2800b40"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{CT_CP}  == "." ? "": $F{CT_CP})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="728" y="0" width="74" height="20" uuid="7296ef43-7d7c-4b9e-9755-49e0a1b1e090"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{F_NACIMIENTO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="25" y="34" width="100" height="20" uuid="24af9d84-a365-47dc-933b-f8c9cc327e6b"/>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

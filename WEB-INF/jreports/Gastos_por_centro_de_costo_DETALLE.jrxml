@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
+<!-- 2015-02-03T17:57:26 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Listado de remisiones" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="20b874e3-19cc-4cb2-8fce-e6d14ff68e96">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.4" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.3" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.parameters.override.report.hints" value="true"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="FechaInicial" class="java.lang.String">
+		<defaultValueExpression><![CDATA[20140101]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FechaFinal" class="java.lang.String">
+		<defaultValueExpression><![CDATA[20140431]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EMP" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[2]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select vta_empresas.EMP_RAZONSOCIAL,vta_ccostos.CC_DESCRIPCION as CentroCostos,
+ vta_bcos.BC_DESCRIPCION AS BANC,vta_mov_cta_bcos.MCB_BENEFICIARIO AS BENEFICIARIO,vta_mov_cta_bcos.MCB_CONCEPTO AS CONCEPTO,DATE_FORMAT(STR_TO_DATE(MCB_FECHA,'%Y%m%d'),'%d/%m/%Y')  AS FECHA,
+vta_mov_cta_bcos.MCB_NOCHEQUE CHEQUE,
+vta_cgastos.GT_DESCRIPCION as centro_gastos,(vta_mov_cta_bcos_deta.MCBD_IMPORTE) as total,
+if(vta_mov_cta_bcos.MCB_TIPO3 = 1,(vta_mov_cta_bcos_deta.MCBD_IMPORTE),0) as total_sin_factura,
+if(vta_mov_cta_bcos.MCB_TIPO3 = 0,(vta_mov_cta_bcos_deta.MCBD_IMPORTE),0) as total_con_factura
+From
+vta_cgastos, vta_mov_cta_bcos_deta, vta_mov_cta_bcos,vta_ccostos,vta_empresas, vta_bcos where
+vta_ccostos.CC_ID = vta_mov_cta_bcos_deta.CC_ID and
+vta_cgastos.EMP_ID=vta_empresas.EMP_ID AND
+vta_cgastos.GT_ID =  vta_mov_cta_bcos_deta.GT_ID AND  vta_mov_cta_bcos_deta.MCB_ID = vta_mov_cta_bcos.MCB_ID
+AND vta_mov_cta_bcos.EMP_ID = $P{EMP} AND vta_mov_cta_bcos.MCB_FECHA BETWEEN $P{FechaInicial} AND $P{FechaFinal}
+AND vta_bcos.BC_ID=vta_mov_cta_bcos.BC_ID
+AND vta_mov_cta_bcos.MCB_RETIRO> 0 and vta_mov_cta_bcos.MCB_ANULADO = 0
+ORDER BY vta_ccostos.CC_DESCRIPCION,total desc;]]>
+	</queryString>
+	<field name="EMP_RAZONSOCIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CentroCostos" class="java.lang.String"/>
+	<field name="BANC" class="java.lang.String"/>
+	<field name="BENEFICIARIO" class="java.lang.String"/>
+	<field name="CONCEPTO" class="java.lang.String"/>
+	<field name="FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CHEQUE" class="java.lang.String"/>
+	<field name="centro_gastos" class="java.lang.String"/>
+	<field name="total" class="java.lang.Double"/>
+	<field name="total_sin_factura" class="java.lang.Double"/>
+	<field name="total_con_factura" class="java.lang.Double"/>
+	<variable name="Total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="Suma" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{Suma}$F{total}]]></variableExpression>
+	</variable>
+	<variable name="total_sin_factura_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_sin_factura}]]></variableExpression>
+	</variable>
+	<variable name="total_con_factura_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_con_factura}]]></variableExpression>
+	</variable>
+	<variable name="total_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="total_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="67" y="35" width="78" height="20" uuid="59ab381c-b0d3-4c5a-9a35-4662062f59fd"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{FechaInicial})]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="222" y="35" width="210" height="20" uuid="9cfb15f4-f694-48d1-9571-c5eb0bca0ad2"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyyMMdd").parse($P{FechaFinal})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="145" y="35" width="77" height="20" uuid="a6806eee-d80b-4088-8eb0-e6965c7d5a04"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha Final:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="145" y="20" width="287" height="15" uuid="c971210c-de44-48a0-a6ee-35dd6c281318"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_RAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="35" width="67" height="20" uuid="8d22b7dc-b20b-403f-9a45-f5444b3e2057"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha Inicial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="67" y="0" width="365" height="20" forecolor="#000000" uuid="f06a55ee-c23f-450c-a4a6-102c71d1371f"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CENTRO DE GASTOS POR CENTRO DE COSTOS DETALLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="55" width="67" height="20" uuid="ff6648c2-2225-4b81-99a6-9bddba3b1c31"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha de Emision:
+]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="67" y="55" width="78" height="20" uuid="6c1604c4-ae28-4cb9-8f1a-2774f4ffc53c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="521" y="0" width="34" height="15" forecolor="#000000" uuid="08d9b59a-42de-459a-a1fd-b71889dc5c1d"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="369" y="0" width="63" height="15" forecolor="#000000" uuid="5501f7b5-9fbc-4bda-a2a2-efa3b1ea00f1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CENTROS DE GASTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="67" height="15" forecolor="#000000" uuid="6ee9621d-f1e9-409d-bb5e-6195ff939943"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CENTROS DE COSTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="0" width="78" height="15" forecolor="#000000" uuid="8d67e908-c605-4b0e-9ad9-e55f2e683b02"/>
+				<textElement>
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BANCO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="0" width="77" height="15" forecolor="#000000" uuid="3780bd86-8c6d-4695-99bf-064a84194e72"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BENEFICIARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="70" height="15" uuid="28e3aead-5ff4-4dc6-aaae-b74ee86c549f"/>
+				<textElement>
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONCEPTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="0" width="36" height="15" uuid="c472e8a8-54d0-4136-b686-8b08c4edc37f"/>
+				<textElement>
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CHEQUE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="0" width="46" height="15" uuid="2d0a3f9f-8e2b-45e3-baed-84b8b0847447"/>
+				<textElement>
+					<font fontName="Arial" size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL CON FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="0" width="43" height="15" uuid="c4b851bb-be22-4c02-ac0b-a8cd9a3fc4e3"/>
+				<textElement>
+					<font fontName="Arial" size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL SIN FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="0" width="41" height="15" uuid="541104f7-6c30-4a59-aff2-e9ac752cfffa"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="67" height="15" uuid="b71f1f0e-b61f-45f4-bd2b-98ff594a56cd"/>
+				<textElement textAlignment="Left">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CentroCostos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="369" y="0" width="63" height="15" uuid="97a15f6d-7849-4dd6-8d67-62e09d9043f1"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{centro_gastos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="67" y="0" width="78" height="15" uuid="1356ac15-0f58-45db-b8bf-7d737b93af41"/>
+				<textElement textAlignment="Left">
+					<font size="5" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BANC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="145" y="0" width="77" height="15" uuid="9a9c76b1-f9bc-4726-9b72-52610cf74410"/>
+				<textElement>
+					<font size="5" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BENEFICIARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="70" height="15" uuid="1cfda407-b7a9-41de-98b6-b2d2fe514960"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONCEPTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="0" width="36" height="15" uuid="96b91e03-7eac-4a0f-b4a0-1d82a181f906"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHEQUE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="432" y="0" width="43" height="15" uuid="bbfb5cb5-56d9-4d77-9937-0138568d67ab"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_sin_factura}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="475" y="0" width="46" height="15" uuid="f1f527da-75a6-4e38-9c35-02e46dfa51df"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_con_factura}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Detail" x="521" y="0" width="34" height="15" uuid="970831c8-c749-490e-8c90-dfb71cc37ae0"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="292" y="0" width="41" height="15" uuid="90fd792a-cff1-4fda-8695-b624ee3aadf9"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="67" height="20" uuid="f7185d1b-ca93-498a-972e-682130718953"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER} + " de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="67" y="0" width="78" height="20" forecolor="#000000" uuid="0fa91555-632d-481c-9880-7c72c01b4eca"/>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="43" splitType="Stretch">
+			<textField pattern="#,##0.00">
+				<reportElement x="432" y="0" width="43" height="20" uuid="8260ef62-35c0-4da6-b134-bb6840ffd8f7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_sin_factura_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="475" y="0" width="46" height="20" uuid="dc1122bf-a8d4-42ef-959b-0be43e691dca"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_con_factura_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="521" y="0" width="34" height="20" uuid="8d7cffc4-449a-4164-84c5-81227338de45"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{total_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

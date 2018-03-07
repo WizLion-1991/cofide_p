@@ -1,0 +1,1439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
+<!-- 2015-08-12T15:09:23 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rep_calcAnu_ISR1" pageWidth="14000" pageHeight="842" columnWidth="13960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a35cb722-bf61-40ac-97b7-b227a0e86f90">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="strEmpresa" class="java.lang.String"/>
+	<parameter name="strRFC" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="mes" class="java.lang.Integer"/>
+	<field name="mesFinal" class="java.lang.Integer"/>
+	<field name="rfc" class="java.lang.String"/>
+	<field name="curp" class="java.lang.String"/>
+	<field name="apellidoPaterno" class="java.lang.String"/>
+	<field name="apellidoMaterno" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="areaGeo" class="java.lang.Integer"/>
+	<field name="calAnual" class="java.lang.Integer"/>
+	<field name="tarifa" class="java.lang.Integer"/>
+	<field name="tarifa91" class="java.lang.Integer"/>
+	<field name="proporc" class="java.lang.Double"/>
+	<field name="sindicato" class="java.lang.Integer"/>
+	<field name="asimilado" class="java.lang.Integer"/>
+	<field name="entidad" class="java.lang.Integer"/>
+	<field name="rfc1Pat" class="java.lang.String"/>
+	<field name="rfc2pat" class="java.lang.String"/>
+	<field name="rfc3pat" class="java.lang.String"/>
+	<field name="rfc4pat" class="java.lang.String"/>
+	<field name="rfc5pat" class="java.lang.String"/>
+	<field name="rfc6pat" class="java.lang.String"/>
+	<field name="rfc7pat" class="java.lang.String"/>
+	<field name="rfc8pat" class="java.lang.String"/>
+	<field name="rfc9pat" class="java.lang.String"/>
+	<field name="rfc10pat" class="java.lang.String"/>
+	<field name="montoAportacionesVoluntarias" class="java.lang.Double"/>
+	<field name="aplicoMontoAportVoluntarioas" class="java.lang.String"/>
+	<field name="montoAportDeduciblesTrabDecl" class="java.lang.Double"/>
+	<field name="montoAportVoluDeduPatron" class="java.lang.Double"/>
+	<field name="pagosSeparacion" class="java.lang.Integer"/>
+	<field name="asimiladosSalarios" class="java.lang.Integer"/>
+	<field name="pagosEfectuadosTrabajadores" class="java.lang.Integer"/>
+	<field name="totalesPagosParciales" class="java.lang.Double"/>
+	<field name="montoDiarioJubilaciones" class="java.lang.Double"/>
+	<field name="cantidadPercibidaPeriodo" class="java.lang.Double"/>
+	<field name="montoTotalPagoUnaExhibi" class="java.lang.Double"/>
+	<field name="numeroDias" class="java.lang.Integer"/>
+	<field name="ingresosExcentos" class="java.lang.Double"/>
+	<field name="ingresosGravables" class="java.lang.Double"/>
+	<field name="ingresosAcomulables" class="java.lang.Double"/>
+	<field name="ingresosNoAcomulables" class="java.lang.Double"/>
+	<field name="impRetenido" class="java.lang.Double"/>
+	<field name="montoTotalOtrosPagosSep" class="java.lang.Double"/>
+	<field name="numeroAniosServicio" class="java.lang.Integer"/>
+	<field name="ingresosExcentos1" class="java.lang.Double"/>
+	<field name="ingresosGravados" class="java.lang.Double"/>
+	<field name="acomulablesUltimoSdoMensual" class="java.lang.Double"/>
+	<field name="correspUltimoSdoMensual" class="java.lang.Double"/>
+	<field name="noAcomulables" class="java.lang.Double"/>
+	<field name="impRetenido1" class="java.lang.Double"/>
+	<field name="ingresosAsimiladosSalarios" class="java.lang.Double"/>
+	<field name="impuestoRetenidoEjercicio" class="java.lang.Double"/>
+	<field name="opcEmpleadorAdquirirTitulos" class="java.lang.Integer"/>
+	<field name="valorMercadoAcionesAddTitulos" class="java.lang.Double"/>
+	<field name="precEstablIngreTitulos" class="java.lang.Double"/>
+	<field name="ingresoAcomulable" class="java.lang.Double"/>
+	<field name="impuestoRetenidoEjercicio1" class="java.lang.Double"/>
+	<field name="sueldoSalariosRayasJornales" class="java.lang.Double"/>
+	<field name="sueldoExcento" class="java.lang.Double"/>
+	<field name="gratificacionAnual" class="java.lang.Double"/>
+	<field name="aguinaldoExento" class="java.lang.Double"/>
+	<field name="viaticosGastosViaje" class="java.lang.Double"/>
+	<field name="viaticosGastosViaje1" class="java.lang.Double"/>
+	<field name="tiempoExtraOrdinario" class="java.lang.Double"/>
+	<field name="tiempoExtraExento" class="java.lang.Double"/>
+	<field name="primaVacacional" class="java.lang.Double"/>
+	<field name="primaVacaExento" class="java.lang.Double"/>
+	<field name="primaDominical" class="java.lang.Double"/>
+	<field name="primaDominical1" class="java.lang.Double"/>
+	<field name="participacionTrabajUtilidades" class="java.lang.Double"/>
+	<field name="ptuExenta" class="java.lang.Double"/>
+	<field name="reembolsoGastMedDentHosp" class="java.lang.Double"/>
+	<field name="reembolsoGastMedDentHosp1" class="java.lang.Double"/>
+	<field name="fondoAhorro" class="java.lang.Double"/>
+	<field name="fondoAhorro1" class="java.lang.Double"/>
+	<field name="cajaAhorro" class="java.lang.Double"/>
+	<field name="cajaAhorro1" class="java.lang.Double"/>
+	<field name="valesDespensa" class="java.lang.Double"/>
+	<field name="valesDespensa1" class="java.lang.Double"/>
+	<field name="ayudaGastosFuneral" class="java.lang.Double"/>
+	<field name="ayudaGastosFuneral1" class="java.lang.Double"/>
+	<field name="contibuCargoTrabajPagPatron" class="java.lang.Double"/>
+	<field name="contibuCargoTrabajPagPatron1" class="java.lang.Double"/>
+	<field name="premioPuntualidad" class="java.lang.Double"/>
+	<field name="premioPuntualidad1" class="java.lang.Double"/>
+	<field name="primaSeguroVida" class="java.lang.Double"/>
+	<field name="primaSeguroVida1" class="java.lang.Double"/>
+	<field name="seguroGastosMedicosMayores" class="java.lang.Double"/>
+	<field name="seguroGastosMedicosMayores1" class="java.lang.Double"/>
+	<field name="valesRestaurante" class="java.lang.Double"/>
+	<field name="valesRestaurante1" class="java.lang.Double"/>
+	<field name="valesGasolina" class="java.lang.Double"/>
+	<field name="valesGasolina1" class="java.lang.Double"/>
+	<field name="valesRopa" class="java.lang.Double"/>
+	<field name="valesRopa1" class="java.lang.Double"/>
+	<field name="ayudaRenta" class="java.lang.Double"/>
+	<field name="ayudaRenta1" class="java.lang.Double"/>
+	<field name="ayudaArticulosEscolares" class="java.lang.Double"/>
+	<field name="ayudaArticulosEscolares1" class="java.lang.Double"/>
+	<field name="ayudaAnteojos" class="java.lang.Double"/>
+	<field name="ayudaAnteojos1" class="java.lang.Double"/>
+	<field name="ayudaTransporte" class="java.lang.Double"/>
+	<field name="ayudaTransporte1" class="java.lang.Double"/>
+	<field name="cuotasSindicalesPagadasPatron" class="java.lang.Double"/>
+	<field name="cuotasSindicalesPagadasPatron1" class="java.lang.Double"/>
+	<field name="subsidioIncapacidad" class="java.lang.Double"/>
+	<field name="subsidioIncapacidad1" class="java.lang.Double"/>
+	<field name="becasTrabajadoresHijos" class="java.lang.Double"/>
+	<field name="becasTrabajadoresHijos1" class="java.lang.Double"/>
+	<field name="pagoOtroEmpleador" class="java.lang.Double"/>
+	<field name="pagoOtroEmpleador1" class="java.lang.Double"/>
+	<field name="otrosIngresosSalarios" class="java.lang.Double"/>
+	<field name="otrosIngresosSalarios1" class="java.lang.Double"/>
+	<field name="sumaIngresoGravadiSuelSal" class="java.lang.Double"/>
+	<field name="sumaIngresoExentoSuieldSal" class="java.lang.Double"/>
+	<field name="impuestoRetenEjercicio" class="java.lang.Double"/>
+	<field name="impuestoRetenOtrosPatronEjer" class="java.lang.Double"/>
+	<field name="saldoFavorEjercPatrCompSiguiEjer" class="java.lang.Double"/>
+	<field name="saldoFavorEjercAntNoComp" class="java.lang.Double"/>
+	<field name="sumaCantConcCredit" class="java.lang.Double"/>
+	<field name="creditoSalarioEntrEfecTrabEje" class="java.lang.Double"/>
+	<field name="montoTotalIngrObtenPrevisionSocial" class="java.lang.Double"/>
+	<field name="sumaIngreExcentosConceptoPresta" class="java.lang.Double"/>
+	<field name="sumaIngresosSueldosSalarios" class="java.lang.Double"/>
+	<field name="montoImpuestoLocPrestServSocial" class="java.lang.Double"/>
+	<field name="montoSubEmplEfectTrabEjer" class="java.lang.Double"/>
+	<field name="totalAportVoluntDedu" class="java.lang.Double"/>
+	<field name="isrTarifAnual" class="java.lang.Double"/>
+	<field name="subsAcreditable" class="java.lang.Double"/>
+	<field name="subsNoAcreditable" class="java.lang.Double"/>
+	<field name="impuestoIngresosAcomulables" class="java.lang.Double"/>
+	<field name="impuestoIngresosNoAcomulables" class="java.lang.Double"/>
+	<field name="subsidioEntregadoTrabajador" class="java.lang.Double"/>
+	<field name="subsidioNivelacionIngresoEntregado" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="114" splitType="Stretch">
+			<textField>
+				<reportElement x="80" y="0" width="400" height="20" uuid="d16e03d3-1c64-49a0-8864-7d727e8f9566"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{strEmpresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="20" width="400" height="20" uuid="084f3735-ab40-4221-8b52-9b04145143e5"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{strRFC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="84" width="2880" height="30" uuid="76ec13ee-8733-44d7-bac1-7a7a30e28c3d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA["IDENTIFICACION DEL TRABAJADOR"]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2880" y="84" width="300" height="29" uuid="6536dff2-7526-4802-b1e6-d290eac8d0e1"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SELECCIÓN DE TEMAS"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3180" y="84" width="1800" height="30" uuid="19fcf36b-8383-468e-84d0-308440a8fa9e"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA["ANEXO 1  PAGOS POR SEPARACION"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4980" y="84" width="7600" height="30" uuid="9cbe92b5-aee6-4d62-a5d2-6e0c9e25ef0b"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA["ANEXO 1 - PAGOS DEL PATRÓN EFECTUADOS A SUS TRABAJADORES"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12580" y="84" width="800" height="30" uuid="770faf41-f6f5-41ce-8be6-7d4e7cdadcb6"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA["IMPUESTO SOBRE LA RENTA"]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="80" height="30" uuid="0893606c-3b02-49d1-acf2-6f130ec682ea">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<paragraph tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[MES INICIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="100" height="30" uuid="d9338b83-2600-41e4-ab08-363b3391ca11"/>
+				<text><![CDATA[MES FINAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="100" height="30" uuid="a3c40dae-0ab9-41c7-8141-22590ed9da84"/>
+				<text><![CDATA[R.F.C.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="100" height="30" uuid="32010fbd-aa66-4123-92dd-0b2e489dbdaf"/>
+				<text><![CDATA[C.U.R.P.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="100" height="30" uuid="3655a26d-36c7-4777-92cb-c9ce89eafa86"/>
+				<text><![CDATA[APELLIDO PATERNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="100" height="30" uuid="1121d17c-7e85-49a9-993a-976e7072e02b"/>
+				<text><![CDATA[APELLIDO MATERNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="0" width="100" height="30" uuid="3939eab7-6c07-4eef-93d3-473f7e3eab84"/>
+				<text><![CDATA[NOMBRE (S)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="680" y="0" width="100" height="30" uuid="5d2e218c-4fe9-4161-95ff-390e3b34b985"/>
+				<text><![CDATA[AREA GEO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="780" y="0" width="100" height="30" uuid="fd718f2e-d66f-44a7-b129-a4a202ac71a5"/>
+				<text><![CDATA[CAL. ANUAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="880" y="0" width="100" height="30" uuid="35785aa8-65bd-48c2-8549-7d6716cc133c"/>
+				<text><![CDATA[TARIFA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="980" y="0" width="100" height="30" uuid="6f1e3443-f889-4003-81de-23faa8a7a6b7"/>
+				<text><![CDATA[TARIFA '91]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1080" y="0" width="100" height="30" uuid="bb258e87-1cd2-4418-ab38-596cc46ece06"/>
+				<text><![CDATA[PROPORC.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1180" y="0" width="100" height="30" uuid="5c76e195-ca1c-4ee7-b50a-2423235ee696"/>
+				<text><![CDATA[SINDICATO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1280" y="0" width="100" height="30" uuid="24e6d69d-30a7-4def-9cd0-e5cedba0c805"/>
+				<text><![CDATA[ASIMILADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1380" y="0" width="100" height="30" uuid="58e2f964-6ea0-48bc-9923-5b5535bb6355"/>
+				<text><![CDATA[ENTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1480" y="0" width="100" height="30" uuid="277b9169-201c-49d0-ad68-cd673d5951a4"/>
+				<text><![CDATA[RFC 1 PAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1580" y="0" width="100" height="30" uuid="52c7a0aa-64a6-4700-a43c-12b2f87149ef"/>
+				<text><![CDATA[RFC 2 PAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1680" y="0" width="100" height="30" uuid="afd026aa-b67e-4da1-8f06-44a6c60133c0"/>
+				<text><![CDATA[RFC 3 PAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1780" y="0" width="100" height="30" uuid="8c2d9032-b850-44f3-8c11-2846f272b4c1"/>
+				<text><![CDATA[RFC 4 PAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1880" y="0" width="100" height="30" uuid="829bf846-4c3b-4f49-99df-cedc84b5c167"/>
+				<text><![CDATA[RFC 5 PAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1980" y="0" width="100" height="30" uuid="e478a741-8f00-4bb6-a562-e22b2ace9322"/>
+				<text><![CDATA[RFC 6 PAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2080" y="0" width="100" height="30" uuid="ba842fc5-7da7-4aca-9be3-abf500799bc2"/>
+				<text><![CDATA[RFC 7 PAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2180" y="0" width="100" height="30" uuid="d5c0ebde-d215-4cfd-92cf-126e03bfb4e7"/>
+				<text><![CDATA[RFC 8 PAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2280" y="0" width="100" height="30" uuid="d75f711b-6e6a-47bc-be37-f1cc9653dbfc"/>
+				<text><![CDATA[RFC 9 PAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2380" y="0" width="100" height="30" uuid="0e0ecee6-30e8-483f-b44c-e1fa8ececaf1"/>
+				<text><![CDATA[RFC 10 PAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2480" y="0" width="100" height="30" uuid="a1d570d3-989f-4ed4-b213-4a97da883da0"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[MONTO DE LAS APORTACIONES VOLUNTARIAS EFECTUADAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2580" y="0" width="100" height="30" uuid="bc488233-9c1e-492a-9dd5-75730c56dc5c"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[INDIQUE SI EL PATRÓN APLICÓ EL MONTO DE LAS APORTACIONES VOLUNTARIAS EN EL CÁLCULO DEL IMPUESTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2680" y="0" width="100" height="30" uuid="c7086493-8b2e-4542-a2a0-45cfe5a77b2b"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[MONTO DE LAS APORTACIONES VOLUNTARIAS DEDUCIBLES PARA TRABAJADORES QUE REALIZARÁN SU DECLARACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2780" y="0" width="100" height="30" uuid="a514066b-323c-41a5-808c-aa2e5a7cd4d1"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[MONTO DE LAS APORTACIONES VOLUNTARIAS DEDUCIBLES APLICADAS POR EL PATRÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2880" y="0" width="100" height="30" uuid="b171736e-8c85-4844-b75e-18a4796ab055"/>
+				<text><![CDATA[Pagos por separación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2980" y="0" width="100" height="30" uuid="85a860bd-bf89-4afe-bb5e-da4807b19759"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Asimilados a salarios (excepto fracción I del Art. 110 de la LISR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3080" y="0" width="100" height="30" uuid="e57f80f6-7dca-408e-a859-45b6a89244bd"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Pagos del patrón efectuados a sus trabajadores (incluyendo fracción I del Art. 110 de la LISR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3180" y="0" width="100" height="30" uuid="b66517aa-4eff-48e1-993c-a99653c9946e"/>
+				<text><![CDATA[ING TOTALES POR PAGOS PARCIALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3280" y="0" width="100" height="30" uuid="bae5b1ee-1980-4183-89a9-bcff290781f8"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[MONTO DIARIO JUBILACIONES, RETIRO, EN PARCIALIDADES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3380" y="0" width="100" height="30" uuid="26bb9004-d30c-4d47-b28a-8dcea38c37b0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD PERCIBIDA EN EL PERIODO JUB PENS ...]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3480" y="0" width="100" height="30" uuid="baebc3de-6aa9-497b-95a3-1c1603243fc7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[MONTO TOTAL DEL PAGO EN UNA SOLA EXHIBICION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3580" y="0" width="100" height="30" uuid="bae80c3a-8c13-4638-bf5d-e453af9b1f0d"/>
+				<text><![CDATA[NUMERO DE DIAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3680" y="0" width="100" height="30" uuid="e81a2238-2f14-482d-be69-e0c633a8a984"/>
+				<text><![CDATA[INGRESOS EXCENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3780" y="0" width="100" height="30" uuid="c4b7a1ad-7ff0-41fa-8203-04b644d74b20"/>
+				<text><![CDATA[INGRESOS GRAVABLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3880" y="0" width="100" height="30" uuid="63292570-0b0e-4cac-8ccd-045902cfabff"/>
+				<text><![CDATA[INGRESOS ACUMULABLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3980" y="0" width="100" height="30" uuid="21b29545-4ff2-4af2-8190-1c835b116d4a"/>
+				<text><![CDATA[INGRESOS NO ACUMULABLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4080" y="0" width="100" height="30" uuid="104cc031-c734-45a3-be37-1317f3411af8"/>
+				<text><![CDATA[IMP RETENIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4180" y="0" width="100" height="30" uuid="072d1b7c-6ad3-4a4f-a4a7-065fa35ab24f"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[MONTO TOTAL OTROS PAGOS POR SEPARACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4280" y="0" width="100" height="30" uuid="29d58f59-2ee1-4737-b3cf-9a7585e9fd71"/>
+				<text><![CDATA[NUMERO DE AÑOS DE SERVICIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4380" y="0" width="100" height="30" uuid="c6f6a500-b52d-497c-b2ee-52da2b488063"/>
+				<text><![CDATA[INGRESOS EXCENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4480" y="0" width="100" height="30" uuid="dd1da811-ff51-4f28-9632-07e033d287ee"/>
+				<text><![CDATA[INGRESOS GRAVADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4580" y="0" width="100" height="30" uuid="eb863d6e-6849-43d7-b8e6-4013fbdd9b81"/>
+				<text><![CDATA[ING ACUMULABLES ULTIMO SDO MENSUAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4680" y="0" width="100" height="30" uuid="cf1fcbca-f043-456d-a711-1ddd278aa6f7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[IMP CORRESP AL ULTIMO SDO MENSUAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4780" y="0" width="100" height="30" uuid="9a5489c9-22f0-4f9e-bda5-1eba06aca40d"/>
+				<text><![CDATA[ING NO ACUMULABLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4880" y="0" width="100" height="30" uuid="5f5fe2e4-d5d5-4921-bea5-7dcda5a712fe"/>
+				<text><![CDATA[IMP RETENIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4980" y="0" width="100" height="30" uuid="330cdd6f-d4c7-418f-adea-5d2fdc693f45"/>
+				<text><![CDATA[Ingresos asimilados a salarios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5080" y="0" width="100" height="30" uuid="9b572b89-ea1b-4153-b8be-c537279a25f9"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[IMPUESTO RETENIDO DURANTE EL EJERCICIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5180" y="0" width="100" height="30" uuid="bc2545f7-db14-4b08-939f-346a48872966"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[INDIQUE SI EJERCICO LA OPCION DEL EMPLEADOR PARA ADQUIRIR TITULOS VALOR 1= SI 2 = NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5280" y="0" width="100" height="30" uuid="793da939-ef71-4bfd-a10e-2510bc60345d"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[VALOR DE MERCADO DE LAS ACCIONES AL ADQUIRIR TITULOS VALOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5380" y="0" width="100" height="30" uuid="38e9a816-917c-478f-8d28-b27188db194a"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[PRECIO ESTABLECIDO AL OTORGARSE LA OPCION DE INGRESOS EN OPCIONES DE TITULOS VALOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5480" y="0" width="100" height="30" uuid="eb2c9b69-1a83-4fc1-a22b-22355ce5a9e1"/>
+				<text><![CDATA[INGRESO ACUMULABLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5580" y="0" width="100" height="30" uuid="72435a6f-e5d4-466f-be28-4b09d05efbd9"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[IMPUESTO RETENDIDO DURANTE EL EJERCICIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5680" y="0" width="100" height="30" uuid="e1c7215e-9848-43f9-889b-10c9028e082b"/>
+				<text><![CDATA[Sueldos, salarios, rayas y jornales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5780" y="0" width="100" height="30" uuid="225ac0c3-b6c6-4dea-b48c-986ae5e2ef53"/>
+				<text><![CDATA[SUELDOS EXCENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5880" y="0" width="100" height="30" uuid="ad83a946-5c33-4809-b153-9d85ee690844"/>
+				<text><![CDATA[Gratificación anual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5980" y="0" width="100" height="30" uuid="5c44096c-8fa3-4685-91f1-1287c746bc75"/>
+				<text><![CDATA[AGUINALDO EXENTO $1,577.70]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6080" y="0" width="100" height="30" uuid="b974e8e3-d40a-47a7-b9f3-a77fbcb48d49"/>
+				<text><![CDATA[Viáticos y gastos de viaje]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6180" y="0" width="100" height="30" uuid="bb8ce6e6-f065-49f2-b187-e7abf0bc5ddc"/>
+				<text><![CDATA[Viáticos y gastos de viaje]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6280" y="0" width="100" height="30" uuid="659c6b91-267f-41fb-9e77-dd7bc5cbb838"/>
+				<text><![CDATA[Tiempo extraordinario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6380" y="0" width="100" height="30" uuid="85fb638a-1856-48f9-97af-0bb614cf5548"/>
+				<text><![CDATA[TIEMPO EXTRA EXENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6480" y="0" width="100" height="30" uuid="10320a66-85d7-4229-a1c6-76b819688f33"/>
+				<text><![CDATA[Prima vacacional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6580" y="0" width="100" height="30" uuid="dc65ee16-4211-49d4-ae01-7e9af8138961"/>
+				<text><![CDATA[PRIMA VAC. EXENTO $788.85]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6680" y="0" width="100" height="30" uuid="921fd925-029d-4e34-8a18-413d3d2e6669"/>
+				<text><![CDATA[Prima dominical]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6780" y="0" width="100" height="30" uuid="9672b85c-8eb5-422b-9525-c88bc27808b0"/>
+				<text><![CDATA[Prima dominical]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6880" y="0" width="100" height="30" uuid="a33051d3-54a3-45a3-b2f7-0ec9d0a438cf"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Participación de los trabajadores en las utilidades (PTU)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6980" y="0" width="100" height="30" uuid="05071725-d3e0-4243-a45b-78dec4caca4c"/>
+				<text><![CDATA[PTU EXENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7080" y="0" width="100" height="30" uuid="e3c95875-311b-4bb1-8dbb-0fbe61e8d27d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Reembolso de gastos médicos, dentales y hospitalarios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7180" y="0" width="100" height="30" uuid="91145799-b67f-4654-86e3-7bbab2fc942b"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Reembolso de gastos médicos, dentales y hospitalarios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7280" y="0" width="100" height="30" uuid="db6abbfa-e117-498e-9c58-84b28b3146e8"/>
+				<text><![CDATA[Fondo de ahorro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7380" y="0" width="100" height="30" uuid="c46f3b7b-439a-4862-bf41-e4a3cdc98776"/>
+				<text><![CDATA[Fondo de ahorro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7480" y="0" width="100" height="30" uuid="78bb5b1f-f236-42f5-a1a8-0379ae2e9d03"/>
+				<text><![CDATA[Caja de ahorro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7580" y="0" width="100" height="30" uuid="32d11a81-98ca-4571-9f4a-4ea585704747"/>
+				<text><![CDATA[Caja de ahorro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7680" y="0" width="100" height="30" uuid="9d2a8f6a-5d5b-4fba-ad29-f2cda7010dad"/>
+				<text><![CDATA[Vales para despensa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7780" y="0" width="100" height="30" uuid="7b970fa8-b597-402c-b782-df545fecc48c"/>
+				<text><![CDATA[Vales para despensa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7880" y="0" width="100" height="30" uuid="4c5e20db-ab68-43cc-8c43-9bb7ba9d0d40"/>
+				<text><![CDATA[Ayuda para gastos de funeral]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7980" y="0" width="100" height="30" uuid="667bb77d-010f-4ac3-bfeb-eb97514278d1"/>
+				<text><![CDATA[Ayuda para gastos de funeral]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8080" y="0" width="100" height="30" uuid="b0cfd5ca-cb01-4653-a91d-0428dbc05a1f"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Contribuciones a cargo del trabajador pagadas por el patrón]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8180" y="0" width="100" height="30" uuid="ca7c6b1c-5d8b-49f6-8036-8088841e74e8"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Contribuciones a cargo del trabajador pagadas por el patrón]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8280" y="0" width="100" height="30" uuid="18739ade-8d07-4fe2-851e-c4c62922b4c9"/>
+				<text><![CDATA[Premios por puntualidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8380" y="0" width="100" height="30" uuid="0ca27ad3-11bc-4041-a3d6-2e113616ab68"/>
+				<text><![CDATA[Premios por puntualidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8480" y="0" width="100" height="30" uuid="3176641a-bc7f-4a72-89c1-82e3f20c3b9d"/>
+				<text><![CDATA[Prima de seguro de vida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8580" y="0" width="100" height="30" uuid="070c84a9-50e3-4406-8da0-e0e3039b704d"/>
+				<text><![CDATA[Prima de seguro de vida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8680" y="0" width="100" height="30" uuid="6a5e13ba-d00a-4516-b303-5727cec6af20"/>
+				<text><![CDATA[Seguro de gastos médicos mayores]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8780" y="0" width="100" height="30" uuid="64d8b06a-1814-4629-bab7-dfd420348e90"/>
+				<text><![CDATA[Seguro de gastos médicos mayores]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8880" y="0" width="100" height="30" uuid="14d6fb6f-03c6-4d63-b2a9-98406faabc57"/>
+				<text><![CDATA[Vales para restaurante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8980" y="0" width="100" height="30" uuid="6b469755-736e-4465-a308-d3bba7ad9e16"/>
+				<text><![CDATA[Vales para restaurante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9080" y="0" width="100" height="30" uuid="12120472-2e83-4d29-a89f-9a944a80aaa5"/>
+				<text><![CDATA[Vales para gasolina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9180" y="0" width="100" height="30" uuid="8e3c91f7-e604-4c9b-aafd-507a7bb94b65"/>
+				<text><![CDATA[Vales para gasolina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9280" y="0" width="100" height="30" uuid="1db73220-5cbc-4ee0-82a3-1f0c9d4358fe"/>
+				<text><![CDATA[Vales para ropa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9380" y="0" width="100" height="30" uuid="bf7c2200-b242-4d39-8751-f869824e39a5"/>
+				<text><![CDATA[Vales para ropa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9480" y="0" width="100" height="30" uuid="58eb23ad-5cdb-4bf1-b4b8-9ab8b0ae0764"/>
+				<text><![CDATA[Ayuda para renta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9580" y="0" width="100" height="30" uuid="7aa74761-0064-44f6-9f4d-f7c90e88ed2f"/>
+				<text><![CDATA[Ayuda para renta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9680" y="0" width="100" height="30" uuid="417bc554-5cef-4eae-ab54-04999704c553"/>
+				<text><![CDATA[Ayuda para artículos escolares]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9780" y="0" width="100" height="30" uuid="edea2351-f0a6-4397-afa7-afa1233c90e5"/>
+				<text><![CDATA[Ayuda para artículos escolares]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9880" y="0" width="100" height="30" uuid="3ba85c67-4e8f-48c6-b4b9-4c657864622b"/>
+				<text><![CDATA[Dotación o ayuda para anteojos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9980" y="0" width="100" height="30" uuid="33fb15a2-430a-4a0e-9d39-0dc3789ea9bc"/>
+				<text><![CDATA[Dotación o ayuda para anteojos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10080" y="0" width="100" height="30" uuid="fb086ef3-d3eb-4649-a95c-9223a0095f83"/>
+				<text><![CDATA[Ayuda para transporte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10180" y="0" width="100" height="30" uuid="00b8bc62-8b07-4dbb-8444-74c5af4c272d"/>
+				<text><![CDATA[Ayuda para transporte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10280" y="0" width="100" height="30" uuid="e238bb3b-a968-4261-beea-460217dcf200"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Cuotas sindicales pagadas por el patrón]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10380" y="0" width="100" height="30" uuid="54d2feda-cd6a-4baf-b931-a2a0855cbac6"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Cuotas sindicales pagadas por el patrón]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10480" y="0" width="100" height="30" uuid="00993594-df4d-4ed9-9698-f11861ec9f72"/>
+				<text><![CDATA[Subsidios por incapacidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10580" y="0" width="100" height="30" uuid="a142be26-bec9-48ae-ad77-76df91d102cd"/>
+				<text><![CDATA[Subsidios por incapacidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10680" y="0" width="100" height="30" uuid="5df486d4-c231-44a6-8d2e-fc36b6912827"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Becas para trabajadores y/o sus hijos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10780" y="0" width="100" height="30" uuid="ec7ffa17-b045-4944-b861-12fd713282b7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Becas para trabajadores y/o sus hijos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10880" y="0" width="100" height="30" uuid="e48aa1dc-6c48-4e38-9539-f9071accd202"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Pagos efectuados por otros empleadores (sólo si el patrón que declara realizó cálculo anual)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10980" y="0" width="100" height="30" uuid="01e1f6dc-3b54-46ac-ac08-3f38ee543ecc"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Pagos efectuados por otros empleadores (sólo si el patrón que declara realizó cálculo anual)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11080" y="0" width="100" height="30" uuid="b497f5b1-9360-4121-b88e-aab7e85eefc4"/>
+				<text><![CDATA[otrosIngresosSalarios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11180" y="0" width="100" height="30" uuid="45463a82-3816-468f-80c7-4593fe34c50b"/>
+				<text><![CDATA[Otros ingresos por salarios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11280" y="0" width="100" height="30" uuid="962c5e51-190d-4feb-ac16-f27ef8a34f90"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Suma del ingreso GRAVADO por sueldos y salarios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11380" y="0" width="100" height="30" uuid="19e76abb-ae60-43a2-9518-a9aafde0d81d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Suma del ingreso EXENTO por sueldos y salariosING EXC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11480" y="0" width="100" height="30" uuid="868ed22d-dc03-4768-8c14-d2ee2c532417"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Impuesto retenido durante el ejercicio que declara]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11580" y="0" width="100" height="30" uuid="2a31ec17-9834-4c78-8e7b-070525bcfbba"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Impuesto retenido por otro(s) patrón(es) durante el ejercicio que declara]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11680" y="0" width="100" height="30" uuid="82ab18c0-d9b4-4600-b7f6-2eb65e12a6f8"/>
+				<textElement>
+					<font size="4"/>
+				</textElement>
+				<text><![CDATA[Saldo a favor determinado en el ejercicio que declara, que el patrón compensará durante el siguiente ejercicio o solicitará su devolución]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11780" y="0" width="100" height="30" uuid="db69b8d7-6a20-4f00-8fe6-3d268268f24d"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Saldo a favor del ejercicio anterior no compensado durante el ejercicio que declara]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11880" y="0" width="100" height="30" uuid="b5c05517-4fde-4d67-a291-57329b595065"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Suma de las cantidades que por concepto de crédito al salario le correspondió al trabajador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11980" y="0" width="100" height="30" uuid="dbce878e-1546-4129-a134-57b954e4436f"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Crédito al salario entregado en efectivo al trabajador durante el ejercicio que declara]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12080" y="0" width="100" height="30" uuid="dc43a74e-14fb-45ff-acac-226dca5f8449"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Monto total de ingresos obtenidos por concepto de prestaciones de previsión social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12180" y="0" width="100" height="30" uuid="37e11cac-d73a-46c6-bb5b-3fdadc407ce3"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Suma de ingresos exentos por concepto de prestaciones de previsión social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12280" y="0" width="100" height="30" uuid="ce87c6c5-60ef-4454-91cb-b326992c4de4"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Suma de ingresos por sueldos y salarios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12380" y="0" width="100" height="30" uuid="14f83af7-ff96-41d7-b9ae-c40e068ed207"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Monto del impuesto local a los ingresos por sueldos y salarios y en general por la prestación de un servicio personal subordinado retenido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12480" y="0" width="100" height="30" uuid="ee0d570c-2532-4ea0-bcfd-8e1500374a1c"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Monto del subsidio para el empleo entregado en efectivo al trabajador durante el ejercicio que declara]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12580" y="0" width="100" height="30" uuid="57da9d24-ad3d-4bce-aba3-caa825019f8b"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[TOTAL DE LAS APORTACIONES VOLUNTARIAS DEDUCIBLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12680" y="0" width="100" height="30" uuid="e39145e0-884b-4124-a4f5-77d8d5937a2f"/>
+				<text><![CDATA[ISR conforme a la tarifa anual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12780" y="0" width="100" height="30" uuid="0205068b-9c0d-438e-b66b-38c421df7fba"/>
+				<text><![CDATA[Subsidio acreditable]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12880" y="0" width="100" height="30" uuid="957aad00-eebf-45b1-a8d3-43bfdf1898dd"/>
+				<text><![CDATA[Subsidio no acreditable]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12980" y="0" width="100" height="30" uuid="8aeaa8e9-8dec-48cf-945b-626f865280cc"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Impuesto sobre ingresos acumulables]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13080" y="0" width="100" height="30" uuid="58c14fc5-9550-4bbd-a122-84c4555036ca"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Impuesto sobre ingresos no acumulables]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13180" y="0" width="100" height="30" uuid="0ad834b4-2e03-444d-9de2-024805943c61"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Subsidio para el empleo entregado al trabajador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13280" y="0" width="100" height="30" uuid="4f2c3108-045d-4fdb-8c03-0d5245f58720"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Subsidio para la nivelación del ingreso entregado al trabajador]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="80" height="30" uuid="d5525928-b5e5-448a-9848-31b9a8dc96a9"/>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="100" height="30" uuid="599af7f9-e53b-48dd-925f-5a8b300ac847"/>
+				<textFieldExpression><![CDATA[$F{mesFinal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="30" uuid="bfaec841-83ea-4c7a-9284-f525cfaedbd9"/>
+				<textFieldExpression><![CDATA[$F{rfc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="100" height="30" uuid="b0a5cf96-68a6-4584-96c6-15a5ed728776"/>
+				<textFieldExpression><![CDATA[$F{curp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="100" height="30" uuid="bb056308-1f97-47af-8954-ceca58fd302d"/>
+				<textFieldExpression><![CDATA[$F{apellidoPaterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="100" height="30" uuid="f0589278-8848-4c2f-a9f5-6ed01ff48885"/>
+				<textFieldExpression><![CDATA[$F{apellidoMaterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="580" y="0" width="100" height="30" uuid="53995c77-0d7c-4d32-80ad-bb32e832914f"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="680" y="0" width="100" height="30" uuid="a6268abf-d179-4483-ada4-74847edade53"/>
+				<textFieldExpression><![CDATA[$F{areaGeo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="780" y="0" width="100" height="30" uuid="d899a93b-bc22-402b-9b39-bdb838def1ff"/>
+				<textFieldExpression><![CDATA[$F{calAnual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="880" y="0" width="100" height="30" uuid="71b12ab6-a65f-4a69-90d2-9c2deaeac40a"/>
+				<textFieldExpression><![CDATA[$F{tarifa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="980" y="0" width="100" height="30" uuid="9b414dc0-ccd2-4f7b-9ae4-caec300bd6ee"/>
+				<textFieldExpression><![CDATA[$F{tarifa91}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1080" y="0" width="100" height="30" uuid="d6177b97-8ee6-4b80-aecf-dadc270fc594"/>
+				<textFieldExpression><![CDATA[$F{proporc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1180" y="0" width="100" height="30" uuid="1df4f10a-22d1-4e54-88e3-51464d4d7ac6"/>
+				<textFieldExpression><![CDATA[$F{sindicato}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1280" y="0" width="100" height="30" uuid="3e3db433-49c1-444d-bd55-1b4b21d9fcd9"/>
+				<textFieldExpression><![CDATA[$F{asimilado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1380" y="0" width="100" height="30" uuid="4be7eeb5-541f-4797-bfde-ed22658603d3"/>
+				<textFieldExpression><![CDATA[$F{entidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1480" y="0" width="100" height="30" uuid="de6887a4-0a8a-4cb4-b502-20d6708739f5"/>
+				<textFieldExpression><![CDATA[$F{rfc1Pat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1580" y="0" width="100" height="30" uuid="76d3ac7e-d759-4536-bc1d-ed8c1b3fc6c5"/>
+				<textFieldExpression><![CDATA[$F{rfc2pat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1680" y="0" width="100" height="30" uuid="6907412d-6dce-4409-9613-148d31b5cd17"/>
+				<textFieldExpression><![CDATA[$F{rfc3pat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1780" y="0" width="100" height="30" uuid="bc833fbd-b774-4c33-978c-9448924cdcc7"/>
+				<textFieldExpression><![CDATA[$F{rfc4pat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1880" y="0" width="100" height="30" uuid="54ea4bbb-90a0-44d5-9b81-cec9482dbc8d"/>
+				<textFieldExpression><![CDATA[$F{rfc5pat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1980" y="0" width="100" height="30" uuid="808a7929-c62c-4c5d-8c6d-3ab3ea4d1aa6"/>
+				<textFieldExpression><![CDATA[$F{rfc6pat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2080" y="0" width="100" height="30" uuid="8b16995c-d149-47f6-8b4f-6a123f80e0e4"/>
+				<textFieldExpression><![CDATA[$F{rfc7pat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2180" y="0" width="100" height="30" uuid="f5b45c86-312c-49ee-8c30-c897ab27e5ce"/>
+				<textFieldExpression><![CDATA[$F{rfc8pat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2280" y="0" width="100" height="30" uuid="cdf0153f-9165-4f6c-8bc7-aa29a65053f2"/>
+				<textFieldExpression><![CDATA[$F{rfc9pat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2380" y="0" width="100" height="30" uuid="7bb348c8-3648-4454-828f-625be1f86aa7"/>
+				<textFieldExpression><![CDATA[$F{rfc10pat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2480" y="0" width="100" height="30" uuid="f7613442-e020-4e01-9a0b-22234279cf94"/>
+				<textFieldExpression><![CDATA[$F{montoAportacionesVoluntarias}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2580" y="0" width="100" height="30" uuid="013cec55-1338-4d52-80c3-204c2584574c"/>
+				<textFieldExpression><![CDATA[$F{aplicoMontoAportVoluntarioas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2680" y="0" width="100" height="30" uuid="e3607a35-4ef9-46a3-8a6e-c9b421fd6a32"/>
+				<textFieldExpression><![CDATA[$F{montoAportDeduciblesTrabDecl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2780" y="0" width="100" height="30" uuid="0636172a-a7c5-4ad4-b421-c5173c1a785b"/>
+				<textFieldExpression><![CDATA[$F{montoAportVoluDeduPatron}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2880" y="0" width="100" height="30" uuid="f51e9867-5b36-4091-8e1e-7c4559d77daf"/>
+				<textFieldExpression><![CDATA[$F{pagosSeparacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2980" y="0" width="100" height="30" uuid="e0c644ab-f15f-4d9c-a20e-f9bdaff99144"/>
+				<textFieldExpression><![CDATA[$F{asimiladosSalarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3080" y="0" width="100" height="30" uuid="faafa8c6-3fe3-4c7a-a47a-ebf2c939a78f"/>
+				<textFieldExpression><![CDATA[$F{pagosEfectuadosTrabajadores}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3180" y="0" width="100" height="30" uuid="39e64bff-fe18-4343-b5ab-8efbd73d6646"/>
+				<textFieldExpression><![CDATA[$F{totalesPagosParciales}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3280" y="0" width="100" height="30" uuid="229f3796-7309-4589-8ca1-6b41247beed9"/>
+				<textFieldExpression><![CDATA[$F{montoDiarioJubilaciones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3380" y="0" width="100" height="30" uuid="032778fa-557a-4905-b6f3-54f86f12c313"/>
+				<textFieldExpression><![CDATA[$F{cantidadPercibidaPeriodo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3480" y="0" width="100" height="30" uuid="96a2ce36-daf5-4689-b88f-ae5227aa0952"/>
+				<textFieldExpression><![CDATA[$F{montoTotalPagoUnaExhibi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3580" y="0" width="100" height="30" uuid="f61ffcb4-656f-4cdc-87eb-7f8e76aa516d"/>
+				<textFieldExpression><![CDATA[$F{numeroDias}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3680" y="0" width="100" height="30" uuid="40698653-81d2-4a21-a2d9-0065df93da85"/>
+				<textFieldExpression><![CDATA[$F{ingresosExcentos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3780" y="0" width="100" height="30" uuid="632daea7-f2d9-4df5-b7b5-697ad9611fb2"/>
+				<textFieldExpression><![CDATA[$F{ingresosGravables}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3880" y="0" width="100" height="30" uuid="50db7ea9-93b0-4dc2-adb3-26a9d4509328"/>
+				<textFieldExpression><![CDATA[$F{ingresosAcomulables}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3980" y="0" width="100" height="30" uuid="28f2ccf2-d340-42e4-81c9-cebf7bee656d"/>
+				<textFieldExpression><![CDATA[$F{ingresosNoAcomulables}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4080" y="0" width="100" height="30" uuid="ba232897-0393-487a-a2ab-1b2efc1302a0"/>
+				<textFieldExpression><![CDATA[$F{impRetenido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4180" y="0" width="100" height="30" uuid="bf7d2406-c138-4e82-9f2c-e5a225e8eb3c"/>
+				<textFieldExpression><![CDATA[$F{montoTotalOtrosPagosSep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4280" y="0" width="100" height="30" uuid="3c954b4e-3379-4dd6-aa93-65487bb08ace"/>
+				<textFieldExpression><![CDATA[$F{numeroAniosServicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4380" y="0" width="100" height="30" uuid="0113fd50-94be-4892-a8ad-613d6115fc94"/>
+				<textFieldExpression><![CDATA[$F{ingresosExcentos1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4480" y="0" width="100" height="30" uuid="ca48fa24-ff86-4d0b-a5d2-302fc85ee45d"/>
+				<textFieldExpression><![CDATA[$F{ingresosGravados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4580" y="0" width="100" height="30" uuid="c05989dc-370d-4e35-9cc0-698fd564b6ab"/>
+				<textFieldExpression><![CDATA[$F{acomulablesUltimoSdoMensual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4680" y="0" width="100" height="30" uuid="cda7f853-dbbf-4f1f-aaf6-7b81db882b37"/>
+				<textFieldExpression><![CDATA[$F{correspUltimoSdoMensual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4780" y="0" width="100" height="30" uuid="fb17f91b-9d3d-4ff9-aff1-23e12d3e27e2"/>
+				<textFieldExpression><![CDATA[$F{noAcomulables}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4880" y="0" width="100" height="30" uuid="1b815e3f-6c4d-45e5-847e-954445bf58c9"/>
+				<textFieldExpression><![CDATA[$F{impRetenido1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4980" y="0" width="100" height="30" uuid="188f69e1-1d5a-488c-b0c0-dee080a152d8"/>
+				<textFieldExpression><![CDATA[$F{ingresosAsimiladosSalarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5080" y="0" width="100" height="30" uuid="9d5756cc-e4cd-4a3e-bd1b-a4d6a119d14b"/>
+				<textFieldExpression><![CDATA[$F{impuestoRetenidoEjercicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5180" y="0" width="100" height="30" uuid="8eb69729-dc0e-4a78-8b59-2b2e0e1673c2"/>
+				<textFieldExpression><![CDATA[$F{opcEmpleadorAdquirirTitulos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5280" y="0" width="100" height="30" uuid="0241b61d-3c2a-40ca-8a4b-11a03abdae3a"/>
+				<textFieldExpression><![CDATA[$F{valorMercadoAcionesAddTitulos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5380" y="0" width="100" height="30" uuid="62220e29-43b9-4b24-840b-e8ca4486b12f"/>
+				<textFieldExpression><![CDATA[$F{precEstablIngreTitulos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5480" y="0" width="100" height="30" uuid="d27096ce-e078-4ab2-a26a-cfb4bd47ad71"/>
+				<textFieldExpression><![CDATA[$F{ingresoAcomulable}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5580" y="0" width="100" height="30" uuid="ade874e5-4899-40cf-9e65-658bc0003e50"/>
+				<textFieldExpression><![CDATA[$F{impuestoRetenidoEjercicio1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5680" y="0" width="100" height="30" uuid="133aaf35-ac3e-4585-a518-def8ba971bbb"/>
+				<textFieldExpression><![CDATA[$F{sueldoSalariosRayasJornales}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5780" y="0" width="100" height="30" uuid="a35d71b0-46f7-48ea-afb8-4a02f602b8ca"/>
+				<textFieldExpression><![CDATA[$F{sueldoExcento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5880" y="0" width="100" height="30" uuid="6e849a8b-9c4e-4e65-bc64-be86dd759296"/>
+				<textFieldExpression><![CDATA[$F{gratificacionAnual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5980" y="0" width="100" height="30" uuid="1d46ef2d-e308-41d8-a0b5-103c7e44c41f"/>
+				<textFieldExpression><![CDATA[$F{aguinaldoExento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6080" y="0" width="100" height="30" uuid="8b123391-e261-4252-9339-64b02ab7fa59"/>
+				<textFieldExpression><![CDATA[$F{viaticosGastosViaje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6180" y="0" width="100" height="30" uuid="6b848972-5bb0-4013-a6eb-525f63bd0f18"/>
+				<textFieldExpression><![CDATA[$F{viaticosGastosViaje1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6280" y="0" width="100" height="30" uuid="29b5380f-1d61-4617-98c6-bf33db2518d1"/>
+				<textFieldExpression><![CDATA[$F{tiempoExtraOrdinario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6380" y="0" width="100" height="30" uuid="2402efe9-83da-48c6-b16a-f87ec8757d81"/>
+				<textFieldExpression><![CDATA[$F{tiempoExtraExento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6480" y="0" width="100" height="30" uuid="acba5ee0-f6f4-44fe-bcb4-1b61e5a9ff05"/>
+				<textFieldExpression><![CDATA[$F{primaVacacional}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6580" y="0" width="100" height="30" uuid="d5bfd978-14ad-47c7-b553-d7af948e7de0"/>
+				<textFieldExpression><![CDATA[$F{primaVacaExento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6680" y="0" width="100" height="30" uuid="50653e7a-27e0-41e6-b7a4-7ce258778901"/>
+				<textFieldExpression><![CDATA[$F{primaDominical}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6780" y="0" width="100" height="30" uuid="ef473069-ae9e-4751-97f2-6c9d569dcf09"/>
+				<textFieldExpression><![CDATA[$F{primaDominical1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6880" y="0" width="100" height="30" uuid="e22baed5-b96a-4225-9bb6-25cc70fbc3e9"/>
+				<textFieldExpression><![CDATA[$F{participacionTrabajUtilidades}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6980" y="0" width="100" height="30" uuid="cd9b1fc3-2673-42b6-88ea-df43343adb8b"/>
+				<textFieldExpression><![CDATA[$F{ptuExenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7080" y="0" width="100" height="30" uuid="8fdf99a2-263b-42f6-a3a5-7846feaffd6c"/>
+				<textFieldExpression><![CDATA[$F{reembolsoGastMedDentHosp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7180" y="0" width="100" height="30" uuid="c0921e84-cae4-4e19-8962-2d0b5ce5a65e"/>
+				<textFieldExpression><![CDATA[$F{reembolsoGastMedDentHosp1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7280" y="0" width="100" height="30" uuid="62112f5b-a46d-4f21-b696-cd74d562ca09"/>
+				<textFieldExpression><![CDATA[$F{fondoAhorro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7380" y="0" width="100" height="30" uuid="1482498c-a5c2-4d94-ac2e-0444a4c4f2c3"/>
+				<textFieldExpression><![CDATA[$F{fondoAhorro1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7480" y="0" width="100" height="30" uuid="19f9140c-862d-48d0-8d2b-351f87d9b6b6"/>
+				<textFieldExpression><![CDATA[$F{cajaAhorro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7580" y="0" width="100" height="30" uuid="2dd3e47c-2e41-45d1-a146-387c04e29685"/>
+				<textFieldExpression><![CDATA[$F{cajaAhorro1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7680" y="0" width="100" height="30" uuid="d9039822-ce54-45e3-a53c-6c2a21f514f4"/>
+				<textFieldExpression><![CDATA[$F{valesDespensa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7780" y="0" width="100" height="30" uuid="077c1791-8a09-49a7-b3a4-696ea19d03f9"/>
+				<textFieldExpression><![CDATA[$F{valesDespensa1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7880" y="0" width="100" height="30" uuid="03139542-ba57-4753-b834-4bc8dffb7415"/>
+				<textFieldExpression><![CDATA[$F{ayudaGastosFuneral}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7980" y="0" width="100" height="30" uuid="394f73f3-427b-4257-8c5d-3014e904e574"/>
+				<textFieldExpression><![CDATA[$F{ayudaGastosFuneral1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8080" y="0" width="100" height="30" uuid="6d08cb6d-bdcc-4c49-8145-6c927d5ecdf2"/>
+				<textFieldExpression><![CDATA[$F{contibuCargoTrabajPagPatron}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8180" y="0" width="100" height="30" uuid="f04d5d23-b46c-4a44-ad52-fd5db9c18cf6"/>
+				<textFieldExpression><![CDATA[$F{contibuCargoTrabajPagPatron1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8280" y="0" width="100" height="30" uuid="adb052f6-f3fa-4019-a60b-a44bebb3d724"/>
+				<textFieldExpression><![CDATA[$F{premioPuntualidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8380" y="0" width="100" height="30" uuid="fbf4ff6d-5426-4f99-bc17-ec4201e0086d"/>
+				<textFieldExpression><![CDATA[$F{premioPuntualidad1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8480" y="0" width="100" height="30" uuid="b611a65a-07a7-4308-9503-3b9e960d37c5"/>
+				<textFieldExpression><![CDATA[$F{primaSeguroVida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8580" y="0" width="100" height="30" uuid="9c6ebc13-67ed-48e3-96b5-392941f574bd"/>
+				<textFieldExpression><![CDATA[$F{primaSeguroVida1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8680" y="0" width="100" height="30" uuid="9f6c2e31-d862-4b89-a604-7d8bbdabcd80"/>
+				<textFieldExpression><![CDATA[$F{seguroGastosMedicosMayores}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8780" y="0" width="100" height="30" uuid="f02644d7-ef1e-45af-8d8d-81965a309334"/>
+				<textFieldExpression><![CDATA[$F{seguroGastosMedicosMayores1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8880" y="0" width="100" height="30" uuid="a6ae2a7c-56d4-417f-afeb-c978ca10e037"/>
+				<textFieldExpression><![CDATA[$F{valesRestaurante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8980" y="0" width="100" height="30" uuid="cf12c74d-297b-4a98-a417-f7b03fb0cc10"/>
+				<textFieldExpression><![CDATA[$F{valesRestaurante1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9080" y="0" width="100" height="30" uuid="5b58278c-ec4c-42f1-9a69-cfcaeede5147"/>
+				<textFieldExpression><![CDATA[$F{valesGasolina}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9180" y="0" width="100" height="30" uuid="065ede7e-1751-4fc9-a654-364a17ea510a"/>
+				<textFieldExpression><![CDATA[$F{valesGasolina1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9280" y="0" width="100" height="30" uuid="943e308b-6f13-4659-8441-c0b6d69781c2"/>
+				<textFieldExpression><![CDATA[$F{valesRopa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9380" y="0" width="100" height="30" uuid="7c370521-7696-4de5-b277-de9f25c89873"/>
+				<textFieldExpression><![CDATA[$F{valesRopa1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9480" y="0" width="100" height="30" uuid="5a2fd072-e688-44f3-86c7-146bd1165cc6"/>
+				<textFieldExpression><![CDATA[$F{ayudaRenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9580" y="0" width="100" height="30" uuid="95ed31d1-4af9-402a-a978-067b2dc01461"/>
+				<textFieldExpression><![CDATA[$F{ayudaRenta1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9680" y="0" width="100" height="30" uuid="4710f3c1-9187-4172-9a6c-3872d3f79a75"/>
+				<textFieldExpression><![CDATA[$F{ayudaArticulosEscolares}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9780" y="0" width="100" height="30" uuid="bde30c7a-0d0a-4400-8266-0930f02b3e8b"/>
+				<textFieldExpression><![CDATA[$F{ayudaArticulosEscolares1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9880" y="0" width="100" height="30" uuid="6be76fa1-fec2-4077-845f-9df978de20aa"/>
+				<textFieldExpression><![CDATA[$F{ayudaAnteojos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9980" y="0" width="100" height="30" uuid="01344875-7b9b-489c-bebd-5c03819b1f5e"/>
+				<textFieldExpression><![CDATA[$F{ayudaAnteojos1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10080" y="0" width="100" height="30" uuid="8a56cce6-834f-4cd0-9bc6-41f9e85c37f6"/>
+				<textFieldExpression><![CDATA[$F{ayudaTransporte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10180" y="0" width="100" height="30" uuid="a151a799-7903-4446-9563-8435f5188645"/>
+				<textFieldExpression><![CDATA[$F{ayudaTransporte1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10280" y="0" width="100" height="30" uuid="f9d9e36f-d27a-4cb8-a289-53fb76aeeae9"/>
+				<textFieldExpression><![CDATA[$F{cuotasSindicalesPagadasPatron}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10380" y="0" width="100" height="30" uuid="fd63b37e-6a74-4cb7-9c48-f96b918e4f95"/>
+				<textFieldExpression><![CDATA[$F{cuotasSindicalesPagadasPatron1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10480" y="0" width="100" height="30" uuid="b0c2dc00-99b9-4ca7-9748-7e2dda392462"/>
+				<textFieldExpression><![CDATA[$F{subsidioIncapacidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10580" y="0" width="100" height="30" uuid="f4e03f8b-dfb6-44da-8a34-f82465eeb959"/>
+				<textFieldExpression><![CDATA[$F{subsidioIncapacidad1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10680" y="0" width="100" height="30" uuid="e582bab2-afd1-4d5d-bb1a-24ac2ad5cd76"/>
+				<textFieldExpression><![CDATA[$F{becasTrabajadoresHijos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10780" y="0" width="100" height="30" uuid="fe577655-593e-4bca-8fe3-369081a2a2a7"/>
+				<textFieldExpression><![CDATA[$F{becasTrabajadoresHijos1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10880" y="0" width="100" height="30" uuid="99a78781-636c-4422-a62c-62904c427b00"/>
+				<textFieldExpression><![CDATA[$F{pagoOtroEmpleador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10980" y="0" width="100" height="30" uuid="073f6639-1b16-4a59-96c6-74a2733fd403"/>
+				<textFieldExpression><![CDATA[$F{pagoOtroEmpleador1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11080" y="0" width="100" height="30" uuid="97ff7f99-2170-44cb-97e0-fcbb6385ac09"/>
+				<textFieldExpression><![CDATA[$F{otrosIngresosSalarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11180" y="0" width="100" height="30" uuid="007b04dd-f2dc-4f58-a78e-0d4c0d6c9ee0"/>
+				<textFieldExpression><![CDATA[$F{otrosIngresosSalarios1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11280" y="0" width="100" height="30" uuid="07b39378-3922-47c3-a29c-945b6d8ab30f"/>
+				<textFieldExpression><![CDATA[$F{sumaIngresoGravadiSuelSal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11380" y="0" width="100" height="30" uuid="c7b957bf-7865-4662-869f-85782de130dd"/>
+				<textFieldExpression><![CDATA[$F{sumaIngresoExentoSuieldSal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11480" y="0" width="100" height="30" uuid="3b1dd702-669f-4277-b9f5-dd94708b0721"/>
+				<textFieldExpression><![CDATA[$F{impuestoRetenEjercicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11580" y="0" width="100" height="30" uuid="622c6383-fb8a-4fb0-8857-e2155c51bb7c"/>
+				<textFieldExpression><![CDATA[$F{impuestoRetenOtrosPatronEjer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11680" y="0" width="100" height="30" uuid="a0429744-2ba7-4863-ad1a-d4413a588f14"/>
+				<textFieldExpression><![CDATA[$F{saldoFavorEjercPatrCompSiguiEjer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11780" y="0" width="100" height="30" uuid="f6662d96-fba6-419f-8308-148a455c2c21"/>
+				<textFieldExpression><![CDATA[$F{saldoFavorEjercAntNoComp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11880" y="0" width="100" height="30" uuid="08c0e980-d860-4703-8042-b070e7a93ac9"/>
+				<textFieldExpression><![CDATA[$F{sumaCantConcCredit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11980" y="0" width="100" height="30" uuid="f88ea4e8-fcd6-4e26-8690-cc67a8771390"/>
+				<textFieldExpression><![CDATA[$F{creditoSalarioEntrEfecTrabEje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12080" y="0" width="100" height="30" uuid="bfb08edc-fe4f-4dba-ae2a-205c4921a105"/>
+				<textFieldExpression><![CDATA[$F{montoTotalIngrObtenPrevisionSocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12180" y="0" width="100" height="30" uuid="a49bd853-ecc5-4055-b105-1e1a8e610b49"/>
+				<textFieldExpression><![CDATA[$F{sumaIngreExcentosConceptoPresta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12280" y="0" width="100" height="30" uuid="56d1968e-20f1-4711-81b2-d482c4f77e89"/>
+				<textFieldExpression><![CDATA[$F{sumaIngresosSueldosSalarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12380" y="0" width="100" height="30" uuid="5ab2349f-ee45-4b88-982b-2e644b640baa"/>
+				<textFieldExpression><![CDATA[$F{montoImpuestoLocPrestServSocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12480" y="0" width="100" height="30" uuid="3dfdd9bf-9064-408a-b6cc-2dbef9eceaa0"/>
+				<textFieldExpression><![CDATA[$F{montoSubEmplEfectTrabEjer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12580" y="0" width="100" height="30" uuid="9b946824-1549-41df-804f-b7484feb4d65"/>
+				<textFieldExpression><![CDATA[$F{totalAportVoluntDedu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12680" y="0" width="100" height="30" uuid="3476d25f-d69a-4bf9-afee-0b3414a6b87c"/>
+				<textFieldExpression><![CDATA[$F{isrTarifAnual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12780" y="0" width="100" height="30" uuid="c05a4a6a-fe74-4416-a86f-1bc8c4547c6b"/>
+				<textFieldExpression><![CDATA[$F{subsAcreditable}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12880" y="0" width="100" height="30" uuid="a8a26932-2bbb-4394-b6bd-f7a63bfcebac"/>
+				<textFieldExpression><![CDATA[$F{subsNoAcreditable}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12980" y="0" width="100" height="30" uuid="418113ff-af1d-4ba7-9500-a491773f9b5a"/>
+				<textFieldExpression><![CDATA[$F{impuestoIngresosAcomulables}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="13080" y="0" width="100" height="30" uuid="056b3669-af5d-4caa-9f3c-e6a711e1cce4"/>
+				<textFieldExpression><![CDATA[$F{impuestoIngresosNoAcomulables}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="13180" y="0" width="100" height="30" uuid="6afa3a7c-ee43-4b71-90e5-1a8464e95b9a"/>
+				<textFieldExpression><![CDATA[$F{subsidioEntregadoTrabajador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="13280" y="0" width="100" height="30" uuid="6f995e02-6ab5-4276-8745-717307e42bab"/>
+				<textFieldExpression><![CDATA[$F{subsidioNivelacionIngresoEntregado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

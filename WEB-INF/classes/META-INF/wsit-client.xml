@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <definitions 
+ xmlns="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="mainclientconfig"
+ >
+    <import location="MySIWEBConta.xml" namespace="http://WebService.Contabilidad/"/>
+    <import location="InterconectaWs.xml" namespace="http://ws.interconecta.tsp.com/"/>
+    <import location="CancelaCFDService.svc.xml" namespace="http://cancelacfd.sat.gob.mx"/>
+</definitions>
